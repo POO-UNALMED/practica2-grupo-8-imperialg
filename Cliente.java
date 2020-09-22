@@ -1,8 +1,5 @@
 public class Cliente {
-	
-	
     private String nombre;
-    private String = "Hola";
     private int cc;
     private long celular;
     private String email;
