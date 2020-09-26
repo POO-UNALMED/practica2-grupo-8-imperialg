@@ -1,4 +1,4 @@
-package main.java.gestorAplicación.product;
+package gestorAplicación.product;
 
 public class Juego {
     private int pegi;

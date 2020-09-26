@@ -1,4 +1,4 @@
-package main.java.gestorAplicación.transacciones;
+package gestorAplicación.transacciones;
 
 import main.java.gestorAplicación.transacciones.Cliente;
 

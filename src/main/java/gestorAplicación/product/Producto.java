@@ -1,4 +1,4 @@
-package main.java.gestorAplicación.product;
+package gestorAplicación.product;
 
 public class Producto {
     private int id = 1;

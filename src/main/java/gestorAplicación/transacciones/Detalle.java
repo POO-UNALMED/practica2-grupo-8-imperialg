@@ -1,4 +1,4 @@
-package main.java.gestorAplicación.transacciones;
+package gestorAplicación.transacciones;
 
 public class Detalle {
     private int id;
