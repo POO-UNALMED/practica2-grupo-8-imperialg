@@ -1,4 +1,4 @@
-package gestorAplicación.transacciones;
+package gestorAplicacion.transacciones;
 
 public class Cliente {
     private String nombre;

@@ -1,6 +1,6 @@
-package gestorAplicación.product;
+package gestorAplicacion.producto;
 
-public class Juego {
+public class Juego extends Producto {
     private int pegi;
     private String plataforma;
     private String genero;

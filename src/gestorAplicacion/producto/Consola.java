@@ -1,6 +1,6 @@
-package gestorAplicación.product;
+package gestorAplicacion.producto;
 
-public class Consola {
+public class Consola extends Producto {
     private String color;
     private boolean estado;
     private String version;

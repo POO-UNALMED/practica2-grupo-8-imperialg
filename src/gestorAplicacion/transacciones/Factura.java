@@ -1,10 +1,10 @@
-package gestorAplicación.transacciones;
+package gestorAplicacion.transacciones;
 
-import main.java.gestorAplicación.transacciones.Cliente;
+import java.time.LocalDate;
 
 public class Factura {
     private int id;
-    private Date fecha;
+    private LocalDate fecha;
     private Cliente cliente;
 
     public int getId() {
@@ -15,11 +15,11 @@ public class Factura {
         this.id = id;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 

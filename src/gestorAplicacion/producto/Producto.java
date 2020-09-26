@@ -1,4 +1,4 @@
-package gestorAplicación.product;
+package gestorAplicacion.producto;
 
 public class Producto {
     private int id = 1;

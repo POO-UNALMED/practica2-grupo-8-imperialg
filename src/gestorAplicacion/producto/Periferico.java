@@ -1,6 +1,6 @@
-package gestorAplicación.product;
+package gestorAplicacion.producto;
 
-public class Periferico {
+public class Periferico extends Producto {
     private boolean estado;
     private String plataforma;
 

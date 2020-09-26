@@ -1,4 +1,6 @@
-package gestorAplicación.transacciones;
+package gestorAplicacion.transacciones;
+
+import gestorAplicacion.producto.Producto;
 
 public class Detalle {
     private int id;
