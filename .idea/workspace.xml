@@ -26,12 +26,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56670e89-9d7b-4614-a83e-acfa9d5d51f4" name="Default Changelist" comment="ensayo3">
-      <change afterPath="$PROJECT_DIR$/src/main/main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/practica1-grupo-8-imperialg.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/practica1-grupo-8-imperialg.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="56670e89-9d7b-4614-a83e-acfa9d5d51f4" name="Default Changelist" comment="Archivos organizados" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -111,7 +106,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600712852120</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Archivos organizados">
+      <created>1601134312762</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1601134312762</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -125,7 +127,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="origin/SantiagoV" />
                       </list>
                     </value>
                   </entry>
@@ -142,7 +144,8 @@
     <MESSAGE value="ensayo1" />
     <MESSAGE value="ensayo2" />
     <MESSAGE value="ensayo3" />
-    <option name="LAST_COMMIT_MESSAGE" value="ensayo3" />
+    <MESSAGE value="Archivos organizados" />
+    <option name="LAST_COMMIT_MESSAGE" value="Archivos organizados" />
   </component>
   <component name="WindowStateProjectService">
     <state x="717" y="0" key="#Project_Structure" timestamp="1600714417408">
