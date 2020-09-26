@@ -26,7 +26,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56670e89-9d7b-4614-a83e-acfa9d5d51f4" name="Default Changelist" comment="Archivos organizados">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proyecto/Cliente.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proyecto/Cliente.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proyecto/Consola.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proyecto/Consola.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proyecto/Detalle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proyecto/Detalle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proyecto/Factura.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proyecto/Factura.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proyecto/Juego.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proyecto/Juego.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proyecto/Periferico.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proyecto/Periferico.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proyecto/Producto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proyecto/Producto.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
