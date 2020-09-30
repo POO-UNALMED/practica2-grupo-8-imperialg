@@ -37,4 +37,9 @@ public class Producto {
     public void setUso(boolean uso) {
         this.uso = uso;
     }
+
+    public Producto(String nombre, boolean uso) {
+        this.nombre = nombre;
+        this.uso = uso;
+    }
 }
