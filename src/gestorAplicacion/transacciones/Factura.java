@@ -1,19 +1,14 @@
 package gestorAplicacion.transacciones;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Factura {
-    private int id;
+    private int idFactura;
     private LocalDate fecha;
     private Cliente cliente;
+    private ArrayList<Detalle> detalles = new ArrayList<Detalle>();
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public LocalDate getFecha() {
         return fecha;
@@ -29,5 +24,13 @@ public class Factura {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public ArrayList<Detalle> getDetalles() {
+        return detalles;
+    }
+
+    public int getIdFactura() {
+        return idFactura;
     }
 }
