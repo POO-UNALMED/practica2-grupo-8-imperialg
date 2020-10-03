@@ -1,9 +1,11 @@
 package gestorAplicacion.producto;
+import java.io.Serializable;
 
-public class Producto {
+public class Producto implements Serializable{
+    private static final long serialVersionUID = 1L;
     private int id = 1;
     private String nombre;
-    public static int stock;
+    public int stock = 0;
     private boolean uso;
 
     public int getId() {
@@ -22,12 +24,12 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public static int getStock() {
+    public int getStock() {
         return stock;
     }
 
-    public static void setStock(int stock) {
-        Producto.stock = stock;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     public boolean isUso() {

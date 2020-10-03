@@ -1,19 +1,11 @@
 package uiMain;
-import gestorAplicacion.*;
+import gestorAplicacion.producto.*;
+import gestorAplicacion.transacciones.*;
 import BaseDatos.*;
 
 public class Ui {
-	public void ingresarConsola(String nombre, Boolean uso, ){
-
-	}
-	public void ingresarJuego(){
-
-	}
-	public void ingresarPeriferico(){
-
-	}
-
 	public static void main(String[] Args) {
-		System.out.println("Hola");
+		DatosTranssacciones.leerDatos();
+		DatosTranssacciones.guardarDatos();
 	}
 }

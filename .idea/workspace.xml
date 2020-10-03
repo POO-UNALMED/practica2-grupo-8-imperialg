@@ -20,17 +20,24 @@
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:SerializaciónObjetos" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56670e89-9d7b-4614-a83e-acfa9d5d51f4" name="Default Changelist" comment="Archivos organizados">
-      <change beforePath="$PROJECT_DIR$/src/main/java/gestorAplicación/product/Consola.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gestorAplicación/product/Consola.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gestorAplicación/product/Juego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gestorAplicación/product/Juego.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gestorAplicación/product/Periferico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gestorAplicación/product/Periferico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gestorAplicación/product/Producto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gestorAplicación/product/Producto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main.iml" beforeDir="false" />
+    <list default="true" id="799d2829-1bee-4068-b493-8888f1cf7f96" name="Default Changelist" comment="SerializaciónObjetos">
+      <change afterPath="$PROJECT_DIR$/src/BaseDatos/DatosTranssacciones.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BaseDatos/Datos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BaseDatos/DatosProductos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gestorAplicacion/producto/Consola.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gestorAplicacion/producto/Consola.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gestorAplicacion/producto/Juego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gestorAplicacion/producto/Juego.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gestorAplicacion/producto/Periferico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gestorAplicacion/producto/Periferico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gestorAplicacion/producto/Producto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gestorAplicacion/producto/Producto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gestorAplicacion/transacciones/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gestorAplicacion/transacciones/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gestorAplicacion/transacciones/Detalle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gestorAplicacion/transacciones/Detalle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gestorAplicacion/transacciones/Factura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gestorAplicacion/transacciones/Factura.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uiMain/ImprimiFactura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uiMain/ImprimeFactura.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uiMain/Ui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uiMain/Ui.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,12 +55,17 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Facturas" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
   </component>
-  <component name="ProjectId" id="1hpaIVjpBYIMU8jRFmd8JNMNbzl" />
+  <component name="ProjectId" id="1iF0wUzODKQQDVmiNe2wn22Rhto" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -63,69 +75,40 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\santi\Documents\GitHub\practica1-grupo-8-imperialg" />
-    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="56670e89-9d7b-4614-a83e-acfa9d5d51f4" name="Default Changelist" comment="" />
-      <created>1600710407182</created>
+      <changelist id="799d2829-1bee-4068-b493-8888f1cf7f96" name="Default Changelist" comment="" />
+      <created>1601488270348</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1600710407182</updated>
+      <updated>1601488270348</updated>
     </task>
-    <task id="LOCAL-00001" summary="ensayo1">
-      <created>1600710694366</created>
+    <task id="LOCAL-00001" summary="Constructores">
+      <created>1601489732452</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1600710694366</updated>
+      <updated>1601489732453</updated>
     </task>
-    <task id="LOCAL-00002" summary="ensayo2">
-      <created>1600712060826</created>
+    <task id="LOCAL-00002" summary="ImprimirFactura">
+      <created>1601492126197</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1600712060826</updated>
+      <updated>1601492126197</updated>
     </task>
-    <task id="LOCAL-00003" summary="ensayo3">
-      <created>1600712616377</created>
+    <task id="LOCAL-00003" summary="SerializaciónObjetos">
+      <created>1601706798894</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1600712616377</updated>
+      <updated>1601706798894</updated>
     </task>
-    <task id="LOCAL-00004" summary="ensayo3">
-      <created>1600712852119</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1600712852120</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Archivos organizados">
-      <created>1601134312762</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1601134312762</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Archivos organizados">
-      <created>1601134609922</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1601134609922</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -139,7 +122,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="SerializaciónObjetos" />
                       </list>
                     </value>
                   </entry>
@@ -153,40 +136,32 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ensayo1" />
-    <MESSAGE value="ensayo2" />
-    <MESSAGE value="ensayo3" />
-    <MESSAGE value="Archivos organizados" />
-    <option name="LAST_COMMIT_MESSAGE" value="Archivos organizados" />
+    <MESSAGE value="Constructores" />
+    <MESSAGE value="ImprimirFactura" />
+    <MESSAGE value="SerializaciónObjetos" />
+    <option name="LAST_COMMIT_MESSAGE" value="SerializaciónObjetos" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="717" y="0" key="#Project_Structure" timestamp="1600714417408">
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1601741110034">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="717" y="0" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1600714417408" />
-    <state x="691" y="40" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600712211110">
+    <state x="-1155" y="176" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728/-1920.-60.1920.1040@-1920.-60.1920.1040" timestamp="1601491816826" />
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1601741110034" />
+    <state x="-1141" y="150" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1601491738550">
+      <screen x="-1920" y="-60" width="1920" height="1040" />
+    </state>
+    <state x="-1141" y="150" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.0.1366.728/-1920.-60.1920.1040@-1920.-60.1920.1040" timestamp="1601491738550" />
+    <state x="736" y="411" width="447" height="225" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1601703608082">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="691" y="40" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600712211110" />
-    <state x="958" y="51" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1600711897055">
+    <state x="736" y="411" width="447" height="225" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1601703608082" />
+    <state x="342" y="119" key="new project wizard" timestamp="1601651477643">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="958" y="51" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600711897055" />
-    <state x="1016" y="141" key="FileChooserDialogImpl" timestamp="1600714335568">
+    <state x="342" y="119" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1601651477643" />
+    <state x="616" y="242" key="run.anything.popup" timestamp="1601741458892">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1016" y="141" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1600714335568" />
-    <state x="891" y="143" key="NewModule_or_Project.wizard" timestamp="1600712145828">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="891" y="143" key="NewModule_or_Project.wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1600712145828" />
-    <state x="975" y="104" key="RollbackChangesDialog" timestamp="1600712607498">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="975" y="104" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600712607498" />
-    <state x="619" y="0" key="new project wizard" timestamp="1600714378537">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="619" y="0" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1600714378537" />
+    <state x="616" y="242" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601741458892" />
   </component>
 </project>

@@ -1,11 +1,11 @@
 package gestorAplicacion.producto;
 
 import java.util.ArrayList;
+import BaseDatos.DatosProductos;
 
 public class Periferico extends Producto {
     private boolean estado;
     private String plataforma;
-    private static ArrayList<Periferico> lista = new ArrayList<Periferico>();
 
     public boolean isEstado() {
         return estado;
@@ -27,6 +27,6 @@ public class Periferico extends Producto {
         super(nombre, uso);
         this.estado = estado;
         this.plataforma = plataforma;
-        lista.add(this);
+        DatosProductos.agregarPeriferico(this);
     }
 }
