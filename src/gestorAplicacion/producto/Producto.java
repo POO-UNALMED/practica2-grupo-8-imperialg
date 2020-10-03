@@ -1,6 +1,8 @@
 package gestorAplicacion.producto;
+import java.io.Serializable;
 
-public class Producto {
+public class Producto implements Serializable{
+    private static final long serialVersionUID = 1L;
     private int id = 1;
     private String nombre;
     public static int stock;

@@ -1,12 +1,11 @@
 package gestorAplicacion.producto;
-
+import BaseDatos.Datos;
 import java.util.ArrayList;
 
 public class Juego extends Producto {
     private int pegi;
     private String plataforma;
     private String genero;
-    private static ArrayList<Juego> lista = new ArrayList<Juego>();
 
     public int getPegi() {
         return pegi;
@@ -37,6 +36,6 @@ public class Juego extends Producto {
         this.pegi = pegi;
         this.plataforma = plataforma;
         this.genero = genero;
-        lista.add(this);
+
     }
 }
