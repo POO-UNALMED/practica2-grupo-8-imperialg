@@ -7,8 +7,8 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class DatosTranssacciones {
-    static ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
-    static ArrayList<Factura> listaFacturas = new ArrayList<Factura>();
+    private static ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+    private static ArrayList<Factura> listaFacturas = new ArrayList<Factura>();
 
     //Agregar transacciones
     public static void agregarCliente(Cliente cliente) {
@@ -17,6 +17,14 @@ public class DatosTranssacciones {
 
     public static void agregarFactura(Factura factura) {
         listaFacturas.add(factura);
+    }
+
+    public static ArrayList<Cliente> getListaClientes() {
+        return listaClientes;
+    }
+
+    public static ArrayList<Factura> getListaFacturas() {
+        return listaFacturas;
     }
 
     //Guardar datos de productos

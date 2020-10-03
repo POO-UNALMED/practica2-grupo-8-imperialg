@@ -58,4 +58,5 @@ public class Cliente implements Serializable {
         this.email = email;
         DatosTranssacciones.agregarCliente(this);
     }
+
 }

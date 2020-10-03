@@ -1,7 +1,7 @@
 package uiMain;
-import gestorAplicacion.producto.*;
 import gestorAplicacion.transacciones.*;
 import BaseDatos.*;
+import java.util.Scanner;
 
 public class Ui {
 	public static void main(String[] Args) {
@@ -46,14 +46,36 @@ public class Ui {
 		plataforma = entrada.next();
 	}
 	
-	public void ingresarCliente(String nombre,int cc,long celular,String email) {
+	public void ingresarCliente() {
 		System.out.println("Ingrese nombre de Cliente: ");
-		nombre = entrada.next();
+		String nombre = entrada.next();
 		System.out.println("Ingrese cedula: ");
-		cc = entrada.nextInt();
+		int cc = entrada.nextInt();
 		System.out.println("Ingrese celular: ");
-		celular = entrada.nextLong();
+		long celular = entrada.nextLong();
 		System.out.println("Ingrese email: ");
-		email = entrada.next();
+		String email = entrada.next();
+		Cliente cliente = new Cliente(nombre,cc,celular,email);
+		DatosTranssacciones.agregarCliente(cliente);
+	}
+
+	public static void clientesRegistrados(){
+		int indiceCliente = 1;
+		for (Cliente cliente: DatosTranssacciones.getListaClientes()){
+			System.out.println(indiceCliente + ":"+ cliente.getNombre() + "       " + cliente.getCc());
+		}//Sí selecciona un cliente se selecciona de la lista de clientes el cliente i-1.
+		//Sí el cliente no está registrado, se crea un nuevo objeto de la clase cliente y se añade a la lista.
+	}
+	public void iniciarTransaccion(){
+		boolean registrado = false;
+		//ingrese scanner
+		System.out.println("¿El cliente se encuentra registrado: Indique true sí lo está y false para registrarlo");
+		if (registrado){
+			ImprimeCliente.clientesRegistrados();
+			int clienteselecto = 0;  //número escaneado -1
+			Factura factura = new Factura(DatosTranssacciones.getListaClientes().get(clienteselecto));
+		}else if(!registrado){
+			Factura factura = new Factura(DatosTranssacciones.getListaClientes().get(DatosTranssacciones.getListaClientes().size()-1));
+		}
 	}
 }
