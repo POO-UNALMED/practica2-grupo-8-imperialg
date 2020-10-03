@@ -7,21 +7,24 @@ import gestorAplicacion.producto.Periferico;
 import java.io.*;
 import java.util.ArrayList;
 
-public class Datos {
-    ArrayList<Consola> listaConsolas = new ArrayList<Consola>();
-    ArrayList<Juego> listaJuegos = new ArrayList<Juego>();
-    ArrayList<Periferico> listaPerifericos = new ArrayList<Periferico>();
+public class DatosProductos {
+    static ArrayList<Consola> listaConsolas = new ArrayList<Consola>();
+    static ArrayList<Juego> listaJuegos = new ArrayList<Juego>();
+    static ArrayList<Periferico> listaPerifericos = new ArrayList<Periferico>();
 
-    //Crear Datos:
-    public void agregarConsola(Consola consola){
+   //Agregar producos:
+
+    public static void agregarConsola(Consola consola){
         listaConsolas.add(consola);
     }
-    public void agregarJuego(Juego juego){
+    public static void agregarJuego(Juego juego){
         listaJuegos.add(juego);
     }
-    public void agregarPeriferico(Periferico periferico){
+    public static void agregarPeriferico(Periferico periferico){
         listaPerifericos.add(periferico);
     }
+
+    //Guardar datos de productos
     public void guardarDatos(){
         try{
             FileOutputStream c = new FileOutputStream(new File("Consolas.txt"));

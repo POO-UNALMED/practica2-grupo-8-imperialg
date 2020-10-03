@@ -1,12 +1,12 @@
 package gestorAplicacion.producto;
 import java.util.ArrayList;
+import BaseDatos.DatosProductos;
 
 public class Consola extends Producto {
     private String color;
     private boolean estado;
     private String version;
     private int almacenamiento;
-    private static ArrayList<Consola> lista = new ArrayList<Consola>();
 
 
     public String getColor() {
@@ -47,6 +47,6 @@ public class Consola extends Producto {
         this.estado = estado;
         this.version = version;
         this.almacenamiento = almacenamiento;
-        lista.add(this);
+        DatosProductos.agregarConsola(this);
     }
 }

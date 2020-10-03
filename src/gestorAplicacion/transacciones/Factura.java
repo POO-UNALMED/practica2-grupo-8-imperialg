@@ -1,21 +1,19 @@
 package gestorAplicacion.transacciones;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Factura {
+    private static final long serialVersionUID = 1L;
     private int idFactura;
-    private LocalDate fecha;
+    private LocalDate fecha = LocalDate.now();
     private Cliente cliente;
+    private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     private ArrayList<Detalle> detalles = new ArrayList<Detalle>();
 
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
+    public String getFecha() {
+        return fecha.format(formato);
     }
 
     public Cliente getCliente() {
@@ -32,5 +30,9 @@ public class Factura {
 
     public int getIdFactura() {
         return idFactura;
+    }
+
+    public Factura(Cliente cliente) {
+        this.cliente = cliente;
     }
 }

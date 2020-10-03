@@ -46,6 +46,14 @@ public class Detalle {
         this.tiposervicio = tiposervicio;
     }
 
+    public Detalle(Factura factura, Producto producto, int cantidad, float precio, String tiposervicio) {
+        this.factura = factura;
+        this.producto = producto;
+        this.cantidad = cantidad;
+        this.precio = precio;
+        this.tiposervicio = tiposervicio;
+    }
+
     @Override
     public String toString() {
         return idDetalle + " " + tiposervicio + " " + producto + " " + cantidad + " " + precio;
