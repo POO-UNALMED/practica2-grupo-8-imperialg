@@ -13,7 +13,7 @@ public class ImprimeCliente {
     public void iniciarTransaccion(){
         boolean registrado = false;
         //ingrese scanner
-        System.out.println("¿El cliente se encuentra registrado: Indique t0rue sí lo está y false para registrarlo");
+        System.out.println("¿El cliente se encuentra registrado: Indique true sí lo está y false para registrarlo");
         if (boolean registrado){
             ImprimeCliente.clientesRegistrados();
             int clienteselecto = 0;  //número escaneado -1

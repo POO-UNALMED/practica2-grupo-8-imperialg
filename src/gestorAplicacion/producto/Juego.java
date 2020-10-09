@@ -1,10 +1,12 @@
 package gestorAplicacion.producto;
 import BaseDatos.DatosProductos;
+import java.util.ArrayList;
 
 public class Juego extends Producto {
     private int pegi;
     private String plataforma;
     private String genero;
+    private int unidadesvendidas = 0;
 
     public int getPegi() {
         return pegi;
@@ -35,6 +37,11 @@ public class Juego extends Producto {
         this.pegi = pegi;
         this.plataforma = plataforma;
         this.genero = genero;
+        this.unidadesvendidas += 1;
         DatosProductos.agregarJuego(this);
+    }
+
+    public int getUnidadesvendidas() {
+        return unidadesvendidas;
     }
 }

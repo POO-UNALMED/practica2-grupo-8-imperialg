@@ -4,7 +4,7 @@ import java.io.Serializable;
 public class Producto implements Serializable{
     private static final long serialVersionUID = 1L;
     private int id = 1;
-    private String nombre;
+    protected String nombre;
     public int stock = 0;
     private boolean uso;
 
@@ -42,6 +42,9 @@ public class Producto implements Serializable{
 
     public Producto(String nombre, boolean uso) {
         this.nombre = nombre;
+        if (uso){
+            this.nombre = this.nombre + " Usado";
+        }
         this.uso = uso;
     }
 }

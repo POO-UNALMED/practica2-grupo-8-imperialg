@@ -6,6 +6,7 @@ import BaseDatos.DatosProductos;
 public class Periferico extends Producto {
     private boolean estado;
     private String plataforma;
+    private int unidadesvendidas;
 
     public boolean isEstado() {
         return estado;
@@ -28,5 +29,14 @@ public class Periferico extends Producto {
         this.estado = estado;
         this.plataforma = plataforma;
         DatosProductos.agregarPeriferico(this);
+    }
+    public Periferico perifericoMasVendido(){
+        Periferico masvendido = DatosProductos.listaPerifericos(0);
+        for (Periferico perifico: DatosProductos.listaPerifericos){
+            if (perifico.unidadesvendidas > masvendido.unidadesvendidas ){
+                masvendido = perifico;
+            }
+        }
+        return masvendido;
     }
 }

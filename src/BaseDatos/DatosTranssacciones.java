@@ -7,8 +7,8 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class DatosTranssacciones {
-    private static ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
-    private static ArrayList<Factura> listaFacturas = new ArrayList<Factura>();
+    public static ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+    public static ArrayList<Factura> listaFacturas = new ArrayList<Factura>();
 
     //Agregar transacciones
     public static void agregarCliente(Cliente cliente) {

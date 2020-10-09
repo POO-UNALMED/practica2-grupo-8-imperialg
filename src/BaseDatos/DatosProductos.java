@@ -1,16 +1,14 @@
 package BaseDatos;
 
-import gestorAplicacion.producto.Consola;
-import gestorAplicacion.producto.Juego;
-import gestorAplicacion.producto.Periferico;
+import gestorAplicacion.producto.*;
 
 import java.io.*;
 import java.util.ArrayList;
 
 public class DatosProductos {
-    static ArrayList<Consola> listaConsolas = new ArrayList<Consola>();
-    static ArrayList<Juego> listaJuegos = new ArrayList<Juego>();
-    static ArrayList<Periferico> listaPerifericos = new ArrayList<Periferico>();
+    public static ArrayList<Consola> listaConsolas = new ArrayList<Consola>();
+    public static ArrayList<Juego> listaJuegos = new ArrayList<Juego>();
+    public static ArrayList<Periferico> listaPerifericos = new ArrayList<Periferico>();
 
    //Agregar producos:
 
@@ -73,5 +71,24 @@ public class DatosProductos {
         catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public Juego juegoMasVendido(){
+        Juego masvendido = listaJuegos(0);
+        for (Juego juego: listaJuegos){
+            if (juego.getUnidadesvendidas() > masvendido.getUnidadesvendidas() ){
+                masvendido = juego;
+            }
+        }
+        return masvendido;
+    }
+    public Consola consolaMenosVendida(){
+        Consola menosvendida = DatosProductos.listaConsolas(0);
+        for (Consola consola: DatosProductos.listaConsolas){
+            if (consola.unidadesvendidas < menosvendida.unidadesvendidas ){
+                menosvendida = consola;
+            }
+        }
+        return menosvendida;
     }
 }

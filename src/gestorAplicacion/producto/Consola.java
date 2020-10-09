@@ -7,6 +7,7 @@ public class Consola extends Producto {
     private boolean estado;
     private String version;
     private int almacenamiento;
+    private int unidadesvendidas;
 
 
     public String getColor() {
@@ -47,6 +48,19 @@ public class Consola extends Producto {
         this.estado = estado;
         this.version = version;
         this.almacenamiento = almacenamiento;
+        this.unidadesvendidas += 1;
         DatosProductos.agregarConsola(this);
     }
+    public Consola consolaMasVendida(){
+        Consola masvendida = DatosProductos.listaConsolas(0);
+        for (Consola consola: DatosProductos.listaConsolas){
+            if (consola.unidadesvendidas > masvendida.unidadesvendidas ){
+                masvendida = consola;
+            }
+        }
+        return masvendida;
+    }
+
+
+
 }

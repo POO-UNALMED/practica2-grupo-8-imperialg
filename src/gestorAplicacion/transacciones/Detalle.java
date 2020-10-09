@@ -56,6 +56,6 @@ public class Detalle {
 
     @Override
     public String toString() {
-        return idDetalle + " " + tiposervicio + " " + producto + " " + cantidad + " " + precio;
+        return "    " + idDetalle + " " + tiposervicio + " " + producto + " " + cantidad + " " + precio;
     }
 }
