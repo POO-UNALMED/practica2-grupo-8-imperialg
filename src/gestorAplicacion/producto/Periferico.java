@@ -1,20 +1,10 @@
 package gestorAplicacion.producto;
 
-import java.util.ArrayList;
-import BaseDatos.DatosProductos;
-
 public class Periferico extends Producto {
-    private boolean estado;
     private String plataforma;
-    private int unidadesvendidas;
+    private int unidadesMalas;
+    private int unidadesBuenas;
 
-    public boolean isEstado() {
-        return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
 
     public String getPlataforma() {
         return plataforma;
@@ -24,19 +14,19 @@ public class Periferico extends Producto {
         this.plataforma = plataforma;
     }
 
-    public Periferico(String nombre, boolean uso, boolean estado, String plataforma) {
-        super(nombre, uso);
-        this.estado = estado;
-        this.plataforma = plataforma;
-        DatosProductos.agregarPeriferico(this);
-    }
-    public Periferico perifericoMasVendido(){
-        Periferico masvendido = DatosProductos.listaPerifericos(0);
-        for (Periferico perifico: DatosProductos.listaPerifericos){
-            if (perifico.unidadesvendidas > masvendido.unidadesvendidas ){
-                masvendido = perifico;
-            }
+    public Periferico(String nombre, boolean uso, int unidades, float precio, boolean estado, String plataforma) {
+        super(nombre, uso, unidades, precio);
+        if (estado) {
+            this.unidadesMalas = unidades;
+        } else if (!estado) {
+            this.unidadesBuenas = unidades;
         }
-        return masvendido;
+        this.plataforma = plataforma;
+    }
+
+    @Override
+    public String toString() {
+        return getNombre() + " " + plataforma + " " +  unidadesBuenas;
     }
 }
+

@@ -9,6 +9,9 @@ public class Detalle {
     private int cantidad;
     private float precio;
     private String tiposervicio;
+    private int ganancia;
+
+    
 
     public static int getId() {
         return idDetalle;
