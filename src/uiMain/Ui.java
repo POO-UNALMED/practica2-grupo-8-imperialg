@@ -8,69 +8,58 @@ import java.util.Scanner;
 public class Ui {
 	public static void main(String[] Args) {
 		Datos datos = new Datos();
+		Ui uimain = new Ui();
 		datos.leerDatos();
 		datos.leerDatos1();
+		uimain.clientesRegistrados(datos);
+		uimain.menu(datos);
 		datos.guardarDatos();
 		datos.guardarDatos1();
 	}
 
 	Scanner entrada = new Scanner(System.in);
 
-	public void ingresarConsola(String nombre, boolean uso, String color, boolean estado, String version, int almacenamiento) {
-		System.out.println("Ingrese nombre de consola: ");
-		nombre = entrada.next();
-		System.out.println("Ingrese uso(true or false): ");
-		uso = entrada.nextBoolean();
-		System.out.println("Ingrese color: ");
-		color = entrada.next();
-		System.out.println("Ingrese estado(true or false): ");
-		estado = entrada.nextBoolean();
-		System.out.println("Ingrese nombre de la version: ");
-		version = entrada.next();
-		System.out.println("Ingrese cantidad almacenamiento: ");
-		almacenamiento = entrada.nextInt();
+	public void menu(Datos datos){
+		System.out.println("Ingrese una opción");
+		System.out.println("1. Ingresar Clientes o Productos");
+		int i = entrada.nextInt();
+		switch (i){
+			case 1:
+				this.menuAgregar(datos);
+				break;
+		}
 	}
 
-	public void ingresarJuego(String nombre, boolean uso, int pegi, String plataforma, String genero) {
-		System.out.println("Ingrese nombre del juego: ");
-		nombre = entrada.next();
-		System.out.println("Ingrese uso(true or false): ");
-		uso = entrada.nextBoolean();
-		System.out.println("Ingrese pegi: ");
-		pegi = entrada.nextInt();
-		System.out.println("Ingrese nombre plataforma: ");
-		plataforma = entrada.next();
-		System.out.println("Ingrese genero: ");
-		genero = entrada.next();
-	}
+	public void menuAgregar(Datos datos){
+		System.out.println("Ingrese una opcion");
+		System.out.println("0. Volver");
+		System.out.println("1. Ingresar Cliente");
+		System.out.println("2. Ingresar Consola/s");
+		System.out.println("3. Ingresar Juego/s");
+		System.out.println("4. Ingresar Periferico/s");
+		int i = entrada.nextInt();
+		switch (i){
+			case 1:
+				datos.ingresarCliente();
+				break;
+			case 2:
+				datos.ingresarConsola();
+				break;
+			case 3:
+				datos.ingresarJuego();
+				break;
+			case 4:
+				datos.ingresarPeriferico();
+				break;
 
-	public void ingresarPeriferico(String nombre, boolean uso, boolean estado, String plataforma) {
-		System.out.println("Ingrese nombre de periferico: ");
-		nombre = entrada.next();
-		System.out.println("Ingrese uso(true or false): ");
-		uso = entrada.nextBoolean();
-		System.out.println("Ingrese estado(true or false): ");
-		estado = entrada.nextBoolean();
-		System.out.println("Ingrese nombre plataforma: ");
-		plataforma = entrada.next();
-	}
-
-	public void ingresarCliente() {
-		System.out.println("Ingrese nombre de Cliente: ");
-		String nombre = entrada.next();
-		System.out.println("Ingrese cedula: ");
-		int cc = entrada.nextInt();
-		System.out.println("Ingrese celular: ");
-		long celular = entrada.nextLong();
-		System.out.println("Ingrese email: ");
-		String email = entrada.next();
-		Cliente cliente = new Cliente(nombre, cc, celular, email);
+		}
 	}
 
 	public void clientesRegistrados(Datos datos) {
 		int indiceCliente = 1;
 		for (Cliente cliente : datos.getListaClientes()) {
-			System.out.println(indiceCliente + cliente.toString());
+			System.out.println(indiceCliente + " " + cliente.toString());
+			indiceCliente ++;
 		}
 	}
 }
