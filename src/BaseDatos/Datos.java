@@ -3,6 +3,7 @@ package BaseDatos;
 import gestorAplicacion.producto.Consola;
 import gestorAplicacion.producto.Juego;
 import gestorAplicacion.producto.Periferico;
+import gestorAplicacion.producto.Producto;
 import gestorAplicacion.transacciones.Cliente;
 import gestorAplicacion.transacciones.Factura;
 
@@ -39,6 +40,30 @@ public class Datos{
         listaFacturas.add(factura);
     }
 
+    public void venderJuego(){}
+
+    // Seleccionar elementos de listas:
+    public ArrayList<Producto> juegoPorIndice(int[] ints){
+        ArrayList<Producto> nuevaLista = new ArrayList<Producto>();
+        for (int i: ints){
+            nuevaLista.add(this.listaJuegos.get(i-1));
+        }
+        return nuevaLista;
+    }
+    public ArrayList<Producto> consolaPorIndice(int[] ints){
+        ArrayList<Producto> nuevaLista = new ArrayList<Producto>();
+        for (int i: ints){
+            nuevaLista.add(this.listaConsolas.get(i-1));
+        }
+        return nuevaLista;
+    }
+    public ArrayList<Producto> perifericoPorIndice(int[] ints){
+        ArrayList<Producto> nuevaLista = new ArrayList<Producto>();
+        for (int i: ints){
+            nuevaLista.add(this.listaPerifericos.get(i-1));
+        }
+        return nuevaLista;
+    }
     //Guardar datos de productos
     public void guardarDatos() {
         try {
@@ -64,6 +89,10 @@ public class Datos{
         }
     }
 
+    public Cliente seleccionarCliente(int i){
+        Cliente cliente = listaClientes.get(i);
+        return cliente;
+    }
     public void leerDatos() {
         try {
             FileInputStream ci = new FileInputStream("src/BaseDatos/temp/Consolas.txt");
@@ -200,8 +229,23 @@ public class Datos{
         Cliente cliente = new Cliente(nombre, cc, celular, email);
         this.agregarClientes(cliente);
     }
-
+// Obtener accesoa a listas:
     public ArrayList<Cliente> getListaClientes() {
         return listaClientes;
+    }
+    public ArrayList<Consola> getListaConsolas() {
+        return listaConsolas;
+    }
+
+    public ArrayList<Juego> getListaJuegos() {
+        return listaJuegos;
+    }
+
+    public ArrayList<Periferico> getListaPerifericos() {
+        return listaPerifericos;
+    }
+
+    public ArrayList<Factura> getListaFacturas() {
+        return listaFacturas;
     }
 }
