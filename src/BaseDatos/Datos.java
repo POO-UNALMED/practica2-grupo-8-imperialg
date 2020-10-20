@@ -5,6 +5,7 @@ import gestorAplicacion.producto.Juego;
 import gestorAplicacion.producto.Periferico;
 import gestorAplicacion.producto.Producto;
 import gestorAplicacion.transacciones.Cliente;
+import gestorAplicacion.transacciones.Detalle;
 import gestorAplicacion.transacciones.Factura;
 
 import java.io.*;
@@ -229,6 +230,10 @@ public class Datos{
         Cliente cliente = new Cliente(nombre, cc, celular, email);
         this.agregarClientes(cliente);
     }
+    public Cliente seleccionarUltimoCliente(){
+        Cliente cliente = listaClientes.get(listaClientes.size() - 1);
+        return  cliente;
+    }
 // Obtener accesoa a listas:
     public ArrayList<Cliente> getListaClientes() {
         return listaClientes;
@@ -248,5 +253,17 @@ public class Datos{
     public ArrayList<Factura> getListaFacturas() {
         return listaFacturas;
     }   
-    
+
+
+    public void generarFactura(ArrayList<Producto> productos, Cliente cliente){
+        ArrayList<Detalle> listaDetalles = new ArrayList<Detalle>();
+        for (Producto producto: productos){
+            Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta");
+        }
+        Factura factura = new Factura(cliente, listaDetalles);
+        this.agregarFactura(factura);
+        System.out.println("Su venta ha sido realizada correctamente");
+        System.out.println(factura);
+
+    }
 }

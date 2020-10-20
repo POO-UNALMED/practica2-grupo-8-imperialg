@@ -74,10 +74,23 @@ public class Ui {
 	}
 	public void menuVender(Datos datos){
 		System.out.println("¿El cliente ya está registrado?"+"\n");
-		System.out.println("Sí el cliente está registrado ingrese true");
-		System.out.println("Sí el cliente no está registrado ingrese false");
-		Boolean verificador = entrada.nextBoolean();
-		Cliente cliente = clienteNoRegistrado(datos);
+		System.out.println("Presione 0 para volver");
+		System.out.println("Sí el cliente está registrado ingrese 1");
+		System.out.println("Sí el cliente no está registrado ingrese 2");
+		int verificador = entrada.nextInt();
+		Cliente cliente;
+		switch (verificador){
+			case 0:
+				this.menu(datos);
+			case 1: {
+				cliente = this.clienteRegistrado(datos);
+				break;
+			}
+			case 2: {
+				cliente = this.clienteNoRegistrado(datos);
+				break;
+			}
+		}
 		System.out.println("¿Qué artículo desea vender?: Ingrese una opcion");
 		System.out.println("0. Volver");
 		System.out.println("1. Consola/s");
@@ -85,8 +98,9 @@ public class Ui {
 		System.out.println("3. Periferico/s");
 		int i =entrada.nextInt();
 		System.out.println("Seleccione su producto:");
-		System.out.println("0. Volver");
 		switch (i){
+			case 0:
+				this.menuVender(datos);
 			case 1: {
 				consolasRegistradas(datos);
 				System.out.println("¿Cuántas consolas desea vender?: ");
@@ -94,6 +108,7 @@ public class Ui {
 				System.out.println("Seleccione qué consola/s desea vender: (Ejemplo: [1, 2, 3])");
 				int[] ints = this.seleccionProductos(tope);
 				ArrayList<Producto> productos = datos.consolaPorIndice(ints);
+				datos.generarFactura(productos, cliente);
 				break;
 			}
 			case 2: {
@@ -103,6 +118,7 @@ public class Ui {
 				System.out.println("Seleccione qué Juego/s desea vender: (Ejemplo: [1, 2, 3])");
 				int[] ints = this.seleccionProductos(tope);
 				ArrayList<Producto> productos = datos.juegoPorIndice(ints);
+				datos.generarFactura(productos, cliente);
 				break;
 			}
 			case 3: {
@@ -112,12 +128,7 @@ public class Ui {
 				System.out.println("Seleccione qué periferico/s desea vender: (Ejemplo: [1, 2, 3])");
 				int[] ints = this.seleccionProductos(tope);
 				ArrayList<Producto> productos = datos.perifericoPorIndice(ints);
-				ArrayList<Detalle> listaDetalles = new ArrayList<Detalle>();
-				for (Producto producto: productos){
-					Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta");
-				}
-				Factura factura = new Factura(cliente, listaDetalles);
-				datos.agregarFactura(factura);
+				datos.generarFactura(productos, cliente);
 				break;
 
 			}
@@ -304,6 +315,6 @@ public class Ui {
 
 	public Cliente clienteNoRegistrado(Datos datos){
 		datos.ingresarCliente();
-		return this.clienteRegistrado(datos);
+		return datos.seleccionarUltimoCliente();
 	}
 }
