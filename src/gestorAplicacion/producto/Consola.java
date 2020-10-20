@@ -2,6 +2,7 @@ package gestorAplicacion.producto;
 
 public class Consola extends Producto {
     private String color;
+    private boolean estado;
     private String version;
     private int almacenamiento;
 
@@ -11,6 +12,14 @@ public class Consola extends Producto {
 
     public void setColor(String color) {
         this.color = color;
+    }
+    
+    public boolean getEstado() {
+    	return estado;
+    }
+    
+    public void setEstado(boolean estado) {
+    	this.estado = estado;
     }
 
     public String getVersion() {
@@ -39,6 +48,17 @@ public class Consola extends Producto {
     @Override
     public String toString() {
         return "Consola: " + getNombre() + " " + almacenamiento + " " + getVersion() + getPrecio();
+    }
+    
+   // métodos
+    
+    public void repararConsola(Consola consola){
+    	if (consola.getEstado()==false){
+    		System.out.println("La Consola ya se encuentra reparada");
+    	}else {
+    		consola.setEstado(false);
+    		System.out.println("Se ha reparado la consola");
+    	}
     }
 }
 

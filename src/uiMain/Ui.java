@@ -14,17 +14,24 @@ public class Ui {
 		datos.leerDatos();
 		datos.leerDatos1();
 		uimain.clientesRegistrados(datos);
-		uimain.menu(datos);
+		uimain.menuprincipal(datos);
 		datos.guardarDatos();
 		datos.guardarDatos1();
 	}
+	
 
 	Scanner entrada = new Scanner(System.in);
-
+	
+	public void menuprincipal(Datos datos) {
+		System.out.println("**BIENVENIDO A IMPERIALGAMING, LA MEJOR TIENDA VIRTUAL**"+"\n");
+		this.menu(datos);
+	}
+	
 	public void menu(Datos datos){
 		System.out.println("Ingrese una opción");
 		System.out.println("1. Ingresar Clientes o Productos");
 		System.out.println("2. Vender Productos");
+		System.out.println("3. Generar un servicio");
 		int i = entrada.nextInt();
 		switch (i){
 			case 1:
@@ -33,6 +40,9 @@ public class Ui {
 			case 2:
 				this.menuVender(datos);
 				break;
+			case 3:
+				this.menuServicios(datos);
+				
 		}
 	}
 
@@ -45,6 +55,8 @@ public class Ui {
 		System.out.println("4. Ingresar Periferico/s");
 		int i = entrada.nextInt();
 		switch (i){
+			case 0:
+				this.menu(datos);
 			case 1:
 				datos.ingresarCliente();
 				break;
@@ -61,7 +73,9 @@ public class Ui {
 		}
 	}
 	public void menuVender(Datos datos){
-		System.out.println("¿El cliente ya está registrado?");
+		System.out.println("¿El cliente ya está registrado?"+"\n");
+		System.out.println("Sí el cliente está registrado ingrese true");
+		System.out.println("Sí el cliente no está registrado ingrese false");
 		Boolean verificador = entrada.nextBoolean();
 		Cliente cliente = clienteNoRegistrado(datos);
 		System.out.println("¿Qué artículo desea vender?: Ingrese una opcion");
@@ -109,6 +123,131 @@ public class Ui {
 			}
 		}
 			}
+	public void menuServicios(Datos datos){
+		System.out.println("Ingrese una opción");
+		System.out.println("0. Volver");
+		System.out.println("1. Servicio técnico");
+		System.out.println("2. Servicio comercial");
+		
+		int i = entrada.nextInt();
+		switch(i) {
+		case 0:
+			this.menu(datos);
+			break;
+		case 1:
+			this.menuServiciosTecnicos(datos);
+			break;
+		case 2:
+			this.menuServiciosComerciales(datos);
+			break;
+	
+		}
+		
+	}
+	public void menuServiciosTecnicos(Datos datos){
+		System.out.println("Ingrese una opción");
+		System.out.println("0. Volver");
+		System.out.println("1. Servicios técnicos para Consolas");
+		System.out.println("2. Servicios técnicos para Perifericos");
+		int i = entrada.nextInt();
+		switch(i) {
+		case 0:
+			this.menuServicios(datos);
+			break;
+		case 1:
+			this.menuConsolas(datos);
+			break;
+		case 2:
+			this.menuPerifericos(datos);
+			break;
+		}
+	}
+	public void menuConsolas(Datos datos) {
+		System.out.println("Ingrese una opción");
+		System.out.println("0. Volver");
+		System.out.println("1. Reparar");
+		System.out.println("2. Cambiar almacenamiento");
+		System.out.println("3. Cambiar color");		
+		int i = entrada.nextInt();
+		switch(i) {
+		case 0:
+			this.menuServiciosTecnicos(datos);
+			break;
+		case 1:
+			System.out.println("Ir al método de Consola.repararConsola");
+			break;
+		case 2: {
+			System.out.println("Ingresar el nuevo valor de Almacenamiento (Gb)");
+			int nuevoAlmacenamiento = entrada.nextInt();
+			//Consola.setAlmacenamiento(nuevoAlmacenamiento);
+			break;
+		}		
+		case 3:{
+			System.out.println("Ingresar el nuevo Color");
+			String nuevoColor = entrada.next();	
+			break;
+		}
+			
+		}
+	}
+	
+	public void menuPerifericos(Datos datos) {
+		System.out.println("Ingrese una opción");
+		System.out.println("0. Volver");
+		System.out.println("1. Reparar");
+		System.out.println("2. Cambiar color");
+		int i = entrada.nextInt();
+		switch(i) {
+		case 0:
+			this.menuServiciosTecnicos(datos);
+			break;
+		case 1:
+			System.out.println("Ir al método de Periferico.repararPeriferico");
+			break;
+		case 2:
+			System.out.println("Ingrese el nuevo color para periferico");
+			String color = entrada.next();
+			break;
+		}		
+	}
+	
+	public void menuServiciosComerciales(Datos datos){
+		System.out.println("Ingrese una opción");
+		System.out.println("0. Volver");
+		System.out.println("1. Servicios comerciales para Consolas");
+		System.out.println("2. Servicios comerciales para Perifericos");
+		System.out.println("3. Servicios comerciales para Juegos");
+		int i = entrada.nextInt();
+		switch(i) {
+		case 0:
+			this.menuServicios(datos);
+			break;
+		case 1:
+			this.servicioComercial(datos);
+			break;
+		case 2:
+			this.servicioComercial(datos);
+			break;
+		case 3:
+			this.servicioComercial(datos);	
+			break;
+		}
+	}
+	public void servicioComercial(Datos datos) {
+		System.out.println("Ingrese una opción");
+		System.out.println("0. Volver");
+		System.out.println("1. Alquilar");
+		System.out.println("2. Vender");
+		System.out.println("3. Comprar");
+		int i = entrada.nextInt();
+		switch(i) {
+		case 0:
+			this.menuServiciosComerciales(datos);
+		}
+	}
+	
+	
+	
 	// Mostrar en pantalla los clientes registrados:
 	public void clientesRegistrados(Datos datos) {
 		int indiceCliente = 1;

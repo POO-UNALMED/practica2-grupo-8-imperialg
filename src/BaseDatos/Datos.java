@@ -21,7 +21,7 @@ public class Datos{
 
     //Agregar productos:
 
-    public  void agregarConsola(Consola consola) {
+    public void agregarConsola(Consola consola) {
         listaConsolas.add(consola);
     }
     public void agregarJuego(Juego juego) {
@@ -247,5 +247,6 @@ public class Datos{
 
     public ArrayList<Factura> getListaFacturas() {
         return listaFacturas;
-    }
+    }   
+    
 }
