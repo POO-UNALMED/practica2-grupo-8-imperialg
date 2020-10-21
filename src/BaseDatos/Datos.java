@@ -255,10 +255,11 @@ public class Datos{
     }   
 
 
-    public void generarFactura(ArrayList<Producto> productos, Cliente cliente){
+    public void generarFacturaVenta(ArrayList<Producto> productos, Cliente cliente){
         ArrayList<Detalle> listaDetalles = new ArrayList<Detalle>();
         for (Producto producto: productos){
             Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta");
+            listaDetalles.add(detalle);
         }
         Factura factura = new Factura(cliente, listaDetalles);
         this.agregarFactura(factura);

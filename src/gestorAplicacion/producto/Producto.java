@@ -40,4 +40,5 @@ public abstract class Producto implements Serializable{
         this.precio = precio;
         this.uso = uso;
     }
+
 }

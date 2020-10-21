@@ -41,12 +41,13 @@ public class Factura {
         this.detalles = detalles;
     }
 
+    @Override
     public String toString(){
         String detas = "";
         float total = 0;
         for (Detalle detalle: detalles){
-            detas.concat(detalle.toString() + "\n");
+            detas += detalle.toString() + "\n";
             total += detalle.getPrecio();
         }
-        return idFactura + "   " + fecha + cliente.getNombre() + "\n" + detas + "total: " + total; }
+        return idFactura + "   " + fecha + "     "  + cliente.getNombre() + "\n" + detas + "total: " + total; }
 }

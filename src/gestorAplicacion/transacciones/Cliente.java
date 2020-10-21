@@ -9,6 +9,10 @@ public class Cliente implements Serializable {
     private long celular;
     private String email;
     private int puntos = 0;
+
+    public Cliente() {
+
+    }
 //    private ArrayList<Cliente> = new ArrayList<Cliente>()
 
     public String getNombre() {

@@ -33,6 +33,6 @@ public class Detalle {
 
     @Override
     public String toString() {
-        return "    " + idDetalle + " " + tiposervicio + " " + producto + " " + precio;
+        return  " " + tiposervicio + " " + producto.getNombre() + " " + precio;
     }
 }
