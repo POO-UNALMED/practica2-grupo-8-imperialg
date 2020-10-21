@@ -5,6 +5,12 @@
          Cabeceras en los métodos, comentando su propósito y describiendo los parámetros de entrada/salida.
          Comentarios en líneas de código de relevante interés o importancia.
          Otros aspectos de interés a tener en cuenta por el profesor.*/
+// Autores:   - Santiago Franco Valencia
+//            - Anderson Elian Gutierrez
+//            - Santiago Valencia Mejía
+//            - Daniel Alejandro Giraldo
+// En este módulo se crea la clase asbtracta Producto, así como sus métodos básicos (Get y Set), además se definen un conjunto de atributos,
+// los cuales almacenarán información acerca de cada producto  que se vaya registrando en la plataforma.
 package gestorAplicacion.producto;
 import java.io.Serializable;
 
@@ -14,6 +20,8 @@ public abstract class Producto implements Serializable{
     protected String nombre;
     private float precio;
     private Boolean uso;
+
+    // Se crean los métodos Get y Set de los atributos de la Clase Producto
 
     public float getPrecio() {
         return precio;
@@ -42,13 +50,14 @@ public abstract class Producto implements Serializable{
 
     public abstract String toString();
 
+    // Se crea el constructor de la clase periferico, con sus atributos como parámetros.
+
     public Producto(String nombre, boolean uso, float precio) {
         this.nombre = nombre;
         this.precio = precio;
         this.uso = uso;
     }
     public Producto(String nombre) {
-    	this.nombre=nombre;
+        this.nombre=nombre;
     }
-
 }
