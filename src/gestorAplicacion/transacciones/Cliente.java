@@ -1,18 +1,18 @@
 /*1). En las fuentes se incluirá la siguiente documentación:
-         Cabecera del archivo: funcionalidad del módulo, autores, componentes del módulo, etc.
-         Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
+         Cabecera del archivo: funcionalidad del módulo, autores, componentes del módulo, etc.
+        Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
         sean relevantes.
-         Cabeceras en los métodos, comentando su propósito y describiendo los parámetros de entrada/salida.
-         Comentarios en líneas de código de relevante interés o importancia.
-         Otros aspectos de interés a tener en cuenta por el profesor.*/
+        Cabeceras en los métodos, comentando su propósito y describiendo los parámetros de entrada/salida.
+         Comentarios en líneas de código de relevante interés o importancia.
+         Otros aspectos de interés a tener en cuenta por el profesor.*/
 
 // Autores:   - Santiago Franco Valencia 
 //            - Anderson Elian Gutierrez 
-//            - Santiago Valencia Mej�a 
+//            - Santiago Valencia Mejía 
 //            - Daniel Alejandro Giraldo
 
-// En este m�dulo se crea la clase Cliente, as� como sus m�todos b�sicos (Get y Set), adem�s se definen un conjunto de atributos,
-// los cuales almacenar�n informaci�n acerca de cada Cliente que se vaya registrando en la plataforma.
+// En este módulo se crea la clase Cliente, así como sus métodos básicos (Get y Set), además se definen un conjunto de atributos,
+// los cuales almacenarán información acerca de cada Cliente que se vaya registrando en la plataforma.
 
 package gestorAplicacion.transacciones;
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class Cliente implements Serializable {
 
     }
     
- // Se crean los m�todos Get y Set de los atributos de la Clase Cliente
+ // Se crean los métodos Get y Set de los atributos de la Clase Cliente
     
     public String getNombre() {
         return this.nombre;
@@ -72,7 +72,7 @@ public class Cliente implements Serializable {
         this.puntos = puntos;
     }
 
-    // Se crea el constructor de la clase Cliente, con sus atributos como par�metros.
+    // Se crea el constructor de la clase Cliente, con sus atributos como parámetros.
     public Cliente(String nombre, int cc, long celular, String email) {
         this.nombre = nombre;
         this.cc = cc;
@@ -80,7 +80,7 @@ public class Cliente implements Serializable {
         this.email = email;
     }
     
-    // Se crea el toString de la clase Cliente, el cual retorna el nombre del cliente, su c�dula
+    // Se crea el toString de la clase Cliente, el cual retorna el nombre del cliente, su cédula
     // y la cantidad de puntos que posee en la tienda.
     public String toString(){
         return nombre + "    " + cc + "     " + puntos;
