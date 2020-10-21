@@ -1,5 +1,12 @@
+/*1). En las fuentes se incluirá la siguiente documentación:
+//Se crea la clase periférico y sus respectivos métodos, haciendo parte del paquete producto.
+         Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
+        sean relevantes.
+         Cabeceras en los métodos, comentando su propósito y describiendo los parámetros de entrada/salida.
+         Comentarios en líneas de código de relevante interés o importancia.
+         Otros aspectos de interés a tener en cuenta por el profesor.*/
 package gestorAplicacion.producto;
-
+// La clase contiene aquelos atributos que modelan los periféricos, es decir la plataforma en la que funcionan y su estado.
 public class Periferico extends Producto {
     private String plataforma;
     private boolean estado;

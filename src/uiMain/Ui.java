@@ -1,3 +1,10 @@
+/*1). En las fuentes se incluirá la siguiente documentación:
+		 Cabecera del archivo: funcionalidad del módulo, autores, componentes del módulo, etc.
+		 Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
+		sean relevantes.
+		 Cabeceras en los métodos, comentando su propósito y describiendo los parámetros de entrada/salida.
+		 Comentarios en líneas de código de relevante interés o importancia.
+		 Otros aspectos de interés a tener en cuenta por el profesor.*/
 package uiMain;
 
 import BaseDatos.Datos;
@@ -28,10 +35,17 @@ public class Ui {
 	}
 	
 	public void menu(Datos datos){
+		for (int i = 0; i < 30 ; i++) {
+			datos.ingresarCliente();
+			datos.ingresarConsola();
+			datos.ingresarJuego();
+			datos.ingresarPeriferico();
+		}
 		System.out.println("Ingrese una opción");
 		System.out.println("1. Ingresar Clientes o Productos");
 		System.out.println("2. Vender Productos");
 		System.out.println("3. Generar un servicio");
+		System.out.println("4. Imperial");
 		int i = entrada.nextInt();
 		switch (i){
 			case 1:
@@ -42,7 +56,10 @@ public class Ui {
 				break;
 			case 3:
 				this.menuServicios(datos);
-				
+				break;
+			case 4:
+				this.menuImperial(datos);
+				break;
 		}
 	}
 
@@ -86,19 +103,6 @@ public class Ui {
 		} else if (verificador == 2) {
 			cliente = this.clienteNoRegistrado(datos);
 		}
-		/*
-		switch (verificador){
-			case 0:
-				this.menu(datos);
-			case 1: {
-				cliente = this.clienteRegistrado(datos);
-				break;
-			}
-			case 2: {
-				cliente = this.clienteNoRegistrado(datos);
-				break;
-			}
-		}*/
 		System.out.println("¿Qué artículo desea vender?: Ingrese una opcion");
 		System.out.println("0. Volver");
 		System.out.println("1. Consola/s");
@@ -332,5 +336,14 @@ public class Ui {
 	public Cliente clienteNoRegistrado(Datos datos){
 		datos.ingresarCliente();
 		return datos.seleccionarUltimoCliente();
+	}
+
+	public void menuImperial(Datos datos){
+		System.out.println("Ingrese una opción");
+		System.out.println("0. Volver");
+		System.out.println("1. Alquilar");
+		System.out.println("2. Vender");
+		System.out.println("3. Comprar");
+		int i = entrada.nextInt();
 	}
 }
