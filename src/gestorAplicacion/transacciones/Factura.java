@@ -5,8 +5,17 @@
         ï‚§ Cabeceras en los mÃ©todos, comentando su propÃ³sito y describiendo los parÃ¡metros de entrada/salida.
         ï‚§ Comentarios en lÃ­neas de cÃ³digo de relevante interÃ©s o importancia.
         ï‚§ Otros aspectos de interÃ©s a tener en cuenta por el profesor.*/
-package gestorAplicacion.transacciones;
 
+// Autores:   - Santiago Franco Valencia 
+//            - Anderson Elian Gutierrez 
+//            - Santiago Valencia Mejía 
+//            - Daniel Alejandro Giraldo
+
+// En este módulo se crea la clase Factura, en la cual se verán reflejados todos los detalles que la componen, por esta razón,
+// en esta clase se implementó una lista llamada "detalles" en la que se encuentran los detalles asociados a la factura. Además 
+// se crearon los métodos básicos (Get y Set) 
+
+package gestorAplicacion.transacciones;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -14,15 +23,17 @@ import java.util.ArrayList;
 public class Factura {
     private static final long serialVersionUID = 1L;
     private int idFactura;
-    private LocalDate fecha = LocalDate.now();
+    private LocalDate fecha = LocalDate.now(); // devuelve la fecha en la que se genera una factura
     private Cliente cliente;
-    private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // formato de fecha dado en día/mes/año
     private ArrayList<Detalle> detalles = new ArrayList<Detalle>();
 
     public String getFecha() {
         return fecha.format(formato);
     }
-
+    
+    // Se crean los métodos Get y Set de los atributos de la Clase Factura  
+    
     public Cliente getCliente() {
         return cliente;
     }
@@ -43,18 +54,24 @@ public class Factura {
         this.cliente = cliente;
     }
 
+    // Se crea el constructor de la clase Factura con los parametros de Cliente y detalles (lista con todos los detalles que
+    // componen la factura)
     public Factura(Cliente cliente, ArrayList<Detalle> detalles) {
         this.cliente = cliente;
         this.detalles = detalles;
     }
 
     @Override
+    //  Se crea el toString de la clase Factura, el cual mostrará por pantalla el Id asociado a la factura, la fecha en que se 
+    // generó la fatura, el nombre del cliente al cual se le generó la factura, los detalles que componen a la factura y el valor
+    // total de la factura. 
     public String toString(){
         String detas = "";
         float total = 0;
-        for (Detalle detalle: detalles){
+        for (Detalle detalle: detalles){ // el for se implementa para recorrer la lista de detalles, para despues mostrarlos. 
             detas += detalle.toString() + "\n";
             total += detalle.getPrecio();
         }
-        return idFactura + "   " + fecha + "     "  + cliente.getNombre() + "\n" + detas + "total: " + total; }
+        return idFactura + "   " + fecha + "     "  + cliente.getNombre() + "\n" + detas + "total: " + total; 
+        }
 }

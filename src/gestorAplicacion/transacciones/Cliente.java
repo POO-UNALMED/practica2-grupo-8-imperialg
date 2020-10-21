@@ -5,6 +5,15 @@
         ÔÇß Cabeceras en los m√©todos, comentando su prop√≥sito y describiendo los par√°metros de entrada/salida.
         ÔÇß Comentarios en l√≠neas de c√≥digo de relevante inter√©s o importancia.
         ÔÇß Otros aspectos de inter√©s a tener en cuenta por el profesor.*/
+
+// Autores:   - Santiago Franco Valencia 
+//            - Anderson Elian Gutierrez 
+//            - Santiago Valencia MejÌa 
+//            - Daniel Alejandro Giraldo
+
+// En este mÛdulo se crea la clase Cliente, asÌ como sus mÈtodos b·sicos (Get y Set), adem·s se definen un conjunto de atributos,
+// los cuales almacenar·n informaciÛn acerca de cada Cliente que se vaya registrando en la plataforma.
+
 package gestorAplicacion.transacciones;
 import java.util.ArrayList;
 import java.io.Serializable;
@@ -20,7 +29,9 @@ public class Cliente implements Serializable {
     public Cliente() {
 
     }
-
+    
+ // Se crean los mÈtodos Get y Set de los atributos de la Clase Cliente
+    
     public String getNombre() {
         return this.nombre;
     }
@@ -61,16 +72,20 @@ public class Cliente implements Serializable {
         this.puntos = puntos;
     }
 
+    // Se crea el constructor de la clase Cliente, con sus atributos como par·metros.
     public Cliente(String nombre, int cc, long celular, String email) {
         this.nombre = nombre;
         this.cc = cc;
         this.celular = celular;
         this.email = email;
     }
-
+    
+    // Se crea el toString de la clase Cliente, el cual retorna el nombre del cliente, su cÈdula
+    // y la cantidad de puntos que posee en la tienda.
     public String toString(){
         return nombre + "    " + cc + "     " + puntos;
-    }    
+    }
+ 
     //este m√©todo agregara puntos al cliente
     public void agregarPunto() {
     	this.puntos++;
