@@ -1,8 +1,8 @@
 /*1). En las fuentes se incluirá la siguiente documentación:
-         Cabecera del archivo: funcionalidad del módulo, autores, componentes del módulo, etc.
-         Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
+      Cabecera del archivo: funcionalidad del módulo, autores, componentes del módulo, etc.
+      Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
         sean relevantes.
-         Cabeceras en los métodos, comentando su propósito y describiendo los parámetros de entrada/salida.
+      Cabeceras en los métodos, comentando su propósito y describiendo los parámetros de entrada/salida.
          Comentarios en líneas de código de relevante interés o importancia.
          Otros aspectos de interés a tener en cuenta por el profesor.*/
 package gestorAplicacion.producto;
@@ -50,8 +50,16 @@ public class Consola extends Producto {
         super(nombre, uso, precio);
         this.color = color;
         this.version = version;
+        this.almacenamiento = almacenamiento;      
+    }
+  //Constructor que se utilizará con la finalidad de crear consolas para reparar
+    public Consola(String nombre, String color, boolean estado, int almacenamiento) {
+        super(nombre);
+        this.color = color;
+        this.estado = estado;
         this.almacenamiento = almacenamiento;
     }
+   
     @Override
     public String toString() {
         return "Consola: " + getNombre() + " " + almacenamiento + " " + getVersion() + getPrecio();

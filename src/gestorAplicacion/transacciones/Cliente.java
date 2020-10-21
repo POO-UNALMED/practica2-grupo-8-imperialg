@@ -20,7 +20,6 @@ public class Cliente implements Serializable {
     public Cliente() {
 
     }
-//    private ArrayList<Cliente> = new ArrayList<Cliente>()
 
     public String getNombre() {
         return this.nombre;
@@ -71,5 +70,13 @@ public class Cliente implements Serializable {
 
     public String toString(){
         return nombre + "    " + cc + "     " + puntos;
+    }    
+    //este método agregara puntos al cliente
+    public void agregarPunto() {
+    	this.puntos++;
+    }    
+    //esta sobrecarga de método es para agregar x puntos al cliente dada una promocion
+    public void agregarPunto(int x) {
+    	this.puntos+=x;
     }
 }

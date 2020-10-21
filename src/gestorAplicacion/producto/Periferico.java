@@ -32,6 +32,13 @@ public class Periferico extends Producto {
         super(nombre, uso, precio);
         this.plataforma = plataforma;
     }
+  //Constructor que se utilizará para generar periféricos que se puedan reparar
+    public Periferico(String nombre, boolean estado) {
+        super(nombre);
+        this.estado = estado;
+    }
+  
+
 
     @Override
     public String toString() {
