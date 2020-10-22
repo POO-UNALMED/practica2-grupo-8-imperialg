@@ -3,8 +3,16 @@
       Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
         sean relevantes.
       Cabeceras en los métodos, comentando su propósito y describiendo los parámetros de entrada/salida.
-         Comentarios en líneas de código de relevante interés o importancia.
-         Otros aspectos de interés a tener en cuenta por el profesor.*/
+<<<<<<< HEAD
+       Comentarios en líneas de código de relevante interés o importancia.
+        Otros aspectos de interés a tener en cuenta por el profesor.*/
+// Autores:   - Santiago Franco Valencia
+//            - Anderson Elian Gutierrez
+//            - Santiago Valencia Mejía
+//            - Daniel Alejandro Giraldo
+// En este módulo se crea la clase Consola, así como sus métodos básicos (Get y Set), además se definen un conjunto de atributos,
+// los cuales almacenarán información acerca de cada Consola que se vaya registrando en la plataforma.
+
 package gestorAplicacion.producto;
 
 import java.util.ArrayList;
@@ -17,6 +25,7 @@ public class Consola extends Producto {
     private String version;
     private int almacenamiento;
     private static ArrayList<Consola> listaConsolas = Datos.listaConsolas;
+    // Se crean los métodos Get y Set de los atributos de la Clase Consola
 
     public String getColor() {
         return color;
@@ -84,6 +93,7 @@ public class Consola extends Producto {
         return nuevaLista;
     }
 
+    // Se crea el constructor de la clase Consola, con sus atributos como parámetros.
 
     public Consola(String nombre, boolean uso, float precio, String color, String version, int almacenamiento) {
         super(nombre, uso, precio);
@@ -91,14 +101,14 @@ public class Consola extends Producto {
         this.version = version;
         this.almacenamiento = almacenamiento;      
     }
-  //Constructor que se utilizará con la finalidad de crear consolas para reparar
+  //Constructor que se utilizará con la finalidad de crear consolas para reparar.
+
     public Consola(String nombre, String color, boolean estado, int almacenamiento) {
         super(nombre);
         this.color = color;
         this.estado = estado;
         this.almacenamiento = almacenamiento;
     }
-    
 	// Mostrar en pantalla las consolas registradas:
 	public static void consolasRegistradas() {
 		int indiceConsola = 1;
@@ -108,12 +118,16 @@ public class Consola extends Producto {
 		}
 	}
    
+
+
+    // Se crea el toString de la clase Consola, el cual mostrará por pantalla la consola y sus caracteristicas
+
     @Override
     public String toString() {
         return "Consola: " + getNombre() + " " + almacenamiento + " " + getVersion() + getPrecio();
     }
     
-   // métodos
+   // se crea metodo repararConsola para comprobar si la consola ya se ha reparado.
     
     public void repararConsola(Consola consola){
     	if (consola.getEstado()==false){
