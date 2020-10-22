@@ -22,13 +22,9 @@ public abstract class Producto implements Serializable{
     private int id = 1;
     protected String nombre;
     private float precio;
-    private Boolean uso;
-   
+    private Boolean uso;  
 
     // Se crean los métodos Get y Set de los atributos de la Clase Producto
-
-    // Se crean los métodos Get y Set de los atributos de la Clase Producto
-
     public float getPrecio() {
         return precio;
     }

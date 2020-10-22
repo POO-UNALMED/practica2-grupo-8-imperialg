@@ -25,9 +25,6 @@ public class Consola extends Producto {
     private String version;
     private int almacenamiento;
     private static ArrayList<Consola> listaConsolas = Datos.listaConsolas;
-
-    // Se crean los métodos Get y Set de los atributos de la Clase Consola
-
     // Se crean los métodos Get y Set de los atributos de la Clase Consola
 
     public String getColor() {
@@ -112,7 +109,6 @@ public class Consola extends Producto {
         this.estado = estado;
         this.almacenamiento = almacenamiento;
     }
-
 	// Mostrar en pantalla las consolas registradas:
 	public static void consolasRegistradas() {
 		int indiceConsola = 1;

@@ -17,7 +17,7 @@ package gestorAplicacion.producto;
 import java.util.Scanner;
 import BaseDatos.Datos;
 import java.util.ArrayList;
-
+import java.util.ArrayList;
 
 
 // La clase contiene aquelos atributos que modelan los periféricos, es decir la plataforma en la que funcionan y su estado.
@@ -26,8 +26,8 @@ public class Periferico extends Producto {
     private String plataforma;
     private boolean estado;
     private static ArrayList<Periferico> listaPerifericos = Datos.listaPerifericos;
-
     // Se crean los métodos Get y Set de los atributos de la Clase Periferico
+
     public String getPlataforma() {
         return plataforma;
     }
