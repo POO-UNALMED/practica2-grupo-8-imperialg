@@ -5,14 +5,9 @@
          Cabeceras en los métodos, comentando su propósito y describiendo los parámetros de entrada/salida.
          Comentarios en líneas de código de relevante interés o importancia.
          Otros aspectos de interés a tener en cuenta por el profesor.*/
-// Autores:   - Santiago Franco Valencia
-//            - Anderson Elian Gutierrez
-//            - Santiago Valencia Mejía
-//            - Daniel Alejandro Giraldo
-// En este módulo se crea la clase asbtracta Producto, así como sus métodos básicos (Get y Set), además se definen un conjunto de atributos,
-// los cuales almacenarán información acerca de cada producto  que se vaya registrando en la plataforma.
 package gestorAplicacion.producto;
 import java.io.Serializable;
+import java.util.Scanner;
 
 public abstract class Producto implements Serializable{
     private static final long serialVersionUID = 1L;
@@ -20,8 +15,7 @@ public abstract class Producto implements Serializable{
     protected String nombre;
     private float precio;
     private Boolean uso;
-
-    // Se crean los métodos Get y Set de los atributos de la Clase Producto
+   
 
     public float getPrecio() {
         return precio;
@@ -46,11 +40,19 @@ public abstract class Producto implements Serializable{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
+	public static int[] seleccionProductos(int tope){
+		 Scanner entrada = new Scanner(System.in);
+		int[] ints = new int[tope];
+		for(int i=0; i<tope; i++) {
+			ints[i] = entrada.nextInt();
+			System.out.println(ints[i]);
+		}
+		return ints;
+	}
 
 
     public abstract String toString();
-
-    // Se crea el constructor de la clase periferico, con sus atributos como parámetros.
 
     public Producto(String nombre, boolean uso, float precio) {
         this.nombre = nombre;
@@ -58,6 +60,7 @@ public abstract class Producto implements Serializable{
         this.uso = uso;
     }
     public Producto(String nombre) {
-        this.nombre=nombre;
+    	this.nombre=nombre;
     }
+
 }
