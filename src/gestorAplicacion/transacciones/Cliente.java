@@ -16,6 +16,10 @@
 
 package gestorAplicacion.transacciones;
 import java.util.ArrayList;
+import java.util.Scanner;
+
+import BaseDatos.Datos;
+
 import java.io.Serializable;
 
 public class Cliente implements Serializable {
@@ -25,6 +29,8 @@ public class Cliente implements Serializable {
     private long celular;
     private String email;
     private int puntos = 0;
+    private static ArrayList<Cliente> listaClientes = Datos.listaClientes;
+   
 
     public Cliente() {
 
@@ -79,6 +85,59 @@ public class Cliente implements Serializable {
         this.celular = celular;
         this.email = email;
     }
+    public static void ingresarCliente() {
+    	Scanner entrada = new Scanner(System.in);
+        System.out.println("Ingrese nombre de Cliente: ");
+        String nombre = entrada.next();
+        System.out.println("Ingrese cedula: ");
+        int cc = entrada.nextInt();
+        System.out.println("Ingrese celular: ");
+        long celular = entrada.nextLong();
+        System.out.println("Ingrese email: ");
+        String email = entrada.next();
+        Cliente cliente = new Cliente(nombre, cc, celular, email);
+        listaClientes.add(cliente);
+        Datos.listaClientes.add(cliente);
+        Cliente.clientesRegistrados();
+        
+    }
+    
+    public void agregarClientes(Cliente cliente){
+        listaClientes.add(cliente);
+    }
+    public static ArrayList<Cliente> getListaClientes() {
+        return listaClientes;
+    }
+
+
+    public static Cliente seleccionarCliente(int i){
+        Cliente cliente = Datos.listaClientes.get(i);
+        return cliente;
+    }
+    public static Cliente seleccionarUltimoCliente(){
+        Cliente cliente = Datos.listaClientes.get(listaClientes.size() - 1);
+        return  cliente;
+    }
+	public static Cliente clienteRegistrado(){ 
+		 Scanner entrada = new Scanner(System.in); 
+		clientesRegistrados();
+		int i = entrada.nextInt();
+		return seleccionarCliente(i-1);
+	}
+	
+	//este metodo registra un cliente
+	public static Cliente clienteNoRegistrado(){
+		ingresarCliente();
+		return seleccionarUltimoCliente();
+	}
+ // Mostrar en pantalla los clientes registrados:
+ 	public static void clientesRegistrados() {
+ 		int indiceCliente = 1;
+ 		for (Cliente cliente : Datos.listaClientes) {
+ 			System.out.println(indiceCliente + " " + cliente.toString());
+ 			indiceCliente ++;
+ 		}
+ 	}
     
     // Se crea el toString de la clase Cliente, el cual retorna el nombre del cliente, su cédula
     // y la cantidad de puntos que posee en la tienda.

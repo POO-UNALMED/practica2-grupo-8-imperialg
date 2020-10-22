@@ -10,7 +10,6 @@
  
 
 package uiMain;
-
 import BaseDatos.Datos;
 import gestorAplicacion.transacciones.*;
 import gestorAplicacion.producto.*;
@@ -19,13 +18,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 /*Cabecera en la clase: la clase Ui carga y guarda todos los datos en los archivos .txt, además llama el
  * menu principal con el que el usuario va a interactuar*/
+
 public class Ui {
-	public static void main(String[] Args) {
-		Datos datos = new Datos();
+	public static Datos datos = new Datos();
+	
+	public static void main(String[] Args) {		
 		Ui uimain = new Ui();
 		datos.leerDatos();
 		datos.leerDatos1();
-		uimain.clientesRegistrados(datos);
+		Cliente.clientesRegistrados();
 		uimain.menuprincipal(datos);
 		datos.guardarDatos();
 		datos.guardarDatos1();
@@ -82,16 +83,16 @@ public class Ui {
 			case 0:
 				this.menu(datos);
 			case 1:
-				datos.ingresarCliente();
+				Cliente.ingresarCliente();
 				break;
 			case 2:
-				datos.ingresarConsola();
+				Consola.ingresarConsola();
 				break;
 			case 3:
-				datos.ingresarJuego();
+				Juego.ingresarJuego();
 				break;
 			case 4:
-				datos.ingresarPeriferico();
+				Periferico.ingresarPeriferico();
 				break;
 
 		}
@@ -108,9 +109,9 @@ public class Ui {
 		if (verificador == 0){
 			this.menu(datos);
 		} else if(verificador == 1){
-			cliente = this.clienteRegistrado(datos);
+			cliente = Cliente.clienteRegistrado();
 		} else if (verificador == 2) {
-			cliente = this.clienteNoRegistrado(datos);
+			cliente = Cliente.clienteNoRegistrado();
 		}
 		//se le pide al usuario una entrada despues de saber si esta registrado o no
 		System.out.println("¿Qué artículo desea vender?: Ingrese una opcion");
@@ -125,47 +126,47 @@ public class Ui {
 				this.menuVender(datos);
 			case 1: {
 				//si la entrada fue 1, se muestran las consolas disponibles y se pide la cantidad de consolas a vender
-				consolasRegistradas(datos);
+				Consola.consolasRegistradas();
 				System.out.println("¿Cuántas consolas desea vender?: ");
 				int tope = entrada.nextInt();
-				this.consolasRegistradas(datos);
+				Consola.consolasRegistradas();
 				//FALTA IMPLEMENTAR BIEN ESTA PARTE
 				System.out.println("Seleccione qué consola/s desea vender: (Ejemplo: [1, 2, 3])");
-				int[] ints = this.seleccionProductos(tope);
-				ArrayList<Producto> productos = datos.consolaPorIndice(ints);
+				int[] ints = Producto.seleccionProductos(tope);
+				ArrayList<Producto> productos = Consola.consolaPorIndice(ints);
 				for (Producto pro: productos){
 					System.out.println(pro);
 				}
 				//se hace el llamado al metodo de la clase Datos para generar una factura de venta
-				datos.generarFacturaVenta(productos, cliente);
+				Factura.generarFacturaVenta(productos, cliente);
 				break;
 			}
 			case 2: {
 				//si la entrada fue 2, se muestran los juegos disponibles y se pide la cantidad de juegos a vender
-				juegosRegistrados(datos);
+				Juego.juegosRegistrados();
 				System.out.println("¿Cuantos juegos desea vender?: ");
 				int tope = entrada.nextInt();
-				this.juegosRegistrados(datos);
+				Juego.juegosRegistrados();
 				//FALTA IMPLEMENTAR BIEN ESTA PARTE
 				System.out.println("Seleccione qué Juego/s desea vender: (Ejemplo: [1, 2, 3])");
-				int[] ints = this.seleccionProductos(tope);
-				ArrayList<Producto> productos = datos.juegoPorIndice(ints);
+				int[] ints = Producto.seleccionProductos(tope);
+				ArrayList<Producto> productos = Juego.juegoPorIndice(ints);
 				//se hace el llamado al metodo de la clase Datos para generar una factura de venta
-				datos.generarFacturaVenta(productos, cliente);
+				Factura.generarFacturaVenta(productos, cliente);
 				break;
 			}
 			case 3: {
 				//si la entrada fue 3, se muestran los perifercios disponibles y se pide la cantidad de perifericos a vender
-				perifericosRegistrados(datos);
+				Periferico.perifericosRegistrados();
 				System.out.println("¿Cuántos perifericos desea vender?:");
 				int tope = entrada.nextInt();
-				this.perifericosRegistrados(datos);
+				Periferico.perifericosRegistrados();
 				//FALTA IMPLEMENTAR BIEN ESTA PARTE
 				System.out.println("Seleccione qué periferico/s desea vender: (Ejemplo: [1, 2, 3])");
-				int[] ints = this.seleccionProductos(tope);
-				ArrayList<Producto> productos = datos.perifericoPorIndice(ints);
+				int[] ints = Producto.seleccionProductos(tope);
+				ArrayList<Producto> productos = Periferico.perifericoPorIndice(ints);
 				//se hace el llamado al metodo de la clase Datos para generar una factura de venta
-				datos.generarFacturaVenta(productos, cliente);
+				Factura.generarFacturaVenta(productos, cliente);
 				break;
 
 			}
@@ -183,9 +184,9 @@ public class Ui {
 		if (verificador == 0){
 			this.menu(datos);
 		} else if(verificador == 1){
-			cliente = this.clienteRegistrado(datos);
+			cliente = Cliente.clienteRegistrado();
 		} else if (verificador == 2) {
-			cliente = this.clienteNoRegistrado(datos);
+			cliente = Cliente.clienteNoRegistrado();
 		}
 		System.out.println("¿Cuántos productos requieren de servicio técnico?");
 		int i = entrada.nextInt(); // Scanner para saber cuantos productos se crearán.
@@ -235,74 +236,13 @@ public class Ui {
 		}
 		//genera una factura y la agrega a la lista listaFacturas en la clase Datos a traves del metodo agregar factura
 		Factura factura = new Factura(cliente, detalles);
-		datos.agregarFactura(factura);
+		Factura.agregarFactura(factura);
 		System.out.println(factura);
 
 	}	
-	// Mostrar en pantalla los clientes registrados:
-	public void clientesRegistrados(Datos datos) {
-		int indiceCliente = 1;
-		for (Cliente cliente : datos.getListaClientes()) {
-			System.out.println(indiceCliente + " " + cliente.toString());
-			indiceCliente ++;
-		}
-	}
-	// Mostrar en pantalla las consolas registradas:
-	public void consolasRegistradas(Datos datos) {
-		int indiceConsola = 1;
-		for (Consola consola : datos.getListaConsolas()) {
-			System.out.println(indiceConsola + " " + consola.toString());
-			indiceConsola ++;
-		}
-	}
-	// Mostrar en pantalla los juegos registrados:
-
-	public void juegosRegistrados(Datos datos) {
-		int indiceJuego = 1;
-		for (Juego juego : datos.getListaJuegos()) {
-			System.out.println(indiceJuego + " " + juego.toString());
-			indiceJuego ++;
-		}
-	}
-	// Mostrar en pantalla los perifericos registrados:
-
-	public void perifericosRegistrados(Datos datos) {
-		int indicePeriferico = 1;
-		for (Periferico periferico : datos.getListaPerifericos()) {
-			System.out.println(indicePeriferico + " " + periferico.toString());
-			indicePeriferico ++;
-		}
-	}
-	// Mostrar en pantalla las facturas registradas:
-
-	public void facturasRegistradas(Datos datos) {
-		for (Factura factura : datos.getListaFacturas()) {
-			System.out.println(factura.toString());
-		}
-	}
-	
-	
-	public int[] seleccionProductos(int tope){
-		int[] ints = new int[tope];
-		for(int i=0; i<tope; i++) {
-			ints[i] = entrada.nextInt();
-			System.out.println(ints[i]);
-		}
-		return ints;
-	}
 	
 	//este metodo selecciona un cliente dada una entrada i
-	public Cliente clienteRegistrado(Datos datos){
-		this.clientesRegistrados(datos);
-		int i = entrada.nextInt();
-		return datos.seleccionarCliente(i-1);
-	}
-	
-	//este metodo registra un cliente
-	public Cliente clienteNoRegistrado(Datos datos){
-		datos.ingresarCliente();
-		return datos.seleccionarUltimoCliente();
-	}
+
 	// este método sera ejecutado si la opcion del usuario en el menu principal fue 4.Imperial
 	public void menuImperial(Datos datos){
 		System.out.println("Ingrese una opción");

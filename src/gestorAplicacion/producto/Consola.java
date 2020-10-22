@@ -7,11 +7,16 @@
          Otros aspectos de interés a tener en cuenta por el profesor.*/
 package gestorAplicacion.producto;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import BaseDatos.Datos;
 public class Consola extends Producto {
     private String color;
     private boolean estado;
     private String version;
     private int almacenamiento;
+    private static ArrayList<Consola> listaConsolas = Datos.listaConsolas;
 
     public String getColor() {
         return color;
@@ -44,6 +49,40 @@ public class Consola extends Producto {
     public void setAlmacenamiento(int almacenamiento) {
         this.almacenamiento = almacenamiento;
     }
+    
+    public void agregarConsola(Consola consola) {
+        listaConsolas.add(consola);
+    }    
+    public ArrayList<Consola> getListaConsolas() {
+        return Datos.listaConsolas;
+    }
+    public static void ingresarConsola() {
+    	Scanner entrada = new Scanner(System.in);
+        System.out.println("Ingrese nombre de consola: ");
+        String nombre = entrada.next();
+        System.out.println("Ingrese uso(true or false): ");
+        Boolean uso = entrada.nextBoolean();
+        System.out.println("Ingrese precio ");
+        float precio = entrada.nextFloat();
+        System.out.println("Ingrese color: ");
+        String color = entrada.next();
+        System.out.println("Ingrese nombre de la version: ");
+        String version = entrada.next();
+        System.out.println("Ingrese cantidad almacenamiento: ");
+        int almacenamiento = entrada.nextInt();
+        Consola consola = new Consola(nombre, uso, precio, color, version, almacenamiento);
+        Datos.listaConsolas.add(consola);
+        Consola.consolasRegistradas();
+        System.out.println(Datos.listaConsolas);
+    }
+    
+    public static ArrayList<Producto> consolaPorIndice(int[] ints){
+        ArrayList<Producto> nuevaLista = new ArrayList<Producto>();
+        for (int i: ints){
+            nuevaLista.add(Datos.listaConsolas.get(i-1));
+        }
+        return nuevaLista;
+    }
 
 
     public Consola(String nombre, boolean uso, float precio, String color, String version, int almacenamiento) {
@@ -59,6 +98,15 @@ public class Consola extends Producto {
         this.estado = estado;
         this.almacenamiento = almacenamiento;
     }
+    
+	// Mostrar en pantalla las consolas registradas:
+	public static void consolasRegistradas() {
+		int indiceConsola = 1;
+		for (Consola consola : Datos.listaConsolas) {
+			System.out.println(indiceConsola + " " + consola.toString());
+			indiceConsola ++;
+		}
+	}
    
     @Override
     public String toString() {

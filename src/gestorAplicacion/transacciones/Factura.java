@@ -20,6 +20,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import BaseDatos.Datos;
+import gestorAplicacion.producto.Producto;
+
 public class Factura {
     private static final long serialVersionUID = 1L;
     private int idFactura;
@@ -27,6 +30,7 @@ public class Factura {
     private Cliente cliente;
     private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // formato de fecha dado en d�a/mes/a�o
     private ArrayList<Detalle> detalles = new ArrayList<Detalle>();
+    private static ArrayList<Factura> listaFacturas = new ArrayList<Factura>();
 
     public String getFecha() {
         return fecha.format(formato);
@@ -49,6 +53,10 @@ public class Factura {
     public int getIdFactura() {
         return idFactura;
     }
+    
+    public static void agregarFactura(Factura factura){
+        listaFacturas.add(factura);
+    }
 
     public Factura(Cliente cliente) {
         this.cliente = cliente;
@@ -60,6 +68,27 @@ public class Factura {
         this.cliente = cliente;
         this.detalles = detalles;
     }
+    public static ArrayList<Factura> getListaFacturas() {
+        return listaFacturas;
+    }     
+    public static void generarFacturaVenta(ArrayList<Producto> productos, Cliente cliente){
+        ArrayList<Detalle> listaDetalles = new ArrayList<Detalle>();
+        for (Producto producto: productos){
+            Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta");
+            listaDetalles.add(detalle);
+        }
+        Factura factura = new Factura(cliente, listaDetalles);
+        agregarFactura(factura);
+        System.out.println("Su venta ha sido realizada correctamente");
+        System.out.println(factura);
+
+    }
+ // Mostrar en pantalla las facturas registradas:
+	public void facturasRegistradas(Datos datos) {
+		for (Factura factura : getListaFacturas()) {
+			System.out.println(factura.toString());
+		}
+	}
 
     @Override
     //  Se crea el toString de la clase Factura, el cual mostrará por pantalla el Id asociado a la factura, la fecha en que se 

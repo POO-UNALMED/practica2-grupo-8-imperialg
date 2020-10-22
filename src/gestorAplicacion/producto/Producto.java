@@ -7,6 +7,7 @@
          Otros aspectos de interés a tener en cuenta por el profesor.*/
 package gestorAplicacion.producto;
 import java.io.Serializable;
+import java.util.Scanner;
 
 public abstract class Producto implements Serializable{
     private static final long serialVersionUID = 1L;
@@ -14,6 +15,7 @@ public abstract class Producto implements Serializable{
     protected String nombre;
     private float precio;
     private Boolean uso;
+   
 
     public float getPrecio() {
         return precio;
@@ -38,6 +40,16 @@ public abstract class Producto implements Serializable{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
+	public static int[] seleccionProductos(int tope){
+		 Scanner entrada = new Scanner(System.in);
+		int[] ints = new int[tope];
+		for(int i=0; i<tope; i++) {
+			ints[i] = entrada.nextInt();
+			System.out.println(ints[i]);
+		}
+		return ints;
+	}
 
 
     public abstract String toString();

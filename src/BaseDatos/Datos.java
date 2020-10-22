@@ -1,10 +1,10 @@
 /*1). En las fuentes se incluirá la siguiente documentación:
-         Cabecera del archivo: funcionalidad del módulo, autores, componentes del módulo, etc.
-         Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
+      Cabecera del archivo: funcionalidad del módulo, autores, componentes del módulo, etc.
+      Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
         sean relevantes.
-         Cabeceras en los métodos, comentando su propósito y describiendo los parámetros de entrada/salida.
-         Comentarios en líneas de código de relevante interés o importancia.
-         Otros aspectos de interés a tener en cuenta por el profesor.*/
+      Cabeceras en los métodos, comentando su propósito y describiendo los parámetros de entrada/salida.
+      Comentarios en líneas de código de relevante interés o importancia.
+      Otros aspectos de interés a tener en cuenta por el profesor.*/
 package BaseDatos;
 
 import gestorAplicacion.producto.Consola;
@@ -20,58 +20,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Datos{
-    private ArrayList<Consola> listaConsolas = new ArrayList<Consola>();
-    private ArrayList<Juego> listaJuegos = new ArrayList<Juego>();
-    private ArrayList<Periferico> listaPerifericos = new ArrayList<Periferico>();
-    private ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
-    private ArrayList<Factura> listaFacturas = new ArrayList<Factura>();
-    Scanner entrada = new Scanner(System.in);
-
-    //Agregar productos:
-
-    public void agregarConsola(Consola consola) {
-        listaConsolas.add(consola);
-    }
-    public void agregarJuego(Juego juego) {
-        listaJuegos.add(juego);
-    }
-
-    public void agregarPeriferico(Periferico periferico) {
-        listaPerifericos.add(periferico);
-    }
-
-    public void agregarClientes(Cliente cliente){
-        listaClientes.add(cliente);
-    }
-
-    public void agregarFactura(Factura factura){
-        listaFacturas.add(factura);
-    }
-
-    public void venderJuego(){}
-
-    // Seleccionar elementos de listas:
-    public ArrayList<Producto> juegoPorIndice(int[] ints){
-        ArrayList<Producto> nuevaLista = new ArrayList<Producto>();
-        for (int i: ints){
-            nuevaLista.add(this.listaJuegos.get(i-1));
-        }
-        return nuevaLista;
-    }
-    public ArrayList<Producto> consolaPorIndice(int[] ints){
-        ArrayList<Producto> nuevaLista = new ArrayList<Producto>();
-        for (int i: ints){
-            nuevaLista.add(this.listaConsolas.get(i-1));
-        }
-        return nuevaLista;
-    }
-    public ArrayList<Producto> perifericoPorIndice(int[] ints){
-        ArrayList<Producto> nuevaLista = new ArrayList<Producto>();
-        for (int i: ints){
-            nuevaLista.add(this.listaPerifericos.get(i-1));
-        }
-        return nuevaLista;
-    }
+	public static ArrayList<Consola> listaConsolas = new ArrayList<Consola>();
+	public static ArrayList<Periferico> listaPerifericos = new ArrayList<Periferico>();
+	public static ArrayList<Juego> listaJuegos = new ArrayList<Juego>();
+	
+	public static ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+	public static ArrayList<Factura> listaFacturas = new ArrayList<Factura>();	
+  
     //Guardar datos de productos
     public void guardarDatos() {
         try {
@@ -97,10 +52,6 @@ public class Datos{
         }
     }
 
-    public Cliente seleccionarCliente(int i){
-        Cliente cliente = listaClientes.get(i);
-        return cliente;
-    }
     public void leerDatos() {
         try {
             FileInputStream ci = new FileInputStream("src/BaseDatos/temp/Consolas.txt");
@@ -126,8 +77,6 @@ public class Datos{
             e.printStackTrace();
         }
     }
-
-
 
     //Guardar datos de transacciones
     public void guardarDatos1() {
@@ -169,109 +118,5 @@ public class Datos{
             e.printStackTrace();
         }
     }
-   /* public Juego juegoMasVendido() {
-        Juego masvendido = listaJuegos.get(0);
-        for (Juego juego : listaJuegos) {
-            if (juego.getUnidadesVendidas() > masvendido.getUnidadesVendidas()) {
-                masvendido = juego;
-            }
-        }
-        return masvendido;
-    }*/
 
-    public void ingresarConsola() {
-        System.out.println("Ingrese nombre de consola: ");
-        String nombre = entrada.next();
-        System.out.println("Ingrese uso(true or false): ");
-        Boolean uso = entrada.nextBoolean();
-        System.out.println("Ingrese precio ");
-        float precio = entrada.nextFloat();
-        System.out.println("Ingrese color: ");
-        String color = entrada.next();
-        System.out.println("Ingrese nombre de la version: ");
-        String version = entrada.next();
-        System.out.println("Ingrese cantidad almacenamiento: ");
-        int almacenamiento = entrada.nextInt();
-        Consola consola = new Consola(nombre, uso, precio, color, version, almacenamiento);
-        this.agregarConsola(consola);
-    }
-    public void ingresarJuego() {
-        System.out.println("Ingrese nombre de consola: ");
-        String nombre = entrada.next();
-        System.out.println("Ingrese uso(true or false): ");
-        Boolean uso = entrada.nextBoolean();
-        System.out.println("Ingrese precio ");
-        float precio = entrada.nextFloat();
-        System.out.println("Ingrese pegi: ");
-        int pegi = entrada.nextInt();
-        System.out.println("Ingrese nombre plataforma: ");
-        String plataforma = entrada.next();
-        System.out.println("Ingrese genero: ");
-        String genero = entrada.next();
-        Juego juego = new Juego(nombre, uso, precio, pegi, plataforma, genero);
-        this.agregarJuego(juego);
-    }
-
-    public void ingresarPeriferico() {
-        System.out.println("Ingrese nombre de consola: ");
-        String nombre = entrada.next();
-        System.out.println("Ingrese uso(true or false): ");
-        Boolean uso = entrada.nextBoolean();
-        System.out.println("Ingrese precio ");
-        float precio = entrada.nextFloat();
-        System.out.println("Ingrese nombre plataforma: ");
-        String plataforma = entrada.next();
-        Periferico periferico = new Periferico(nombre, uso, precio, plataforma);
-        this.agregarPeriferico(periferico);
-    }
-
-    public void ingresarCliente() {
-        System.out.println("Ingrese nombre de Cliente: ");
-        String nombre = entrada.next();
-        System.out.println("Ingrese cedula: ");
-        int cc = entrada.nextInt();
-        System.out.println("Ingrese celular: ");
-        long celular = entrada.nextLong();
-        System.out.println("Ingrese email: ");
-        String email = entrada.next();
-        Cliente cliente = new Cliente(nombre, cc, celular, email);
-        this.agregarClientes(cliente);
-    }
-    public Cliente seleccionarUltimoCliente(){
-        Cliente cliente = listaClientes.get(listaClientes.size() - 1);
-        return  cliente;
-    }
-// Obtener accesoa a listas:
-    public ArrayList<Cliente> getListaClientes() {
-        return listaClientes;
-    }
-    public ArrayList<Consola> getListaConsolas() {
-        return listaConsolas;
-    }
-
-    public ArrayList<Juego> getListaJuegos() {
-        return listaJuegos;
-    }
-
-    public ArrayList<Periferico> getListaPerifericos() {
-        return listaPerifericos;
-    }
-
-    public ArrayList<Factura> getListaFacturas() {
-        return listaFacturas;
-    }   
-
-
-    public void generarFacturaVenta(ArrayList<Producto> productos, Cliente cliente){
-        ArrayList<Detalle> listaDetalles = new ArrayList<Detalle>();
-        for (Producto producto: productos){
-            Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta");
-            listaDetalles.add(detalle);
-        }
-        Factura factura = new Factura(cliente, listaDetalles);
-        this.agregarFactura(factura);
-        System.out.println("Su venta ha sido realizada correctamente");
-        System.out.println(factura);
-
-    }
 }

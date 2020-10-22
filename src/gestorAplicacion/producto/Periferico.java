@@ -6,11 +6,18 @@
          Comentarios en líneas de código de relevante interés o importancia.
          Otros aspectos de interés a tener en cuenta por el profesor.*/
 package gestorAplicacion.producto;
+import java.util.Scanner;
+
+import BaseDatos.Datos;
+
+import java.util.ArrayList;
+
 // La clase contiene aquelos atributos que modelan los periféricos, es decir la plataforma en la que funcionan y su estado.
 public class Periferico extends Producto {
     private String plataforma;
     private boolean estado;
-
+    private static ArrayList<Periferico> listaPerifericos = Datos.listaPerifericos;
+    
 
     public String getPlataforma() {
         return plataforma;
@@ -27,6 +34,45 @@ public class Periferico extends Producto {
     public void setEstado(boolean estado) {
     	this.estado=estado;
     }
+    
+    public void agregarPeriferico(Periferico periferico) {
+        listaPerifericos.add(periferico);
+    }
+    
+    public static ArrayList<Periferico> getListaPerifericos() {
+        return listaPerifericos;
+    }
+    public static void ingresarPeriferico() {
+    	Scanner entrada = new Scanner(System.in);
+        System.out.println("Ingrese nombre del periferico: ");
+        String nombre = entrada.next();
+        System.out.println("Ingrese uso(true or false): ");
+        Boolean uso = entrada.nextBoolean();
+        System.out.println("Ingrese precio ");
+        float precio = entrada.nextFloat();
+        System.out.println("Ingrese nombre plataforma: ");
+        String plataforma = entrada.next();
+        Periferico periferico = new Periferico(nombre, uso, precio, plataforma);       
+        Datos.listaPerifericos.add(periferico);
+        Periferico.perifericosRegistrados();
+    }
+    
+    public static ArrayList<Producto> perifericoPorIndice(int[] ints){
+        ArrayList<Producto> nuevaLista = new ArrayList<Producto>();
+        for (int i: ints){
+            nuevaLista.add(listaPerifericos.get(i-1));
+        }
+        return nuevaLista;
+    }
+    
+	// Mostrar en pantalla los perifericos registrados:
+	public static void perifericosRegistrados() {
+		int indicePeriferico = 1;
+		for (Periferico periferico : Datos.listaPerifericos) {
+			System.out.println(indicePeriferico + " " + periferico.toString());
+			indicePeriferico ++;
+		}
+	}
 
     public Periferico(String nombre, boolean uso, float precio, String plataforma) {
         super(nombre, uso, precio);
