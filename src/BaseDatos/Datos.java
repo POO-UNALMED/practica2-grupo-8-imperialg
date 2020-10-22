@@ -5,6 +5,14 @@
       Cabeceras en los métodos, comentando su propósito y describiendo los parámetros de entrada/salida.
       Comentarios en líneas de código de relevante interés o importancia.
       Otros aspectos de interés a tener en cuenta por el profesor.*/
+
+// Autores:   - Santiago Franco Valencia 
+//            - Anderson Elian Gutierrez 
+//            - Santiago Valencia Mejia
+//            - Daniel Alejandro Giraldo
+
+
+
 package BaseDatos;
 
 import gestorAplicacion.producto.Consola;
@@ -27,7 +35,7 @@ public class Datos{
 	public static ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
 	public static ArrayList<Factura> listaFacturas = new ArrayList<Factura>();	
   
-    //Guardar datos de productos
+    // Guardar datos de productos
     public void guardarDatos() {
         try {
             FileOutputStream c = new FileOutputStream(new File("src/BaseDatos/temp/Consolas.txt"));
@@ -52,6 +60,7 @@ public class Datos{
         }
     }
 
+    // Leer datos de los productos que previamente hayan sido guardados 
     public void leerDatos() {
         try {
             FileInputStream ci = new FileInputStream("src/BaseDatos/temp/Consolas.txt");
@@ -78,7 +87,7 @@ public class Datos{
         }
     }
 
-    //Guardar datos de transacciones
+    // Guardar datos de transacciones
     public void guardarDatos1() {
         try {
             FileOutputStream c = new FileOutputStream(new File("src/BaseDatos/temp/Clientes.txt"));

@@ -6,10 +6,10 @@
          Comentarios en l√≠neas de c√≥digo de relevante inter√©s o importancia.
          Otros aspectos de inter√©s a tener en cuenta por el profesor.*/
 
-// Autores:   - Santiago Franco Valencia 
-//            - Anderson Elian Gutierrez 
-//            - Santiago Valencia Mej√≠a 
-//            - Daniel Alejandro Giraldo
+/* Autores:   - Santiago Franco Valencia 
+*            - Anderson Elian Gutierrez 
+*            - Santiago Valencia Mejia
+*            - Daniel Alejandro Giraldo  */
 
 // En este m√≥dulo se crea la clase Cliente, as√≠ como sus m√©todos b√°sicos (Get y Set), adem√°s se definen un conjunto de atributos,
 // los cuales almacenar√°n informaci√≥n acerca de cada Cliente que se vaya registrando en la plataforma.
@@ -17,9 +17,7 @@
 package gestorAplicacion.transacciones;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import BaseDatos.Datos;
-
 import java.io.Serializable;
 
 public class Cliente implements Serializable {
@@ -29,14 +27,15 @@ public class Cliente implements Serializable {
     private long celular;
     private String email;
     private int puntos = 0;
-    private static ArrayList<Cliente> listaClientes = Datos.listaClientes;
+    private static ArrayList<Cliente> listaClientes = Datos.listaClientes; // lista en la cual se almacenar·n todos los clientes 
+    //  registrados en la tienda.
    
 
     public Cliente() {
 
     }
     
- // Se crean los m√©todos Get y Set de los atributos de la Clase Cliente
+    // Se crean los m√©todos Get y Set de los atributos de la Clase Cliente
     
     public String getNombre() {
         return this.nombre;
@@ -85,6 +84,9 @@ public class Cliente implements Serializable {
         this.celular = celular;
         this.email = email;
     }
+    
+    // mÈtodo para recopilar por pantalla los datos basicos del cliente, para luego ser ingresado a la base de datos 
+    // de la tienda. 
     public static void ingresarCliente() {
     	Scanner entrada = new Scanner(System.in);
         System.out.println("Ingrese nombre de Cliente: ");
@@ -102,25 +104,32 @@ public class Cliente implements Serializable {
         
     }
     
+    // mÈtodo que agrega el cliente que se registrÛ en una lista juntos con los demas clientes registrados anteriormente.
     public void agregarClientes(Cliente cliente){
         listaClientes.add(cliente);
     }
+    
+    // mÈtodo que devuelve una lista con todos los clientes registrados hasta el momento.
     public static ArrayList<Cliente> getListaClientes() {
         return listaClientes;
     }
-
-
+    
+    // mÈtodo para seleccionar al cliente con el indice i de listaClientes
     public static Cliente seleccionarCliente(int i){
         Cliente cliente = Datos.listaClientes.get(i);
         return cliente;
     }
+    
+    // mÈtodo para seleccionar el ˙ltimo cliente de la lista, es decir, el ˙ltimo que fue registrado en la tienda.
     public static Cliente seleccionarUltimoCliente(){
         Cliente cliente = Datos.listaClientes.get(listaClientes.size() - 1);
         return  cliente;
     }
+    
+    // selecciona el cliente registrado marcado con el indice i.
 	public static Cliente clienteRegistrado(){ 
 		 Scanner entrada = new Scanner(System.in); 
-		clientesRegistrados();
+		clientesRegistrados();                                           
 		int i = entrada.nextInt();
 		return seleccionarCliente(i-1);
 	}
@@ -145,7 +154,7 @@ public class Cliente implements Serializable {
         return nombre + "    " + cc + "     " + puntos;
     }
  
-    //este m√©todo agregara puntos al cliente
+    //este m√©todo agregara puntos al cliente, cada vez que este realice una compra de algun producto de la tienda.
     public void agregarPunto() {
     	this.puntos++;
     }    

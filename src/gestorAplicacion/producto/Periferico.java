@@ -2,16 +2,19 @@
 //Se crea la clase perifÃ©rico y sus respectivos mÃ©todos, haciendo parte del paquete producto.
         Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
         sean relevantes.
-<<<<<<< HEAD
         Cabeceras en los mÃ©todos, comentando su propÃ³sito y describiendo los parÃ¡metros de entrada/salida.
         Comentarios en lÃ­neas de cÃ³digo de relevante interÃ©s o importancia.
         Otros aspectos de interÃ©s a tener en cuenta por el profesor.*/
-// Autores:   - Santiago Franco Valencia
-//            - Anderson Elian Gutierrez
-//            - Santiago Valencia MejÃ­a
-//            - Daniel Alejandro Giraldo
+
+/* Autores:   - Santiago Franco Valencia 
+*            - Anderson Elian Gutierrez 
+*            - Santiago Valencia Mejia
+*            - Daniel Alejandro Giraldo  */
+
 // En este mÃ³dulo se crea la clase Periferico, asÃ­ como sus mÃ©todos bÃ¡sicos (Get y Set), ademÃ¡s se definen un conjunto de atributos,
 // los cuales almacenarÃ¡n informaciÃ³n acerca de cada Periferico  que se vaya registrando en la plataforma.
+
+// La clase contiene aquellos atributos que modelan los perifÃ©ricos, es decir la plataforma en la que funcionan y su estado.
 
 package gestorAplicacion.producto;
 import java.util.Scanner;
@@ -20,12 +23,11 @@ import java.util.ArrayList;
 import java.util.ArrayList;
 
 
-// La clase contiene aquelos atributos que modelan los perifÃ©ricos, es decir la plataforma en la que funcionan y su estado.
-
 public class Periferico extends Producto {
     private String plataforma;
     private boolean estado;
-    private static ArrayList<Periferico> listaPerifericos = Datos.listaPerifericos;
+    private static ArrayList<Periferico> listaPerifericos = Datos.listaPerifericos; // Lista con los perifericos registrados en la tienda.
+    
     // Se crean los mÃ©todos Get y Set de los atributos de la Clase Periferico
 
     public String getPlataforma() {
@@ -44,6 +46,7 @@ public class Periferico extends Producto {
     	this.estado=estado;
     }
     
+    // Agrega un periferico a listaPerifericos
     public void agregarPeriferico(Periferico periferico) {
         listaPerifericos.add(periferico);
     }
@@ -51,21 +54,25 @@ public class Periferico extends Producto {
     public static ArrayList<Periferico> getListaPerifericos() {
         return listaPerifericos;
     }
+    
+    // Método que solicita al usuario por pantalla los datos basicos del periferico, para posteriormente agregarlo a la base de 
+    // datos de la tienda. 
     public static void ingresarPeriferico() {
     	Scanner entrada = new Scanner(System.in);
-        System.out.println("Ingrese nombre del periferico: ");
+        System.out.println("Ingrese el nombre del periférico: ");
         String nombre = entrada.next();
-        System.out.println("Ingrese uso(true or false): ");
+        System.out.println("Ingrese el uso (true si el periférico está usado o  false si el periférico está nuevo): ");
         Boolean uso = entrada.nextBoolean();
-        System.out.println("Ingrese precio ");
+        System.out.println("Ingrese el precio del periférico (En COP $");
         float precio = entrada.nextFloat();
-        System.out.println("Ingrese nombre plataforma: ");
+        System.out.println("Ingrese el nombre plataforma asociada al periférico: ");
         String plataforma = entrada.next();
         Periferico periferico = new Periferico(nombre, uso, precio, plataforma);       
         Datos.listaPerifericos.add(periferico);
         Periferico.perifericosRegistrados();
     }
     
+    // 
     public static ArrayList<Producto> perifericoPorIndice(int[] ints){
         ArrayList<Producto> nuevaLista = new ArrayList<Producto>();
         for (int i: ints){
@@ -83,32 +90,31 @@ public class Periferico extends Producto {
 		}
 	}
 
-    // Se crea el constructor de la clase periferico, con sus atributos como parÃ¡metros.
+    // Se crea el constructor de la clase periférico, con sus atributos como parÃ¡metros.
     public Periferico(String nombre, boolean uso, float precio, String plataforma) {
         super(nombre, uso, precio);
         this.plataforma = plataforma;
     }
 
-  //Constructor que se utilizarÃ¡ para generar perifÃ©ricos que se puedan reparar
-
+    // Constructor que retornará el nobre del periférico y el estado del mismo (bueno o malo)
     public Periferico(String nombre, boolean estado) {
         super(nombre);
         this.estado = estado;
     }
-    // Se crea el toString de la clase Periferico, el cual mostrarÃ¡ por pantalla el periferico y sus caracteristicas.
+    // Se crea el toString de la clase Periferico, el cual mostrarÃ¡ por pantalla el nombre del periferico y la plataforma a la
+    // cual está asociado.
     @Override
     public String toString() {
         return getNombre() + " " + plataforma + getPrecio();
     }
 
-    // se crea metodo repararPeriferico para comprobar si el periferico ya se ha reparado.
-
+    // Se crea metodo repararPeriferico para comprobar si el periferico ya se ha reparado.
     public void repararPeriferico(Periferico periferico){
     	if (periferico.getEstado()==false){
-    		System.out.println("El periferico ya se encuentra reparada");
+    		System.out.println("El periférico ya se encuentra reparado");
     	}else {
     		periferico.setEstado(false);
-    		System.out.println("Se ha reparado el periferico");
+    		System.out.println("Se ha reparado el periférico");
     	}
     }
 }

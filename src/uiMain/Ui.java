@@ -3,10 +3,10 @@
  * 	 funcionalidad del modulo: Aquí se encuentra el Main donde se va a ejecutar cada uno de los menus y sus respectivas funcionalidades
  *  con las que el usuario va a interactuar, su funcionamiento se basa en el uso de switches
  *  
- * 	autores: Santiago Franco Valencia, Anderson Elian Gutierrez, Santiago Valencia Mejía, Daniel Alejandro Giraldo
+ * 	autores: Santiago Franco Valencia, Anderson Elian Gutierrez, Santiago Valencia Mejia, Daniel Alejandro Giraldo
  * 	 
  * 	componentes del módulo: Clase Ui(carga y guarda todos los archivos .txt mediante serializacion), ademas un Menu principal 
- * que llama los submenus (todos ellos basado en uso de switches)*/
+ *  que llama los submenus (todos ellos basados en uso de switches)*/
  
 
 package uiMain;
@@ -193,20 +193,20 @@ public class Ui {
 		ArrayList<Producto> productos = new ArrayList<Producto>(); // Lista que se crea para generar los detalles de la factura.
 		ArrayList<Detalle> detalles = new ArrayList<Detalle>(); // Lista que almacenará cada detalle.
 		for (int j = 0; j < i ; j++) {
-			System.out.println("¿Desea modificar una consola o periferico?");
+			System.out.println("¿Desea modificar una consola o un periferico?");
 			System.out.println("1. Modificar una consola");
 			System.out.println("2. Modificar un periférico");
 			int determinante = entrada.nextInt();
 			switch (determinante){
 				case 1: {
 					//si la entrada fue 1 se modifica la consola y se genera un detalle
-					System.out.println("Ingrese el nombre de la consola:");
+					System.out.println("Ingrese el nombre de la consola: ");
 					String nombre = entrada.next();
 					System.out.println("Ingrese el color de la consola:");
 					String color = entrada.next();
-					System.out.println("Ingrese el estado de la consola (true or false)");
+					System.out.println("Ingrese el estado de la consola (true si la consola est� usada o  false si la consola est� nueva) ");
 					Boolean estado = entrada.nextBoolean();
-					System.out.println("Ingrese el almacenamiento de la consola:");
+					System.out.println("Ingrese el almacenamiento de la consola: ");
 					int almacenamiento = entrada.nextInt();
 					Consola producto = new Consola(nombre, color, estado, almacenamiento);
 					System.out.println("Ingrese el tipo de Servicio Técnico");

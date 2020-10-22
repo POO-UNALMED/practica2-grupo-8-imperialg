@@ -6,14 +6,14 @@
         Comentarios en líneas de código de relevante interés o importancia.
         Otros aspectos de interés a tener en cuenta por el profesor.*/
 
-// Autores:   - Santiago Franco Valencia 
-//            - Anderson Elian Gutierrez 
-//            - Santiago Valencia Mejía 
-//            - Daniel Alejandro Giraldo
+/* Autores:   - Santiago Franco Valencia 
+*            - Anderson Elian Gutierrez 
+*            - Santiago Valencia Mejia
+*            - Daniel Alejandro Giraldo  */
 
 // En este módulo se crea la clase Factura, en la cual se verán reflejados todos los detalles que la componen, por esta razón,
 // en esta clase se implementó una lista llamada "detalles" en la que se encuentran los detalles asociados a la factura. Además 
-// se crearon los métodos básicos (Get y Set) 
+// se crearon los métodos básicos (Get y Set).
 
 package gestorAplicacion.transacciones;
 import java.time.LocalDate;
@@ -28,15 +28,15 @@ public class Factura {
     private int idFactura;
     private LocalDate fecha = LocalDate.now(); // devuelve la fecha en la que se genera una factura
     private Cliente cliente;
-    private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // formato de fecha dado en d�a/mes/a�o
-    private ArrayList<Detalle> detalles = new ArrayList<Detalle>();
-    private static ArrayList<Factura> listaFacturas = new ArrayList<Factura>();
+    private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // formato de fecha dado en d�a/mes/a�o.
+    private ArrayList<Detalle> detalles = new ArrayList<Detalle>(); // Lista que contiene todos los detalles de una factura.
+    private static ArrayList<Factura> listaFacturas = new ArrayList<Factura>(); // Lista donde se almacenan las facturas.
 
     public String getFecha() {
         return fecha.format(formato);
     }
     
-    // Se crean los m�todos Get y Set de los atributos de la Clase Factura  
+    // Se crean los m�todos Get y Set de los atributos de la Clase Factura.
     
     public Cliente getCliente() {
         return cliente;
@@ -54,6 +54,7 @@ public class Factura {
         return idFactura;
     }
     
+    // Agrega una factura a listaFacturas.
     public static void agregarFactura(Factura factura){
         listaFacturas.add(factura);
     }
@@ -63,14 +64,16 @@ public class Factura {
     }
 
     // Se crea el constructor de la clase Factura con los parametros de Cliente y detalles (lista con todos los detalles que
-    // componen la factura)
+    // componen la factura).
     public Factura(Cliente cliente, ArrayList<Detalle> detalles) {
         this.cliente = cliente;
         this.detalles = detalles;
     }
     public static ArrayList<Factura> getListaFacturas() {
         return listaFacturas;
-    }     
+    }
+    
+    // generar factura cuando se haya producido una venta en la tienda.                                     
     public static void generarFacturaVenta(ArrayList<Producto> productos, Cliente cliente){
         ArrayList<Detalle> listaDetalles = new ArrayList<Detalle>();
         for (Producto producto: productos){
@@ -83,7 +86,8 @@ public class Factura {
         System.out.println(factura);
 
     }
- // Mostrar en pantalla las facturas registradas:
+    
+    // Mostrar en pantalla las facturas registradas:
 	public void facturasRegistradas(Datos datos) {
 		for (Factura factura : getListaFacturas()) {
 			System.out.println(factura.toString());

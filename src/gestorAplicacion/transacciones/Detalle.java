@@ -6,10 +6,10 @@
          Comentarios en líneas de código de relevante interés o importancia.
         Otros aspectos de interés a tener en cuenta por el profesor.*/
 
-// Autores:   - Santiago Franco Valencia 
-//            - Anderson Elian Gutierrez 
-//            - Santiago Valencia Mejía 
-//            - Daniel Alejandro Giraldo
+/* Autores:   - Santiago Franco Valencia 
+*            - Anderson Elian Gutierrez 
+*            - Santiago Valencia Mejia
+*            - Daniel Alejandro Giraldo  */
 
 // En este módulo se crea la clase Detalle, asi como sus métodos básicos (Get y Set), además se definen un conjunto de atributos
 // para su funcionamiento. Esta clase se verá implementada en cada una de las lineas que componen una Factura, pues una Factura         
@@ -24,7 +24,7 @@ public class Detalle {
     private float precio;
     private String tiposervicio;
     
-    // Se crean los métodos Get y Set de los atributos de la Clase Detalle 
+    // Se crean los métodos Get y Set de los atributos de la Clase Detalle.
     
     public float getPrecio() {
         return precio;
