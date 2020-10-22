@@ -2,9 +2,11 @@
         Cabecera del archivo: funcionalidad del módulo, autores, componentes del módulo, etc.
         Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
         sean relevantes.
+<<<<<<< HEAD
          Cabeceras en los métodos, comentando su propósito y describiendo los parámetros de entrada/salida.
          Comentarios en líneas de código de relevante interés o importancia.
          Otros aspectos de interés a tener en cuenta por el profesor.*/
+
 // Autores:   - Santiago Franco Valencia
 //            - Anderson Elian Gutierrez
 //            - Santiago Valencia Mejía
@@ -22,6 +24,8 @@ public abstract class Producto implements Serializable{
     private float precio;
     private Boolean uso;
    
+
+    // Se crean los métodos Get y Set de los atributos de la Clase Producto
 
     // Se crean los métodos Get y Set de los atributos de la Clase Producto
 

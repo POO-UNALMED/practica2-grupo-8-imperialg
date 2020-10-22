@@ -2,6 +2,7 @@
 //Se crea la clase periférico y sus respectivos métodos, haciendo parte del paquete producto.
         Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
         sean relevantes.
+<<<<<<< HEAD
         Cabeceras en los métodos, comentando su propósito y describiendo los parámetros de entrada/salida.
         Comentarios en líneas de código de relevante interés o importancia.
         Otros aspectos de interés a tener en cuenta por el profesor.*/
@@ -18,7 +19,9 @@ import BaseDatos.Datos;
 import java.util.ArrayList;
 
 
+
 // La clase contiene aquelos atributos que modelan los periféricos, es decir la plataforma en la que funcionan y su estado.
+
 public class Periferico extends Producto {
     private String plataforma;
     private boolean estado;
@@ -87,11 +90,11 @@ public class Periferico extends Producto {
     }
 
   //Constructor que se utilizará para generar periféricos que se puedan reparar
+
     public Periferico(String nombre, boolean estado) {
         super(nombre);
         this.estado = estado;
     }
-
     // Se crea el toString de la clase Periferico, el cual mostrará por pantalla el periferico y sus caracteristicas.
     @Override
     public String toString() {
@@ -99,6 +102,7 @@ public class Periferico extends Producto {
     }
 
     // se crea metodo repararPeriferico para comprobar si el periferico ya se ha reparado.
+
     public void repararPeriferico(Periferico periferico){
     	if (periferico.getEstado()==false){
     		System.out.println("El periferico ya se encuentra reparada");

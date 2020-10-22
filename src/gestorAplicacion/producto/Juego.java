@@ -2,6 +2,7 @@
          Cabecera del archivo: funcionalidad del módulo, autores, componentes del módulo, etc.
          Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
         sean relevantes.
+<<<<<<< HEAD
          Cabeceras en los métodos, comentando su propósito y describiendo los parámetros de entrada/salida.
          Comentarios en líneas de código de relevante interés o importancia.
         Otros aspectos de interés a tener en cuenta por el profesor.*/

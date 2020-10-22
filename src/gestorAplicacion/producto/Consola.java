@@ -3,6 +3,7 @@
       Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
         sean relevantes.
       Cabeceras en los métodos, comentando su propósito y describiendo los parámetros de entrada/salida.
+<<<<<<< HEAD
        Comentarios en líneas de código de relevante interés o importancia.
         Otros aspectos de interés a tener en cuenta por el profesor.*/
 // Autores:   - Santiago Franco Valencia
@@ -24,6 +25,8 @@ public class Consola extends Producto {
     private String version;
     private int almacenamiento;
     private static ArrayList<Consola> listaConsolas = Datos.listaConsolas;
+
+    // Se crean los métodos Get y Set de los atributos de la Clase Consola
 
     // Se crean los métodos Get y Set de los atributos de la Clase Consola
 
@@ -109,7 +112,7 @@ public class Consola extends Producto {
         this.estado = estado;
         this.almacenamiento = almacenamiento;
     }
-    
+
 	// Mostrar en pantalla las consolas registradas:
 	public static void consolasRegistradas() {
 		int indiceConsola = 1;
