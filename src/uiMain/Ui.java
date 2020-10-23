@@ -27,13 +27,14 @@ public class Ui {
 		datos.leerDatos();
 		datos.leerDatos1();
 		Consola.consolasRegistradas();
+		Factura.getListaFacturas();
+		System.out.println(Datos.listaFacturas);
 		Periferico.perifericosRegistrados();
 		Juego.juegosRegistrados();
 		Cliente.clientesRegistrados();
-		Factura.getListaFacturas();
 		uimain.menuprincipal(datos);
 		datos.guardarDatos();
-		datos.guardarDatos1();		
+		datos.guardarDatos1();
 	}
 	
 // se usa el scanner entrada para recibir la entrada del usuario en cada caso que se requiera ingresar un dato
@@ -57,6 +58,7 @@ public class Ui {
 	        System.out.println("2. Vender Productos");
 	        System.out.println("3. Servicios técnicos");
 	        System.out.println("4. Imperial");
+	        System.out.println("5. Cliente con mas puntos");
 	        int i = entrada.nextInt();
 	        switch (i){
 	            case 1:
@@ -71,6 +73,8 @@ public class Ui {
 	            case 4:
 	                this.menuImperial(datos);
 	                break;
+	            case 5:
+	            	Cliente.clienteConMasPuntos();
 	        }
 	    }
 // este método sera ejecutado si la opcion del usuario en el menu principal fue 1: Ingresar Clientes o Productos
@@ -124,53 +128,19 @@ public class Ui {
 		System.out.println("2. Juego/s");
 		System.out.println("3. Periferico/s");
 		int i =entrada.nextInt();
-		System.out.println("Seleccione su producto:");
 		switch (i){
 			case 0:
 				this.menuVender(datos);
 			case 1: {
-				//si la entrada fue 1, se muestran las consolas disponibles y se pide la cantidad de consolas a vender
-				Consola.consolasRegistradas();
-				System.out.println("¿Cuántas consolas desea vender?: ");
-				int tope = entrada.nextInt();
-				Consola.consolasRegistradas();
-				//FALTA IMPLEMENTAR BIEN ESTA PARTE
-				System.out.println("Seleccione qué consola/s desea vender: (Ejemplo: [1, 2, 3])");
-				int[] ints = Producto.seleccionProductos(tope);
-				ArrayList<Producto> productos = Consola.consolaPorIndice(ints);
-				for (Producto pro: productos){
-					System.out.println(pro);
-				}
-				//se hace el llamado al metodo de la clase Datos para generar una factura de venta
-				Factura.generarFacturaVenta(productos, cliente);
+				Consola.ventaConsola(cliente);
 				break;
 			}
 			case 2: {
-				//si la entrada fue 2, se muestran los juegos disponibles y se pide la cantidad de juegos a vender
-				Juego.juegosRegistrados();
-				System.out.println("¿Cuantos juegos desea vender?: ");
-				int tope = entrada.nextInt();
-				Juego.juegosRegistrados();
-				//FALTA IMPLEMENTAR BIEN ESTA PARTE
-				System.out.println("Seleccione qué Juego/s desea vender: (Ejemplo: [1, 2, 3])");
-				int[] ints = Producto.seleccionProductos(tope);
-				ArrayList<Producto> productos = Juego.juegoPorIndice(ints);
-				//se hace el llamado al metodo de la clase Datos para generar una factura de venta
-				Factura.generarFacturaVenta(productos, cliente);
+				Juego.ventaJuego(cliente);
 				break;
 			}
 			case 3: {
-				//si la entrada fue 3, se muestran los perifercios disponibles y se pide la cantidad de perifericos a vender
-				Periferico.perifericosRegistrados();
-				System.out.println("¿Cuántos perifericos desea vender?:");
-				int tope = entrada.nextInt();
-				Periferico.perifericosRegistrados();
-				//FALTA IMPLEMENTAR BIEN ESTA PARTE
-				System.out.println("Seleccione qué periferico/s desea vender: (Ejemplo: [1, 2, 3])");
-				int[] ints = Producto.seleccionProductos(tope);
-				ArrayList<Producto> productos = Periferico.perifericoPorIndice(ints);
-				//se hace el llamado al metodo de la clase Datos para generar una factura de venta
-				Factura.generarFacturaVenta(productos, cliente);
+				Periferico.ventaPeriferico(cliente);
 				break;
 
 			}
@@ -254,6 +224,7 @@ public class Ui {
 		System.out.println("1. Alquilar");
 		System.out.println("2. Vender");
 		System.out.println("3. Comprar");
+		System.out.println("4. ");
 		int i = entrada.nextInt();
 	}
 	

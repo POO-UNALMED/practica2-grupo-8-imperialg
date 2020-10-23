@@ -17,8 +17,11 @@
 package gestorAplicacion.producto;
 
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.Serializable;
 import BaseDatos.Datos;
+import gestorAplicacion.transacciones.*;
 import java.util.ArrayList;
 
 public class Juego extends Producto implements Serializable{
@@ -86,6 +89,26 @@ public class Juego extends Producto implements Serializable{
         System.out.println(Datos.listaJuegos);
     }
     
+    public static void ventaJuego(Cliente cliente) {
+    	Scanner entrada = new Scanner(System.in);
+    	//si la entrada fue 2, se muestran los juegos disponibles y se pide la cantidad de juegos a vender
+		Juego.juegosRegistrados();
+		System.out.println("¿Cuantos juegos desea vender?: ");
+		int tope = entrada.nextInt();
+		Juego.juegosRegistrados();
+		System.out.println("Seleccione el índice de el/los Juego/s desea vender: )");
+		int[] ints = Producto.seleccionProductos(tope);
+		ArrayList<Producto> productos = Juego.juegoPorIndice(ints);
+		for(Producto pro: productos) {
+			System.out.println(pro);
+			Juego.juegoVendido((Juego)pro);
+		}
+		//se hace el llamado al metodo de la clase Datos para generar una factura de venta
+		Factura.generarFacturaVenta(productos, cliente);
+		cliente.agregarPunto();
+		Juego.juegosRegistrados();
+    }
+    
     // 
     public static ArrayList<Producto> juegoPorIndice(int[] ints){
         ArrayList<Producto> nuevaLista = new ArrayList<Producto>();
@@ -102,6 +125,10 @@ public class Juego extends Producto implements Serializable{
 			System.out.println(indiceJuego + " " + juego.toString());
 			indiceJuego ++;
 		}
+	}
+	
+	public static void juegoVendido(Juego juego) {
+		Datos.listaJuegos.remove(juego);
 	}
     
     /* public Juego juegoMasVendido() {
@@ -126,6 +153,7 @@ public class Juego extends Producto implements Serializable{
     // Se crea el toString de la clase Consola, el cual mostrará por pantalla el nombre del juego y la plataforma a la que pertenece.
     @Override
     public String toString() {
-        return getNombre() + " " + plataforma + getPrecio() ;
+        return getNombre() + " " + plataforma + " "+getPrecio() ;
     }
 }
+

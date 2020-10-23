@@ -27,7 +27,7 @@ public class Cliente implements Serializable {
     private long celular;
     private String email;
     private int puntos = 0;
-    private static ArrayList<Cliente> listaClientes = Datos.listaClientes; // lista en la cual se almacenarán todos los clientes 
+    private static ArrayList<Cliente> listaClientes = Datos.listaClientes; // lista en la cual se almacenarï¿½n todos los clientes 
     //  registrados en la tienda.
    
 
@@ -85,7 +85,7 @@ public class Cliente implements Serializable {
         this.email = email;
     }
     
-    // método para recopilar por pantalla los datos basicos del cliente, para luego ser ingresado a la base de datos 
+    // mï¿½todo para recopilar por pantalla los datos basicos del cliente, para luego ser ingresado a la base de datos 
     // de la tienda. 
     public static void ingresarCliente() {
     	Scanner entrada = new Scanner(System.in);
@@ -98,29 +98,29 @@ public class Cliente implements Serializable {
         System.out.println("Ingrese email: ");
         String email = entrada.next();
         Cliente cliente = new Cliente(nombre, cc, celular, email);
-        listaClientes.add(cliente);
+        //listaClientes.add(cliente);
         Datos.listaClientes.add(cliente);
         Cliente.clientesRegistrados();
         
     }
     
-    // método que agrega el cliente que se registró en una lista juntos con los demas clientes registrados anteriormente.
+    // mï¿½todo que agrega el cliente que se registrï¿½ en una lista juntos con los demas clientes registrados anteriormente.
     public void agregarClientes(Cliente cliente){
         listaClientes.add(cliente);
     }
     
-    // método que devuelve una lista con todos los clientes registrados hasta el momento.
+    // mï¿½todo que devuelve una lista con todos los clientes registrados hasta el momento.
     public static ArrayList<Cliente> getListaClientes() {
         return listaClientes;
     }
     
-    // método para seleccionar al cliente con el indice i de listaClientes
+    // mï¿½todo para seleccionar al cliente con el indice i de listaClientes
     public static Cliente seleccionarCliente(int i){
         Cliente cliente = Datos.listaClientes.get(i);
         return cliente;
     }
     
-    // método para seleccionar el último cliente de la lista, es decir, el último que fue registrado en la tienda.
+    // mï¿½todo para seleccionar el ï¿½ltimo cliente de la lista, es decir, el ï¿½ltimo que fue registrado en la tienda.
     public static Cliente seleccionarUltimoCliente(){
         Cliente cliente = Datos.listaClientes.get(listaClientes.size() - 1);
         return  cliente;
@@ -147,6 +147,17 @@ public class Cliente implements Serializable {
  			indiceCliente ++;
  		}
  	}
+ 	public static void clienteConMasPuntos() {
+ 		int aux = 0;
+ 		Cliente cl=null;
+ 		for(Cliente cliente:Datos.listaClientes ) {
+ 			
+ 			if(cliente.getPuntos()>aux) {
+ 				aux = cliente.getPuntos();
+ 				cl = cliente;
+ 			}
+ 		}System.out.println(cl);
+ 	}
     
     // Se crea el toString de la clase Cliente, el cual retorna el nombre del cliente, su cÃ©dula
     // y la cantidad de puntos que posee en la tienda.
@@ -156,7 +167,7 @@ public class Cliente implements Serializable {
  
     //este mÃ©todo agregara puntos al cliente, cada vez que este realice una compra de algun producto de la tienda.
     public void agregarPunto() {
-    	this.puntos++;
+    	puntos++;
     }    
     //esta sobrecarga de mÃ©todo es para agregar x puntos al cliente dada una promocion
     public void agregarPunto(int x) {

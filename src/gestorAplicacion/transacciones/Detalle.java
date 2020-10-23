@@ -17,8 +17,9 @@
 
 package gestorAplicacion.transacciones;
 import gestorAplicacion.producto.Producto;
-
-public class Detalle {
+import java.io.Serializable;
+public class Detalle implements Serializable{
+	private static final long serialVersionUID = 1L;
     private int idDetalle;
     public Producto producto;
     private float precio;

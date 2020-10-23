@@ -19,6 +19,9 @@ package gestorAplicacion.producto;
 import java.util.ArrayList;
 import java.util.Scanner;
 import BaseDatos.Datos;
+import gestorAplicacion.transacciones.Cliente;
+import gestorAplicacion.transacciones.Factura;
+
 import java.io.Serializable;
 
 public class Consola extends Producto implements Serializable {
@@ -92,6 +95,26 @@ public class Consola extends Producto implements Serializable {
         Consola.consolasRegistradas();
         System.out.println(Datos.listaConsolas);
     }
+    public static void ventaConsola(Cliente cliente) {
+    	//si la entrada fue 1, se muestran las consolas disponibles y se pide la cantidad de consolas a vender
+    	Scanner entrada = new Scanner(System.in);
+		Consola.consolasRegistradas();
+		System.out.println("¿Cuántas consolas desea vender?: ");
+		int tope = entrada.nextInt();				
+		System.out.println("Ingrese el índice de la/s consola/s desea vender: ");
+		int[] ints = Producto.seleccionProductos(tope);
+		ArrayList<Producto> productos = Consola.consolaPorIndice(ints);
+		for (Producto pro: productos){
+			System.out.println(pro);
+			//se borra la/s consola/s vendidas de la lista
+			Consola.consolaVendida((Consola)pro);
+		}				
+		//se hace el llamado al metodo de la clase Datos para generar una factura de venta
+		Factura.generarFacturaVenta(productos, cliente);
+		cliente.agregarPunto();
+		Consola.consolasRegistradas();
+		Cliente.clientesRegistrados();
+    }
     
     // 
     public static ArrayList<Producto> consolaPorIndice(int[] ints){
@@ -141,6 +164,10 @@ public class Consola extends Producto implements Serializable {
     		consola.setEstado(false);
     		System.out.println("Se ha reparado la consola");
     	}
+    }
+    
+    public static void consolaVendida(Consola consola) {
+    	Datos.listaConsolas.remove(consola);
     }
 }
 

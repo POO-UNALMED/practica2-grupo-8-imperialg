@@ -19,18 +19,18 @@ package gestorAplicacion.transacciones;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-
+import java.io.Serializable;
 import BaseDatos.Datos;
 import gestorAplicacion.producto.Producto;
 
-public class Factura {
+public class Factura implements Serializable {
     private static final long serialVersionUID = 1L;
     private int idFactura;
     private LocalDate fecha = LocalDate.now(); // devuelve la fecha en la que se genera una factura
     private Cliente cliente;
     private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // formato de fecha dado en d�a/mes/a�o.
     private ArrayList<Detalle> detalles = new ArrayList<Detalle>(); // Lista que contiene todos los detalles de una factura.
-    private static ArrayList<Factura> listaFacturas = new ArrayList<Factura>(); // Lista donde se almacenan las facturas.
+    private static ArrayList<Factura> listaFacturas = Datos.listaFacturas; // Lista donde se almacenan las facturas.
 
     public String getFecha() {
         return fecha.format(formato);
@@ -70,7 +70,7 @@ public class Factura {
         this.detalles = detalles;
     }
     public static ArrayList<Factura> getListaFacturas() {
-        return listaFacturas;
+        return Datos.listaFacturas;
     }
     
     // generar factura cuando se haya producido una venta en la tienda.                                     
@@ -81,15 +81,17 @@ public class Factura {
             listaDetalles.add(detalle);
         }
         Factura factura = new Factura(cliente, listaDetalles);
-        agregarFactura(factura);
-        System.out.println("Su venta ha sido realizada correctamente");
+        //agregarFactura(factura);
+        System.out.println("Su venta ha sido realizada correctamente");        
         System.out.println(factura);
+        Datos.listaFacturas.add(factura);
+        System.out.println("lllll"+Datos.listaFacturas);
 
     }
     
     // Mostrar en pantalla las facturas registradas:
-	public void facturasRegistradas(Datos datos) {
-		for (Factura factura : getListaFacturas()) {
+	public static void facturasRegistradas(Datos datos) {
+		for (Factura factura : Datos.listaFacturas) {
 			System.out.println(factura.toString());
 		}
 	}
@@ -105,6 +107,6 @@ public class Factura {
             detas += detalle.toString() + "\n";
             total += detalle.getPrecio();
         }
-        return idFactura + "   " + fecha + "     "  + cliente.getNombre() + "\n" + detas + "total: " + total; 
+        return "ID: "+idFactura + "   ||  "+"Fecha: " + fecha + "   ||   "+"Cliente: "+ cliente.getNombre() + "\n" + detas + "total: " + total; 
         }
 }

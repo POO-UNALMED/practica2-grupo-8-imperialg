@@ -89,13 +89,13 @@ public class Datos{
 
     // Guardar datos de transacciones
     public void guardarDatos1() {
-        try {
+        try {        	
             FileOutputStream c = new FileOutputStream(new File("src/BaseDatos/temp/Clientes.txt"));
-            FileOutputStream d = new FileOutputStream(new File("src/BaseDatos/temp/Facturas.txt"));
+            FileOutputStream d = new FileOutputStream(new File("src/BaseDatos/temp/Facturas.txt"));           
             ObjectOutputStream o = new ObjectOutputStream(c);
-            ObjectOutputStream p = new ObjectOutputStream(d);
+            ObjectOutputStream p = new ObjectOutputStream(d);            
             o.writeObject(listaClientes);
-            p.writeObject(listaFacturas);
+            p.writeObject(listaFacturas);   
             o.close();
             p.close();
             c.close();
@@ -103,7 +103,7 @@ public class Datos{
         } catch (FileNotFoundException e) {
             System.out.println("No se encuentra el archivo");
         } catch (IOException e) {
-            System.out.println("Error Flujo de inicialización");
+            System.out.println("sssssss");
         }
     }
 
@@ -122,7 +122,7 @@ public class Datos{
         } catch (FileNotFoundException e) {
             System.out.println("No se encuentra el archivo");
         } catch (IOException e) {
-            System.out.println("Error Flujo de inicialización");
+            System.out.println("Error Flujo zación");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

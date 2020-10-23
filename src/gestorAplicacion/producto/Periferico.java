@@ -20,6 +20,8 @@ package gestorAplicacion.producto;
 import java.util.Scanner;
 import java.io.Serializable;
 import BaseDatos.Datos;
+import gestorAplicacion.transacciones.*;
+
 import java.util.ArrayList;
 
 public class Periferico extends Producto implements Serializable{
@@ -72,6 +74,26 @@ public class Periferico extends Producto implements Serializable{
         Periferico.perifericosRegistrados();
         System.out.println(Datos.listaPerifericos);
     }
+    public static void ventaPeriferico(Cliente cliente) {
+    	Scanner entrada = new Scanner(System.in);
+    	//si la entrada fue 3, se muestran los perifercios disponibles y se pide la cantidad de perifericos a vender
+		Periferico.perifericosRegistrados();
+		System.out.println("¿Cuántos perifericos desea vender?:");
+		int tope = entrada.nextInt();
+		Periferico.perifericosRegistrados();
+		System.out.println("Seleccione el índice de el/los periferico/s que desea vender: )");
+		int[] ints = Producto.seleccionProductos(tope);
+		ArrayList<Producto> productos = Periferico.perifericoPorIndice(ints);
+		for(Producto pro: productos) {
+			System.out.println(pro);
+			Periferico.perifericoVendido((Periferico)pro);
+			
+		}
+		//se hace el llamado al metodo de la clase Datos para generar una factura de venta
+		Factura.generarFacturaVenta(productos, cliente);
+		cliente.agregarPunto();
+		Periferico.perifericosRegistrados();
+    }
     
     // 
     public static ArrayList<Producto> perifericoPorIndice(int[] ints){
@@ -103,20 +125,24 @@ public class Periferico extends Producto implements Serializable{
         this.estado = estado;
     }
     // Se crea el toString de la clase Periferico, el cual mostrará por pantalla el nombre del periferico y la plataforma a la
-    // cual est� asociado.
+    // cual esta asociado.
     @Override
     public String toString() {
-        return getNombre() + " " + plataforma + getPrecio();
+        return getNombre() + " " + plataforma +" "+ getPrecio();
     }
 
     // Se crea metodo repararPeriferico para comprobar si el periferico ya se ha reparado.
     public void repararPeriferico(Periferico periferico){
     	if (periferico.getEstado()==false){
-    		System.out.println("El perif�rico ya se encuentra reparado");
+    		System.out.println("El periferico ya se encuentra reparado");
     	}else {
     		periferico.setEstado(false);
-    		System.out.println("Se ha reparado el perif�rico");
+    		System.out.println("Se ha reparado el periferico");
     	}
+    }
+    
+    public static void perifericoVendido(Periferico periferico) {
+    	Datos.listaPerifericos.remove(periferico);
     }
 }
 
