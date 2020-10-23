@@ -59,7 +59,6 @@ public class Datos{
         }
     }
     
-
     // Leer datos de los productos que previamente hayan sido guardados 
     public void leerDatos() {
         try {
@@ -70,8 +69,8 @@ public class Datos{
             ObjectInputStream pi = new ObjectInputStream(di);
             ObjectInputStream qi = new ObjectInputStream(ei);
             listaConsolas = (ArrayList<Consola>) oi.readObject();
-            listaJuegos = (ArrayList<Juego>) oi.readObject();
-            listaPerifericos = (ArrayList<Periferico>) oi.readObject();
+            listaJuegos = (ArrayList<Juego>) pi.readObject();
+            listaPerifericos = (ArrayList<Periferico>) qi.readObject();
             oi.close();
             pi.close();
             qi.close();
@@ -115,7 +114,7 @@ public class Datos{
             ObjectInputStream oi = new ObjectInputStream(ci);
             ObjectInputStream pi = new ObjectInputStream(di);
             listaClientes = (ArrayList<Cliente>) oi.readObject();
-            listaFacturas = (ArrayList<Factura>) oi.readObject();
+            listaFacturas = (ArrayList<Factura>) pi.readObject();
             oi.close();
             pi.close();
             ci.close();

@@ -30,6 +30,7 @@ public class Ui {
 		Periferico.perifericosRegistrados();
 		Juego.juegosRegistrados();
 		Cliente.clientesRegistrados();
+		Factura.getListaFacturas();
 		uimain.menuprincipal(datos);
 		datos.guardarDatos();
 		datos.guardarDatos1();		
