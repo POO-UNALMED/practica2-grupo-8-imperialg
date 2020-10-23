@@ -25,7 +25,6 @@ import gestorAplicacion.transacciones.Factura;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Datos{
 	public static ArrayList<Consola> listaConsolas = new ArrayList<Consola>();
@@ -59,6 +58,7 @@ public class Datos{
             System.out.println("Error Flujo de inicialización");
         }
     }
+    
 
     // Leer datos de los productos que previamente hayan sido guardados 
     public void leerDatos() {
@@ -86,6 +86,7 @@ public class Datos{
             e.printStackTrace();
         }
     }
+    
 
     // Guardar datos de transacciones
     public void guardarDatos1() {

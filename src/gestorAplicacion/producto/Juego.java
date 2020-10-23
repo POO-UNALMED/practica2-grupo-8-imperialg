@@ -15,13 +15,14 @@
 // los cuales almacenarÃ¡n informaciÃ³n acerca de cada Juego que se vaya registrando en la plataforma.
 
 package gestorAplicacion.producto;
+
 import java.util.Scanner;
-
+import java.io.Serializable;
 import BaseDatos.Datos;
-
 import java.util.ArrayList;
 
-public class Juego extends Producto {
+public class Juego extends Producto implements Serializable{
+	private static final long serialVersionUID = 1L;
     private int pegi; // parametro que categoriza los juegos de acuerdo a la edad minima requerida para poder jugarlos.
     private String plataforma;
     private String genero;
@@ -59,17 +60,17 @@ public class Juego extends Producto {
     public void venderJuego(){
     	
     }
-    public static ArrayList<Juego> getListaJuegos() {
-        return listaJuegos;
+    public ArrayList<Juego> getListaJuegos() {
+        return Datos.listaJuegos;
     }
     
-    // Metodo que le solicita al usuario ingresar los datos basicos del juego que posteriormente se ingresará a la base
+    // Metodo que le solicita al usuario ingresar los datos basicos del juego que posteriormente se ingresarï¿½ a la base
     // de datos de la tienda.
     public static void ingresarJuego() {
     	Scanner entrada = new Scanner(System.in);
         System.out.println("Ingrese el nombre del juego: ");
         String nombre = entrada.next();
-        System.out.println("Ingrese el uso (true si el juego está usado o  false si el juego está nuevo): ");
+        System.out.println("Ingrese el uso (true si el juego estï¿½ usado o  false si el juego estï¿½ nuevo): ");
         Boolean uso = entrada.nextBoolean();
         System.out.println("Ingrese el precio del juego ");
         float precio = entrada.nextFloat();
@@ -82,13 +83,14 @@ public class Juego extends Producto {
         Juego juego = new Juego(nombre, uso, precio, pegi, plataforma, genero);
         Datos.listaJuegos.add(juego);
         Juego.juegosRegistrados();
+        System.out.println(Datos.listaJuegos);
     }
     
     // 
     public static ArrayList<Producto> juegoPorIndice(int[] ints){
         ArrayList<Producto> nuevaLista = new ArrayList<Producto>();
         for (int i: ints){
-            nuevaLista.add(listaJuegos.get(i-1));
+            nuevaLista.add(Datos.listaJuegos.get(i-1));
         }
         return nuevaLista;
     }

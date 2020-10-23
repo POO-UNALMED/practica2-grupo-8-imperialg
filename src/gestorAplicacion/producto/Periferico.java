@@ -18,12 +18,12 @@
 
 package gestorAplicacion.producto;
 import java.util.Scanner;
+import java.io.Serializable;
 import BaseDatos.Datos;
 import java.util.ArrayList;
-import java.util.ArrayList;
 
-
-public class Periferico extends Producto {
+public class Periferico extends Producto implements Serializable{
+	private static final long serialVersionUID = 1L;
     private String plataforma;
     private boolean estado;
     private static ArrayList<Periferico> listaPerifericos = Datos.listaPerifericos; // Lista con los perifericos registrados en la tienda.
@@ -51,32 +51,33 @@ public class Periferico extends Producto {
         listaPerifericos.add(periferico);
     }
     
-    public static ArrayList<Periferico> getListaPerifericos() {
-        return listaPerifericos;
+    public ArrayList<Periferico> getListaPerifericos() {
+        return Datos.listaPerifericos;
     }
     
-    // Método que solicita al usuario por pantalla los datos basicos del periferico, para posteriormente agregarlo a la base de 
+    // Mï¿½todo que solicita al usuario por pantalla los datos basicos del periferico, para posteriormente agregarlo a la base de 
     // datos de la tienda. 
     public static void ingresarPeriferico() {
     	Scanner entrada = new Scanner(System.in);
-        System.out.println("Ingrese el nombre del periférico: ");
+        System.out.println("Ingrese el nombre del perifï¿½rico: ");
         String nombre = entrada.next();
-        System.out.println("Ingrese el uso (true si el periférico está usado o  false si el periférico está nuevo): ");
+        System.out.println("Ingrese el uso (true si el perifï¿½rico estï¿½ usado o  false si el perifï¿½rico estï¿½ nuevo): ");
         Boolean uso = entrada.nextBoolean();
-        System.out.println("Ingrese el precio del periférico (En COP $");
+        System.out.println("Ingrese el precio del perifï¿½rico (En COP $");
         float precio = entrada.nextFloat();
-        System.out.println("Ingrese el nombre plataforma asociada al periférico: ");
+        System.out.println("Ingrese el nombre plataforma asociada al perifï¿½rico: ");
         String plataforma = entrada.next();
         Periferico periferico = new Periferico(nombre, uso, precio, plataforma);       
         Datos.listaPerifericos.add(periferico);
         Periferico.perifericosRegistrados();
+        System.out.println(Datos.listaPerifericos);
     }
     
     // 
     public static ArrayList<Producto> perifericoPorIndice(int[] ints){
         ArrayList<Producto> nuevaLista = new ArrayList<Producto>();
         for (int i: ints){
-            nuevaLista.add(listaPerifericos.get(i-1));
+            nuevaLista.add(Datos.listaPerifericos.get(i-1));
         }
         return nuevaLista;
     }
@@ -90,19 +91,19 @@ public class Periferico extends Producto {
 		}
 	}
 
-    // Se crea el constructor de la clase periférico, con sus atributos como parÃ¡metros.
+    // Se crea el constructor de la clase perifï¿½rico, con sus atributos como parÃ¡metros.
     public Periferico(String nombre, boolean uso, float precio, String plataforma) {
         super(nombre, uso, precio);
         this.plataforma = plataforma;
     }
 
-    // Constructor que retornará el nobre del periférico y el estado del mismo (bueno o malo)
+    // Constructor que retornarï¿½ el nobre del perifï¿½rico y el estado del mismo (bueno o malo)
     public Periferico(String nombre, boolean estado) {
         super(nombre);
         this.estado = estado;
     }
     // Se crea el toString de la clase Periferico, el cual mostrarÃ¡ por pantalla el nombre del periferico y la plataforma a la
-    // cual está asociado.
+    // cual estï¿½ asociado.
     @Override
     public String toString() {
         return getNombre() + " " + plataforma + getPrecio();
@@ -111,10 +112,10 @@ public class Periferico extends Producto {
     // Se crea metodo repararPeriferico para comprobar si el periferico ya se ha reparado.
     public void repararPeriferico(Periferico periferico){
     	if (periferico.getEstado()==false){
-    		System.out.println("El periférico ya se encuentra reparado");
+    		System.out.println("El perifï¿½rico ya se encuentra reparado");
     	}else {
     		periferico.setEstado(false);
-    		System.out.println("Se ha reparado el periférico");
+    		System.out.println("Se ha reparado el perifï¿½rico");
     	}
     }
 }

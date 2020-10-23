@@ -26,10 +26,13 @@ public class Ui {
 		Ui uimain = new Ui();
 		datos.leerDatos();
 		datos.leerDatos1();
+		Consola.consolasRegistradas();
+		Periferico.perifericosRegistrados();
+		Juego.juegosRegistrados();
 		Cliente.clientesRegistrados();
 		uimain.menuprincipal(datos);
 		datos.guardarDatos();
-		datos.guardarDatos1();
+		datos.guardarDatos1();		
 	}
 	
 // se usa el scanner entrada para recibir la entrada del usuario en cada caso que se requiera ingresar un dato
@@ -204,7 +207,7 @@ public class Ui {
 					String nombre = entrada.next();
 					System.out.println("Ingrese el color de la consola:");
 					String color = entrada.next();
-					System.out.println("Ingrese el estado de la consola (true si la consola está usada o  false si la consola está nueva) ");
+					System.out.println("Ingrese el estado de la consola (true si la consola estï¿½ usada o  false si la consola estï¿½ nueva) ");
 					Boolean estado = entrada.nextBoolean();
 					System.out.println("Ingrese el almacenamiento de la consola: ");
 					int almacenamiento = entrada.nextInt();

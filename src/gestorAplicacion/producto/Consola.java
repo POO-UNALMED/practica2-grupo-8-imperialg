@@ -19,8 +19,10 @@ package gestorAplicacion.producto;
 import java.util.ArrayList;
 import java.util.Scanner;
 import BaseDatos.Datos;
+import java.io.Serializable;
 
-public class Consola extends Producto {
+public class Consola extends Producto implements Serializable {
+	private static final long serialVersionUID = 1L;
     private String color;
     private boolean estado;
     private String version;
@@ -69,13 +71,13 @@ public class Consola extends Producto {
         return Datos.listaConsolas;
     }
     
-    // metodo que le solicita al usuario ingresar los datos basicos de la consola que posteriormente se ingresará a la base
+    // metodo que le solicita al usuario ingresar los datos basicos de la consola que posteriormente se ingresarï¿½ a la base
     // de datos de la tienda.
     public static void ingresarConsola() {
     	Scanner entrada = new Scanner(System.in);
         System.out.println("Ingrese el nombre de consola: ");
         String nombre = entrada.next();
-        System.out.println("Ingrese el uso (true si la consola está usada o  false si la consola está nueva): ");
+        System.out.println("Ingrese el uso (true si la consola estï¿½ usada o  false si la consola estï¿½ nueva): ");
         Boolean uso = entrada.nextBoolean();
         System.out.println("Ingrese el precio de la consola ");
         float precio = entrada.nextFloat();
@@ -128,7 +130,7 @@ public class Consola extends Producto {
     // Se crea el toString de la clase Consola, el cual mostrarÃ¡ por pantalla la consola y sus caracteristicas
     @Override
     public String toString() {
-        return "Consola: " + getNombre() + " " + almacenamiento + " " + getVersion() + getPrecio();
+        return "Consola: " + getNombre() + " " + almacenamiento + " " + getVersion() +" "+ getPrecio();
     }
     
    // se crea metodo repararConsola para comprobar si la consola ya se ha reparado.
