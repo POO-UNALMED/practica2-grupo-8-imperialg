@@ -19,14 +19,14 @@ package gestorAplicacion.transacciones;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import java.util.*;
 
 import BaseDatos.Datos;
 import gestorAplicacion.producto.*;
 
 public class Factura implements Serializable {
     private static final long serialVersionUID = 1L;
-    private int idFactura;
+    private static int idFactura;
     private Cliente cliente;
     private ArrayList<Detalle> detalles = new ArrayList<Detalle>(); // Lista que contiene todos los detalles de una factura.
     private static ArrayList<Factura> listaFacturas = Datos.listaFacturas; // Lista donde se almacenan las facturas.
@@ -70,9 +70,12 @@ public class Factura implements Serializable {
     
     // Generar factura cuando se haya producido una venta en la tienda.                                     
     public static void generarFacturaVenta(ArrayList<Producto> productos, Cliente cliente){
+    	Scanner entrada = new Scanner(System.in);
+    	System.out.println("Ingrese unidades de esta venta: ");
+    	int unidades = entrada.nextInt();
         ArrayList<Detalle> listaDetalles = new ArrayList<Detalle>();
         for (Producto producto: productos){
-            Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta");
+            Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta",unidades);
             listaDetalles.add(detalle);
         }
         Factura factura = new Factura(cliente, listaDetalles);
@@ -86,6 +89,7 @@ public class Factura implements Serializable {
 	public static void facturasRegistradas() {
 		for (Factura factura : Datos.listaFacturas) {
 			System.out.println(factura.toString());
+			idFactura++;
 		}
 	}
 
@@ -95,6 +99,7 @@ public class Factura implements Serializable {
     // total de la factura.
     @Override
     public String toString(){
+    	
         String detas = "";
         float total = 0;
         for (Detalle detalle: detalles){ // el for se implementa para recorrer la lista de detalles, para despues mostrarlos. 
@@ -109,7 +114,7 @@ public class Factura implements Serializable {
     public static void generarFacturaVenta1(ArrayList<Consola> productos, Cliente cliente){
         ArrayList<Detalle> listaDetalles = new ArrayList<Detalle>();
         for (Producto producto: productos){
-            Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta");
+            Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta",2);
             listaDetalles.add(detalle);
         }
         Factura factura = new Factura(cliente, listaDetalles);
@@ -118,11 +123,14 @@ public class Factura implements Serializable {
 
     }
     
-    // Generar factura cuando se haya producido una venta de un periférico  en la tienda.
+    // Generar factura cuando se haya producido una venta de un perifï¿½rico  en la tienda.
      public static void generarFacturaVenta2(ArrayList<Periferico> productos, Cliente cliente){
+    	 Scanner entrada = new Scanner(System.in);
+    	 System.out.println("Ingrese las unidades de esta venta: ");
+    	 int unidades = entrada.nextInt();
         ArrayList<Detalle> listaDetalles = new ArrayList<Detalle>();
         for (Producto producto: productos){
-            Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta");
+            Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta",unidades);
             listaDetalles.add(detalle);
         }
         Factura factura = new Factura(cliente, listaDetalles);
@@ -132,9 +140,12 @@ public class Factura implements Serializable {
     
     // Generar factura cuando se haya producido una venta de un juego en la tienda.
     public static void generarFacturaVenta3(ArrayList<Juego> productos, Cliente cliente){
+    	Scanner entrada = new Scanner(System.in);
+    	System.out.println("Ingrese las unidades de esta venta: ");
+    	int unidades = entrada.nextInt();
         ArrayList<Detalle> listaDetalles = new ArrayList<Detalle>();
         for (Producto producto: productos){
-            Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta");
+            Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta",unidades);
             listaDetalles.add(detalle);
         }
         Factura factura = new Factura(cliente, listaDetalles);

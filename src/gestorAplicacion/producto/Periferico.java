@@ -63,7 +63,7 @@ public class Periferico extends Producto implements Serializable,Hardware{
         String nombre = entrada.next();
         System.out.println("Ingrese el uso (true si el periferico esta usado o  false si el periferico esta nuevo): ");
         Boolean uso = entrada.nextBoolean();
-        System.out.println("Ingrese el precio del perferico (En COP $");
+        System.out.println("Ingrese el precio del perferico (En COP $): ");
         float precio = entrada.nextFloat();
         System.out.println("Ingrese el nombre plataforma asociada al periferico: ");
         String plataforma = entrada.next();
@@ -78,16 +78,14 @@ public class Periferico extends Producto implements Serializable,Hardware{
     	Scanner entrada = new Scanner(System.in);
     	// Si la entrada fue 3, se muestran los perifercios disponibles y se pide la cantidad de perifericos a vender.
 		Periferico.perifericosRegistrados();
-		System.out.println("¿Cuantos perifericos desea vender?:");
+		System.out.println("ï¿½Cuantos perifericos desea vender?:");
 		int tope = entrada.nextInt();
 		Periferico.perifericosRegistrados();
 		System.out.println("Seleccione el indice de el/los periferico/s que desea vender: )");
 		int[] ints = Producto.seleccionProductos(tope);
 		ArrayList<Producto> productos = Periferico.perifericoPorIndice(ints);
 		for(Producto pro: productos) {
-			System.out.println(pro);
-			Periferico.perifericoVendido((Periferico)pro);
-			
+			System.out.println(pro);						
 		}
 		// Se hace el llamado al metodo de la clase Datos para generar una factura de venta.
 		Factura.generarFacturaVenta(productos, cliente);
@@ -142,10 +140,15 @@ public class Periferico extends Producto implements Serializable,Hardware{
     	}
     }
     
-    // Metodo para eliminar un periferico de la base de datos de la tienda luego de ser vendido.
-    public static void perifericoVendido(Periferico periferico) {
-    	Datos.listaPerifericos.remove(periferico);
-    }
+    // Metodo para eliminar un periferico de la base de datos de la tienda.
+	public static void borrarPeriferico() {
+		Scanner entrada = new Scanner(System.in);    	
+    	perifericosRegistrados();
+    	System.out.println("Ingrese el indice del Periferico que desea borrar: ");
+    	int indice = entrada.nextInt(); 		
+		Datos.listaPerifericos.remove(Datos.listaPerifericos.remove(indice-1));
+		perifericosRegistrados();
+	}
 
     // Metodo que modifica el precio de uno o mas perifericos dados un array de indices y uno de precios.
     public static void modificarPreciosPerifericos(int[] ints, int[] precios){
@@ -205,7 +208,9 @@ public class Periferico extends Producto implements Serializable,Hardware{
 		String tiposervicio = entrada.next();
 		System.out.println("Ingrese el precio del servicio tecnico: ");
 		float precio = entrada.nextFloat();
-		Detalle detalle = new Detalle(producto, precio, tiposervicio);
+		System.out.println("Ingrese las unidades: ");
+		int unidades = entrada.nextInt();
+		Detalle detalle = new Detalle(producto, precio, tiposervicio,unidades);
 		detalles.add(detalle);
     }
     

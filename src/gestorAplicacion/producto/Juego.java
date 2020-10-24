@@ -11,7 +11,7 @@
 *            - Santiago Valencia Mejia
 *            - Daniel Alejandro Giraldo  */
 
-// En este modulo se crea la clase Juego, asi­ como sus metodos basicos (Get y Set), ademas se definen un conjunto de atributos,
+// En este modulo se crea la clase Juego, asiï¿½ como sus metodos basicos (Get y Set), ademas se definen un conjunto de atributos,
 // los cuales almacenaran informacion acerca de cada Juego que se vaya registrando en la plataforma.
 
 package gestorAplicacion.producto;
@@ -93,7 +93,7 @@ public class Juego extends Producto implements Serializable{
     	Scanner entrada = new Scanner(System.in);
     	// Si la entrada fue 2, se muestran los juegos disponibles y se pide la cantidad de juegos a vender.
 		Juego.juegosRegistrados();
-		System.out.println("¿Cuantos juegos desea vender?: ");
+		System.out.println("ï¿½Cuantos juegos desea vender?: ");
 		int tope = entrada.nextInt();
 		Juego.juegosRegistrados();
 		System.out.println("Seleccione el indice de el/los Juego/s que desea vender: ");
@@ -101,7 +101,6 @@ public class Juego extends Producto implements Serializable{
 		ArrayList<Producto> productos = Juego.juegoPorIndice(ints);
 		for(Producto pro: productos) {
 			System.out.println(pro);
-			Juego.juegoVendido((Juego)pro);
 		}
 		
 		// Se hace el llamado al metodo de la clase Datos para generar una factura de venta.
@@ -138,9 +137,14 @@ public class Juego extends Producto implements Serializable{
 		}
 	}
 	
-	// Metodo para eliminar un juego de la base de datos luego de haber sido vendido. 
-	public static void juegoVendido(Juego juego) {
-		Datos.listaJuegos.remove(juego);
+	// Metodo para eliminar un juego de la base de datos. 
+	public static void borrarJuego() {
+		Scanner entrada = new Scanner(System.in);    	
+    	juegosRegistrados();
+    	System.out.println("Ingrese el indice del Juego que desea borrar: ");
+    	int indice = entrada.nextInt(); 		
+		Datos.listaJuegos.remove(Datos.listaJuegos.remove(indice-1));
+		juegosRegistrados();
 	}
 	
 	 // Se crea un arraylist que contiene los nombres de los juegos que se han vendido y la frecuencia de venta de cada uno.
@@ -182,7 +186,7 @@ public class Juego extends Producto implements Serializable{
 	
 	// Metodo que recomienda los juegos de la tienda por la edad minima sugerida para ser jugados.
 	public static void recomendarPorEdad() {
-		System.out.println("Juegos recomendados para edad de 6 años a 12 aÃ±os inclusive: "+"\n");
+		System.out.println("Juegos recomendados para edad de 6 aï¿½os a 12 aÃ±os inclusive: "+"\n");
 		
 		for(Juego juego:Datos.listaJuegos) {
 			if(juego.pegi<=12) {				
@@ -190,7 +194,7 @@ public class Juego extends Producto implements Serializable{
 			}
 		}	
 		System.out.println("\n");
-		System.out.println("\n"+"Juegos recomendados para edad de mas de 12 años a 18 años inclusive: "+"\n");
+		System.out.println("\n"+"Juegos recomendados para edad de mas de 12 aï¿½os a 18 aï¿½os inclusive: "+"\n");
 		
 			for(Juego juego:Datos.listaJuegos) {
 				if(juego.pegi>12&&juego.pegi<=18) {	
@@ -199,7 +203,7 @@ public class Juego extends Producto implements Serializable{
 				}
 			}
 			System.out.println("\n");
-			System.out.println("\n"+"Juegos recomendados para edad de +18 años: "+"\n");
+			System.out.println("\n"+"Juegos recomendados para edad de +18 aï¿½os: "+"\n");
 			for(Juego juego:Datos.listaJuegos) {
 				if(juego.pegi>18) {	
 					System.out.println("Nombre del Juego: "+juego.getNombre()+"  ||  "+" Genero: "+juego.getGenero()+"  ||  "+" Precio: "+juego.getPrecio()+"  ||  "+"Edad recomendada para jugar: "+juego.getPegi());

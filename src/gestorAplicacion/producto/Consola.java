@@ -98,21 +98,19 @@ public class Consola extends Producto implements Serializable, Hardware {
     	// Si la entrada fue 1, se muestran las consolas disponibles y se pide la cantidad de consolas a vender.
     	Scanner entrada = new Scanner(System.in);
 		Consola.consolasRegistradas();
-		System.out.println("¿Cuantas consolas desea vender?: ");
+		System.out.println("ï¿½Cuantas consolas desea vender?: ");
 		int tope = entrada.nextInt();				
 		System.out.println("Ingrese el indice de la/s consola/s que desea vender: ");
 		int[] ints = Producto.seleccionProductos(tope);
 		ArrayList<Producto> productos = Consola.consolaPorIndice(ints);
 		for (Producto pro: productos){
-			System.out.println(pro);
-			// Se borra la/s consola/s vendidas de la lista.
-			Consola.consolaVendida((Consola)pro);
+			System.out.println(pro);			
 		}	
 		
 		//se hace el llamado al metodo de la clase Datos para generar una factura de venta
 		Factura.generarFacturaVenta(productos, cliente);
 		cliente.agregarPunto(5);
-		Consola.consolasRegistradas();
+		consolasRegistradas();
 		Cliente.clientesRegistrados();
     }
     
@@ -132,7 +130,9 @@ public class Consola extends Producto implements Serializable, Hardware {
 		String tiposervicio = entrada.next();
 		System.out.println("Ingrese el precio del servicio tecnico: ");
 		float precio = entrada.nextFloat();
-		Detalle detalle = new Detalle(producto, precio, tiposervicio);
+		System.out.println("Ingrese las unidades: ");
+		int unidades = entrada.nextInt();
+		Detalle detalle = new Detalle(producto, precio, tiposervicio,unidades);
 		detalles.add(detalle);
     }
     
@@ -177,9 +177,14 @@ public class Consola extends Producto implements Serializable, Hardware {
     }
   
     
-    // Metodo para eliminar una consola de la base de datos de la tienda luego de ser vendida.
-    public static void consolaVendida(Consola consola) {
-    	Datos.listaConsolas.remove(consola);
+    // Metodo para eliminar una consola de la base de datos.
+    public static void borrarConsola() {
+    	Scanner entrada = new Scanner(System.in);    	
+    	consolasRegistradas();
+    	System.out.println("Ingrese el indice de la Consola que desea borrar: ");
+    	int indice = entrada.nextInt();    	
+    	Datos.listaConsolas.remove(Datos.listaConsolas.get(indice-1));
+    	consolasRegistradas();
     }
     
     
