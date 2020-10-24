@@ -17,10 +17,10 @@
 package gestorAplicacion.producto;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import BaseDatos.Datos;
 import gestorAplicacion.transacciones.Cliente;
-import gestorAplicacion.transacciones.Factura;
+import gestorAplicacion.transacciones.*;
+import java.util.*;
 
 import java.io.Serializable;
 
@@ -169,6 +169,36 @@ public class Consola extends Producto implements Serializable {
     public static void consolaVendida(Consola consola) {
     	Datos.listaConsolas.remove(consola);
     }
+    
+    public static ArrayList<String> productosVendidos(){
+        ArrayList<Detalle> todoslosdetalles = new ArrayList<Detalle>();
+        for (Factura factura: Datos.listaFacturas){
+            todoslosdetalles.addAll(factura.getDetalles());
+        }
+        ArrayList<String> todoslosNombres = new ArrayList<String>();
+        for (Detalle detalle: todoslosdetalles){
+            if(detalle.getProducto() instanceof Consola){
+                todoslosNombres.add(detalle.getProducto().nombre);
+                System.out.println(detalle.getProducto().nombre);
+            }
+        }
+        return todoslosNombres;
+    }
+
+    public static void consolaMasVendida(){
+        ArrayList<String> nombres = Consola.productosVendidos();
+        ArrayList<String> nombresUnicos = new ArrayList<String>();
+        for (String nombre: nombres){
+            if(!nombresUnicos.contains(nombre))
+                nombresUnicos.add(nombre);
+        }
+        ArrayList<Integer> numeroDeUnidadesVendidas = new ArrayList<Integer>();
+        int i = 0;
+        for (String nombre: nombresUnicos){
+            System.out.println(nombre + " " +Collections.frequency(nombres, nombre));
+        }
+    }
+        
 }
 
 

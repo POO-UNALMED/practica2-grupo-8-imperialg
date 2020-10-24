@@ -31,6 +31,9 @@ public class Detalle implements Serializable{
     public float getPrecio() {
         return precio;
     }
+    public Producto getProducto() {
+    	return producto;
+    }
 
     public void setPrecio(float precio) {
         this.precio = precio;

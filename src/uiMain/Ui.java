@@ -29,8 +29,7 @@ public class Ui {
         datos.leerDatosFacturas();
         Factura.facturasRegistradas();
         Cliente.clientesRegistrados();
-        //System.out.println(Datos.listaFacturas);
-        //Consola.consolaMasVendida();
+        Consola.consolaMasVendida();
         uimain.menuprincipal(datos);
         datos.guardarDatos();
         datos.guardarDatos1();
