@@ -59,13 +59,13 @@ public class Periferico extends Producto implements Serializable,Hardware{
     // datos de la tienda. 
     public static void ingresarPeriferico() {
     	Scanner entrada = new Scanner(System.in);
-        System.out.println("Ingrese el nombre del periférico: ");
+        System.out.println("Ingrese el nombre del perifï¿½rico: ");
         String nombre = entrada.next();
-        System.out.println("Ingrese el uso (true si el periférico está usado o  false si el periférico está nuevo): ");
+        System.out.println("Ingrese el uso (true si el perifï¿½rico estï¿½ usado o  false si el perifï¿½rico estï¿½ nuevo): ");
         Boolean uso = entrada.nextBoolean();
-        System.out.println("Ingrese el precio del perférico (En COP $");
+        System.out.println("Ingrese el precio del perfï¿½rico (En COP $");
         float precio = entrada.nextFloat();
-        System.out.println("Ingrese el nombre plataforma asociada al periférico: ");
+        System.out.println("Ingrese el nombre plataforma asociada al perifï¿½rico: ");
         String plataforma = entrada.next();
         Periferico periferico = new Periferico(nombre, uso, precio, plataforma);       
         Datos.listaPerifericos.add(periferico);
@@ -73,12 +73,12 @@ public class Periferico extends Producto implements Serializable,Hardware{
         System.out.println(Datos.listaPerifericos);
     }
     
-    // Método para seleccionar los perifericos a vender y posteirormente generar una factura.
+    // Mï¿½todo para seleccionar los perifericos a vender y posteirormente generar una factura.
     public static void ventaPeriferico(Cliente cliente) {
     	Scanner entrada = new Scanner(System.in);
     	//si la entrada fue 3, se muestran los perifercios disponibles y se pide la cantidad de perifericos a vender.
 		Periferico.perifericosRegistrados();
-		System.out.println("¿Cuántos periféricos desea vender?:");
+		System.out.println("ï¿½Cuï¿½ntos perifï¿½ricos desea vender?:");
 		int tope = entrada.nextInt();
 		Periferico.perifericosRegistrados();
 		System.out.println("Seleccione el indice de el/los periferico/s que desea vender: )");
@@ -95,7 +95,7 @@ public class Periferico extends Producto implements Serializable,Hardware{
 		Periferico.perifericosRegistrados();
     }
     
- // Método que devuelve un Arraylist con los periféricos según los indices ingresados por el usuario
+ // Mï¿½todo que devuelve un Arraylist con los perifï¿½ricos segï¿½n los indices ingresados por el usuario
     public static ArrayList<Producto> perifericoPorIndice(int[] ints){
         ArrayList<Producto> nuevaLista = new ArrayList<Producto>();
         for (int i: ints){
@@ -128,25 +128,34 @@ public class Periferico extends Producto implements Serializable,Hardware{
     // cual esta asociado.
     @Override
     public String toString() {
-        return  "Nombre del periférico: " + getNombre() + "  ||  " + "Plataforma asociada al periférico: " + plataforma + "  ||  " + "Precio: " + "COP $" +  getPrecio();
+        return  "Nombre del perifï¿½rico: " + getNombre() + "  ||  " + "Plataforma asociada al perifï¿½rico: " + plataforma + "  ||  " + "Precio: " + "COP $" +  getPrecio();
     }
 
     // Se crea metodo repararPeriferico para comprobar si el periferico ya se ha reparado.
     public void repararPeriferico(Periferico periferico){
     	if (periferico.getEstado()==false){
-    		System.out.println("El periférico ya se encuentra reparado.");
+    		System.out.println("El perifï¿½rico ya se encuentra reparado.");
     	}else {
     		periferico.setEstado(false);
-    		System.out.println("Se ha reparado el periférico.");
+    		System.out.println("Se ha reparado el perifï¿½rico.");
     	}
     }
     
-    // Método para eliminar un periferico de la base de datos de la tienda luego de ser vendido.
+    // Mï¿½todo para eliminar un periferico de la base de datos de la tienda luego de ser vendido.
     public static void perifericoVendido(Periferico periferico) {
     	Datos.listaPerifericos.remove(periferico);
     }
+
+  //Metodo que modifica el precio de uno o mÃ¡s perifÃ©ricos dados un array de indices y uno de precios:
+    public static void modificarPreciosPerifericos(int[] ints, int[] precios){
+        int indice = 0;
+        for (int i: ints){
+            Datos.listaPerifericos.get(i-1).setPrecio(precios[indice]);
+            indice++;
+        }
+    }
     
-    // Se crea un arraylist que contiene los nombres de los periféricos que se han vendido y la frecuencia de venta de cada uno.
+    // Se crea un arraylist que contiene los nombres de los perifï¿½ricos que se han vendido y la frecuencia de venta de cada uno.
     public static ArrayList<String> productosVendidos(){
         ArrayList<Detalle> todoslosdetalles = new ArrayList<Detalle>();
         for (Factura factura: Datos.listaFacturas){
@@ -168,7 +177,7 @@ public class Periferico extends Producto implements Serializable,Hardware{
         return todoslosNombres;
     }
     
-    // Método que obtiene el periférico mas vendido de la tienda.
+    // Mï¿½todo que obtiene el perifï¿½rico mas vendido de la tienda.
     public static void perifericoMasVendido(){
         ArrayList<String> nombres = Periferico.productosVendidos();
         ArrayList<String> nombresUnicos = new ArrayList<String>();
@@ -182,14 +191,28 @@ public class Periferico extends Producto implements Serializable,Hardware{
             System.out.println(nombre + " " +Collections.frequency(nombres, nombre));
         }
     }
+    public static void modificarPeriferico(ArrayList<Detalle> detalles) {
+    	Scanner entrada = new Scanner(System.in);
+    	System.out.println("Ingrese el nombre del periferico: ");
+		String nombre = entrada.next();
+		System.out.println("Ingrese el estado del periferico (true si la ocnsola se encuentra mala o false si se encuentra buena)");
+		Boolean estado = entrada.nextBoolean();
+		Periferico producto = new Periferico(nombre, estado);
+		System.out.println("Ingrese el tipo de Servicio tï¿½cnico: ");
+		String tiposervicio = entrada.next();
+		System.out.println("Ingrese el precio del servicio tï¿½cnico: ");
+		float precio = entrada.nextFloat();
+		Detalle detalle = new Detalle(producto, precio, tiposervicio);
+		detalles.add(detalle);
+    }
     
     @Override
-    // Si el estado se encuentra en false, quiere decir que el periférico esta reparado o bueno en su defecto.
+    // Si el estado se encuentra en false, quiere decir que el perifï¿½rico esta reparado o bueno en su defecto.
     public void Reparar() {
         this.estado = false;
     }
     @Override
-    // String que retorna la descripción del producto, aquí aplica ligadura dinámica.
+    // String que retorna la descripciï¿½n del producto, aquï¿½ aplica ligadura dinï¿½mica.
     public String descripcionProducto(){
         String checker= null;
         if (estado){

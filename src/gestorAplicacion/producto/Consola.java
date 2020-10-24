@@ -18,7 +18,6 @@ package gestorAplicacion.producto;
 
 import java.util.ArrayList;
 import BaseDatos.Datos;
-import gestorAplicacion.transacciones.Cliente;
 import gestorAplicacion.transacciones.*;
 import java.util.*;
 
@@ -30,6 +29,7 @@ public class Consola extends Producto implements Serializable, Hardware {
     private boolean estado;
     private String version;
     private int almacenamiento;
+    private final int garantia=6;
     private static ArrayList<Consola> listaConsolas = Datos.listaConsolas; // Lista que almacena las consolas registradas en la tienda.
     
     
@@ -80,7 +80,7 @@ public class Consola extends Producto implements Serializable, Hardware {
     	Scanner entrada = new Scanner(System.in);
         System.out.println("Ingrese el nombre de consola: ");
         String nombre = entrada.next();
-        System.out.println("Ingrese el uso (true si la consola está usada o  false si la consola está nueva): ");
+        System.out.println("Ingrese el uso (true si la consola estï¿½ usada o  false si la consola estï¿½ nueva): ");
         Boolean uso = entrada.nextBoolean();
         System.out.println("Ingrese el precio de la consola: ");
         float precio = entrada.nextFloat();
@@ -99,7 +99,7 @@ public class Consola extends Producto implements Serializable, Hardware {
     	//si la entrada fue 1, se muestran las consolas disponibles y se pide la cantidad de consolas a vender
     	Scanner entrada = new Scanner(System.in);
 		Consola.consolasRegistradas();
-		System.out.println("¿Cuántas consolas desea vender?: ");
+		System.out.println("ï¿½Cuï¿½ntas consolas desea vender?: ");
 		int tope = entrada.nextInt();				
 		System.out.println("Ingrese el indice de la/s consola/s que desea vender: ");
 		int[] ints = Producto.seleccionProductos(tope);
@@ -112,12 +112,32 @@ public class Consola extends Producto implements Serializable, Hardware {
 		
 		//se hace el llamado al metodo de la clase Datos para generar una factura de venta
 		Factura.generarFacturaVenta(productos, cliente);
-		cliente.agregarPunto();
+		cliente.agregarPunto(5);
 		Consola.consolasRegistradas();
 		Cliente.clientesRegistrados();
     }
     
-    // Método que devuelve un Arraylist con las consolas según los indices ingresados por el usuario
+    
+    public static void modificarConsola(ArrayList<Detalle> detalles) {
+    	Scanner entrada = new Scanner(System.in);
+		System.out.println("Ingrese el nombre de la consola: ");
+		String nombre = entrada.next();
+		System.out.println("Ingrese el color de la consola: ");
+		String color = entrada.next();
+		System.out.println("Ingrese el estado de la consola (true si la consola estï¿½ usada o  false si la consola estï¿½ nueva) ");
+		Boolean estado = entrada.nextBoolean();
+		System.out.println("Ingrese el almacenamiento de la consola: ");
+		int almacenamiento = entrada.nextInt();
+		Consola producto = new Consola(nombre, color, estado, almacenamiento);
+		System.out.println("Ingrese el tipo de Servicio Tï¿½cnico: ");
+		String tiposervicio = entrada.next();
+		System.out.println("Ingrese el precio del servicio tï¿½cnico: ");
+		float precio = entrada.nextFloat();
+		Detalle detalle = new Detalle(producto, precio, tiposervicio);
+		detalles.add(detalle);
+    }
+    
+    // Mï¿½todo que devuelve un Arraylist con las consolas segï¿½n los indices ingresados por el usuario
     public static ArrayList<Producto> consolaPorIndice(int[] ints){
         ArrayList<Producto> nuevaLista = new ArrayList<Producto>();
         for (int i: ints){
@@ -154,11 +174,11 @@ public class Consola extends Producto implements Serializable, Hardware {
     // Se crea el toString de la clase Consola, el cual mostrarÃ¡ por pantalla la consola y sus caracteristicas
     @Override
     public String toString() {
-        return "Nombre de la consola: " + getNombre() + "  ||  " + "Capacidad de almacenamiento: " +  almacenamiento + "Gb" +  "  ||  " + "Version de la consola: " +  getVersion() + "  ||  " + "Precio: " + "COP $" + getPrecio();
+        return "Nombre de la consola: " + getNombre() + "  ||  " + "Capacidad de almacenamiento: " +  almacenamiento + " Gb" + "  ||  " +"GarantÃ­a: "+ garantia +" meses "+"  ||  " + "Version de la consola: " +  getVersion() + "  ||  " + "Precio: " + "COP $" + getPrecio();
     }
   
     
-    // Método para eliminar una consola de la base de datos de la tienda luego de ser vendida.
+    // Mï¿½todo para eliminar una consola de la base de datos de la tienda luego de ser vendida.
     public static void consolaVendida(Consola consola) {
     	Datos.listaConsolas.remove(consola);
     }
@@ -186,7 +206,7 @@ public class Consola extends Producto implements Serializable, Hardware {
         return todoslosNombres;
     }
     
-    // Método para obtener la consola más vendida de la tienda.
+    // Mï¿½todo para obtener la consola mï¿½s vendida de la tienda.
     public static void consolaMasVendida(){
         ArrayList<String> nombres = Consola.productosVendidos();
         ArrayList<String> nombresUnicos = new ArrayList<String>();
@@ -202,25 +222,33 @@ public class Consola extends Producto implements Serializable, Hardware {
         
     }
     
+ // MÃ©todo que moodifica el precio de algunas consolas, dado un array de indices y un array de precios.
+    public static void modificarPreciosConsolas(int[] ints, int[] precios){
+        int indice = 0;
+        for (int i: ints){
+            Datos.listaConsolas.get(i-1).setPrecio(precios[indice]);
+            indice++;
+        }
+    }
     
-    // Implementación del método reparar (Si el estado es false, indica que la consola está reparada en su defecto buena).
+    // Implementaciï¿½n del mï¿½todo reparar (Si el estado es false, indica que la consola estï¿½ reparada en su defecto buena).
     public void Reparar() {
         this.estado = false;
     }
     
-    // Método para cambiar el color de una consola.
+    // Mï¿½todo para cambiar el color de una consola.
     public void modificarReparar(String color){
         this.estado= false;
         this.color = color;
     }
     
-    // Método para cambiar la capacidad de almacenamiento (en GB) de una consola.
+    // Mï¿½todo para cambiar la capacidad de almacenamiento (en GB) de una consola.
     public void modificarReparar(int almacenamiento){
         this.estado = false;
         this.almacenamiento = almacenamiento;
     }
     
-    // Método que obtiene la descripción de las consolas de listaConsolas.
+    // Mï¿½todo que obtiene la descripciï¿½n de las consolas de listaConsolas.
     public static void descripcionConsolas() {
         int indiceConsola = 1;
         for (Consola consola : Datos.listaConsolas) {
@@ -230,8 +258,8 @@ public class Consola extends Producto implements Serializable, Hardware {
     }
     
     
-    //String que retorna la descripción del producto, aquí aplica ligadura dinámica.
-    // La descripción de una consola consta de: Su versión, su capacidad de almacenamiento y su estado ( buena o mala )
+    //String que retorna la descripciï¿½n del producto, aquï¿½ aplica ligadura dinï¿½mica.
+    // La descripciï¿½n de una consola consta de: Su versiï¿½n, su capacidad de almacenamiento y su estado ( buena o mala )
     @Override
     public String descripcionProducto(){
         String checker= null;
@@ -240,7 +268,7 @@ public class Consola extends Producto implements Serializable, Hardware {
         } else if (!estado){
             checker = "Funcional";
         }
-        return "Nombre de la consola: " +   getNombre() +  "  ||  " + "Versión: " + getVersion() + "  ||  " +  "Con almacenamiento de: " + almacenamiento + "Gb" +  "  ||  "   +  " en estado: " + checker;
+        return "Nombre de la consola: " +   getNombre() +  "  ||  " + "Versiï¿½n: " + getVersion() + "  ||  " +  "Con almacenamiento de: " + almacenamiento + " Gb" +  "  ||  " + "GarantÃ­a: "+ garantia +" meses "+ "en estado: " + checker;
     }
         
 }

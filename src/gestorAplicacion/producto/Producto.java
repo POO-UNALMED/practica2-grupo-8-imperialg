@@ -29,6 +29,9 @@ public abstract class Producto implements Serializable{
     public float getPrecio() {
         return precio;
     }
+    public void setPrecio(float precio) {
+    	this.precio=precio;
+    }
 
     public Boolean getUso() {
         return uso;
@@ -50,7 +53,7 @@ public abstract class Producto implements Serializable{
         this.nombre = nombre;
     }
     
-    // Método que especifica los indices para seleccionar uno o más productos.
+    // Mï¿½todo que especifica los indices para seleccionar uno o mï¿½s productos.
 	public static int[] seleccionProductos(int tope){
 		 Scanner entrada = new Scanner(System.in);
 		int[] ints = new int[tope];
@@ -60,7 +63,7 @@ public abstract class Producto implements Serializable{
 		}
 		return ints;
 	}
-
+	//mÃ©todo abstracto
     public abstract String toString();
 
     // Se crea el constructor de la clase periferico, con sus atributos como parÃ¡metros.
@@ -75,7 +78,7 @@ public abstract class Producto implements Serializable{
         this.nombre=nombre;
     }
     
-    //String que retorna la descripción de un producto.
+    //String que retorna la descripciï¿½n de un producto.
     public String descripcionProducto(){
         String checker1 = "";
         if(uso){
