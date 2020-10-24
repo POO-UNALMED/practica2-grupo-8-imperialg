@@ -73,11 +73,11 @@ public class Juego extends Producto implements Serializable{
     	Scanner entrada = new Scanner(System.in);
         System.out.println("Ingrese el nombre del juego: ");
         String nombre = entrada.next();
-        System.out.println("Ingrese el uso (true si el juego estï¿½ usado o  false si el juego estï¿½ nuevo): ");
+        System.out.println("Ingrese el uso (true si el juego está usado o  false si el juego está nuevo): ");
         Boolean uso = entrada.nextBoolean();
-        System.out.println("Ingrese el precio del juego ");
+        System.out.println("Ingrese el precio del juego: ");
         float precio = entrada.nextFloat();
-        System.out.println("Ingrese pegi: ");
+        System.out.println("Ingrese pegi (Edad mínima recomendada para jugar: ");
         int pegi = entrada.nextInt();
         System.out.println("Ingrese el nombre plataforma asociada al juego: ");
         String plataforma = entrada.next();
@@ -89,14 +89,15 @@ public class Juego extends Producto implements Serializable{
         System.out.println(Datos.listaJuegos);
     }
     
+    // Método para seleccionar los juegos que se desean vender 
     public static void ventaJuego(Cliente cliente) {
     	Scanner entrada = new Scanner(System.in);
     	//si la entrada fue 2, se muestran los juegos disponibles y se pide la cantidad de juegos a vender
 		Juego.juegosRegistrados();
-		System.out.println("Â¿Cuantos juegos desea vender?: ");
+		System.out.println("¿Cuántos juegos desea vender?: ");
 		int tope = entrada.nextInt();
 		Juego.juegosRegistrados();
-		System.out.println("Seleccione el Ã­ndice de el/los Juego/s desea vender: )");
+		System.out.println("Seleccione el indice de el/los Juego/s que desea vender: ");
 		int[] ints = Producto.seleccionProductos(tope);
 		ArrayList<Producto> productos = Juego.juegoPorIndice(ints);
 		for(Producto pro: productos) {
@@ -109,7 +110,7 @@ public class Juego extends Producto implements Serializable{
 		Juego.juegosRegistrados();
     }
     
-    // 
+    
     public static ArrayList<Producto> juegoPorIndice(int[] ints){
         ArrayList<Producto> nuevaLista = new ArrayList<Producto>();
         for (int i: ints){
@@ -131,15 +132,6 @@ public class Juego extends Producto implements Serializable{
 		Datos.listaJuegos.remove(juego);
 	}
     
-    /* public Juego juegoMasVendido() {
-    Juego masvendido = listaJuegos.get(0);
-    for (Juego juego : listaJuegos) {
-        if (juego.getUnidadesVendidas() > masvendido.getUnidadesVendidas()) {
-            masvendido = juego;
-        }
-    }
-    return masvendido;
-    }*/
 
     // Se crea el constructor de la clase Juego, con sus atributos como parÃ¡metros.
     public Juego(String nombre, boolean uso, float precio, int pegi, String plataforma, String genero) {
@@ -153,7 +145,7 @@ public class Juego extends Producto implements Serializable{
     // Se crea el toString de la clase Consola, el cual mostrarÃ¡ por pantalla el nombre del juego y la plataforma a la que pertenece.
     @Override
     public String toString() {
-        return getNombre() + " " + plataforma + " "+getPrecio() ;
+        return "Nombre del juego: "+ getNombre() + "  ||  " + "Plataforma asociada al juego: " + plataforma + "  ||  " + "Precio: " + "COP $" + getPrecio() ;
     }
 }
 

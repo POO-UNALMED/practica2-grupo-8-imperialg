@@ -6,11 +6,10 @@
       Comentarios en líneas de código de relevante interés o importancia.
       Otros aspectos de interés a tener en cuenta por el profesor.*/
 
-// Autores:   - Santiago Franco Valencia 
-//            - Anderson Elian Gutierrez 
-//            - Santiago Valencia Mejia
-//            - Daniel Alejandro Giraldo
-
+/* Autores:   - Santiago Franco Valencia 
+*            - Anderson Elian Gutierrez 
+*            - Santiago Valencia Mejia
+*            - Daniel Alejandro Giraldo  */
 
 
 package BaseDatos;

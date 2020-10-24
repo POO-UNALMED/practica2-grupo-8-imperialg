@@ -80,9 +80,9 @@ public class Consola extends Producto implements Serializable {
     	Scanner entrada = new Scanner(System.in);
         System.out.println("Ingrese el nombre de consola: ");
         String nombre = entrada.next();
-        System.out.println("Ingrese el uso (true si la consola estï¿½ usada o  false si la consola estï¿½ nueva): ");
+        System.out.println("Ingrese el uso (true si la consola está usada o  false si la consola está nueva): ");
         Boolean uso = entrada.nextBoolean();
-        System.out.println("Ingrese el precio de la consola ");
+        System.out.println("Ingrese el precio de la consola: ");
         float precio = entrada.nextFloat();
         System.out.println("Ingrese el color de la consola: ");
         String color = entrada.next();
@@ -99,16 +99,17 @@ public class Consola extends Producto implements Serializable {
     	//si la entrada fue 1, se muestran las consolas disponibles y se pide la cantidad de consolas a vender
     	Scanner entrada = new Scanner(System.in);
 		Consola.consolasRegistradas();
-		System.out.println("Â¿CuÃ¡ntas consolas desea vender?: ");
+		System.out.println("¿Cuántas consolas desea vender?: ");
 		int tope = entrada.nextInt();				
-		System.out.println("Ingrese el Ã­ndice de la/s consola/s desea vender: ");
+		System.out.println("Ingrese el indice de la/s consola/s que desea vender: ");
 		int[] ints = Producto.seleccionProductos(tope);
 		ArrayList<Producto> productos = Consola.consolaPorIndice(ints);
 		for (Producto pro: productos){
 			System.out.println(pro);
 			//se borra la/s consola/s vendidas de la lista
 			Consola.consolaVendida((Consola)pro);
-		}				
+		}	
+		
 		//se hace el llamado al metodo de la clase Datos para generar una factura de venta
 		Factura.generarFacturaVenta(productos, cliente);
 		cliente.agregarPunto();
@@ -116,7 +117,7 @@ public class Consola extends Producto implements Serializable {
 		Cliente.clientesRegistrados();
     }
     
-    // 
+    // Método que devuelve un Arraylist con las consolas según los indices ingresados por el usuario
     public static ArrayList<Producto> consolaPorIndice(int[] ints){
         ArrayList<Producto> nuevaLista = new ArrayList<Producto>();
         for (int i: ints){
@@ -145,7 +146,7 @@ public class Consola extends Producto implements Serializable {
 	public static void consolasRegistradas() {
 		int indiceConsola = 1;
 		for (Consola consola : Datos.listaConsolas) {
-			System.out.println(indiceConsola + " " + consola.toString());
+			System.out.println(indiceConsola + "  ||  " + consola.toString());
 			indiceConsola ++;
 		}
 	}
@@ -153,16 +154,16 @@ public class Consola extends Producto implements Serializable {
     // Se crea el toString de la clase Consola, el cual mostrarÃ¡ por pantalla la consola y sus caracteristicas
     @Override
     public String toString() {
-        return "Consola: " + getNombre() + " " + almacenamiento + " " + getVersion() +" "+ getPrecio();
+        return "Nombre de la consola: " + getNombre() + "  ||  " + "Capacidad de almacenamiento: " +  almacenamiento + "Gb" +  "  ||  " + "Version de la consola: " +  getVersion() + "  ||  " + "Precio: " + "COP $" + getPrecio();
     }
     
    // se crea metodo repararConsola para comprobar si la consola ya se ha reparado.
     public void repararConsola(Consola consola){
     	if (consola.getEstado()==false){
-    		System.out.println("La Consola ya se encuentra reparada");
+    		System.out.println("La Consola ya se encuentra reparada.");
     	}else {
     		consola.setEstado(false);
-    		System.out.println("Se ha reparado la consola");
+    		System.out.println("Se ha reparado la consola.");
     	}
     }
     
@@ -195,7 +196,7 @@ public class Consola extends Producto implements Serializable {
         ArrayList<Integer> numeroDeUnidadesVendidas = new ArrayList<Integer>();
         int i = 0;
         for (String nombre: nombresUnicos){
-            System.out.println(nombre + " " +Collections.frequency(nombres, nombre));
+            System.out.println("Nombre de la consola: " + nombre + "  ||  " + "Unidades vendidas: " + Collections.frequency(nombres, nombre));
         }
     }
         

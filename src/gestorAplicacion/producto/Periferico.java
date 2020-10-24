@@ -61,13 +61,13 @@ public class Periferico extends Producto implements Serializable{
     // datos de la tienda. 
     public static void ingresarPeriferico() {
     	Scanner entrada = new Scanner(System.in);
-        System.out.println("Ingrese el nombre del perifï¿½rico: ");
+        System.out.println("Ingrese el nombre del periférico: ");
         String nombre = entrada.next();
-        System.out.println("Ingrese el uso (true si el perifï¿½rico estï¿½ usado o  false si el perifï¿½rico estï¿½ nuevo): ");
+        System.out.println("Ingrese el uso (true si el periférico está usado o  false si el periférico está nuevo): ");
         Boolean uso = entrada.nextBoolean();
-        System.out.println("Ingrese el precio del perifï¿½rico (En COP $");
+        System.out.println("Ingrese el precio del perférico (En COP $");
         float precio = entrada.nextFloat();
-        System.out.println("Ingrese el nombre plataforma asociada al perifï¿½rico: ");
+        System.out.println("Ingrese el nombre plataforma asociada al periférico: ");
         String plataforma = entrada.next();
         Periferico periferico = new Periferico(nombre, uso, precio, plataforma);       
         Datos.listaPerifericos.add(periferico);
@@ -78,10 +78,10 @@ public class Periferico extends Producto implements Serializable{
     	Scanner entrada = new Scanner(System.in);
     	//si la entrada fue 3, se muestran los perifercios disponibles y se pide la cantidad de perifericos a vender
 		Periferico.perifericosRegistrados();
-		System.out.println("Â¿CuÃ¡ntos perifericos desea vender?:");
+		System.out.println("¿Cuántos periféricos desea vender?:");
 		int tope = entrada.nextInt();
 		Periferico.perifericosRegistrados();
-		System.out.println("Seleccione el Ã­ndice de el/los periferico/s que desea vender: )");
+		System.out.println("Seleccione el indice de el/los periferico/s que desea vender: )");
 		int[] ints = Producto.seleccionProductos(tope);
 		ArrayList<Producto> productos = Periferico.perifericoPorIndice(ints);
 		for(Producto pro: productos) {
@@ -128,16 +128,16 @@ public class Periferico extends Producto implements Serializable{
     // cual esta asociado.
     @Override
     public String toString() {
-        return getNombre() + " " + plataforma +" "+ getPrecio();
+        return  "Nombre del periférico: " + getNombre() + "  ||  " + "Plataforma asociada al periférico: " + plataforma + "  ||  " + "Precio: " + "COP $" +  getPrecio();
     }
 
     // Se crea metodo repararPeriferico para comprobar si el periferico ya se ha reparado.
     public void repararPeriferico(Periferico periferico){
     	if (periferico.getEstado()==false){
-    		System.out.println("El periferico ya se encuentra reparado");
+    		System.out.println("El periférico ya se encuentra reparado.");
     	}else {
     		periferico.setEstado(false);
-    		System.out.println("Se ha reparado el periferico");
+    		System.out.println("Se ha reparado el periférico.");
     	}
     }
     
