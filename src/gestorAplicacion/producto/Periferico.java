@@ -17,12 +17,10 @@
 // La clase contiene aquellos atributos que modelan los periféricos, es decir la plataforma en la que funcionan y su estado.
 
 package gestorAplicacion.producto;
-import java.util.Scanner;
 import java.io.Serializable;
 import BaseDatos.Datos;
 import gestorAplicacion.transacciones.*;
-
-import java.util.ArrayList;
+import java.util.*;
 
 public class Periferico extends Producto implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -143,6 +141,36 @@ public class Periferico extends Producto implements Serializable{
     
     public static void perifericoVendido(Periferico periferico) {
     	Datos.listaPerifericos.remove(periferico);
+    }
+    
+    
+    public static ArrayList<String> productosVendidos(){
+        ArrayList<Detalle> todoslosdetalles = new ArrayList<Detalle>();
+        for (Factura factura: Datos.listaFacturas){
+            todoslosdetalles.addAll(factura.getDetalles());
+        }
+        ArrayList<String> todoslosNombres = new ArrayList<String>();
+        for (Detalle detalle: todoslosdetalles){
+            if(detalle.getProducto() instanceof Periferico){
+                todoslosNombres.add(detalle.getProducto().nombre);
+                System.out.println(detalle.getProducto().nombre);
+            }
+        }
+        return todoslosNombres;
+    }
+
+    public static void perifericoMasVendido(){
+        ArrayList<String> nombres = Periferico.productosVendidos();
+        ArrayList<String> nombresUnicos = new ArrayList<String>();
+        for (String nombre: nombres){
+            if(!nombresUnicos.contains(nombre))
+                nombresUnicos.add(nombre);
+        }
+        ArrayList<Integer> numeroDeUnidadesVendidas = new ArrayList<Integer>();
+        int i = 0;
+        for (String nombre: nombresUnicos){
+            System.out.println(nombre + " " +Collections.frequency(nombres, nombre));
+        }
     }
 }
 
