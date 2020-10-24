@@ -1,10 +1,10 @@
-/*1). En las fuentes se incluirá la siguiente documentación:
-      Cabecera del archivo: funcionalidad del módulo, autores, componentes del módulo, etc.
-      Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
-        sean relevantes.
-      Cabeceras en los métodos, comentando su propósito y describiendo los parámetros de entrada/salida.
-      Comentarios en líneas de código de relevante interés o importancia.
-      Otros aspectos de interés a tener en cuenta por el profesor.*/
+/*1). En las fuentes se incluira la siguiente documentacion:
+         Cabecera del archivo: funcionalidad del modulo, autores, componentes del modulo, etc.
+         Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
+         sean relevantes.
+         Cabeceras en los metodos, comentando su proposito y describiendo los parametros de entrada/salida.
+         Comentarios en lineas de codigo de relevante interes o importancia.
+         Otros aspectos de interes a tener en cuenta por el profesor.*/
 
 /* Autores:   - Santiago Franco Valencia 
 *            - Anderson Elian Gutierrez 
@@ -32,7 +32,7 @@ public class Datos{
 	public static ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
 	public static ArrayList<Factura> listaFacturas = new ArrayList<Factura>();	
   
-    // Guardar datos de productos
+    // Guardar datos de productos.
     public void guardarDatos() {
         try {
             FileOutputStream c = new FileOutputStream(new File("src/BaseDatos/temp/Consolas.txt"));
@@ -57,7 +57,7 @@ public class Datos{
         }
     }
     
-    // Leer datos de los productos que previamente hayan sido guardados 
+    // Leer datos de los productos que previamente hayan sido guardados.
     public void leerDatos() {
         try {
             FileInputStream ci = new FileInputStream("src/BaseDatos/temp/Consolas.txt");
@@ -85,7 +85,7 @@ public class Datos{
     }
     
 
-    // Guardar datos de transacciones
+    // Guardar datos de transacciones.
     public void guardarDatos1() {
         try {
             FileOutputStream c = new FileOutputStream(new File("src/BaseDatos/temp/Clientes.txt"));

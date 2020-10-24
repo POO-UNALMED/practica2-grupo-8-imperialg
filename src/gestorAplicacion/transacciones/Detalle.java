@@ -1,19 +1,19 @@
-/*1). En las fuentes se incluirá la siguiente documentación:
-         Cabecera del archivo: funcionalidad del módulo, autores, componentes del módulo, etc.
-        Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
-        sean relevantes.
-        Cabeceras en los métodos, comentando su propósito y describiendo los parámetros de entrada/salida.
-         Comentarios en líneas de código de relevante interés o importancia.
-        Otros aspectos de interés a tener en cuenta por el profesor.*/
+/*1). En las fuentes se incluira la siguiente documentacion:
+         Cabecera del archivo: funcionalidad del modulo, autores, componentes del modulo, etc.
+         Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
+         sean relevantes.
+         Cabeceras en los metodos, comentando su proposito y describiendo los parametros de entrada/salida.
+         Comentarios en lineas de codigo de relevante interes o importancia.
+         Otros aspectos de interes a tener en cuenta por el profesor.*/
 
 /* Autores:   - Santiago Franco Valencia 
 *            - Anderson Elian Gutierrez 
 *            - Santiago Valencia Mejia
 *            - Daniel Alejandro Giraldo  */
 
-// En este módulo se crea la clase Detalle, asi como sus métodos básicos (Get y Set), además se definen un conjunto de atributos
-// para su funcionamiento. Esta clase se verá implementada en cada una de las lineas que componen una Factura, pues una Factura         
-// está compuesta por uno o más detalles
+// En este modulo se crea la clase Detalle, asi como sus metodos basicos (Get y Set), ademas se definen un conjunto de atributos
+// para su funcionamiento. Esta clase se vera  implementada en cada una de las lineas que componen una Factura, pues una Factura         
+// esta compuesta por uno o mas detalles
 
 package gestorAplicacion.transacciones;
 import gestorAplicacion.producto.Producto;
@@ -26,7 +26,7 @@ public class Detalle implements Serializable{
     private float precio;
     private String tiposervicio;
     
-    // Se crean los métodos Get y Set de los atributos de la Clase Detalle.
+    // Se crean los metodos Get y Set de los atributos de la Clase Detalle.
     
     public float getPrecio() {
         return precio;
@@ -55,7 +55,7 @@ public class Detalle implements Serializable{
     }
 
     @Override
-    // Se crea el toString de la clase Detalle, el cual mostrará por pantalla el tipo de servicio al cual esta asosicado el 
+    // Se crea el toString de la clase Detalle, el cual mostrara por pantalla el tipo de servicio al cual esta asosicado el 
     // detalle (compra, venta, reparacion, cambio de almacenamiento de una consola, cambio de color de un procuto, etc ),
     // el nombre del producto involucrado en el detalle y el precio del detalle, el cual depende del tipo de servicio realizado.
     

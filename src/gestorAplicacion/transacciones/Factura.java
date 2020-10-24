@@ -1,19 +1,19 @@
-/*1). En las fuentes se incluirá la siguiente documentación:
-         Cabecera del archivo: funcionalidad del módulo, autores, componentes del módulo, etc.
-        Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
-        sean relevantes.
-        Cabeceras en los métodos, comentando su propósito y describiendo los parámetros de entrada/salida.
-        Comentarios en líneas de código de relevante interés o importancia.
-        Otros aspectos de interés a tener en cuenta por el profesor.*/
+/*1). En las fuentes se incluira la siguiente documentacion:
+         Cabecera del archivo: funcionalidad del modulo, autores, componentes del modulo, etc.
+         Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
+         sean relevantes.
+         Cabeceras en los metodos, comentando su proposito y describiendo los parametros de entrada/salida.
+         Comentarios en lineas de codigo de relevante interes o importancia.
+         Otros aspectos de interes a tener en cuenta por el profesor.*/
 
 /* Autores:   - Santiago Franco Valencia 
 *            - Anderson Elian Gutierrez 
 *            - Santiago Valencia Mejia
 *            - Daniel Alejandro Giraldo  */
 
-// En este módulo se crea la clase Factura, en la cual se verán reflejados todos los detalles que la componen, por esta razón,
-// en esta clase se implementó una lista llamada "detalles" en la que se encuentran los detalles asociados a la factura. Además 
-// se crearon los métodos básicos (Get y Set).
+// En este modulo se crea la clase Factura, en la cual se veran reflejados todos los detalles que la componen, por esta razon,
+// en esta clase se implementa una lista llamada "detalles" en la que se encuentran los detalles asociados a la factura. Ademas
+// se crearon los metodos basicos (Get y Set).
 
 package gestorAplicacion.transacciones;
 import java.io.Serializable;
@@ -31,7 +31,7 @@ public class Factura implements Serializable {
     private ArrayList<Detalle> detalles = new ArrayList<Detalle>(); // Lista que contiene todos los detalles de una factura.
     private static ArrayList<Factura> listaFacturas = Datos.listaFacturas; // Lista donde se almacenan las facturas.
 
-    // Se crean los m�todos Get y Set de los atributos de la Clase Factura.
+    // Se crean los metodos Get y Set de los atributos de la Clase Factura.
     
     public Cliente getCliente() {
         return cliente;
@@ -63,13 +63,12 @@ public class Factura implements Serializable {
     public Factura(Cliente cliente, ArrayList<Detalle> detalles) {
         this.cliente = cliente;
         this.detalles = detalles;
-        //agregarFactura(this);
     }
     public static ArrayList<Factura> getListaFacturas() {
         return listaFacturas;
     }
     
-    // generar factura cuando se haya producido una venta en la tienda.                                     
+    // Generar factura cuando se haya producido una venta en la tienda.                                     
     public static void generarFacturaVenta(ArrayList<Producto> productos, Cliente cliente){
         ArrayList<Detalle> listaDetalles = new ArrayList<Detalle>();
         for (Producto producto: productos){
@@ -83,7 +82,7 @@ public class Factura implements Serializable {
 
     }
     
-    // Mostrar en pantalla las facturas registradas:
+    // Mostrar en pantalla las facturas registradas.
 	public static void facturasRegistradas() {
 		for (Factura factura : Datos.listaFacturas) {
 			System.out.println(factura.toString());
@@ -91,8 +90,8 @@ public class Factura implements Serializable {
 	}
 
 
-    //  Se crea el toString de la clase Factura, el cual mostrará por pantalla el Id asociado a la factura, la fecha en que se
-    // generó la fatura, el nombre del cliente al cual se le generó la factura, los detalles que componen a la factura y el valor
+    //  Se crea el toString de la clase Factura, el cual mostrara por pantalla el Id asociado a la factura, la fecha en que se
+    // genera la fatura, el nombre del cliente al cual se le generara la factura, los detalles que componen a la factura y el valor
     // total de la factura.
     @Override
     public String toString(){

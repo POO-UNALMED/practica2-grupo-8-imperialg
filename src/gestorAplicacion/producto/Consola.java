@@ -1,21 +1,20 @@
-/*1). En las fuentes se incluirá la siguiente documentación:
-      Cabecera del archivo: funcionalidad del módulo, autores, componentes del módulo, etc.
-      Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
-        sean relevantes.
-      Cabeceras en los métodos, comentando su propósito y describiendo los parámetros de entrada/salida.
-       Comentarios en líneas de código de relevante interés o importancia.
-        Otros aspectos de interés a tener en cuenta por el profesor.*/
+/*1). En las fuentes se incluira la siguiente documentacion:
+         Cabecera del archivo: funcionalidad del modulo, autores, componentes del modulo, etc.
+         Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
+         sean relevantes.
+         Cabeceras en los metodos, comentando su proposito y describiendo los parametros de entrada/salida.
+         Comentarios en lineas de codigo de relevante interes o importancia.
+         Otros aspectos de interes a tener en cuenta por el profesor.*/
 
 /* Autores:   - Santiago Franco Valencia 
 *            - Anderson Elian Gutierrez 
 *            - Santiago Valencia Mejia
 *            - Daniel Alejandro Giraldo  */
 
-// En este módulo se crea la clase Consola, así como sus métodos básicos (Get y Set), además se definen un conjunto de atributos,
-// los cuales almacenarán información acerca de cada Consola que se vaya registrando en la plataforma.
+// En este modulo se crea la clase Consola, asi como sus metodos basicos (Get y Set), ademas se definen un conjunto de atributos,
+// los cuales almacenaran informacion acerca de cada Consola que se vaya registrando en la plataforma.
 
 package gestorAplicacion.producto;
-
 import java.util.ArrayList;
 import BaseDatos.Datos;
 import gestorAplicacion.transacciones.*;
@@ -33,7 +32,7 @@ public class Consola extends Producto implements Serializable, Hardware {
     private static ArrayList<Consola> listaConsolas = Datos.listaConsolas; // Lista que almacena las consolas registradas en la tienda.
     
     
-    // Se crean los métodos Get y Set de los atributos de la Clase Consola
+    // Se crean los metodos Get y Set de los atributos de la Clase Consola.
     public String getColor() {
         return color;
     }
@@ -66,7 +65,7 @@ public class Consola extends Producto implements Serializable, Hardware {
         this.almacenamiento = almacenamiento;
     }
     
-    // Agrega una consola a listaConsolas
+    // Agrega una consola a listaConsolas.
     public void agregarConsola(Consola consola) {
         listaConsolas.add(consola);
     }    
@@ -74,13 +73,13 @@ public class Consola extends Producto implements Serializable, Hardware {
         return Datos.listaConsolas;
     }
     
-    // metodo que le solicita al usuario ingresar los datos basicos de la consola que posteriormente se ingresar� a la base
+    // Metodo que le solicita al usuario ingresar los datos basicos de la consola que posteriormente se ingresara la base
     // de datos de la tienda.
     public static void ingresarConsola() {
     	Scanner entrada = new Scanner(System.in);
         System.out.println("Ingrese el nombre de consola: ");
         String nombre = entrada.next();
-        System.out.println("Ingrese el uso (true si la consola est� usada o  false si la consola est� nueva): ");
+        System.out.println("Ingrese el uso (true si la consola esta usada o  false si la consola esta nueva): ");
         Boolean uso = entrada.nextBoolean();
         System.out.println("Ingrese el precio de la consola: ");
         float precio = entrada.nextFloat();
@@ -88,7 +87,7 @@ public class Consola extends Producto implements Serializable, Hardware {
         String color = entrada.next();
         System.out.println("Ingrese el  nombre de la version de la consola: ");
         String version = entrada.next();
-        System.out.println("Ingrese la cantidad almacenamiento en Gb: ");
+        System.out.println("Ingrese la capacidad de almacenamiento en Gb: ");
         int almacenamiento = entrada.nextInt();
         Consola consola = new Consola(nombre, uso, precio, color, version, almacenamiento);
         Datos.listaConsolas.add(consola);
@@ -96,17 +95,17 @@ public class Consola extends Producto implements Serializable, Hardware {
         System.out.println(Datos.listaConsolas);
     }
     public static void ventaConsola(Cliente cliente) {
-    	//si la entrada fue 1, se muestran las consolas disponibles y se pide la cantidad de consolas a vender
+    	// Si la entrada fue 1, se muestran las consolas disponibles y se pide la cantidad de consolas a vender.
     	Scanner entrada = new Scanner(System.in);
 		Consola.consolasRegistradas();
-		System.out.println("�Cu�ntas consolas desea vender?: ");
+		System.out.println("�Cuantas consolas desea vender?: ");
 		int tope = entrada.nextInt();				
 		System.out.println("Ingrese el indice de la/s consola/s que desea vender: ");
 		int[] ints = Producto.seleccionProductos(tope);
 		ArrayList<Producto> productos = Consola.consolaPorIndice(ints);
 		for (Producto pro: productos){
 			System.out.println(pro);
-			//se borra la/s consola/s vendidas de la lista
+			// Se borra la/s consola/s vendidas de la lista.
 			Consola.consolaVendida((Consola)pro);
 		}	
 		
@@ -117,27 +116,27 @@ public class Consola extends Producto implements Serializable, Hardware {
 		Cliente.clientesRegistrados();
     }
     
-    
+    // Modificar consolas externas de la tienda.
     public static void modificarConsola(ArrayList<Detalle> detalles) {
     	Scanner entrada = new Scanner(System.in);
 		System.out.println("Ingrese el nombre de la consola: ");
 		String nombre = entrada.next();
 		System.out.println("Ingrese el color de la consola: ");
 		String color = entrada.next();
-		System.out.println("Ingrese el estado de la consola (true si la consola est� usada o  false si la consola est� nueva) ");
+		System.out.println("Ingrese el estado de la consola (true si la consola esta usada o  false si la consola esta nueva) ");
 		Boolean estado = entrada.nextBoolean();
-		System.out.println("Ingrese el almacenamiento de la consola: ");
+		System.out.println("Ingrese la capacidad de almacenamiento en Gb de la consola: ");
 		int almacenamiento = entrada.nextInt();
 		Consola producto = new Consola(nombre, color, estado, almacenamiento);
-		System.out.println("Ingrese el tipo de Servicio T�cnico: ");
+		System.out.println("Ingrese el tipo de Servicio tecnico: ");
 		String tiposervicio = entrada.next();
-		System.out.println("Ingrese el precio del servicio t�cnico: ");
+		System.out.println("Ingrese el precio del servicio tecnico: ");
 		float precio = entrada.nextFloat();
 		Detalle detalle = new Detalle(producto, precio, tiposervicio);
 		detalles.add(detalle);
     }
     
-    // M�todo que devuelve un Arraylist con las consolas seg�n los indices ingresados por el usuario
+    // Metodo que devuelve un Arraylist con las consolas segun los indices ingresados por el usuario.
     public static ArrayList<Producto> consolaPorIndice(int[] ints){
         ArrayList<Producto> nuevaLista = new ArrayList<Producto>();
         for (int i: ints){
@@ -146,7 +145,7 @@ public class Consola extends Producto implements Serializable, Hardware {
         return nuevaLista;
     }
 
-    // Se crea el constructor de la clase Consola, con sus atributos como parámetros.
+    // Se crea el constructor de la clase Consola, con sus atributos como parametros.
     public Consola(String nombre, boolean uso, float precio, String color, String version, int almacenamiento) {
         super(nombre, uso, precio);
         this.color = color;
@@ -154,7 +153,7 @@ public class Consola extends Producto implements Serializable, Hardware {
         this.almacenamiento = almacenamiento;      
     }
     
-  //Constructor que se utilizará con la finalidad de crear consolas para reparar.
+    // Constructor que se utilizara con la finalidad de crear consolas para reparar.
     public Consola(String nombre, String color, boolean estado, int almacenamiento) {
         super(nombre);
         this.color = color;
@@ -162,7 +161,7 @@ public class Consola extends Producto implements Serializable, Hardware {
         this.almacenamiento = almacenamiento;
     }
     
-	// Mostrar en pantalla las consolas registradas:
+	// Mostrar en pantalla las consolas registrads.
 	public static void consolasRegistradas() {
 		int indiceConsola = 1;
 		for (Consola consola : Datos.listaConsolas) {
@@ -171,14 +170,14 @@ public class Consola extends Producto implements Serializable, Hardware {
 		}
 	}
    
-    // Se crea el toString de la clase Consola, el cual mostrará por pantalla la consola y sus caracteristicas
+    // Se crea el toString de la clase Consola, el cual mostrara por pantalla la consola y sus caracteristicas.
     @Override
     public String toString() {
-        return "Nombre de la consola: " + getNombre() + "  ||  " + "Capacidad de almacenamiento: " +  almacenamiento + " Gb" + "  ||  " +"Garantía: "+ garantia +" meses "+"  ||  " + "Version de la consola: " +  getVersion() + "  ||  " + "Precio: " + "COP $" + getPrecio();
+        return "Nombre de la consola: " + getNombre() + "  ||  " + "Capacidad de almacenamiento: " +  almacenamiento + " Gb" + "  ||  " +"Garantia: "+ garantia +" meses "+"  ||  " + "Version de la consola: " +  getVersion() + "  ||  " + "Precio: " + "COP $" + getPrecio();
     }
   
     
-    // M�todo para eliminar una consola de la base de datos de la tienda luego de ser vendida.
+    // Metodo para eliminar una consola de la base de datos de la tienda luego de ser vendida.
     public static void consolaVendida(Consola consola) {
     	Datos.listaConsolas.remove(consola);
     }
@@ -206,7 +205,7 @@ public class Consola extends Producto implements Serializable, Hardware {
         return todoslosNombres;
     }
     
-    // M�todo para obtener la consola m�s vendida de la tienda.
+    // Metodo para obtener la consola mas vendida de la tienda.
     public static void consolaMasVendida(){
         ArrayList<String> nombres = Consola.productosVendidos();
         ArrayList<String> nombresUnicos = new ArrayList<String>();
@@ -222,7 +221,7 @@ public class Consola extends Producto implements Serializable, Hardware {
         
     }
     
- // Método que moodifica el precio de algunas consolas, dado un array de indices y un array de precios.
+ // Metodo que moodifica el precio de algunas consolas, dado un array de indices y un array de precios.
     public static void modificarPreciosConsolas(int[] ints, int[] precios){
         int indice = 0;
         for (int i: ints){
@@ -231,24 +230,24 @@ public class Consola extends Producto implements Serializable, Hardware {
         }
     }
     
-    // Implementaci�n del m�todo reparar (Si el estado es false, indica que la consola est� reparada en su defecto buena).
+    // Implementacion del metodo reparar (Si el estado es false, indica que la consola esta reparada en su defecto buena).
     public void Reparar() {
         this.estado = false;
     }
     
-    // M�todo para cambiar el color de una consola.
+    // Metodo para cambiar el color de una consola.
     public void modificarReparar(String color){
         this.estado= false;
         this.color = color;
     }
     
-    // M�todo para cambiar la capacidad de almacenamiento (en GB) de una consola.
+    // Metodo para cambiar la capacidad de almacenamiento (en GB) de una consola.
     public void modificarReparar(int almacenamiento){
         this.estado = false;
         this.almacenamiento = almacenamiento;
     }
     
-    // M�todo que obtiene la descripci�n de las consolas de listaConsolas.
+    // Metodo que obtiene la descripcion de las consolas de listaConsolas.
     public static void descripcionConsolas() {
         int indiceConsola = 1;
         for (Consola consola : Datos.listaConsolas) {
@@ -258,8 +257,8 @@ public class Consola extends Producto implements Serializable, Hardware {
     }
     
     
-    //String que retorna la descripci�n del producto, aqu� aplica ligadura din�mica.
-    // La descripci�n de una consola consta de: Su versi�n, su capacidad de almacenamiento y su estado ( buena o mala )
+    // String que retorna la descripcion del producto, aqui aplica ligadura dinamica.
+    // La descripcion de una consola consta de: Su version, su capacidad de almacenamiento y su estado ( buena o mala )
     @Override
     public String descripcionProducto(){
         String checker= null;
@@ -268,10 +267,6 @@ public class Consola extends Producto implements Serializable, Hardware {
         } else if (!estado){
             checker = "Funcional";
         }
-        return "Nombre de la consola: " +   getNombre() +  "  ||  " + "Versi�n: " + getVersion() + "  ||  " +  "Con almacenamiento de: " + almacenamiento + " Gb" +  "  ||  " + "Garantía: "+ garantia +" meses "+ "en estado: " + checker;
-    }
-        
+        return "Nombre de la consola: " +   getNombre() +  "  ||  " + "Version: " + getVersion() + "  ||  " +  "Con almacenamiento de: " + almacenamiento + " Gb" +  "  ||  " + "Garantia: "+ garantia +" meses "+ "En estado: " + checker;
+    }    
 }
-
-
-

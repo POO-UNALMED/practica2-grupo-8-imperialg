@@ -1,18 +1,18 @@
-/*1). En las fuentes se incluirá la siguiente documentación:
-        Cabecera del archivo: funcionalidad del módulo, autores, componentes del módulo, etc.
-        Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
-        sean relevantes.
-         Cabeceras en los métodos, comentando su propósito y describiendo los parámetros de entrada/salida.
-         Comentarios en líneas de código de relevante interés o importancia.
-         Otros aspectos de interés a tener en cuenta por el profesor.*/
+/*1). En las fuentes se incluira la siguiente documentacion:
+         Cabecera del archivo: funcionalidad del modulo, autores, componentes del modulo, etc.
+         Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
+         sean relevantes.
+         Cabeceras en los metodos, comentando su proposito y describiendo los parametros de entrada/salida.
+         Comentarios en lineas de codigo de relevante interes o importancia.
+         Otros aspectos de interes a tener en cuenta por el profesor.*/
 
 /* Autores:   - Santiago Franco Valencia 
 *            - Anderson Elian Gutierrez 
 *            - Santiago Valencia Mejia
 *            - Daniel Alejandro Giraldo  */
 
-// En este módulo se crea la clase asbtracta Producto, así como sus métodos básicos (Get y Set), además se definen un conjunto de atributos,
-// los cuales almacenarán información acerca de cada producto  que se vaya registrando en la plataforma.
+// En este modulo se crea la clase asbtracta Producto, asi como sus metodos basicos (Get y Set), ademas se definen un conjunto de atributos,
+// los cuales almacenaran informacion acerca de cada producto  que se vaya registrando en la plataforma.
 
 package gestorAplicacion.producto;
 import java.io.Serializable;
@@ -25,7 +25,7 @@ public abstract class Producto implements Serializable{
     private float precio;
     private Boolean uso;  
 
-    // Se crean los métodos Get y Set de los atributos de la Clase Producto
+    // Se crean los metodos Get y Set de los atributos de la Clase Producto
     public float getPrecio() {
         return precio;
     }
@@ -53,7 +53,7 @@ public abstract class Producto implements Serializable{
         this.nombre = nombre;
     }
     
-    // M�todo que especifica los indices para seleccionar uno o m�s productos.
+    // Metodo que especifica los indices para seleccionar uno o mas productos.
 	public static int[] seleccionProductos(int tope){
 		 Scanner entrada = new Scanner(System.in);
 		int[] ints = new int[tope];
@@ -63,10 +63,10 @@ public abstract class Producto implements Serializable{
 		}
 		return ints;
 	}
-	//método abstracto
+	// Metodo abstracto que lo implementaran las Clases Juego, Consola y Periferico.
     public abstract String toString();
 
-    // Se crea el constructor de la clase periferico, con sus atributos como parámetros.
+    // Se crea el constructor de la clase periferico, con sus atributos como parametros.
     public Producto(String nombre, boolean uso, float precio) {
         this.nombre = nombre;
         this.precio = precio;
@@ -78,13 +78,13 @@ public abstract class Producto implements Serializable{
         this.nombre=nombre;
     }
     
-    //String que retorna la descripci�n de un producto.
+    // String que retorna la descripcion de un producto.
     public String descripcionProducto(){
         String checker1 = "";
         if(uso){
-            checker1 = " usado";
+            checker1 = " Usado";
         } else if (!uso){
-            checker1 = " nuevo";
+            checker1 = " Nuevo";
         }
         return getNombre() + " " + checker1;
     }

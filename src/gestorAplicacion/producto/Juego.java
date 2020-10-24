@@ -1,21 +1,20 @@
-/*1). En las fuentes se incluirá la siguiente documentación:
-         Cabecera del archivo: funcionalidad del módulo, autores, componentes del módulo, etc.
+/*1). En las fuentes se incluira la siguiente documentacion:
+         Cabecera del archivo: funcionalidad del modulo, autores, componentes del modulo, etc.
          Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
-        sean relevantes.
-         Cabeceras en los métodos, comentando su propósito y describiendo los parámetros de entrada/salida.
-         Comentarios en líneas de código de relevante interés o importancia.
-        Otros aspectos de interés a tener en cuenta por el profesor.*/
+         sean relevantes.
+         Cabeceras en los metodos, comentando su proposito y describiendo los parametros de entrada/salida.
+         Comentarios en lineas de codigo de relevante interes o importancia.
+         Otros aspectos de interes a tener en cuenta por el profesor.*/
 
 /* Autores:   - Santiago Franco Valencia 
 *            - Anderson Elian Gutierrez 
 *            - Santiago Valencia Mejia
 *            - Daniel Alejandro Giraldo  */
 
-// En este módulo se crea la clase Juego, así como sus métodos básicos (Get y Set), además se definen un conjunto de atributos,
-// los cuales almacenarán información acerca de cada Juego que se vaya registrando en la plataforma.
+// En este modulo se crea la clase Juego, asi� como sus metodos basicos (Get y Set), ademas se definen un conjunto de atributos,
+// los cuales almacenaran informacion acerca de cada Juego que se vaya registrando en la plataforma.
 
 package gestorAplicacion.producto;
-
 import java.util.*;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -26,13 +25,13 @@ import gestorAplicacion.transacciones.*;
 
 public class Juego extends Producto implements Serializable{
 	private static final long serialVersionUID = 1L;
-    private int pegi; // parametro que categoriza los juegos de acuerdo a la edad minima requerida para poder jugarlos.
+    private int pegi; // Parametro que categoriza los juegos de acuerdo a la edad minima requerida para poder jugarlos.
     private String plataforma;
     private String genero;
     private static ArrayList<Juego> listaJuegos = Datos.listaJuegos; // Lista con los juegos registrados en la tienda.
     
 
-    // Se crean los métodos Get y Set de los atributos de la Clase Consola
+    // Se crean los metodos Get y Set de los atributos de la Clase Consola.
     public int getPegi() {
         return pegi;
     }
@@ -67,17 +66,17 @@ public class Juego extends Producto implements Serializable{
         return Datos.listaJuegos;
     }
     
-    // Metodo que le solicita al usuario ingresar los datos basicos del juego que posteriormente se ingresar� a la base
+    // Metodo que le solicita al usuario ingresar los datos basicos del juego que posteriormente se ingresara a la base
     // de datos de la tienda.
     public static void ingresarJuego() {
     	Scanner entrada = new Scanner(System.in);
         System.out.println("Ingrese el nombre del juego: ");
         String nombre = entrada.next();
-        System.out.println("Ingrese el uso (true si el juego est� usado o  false si el juego est� nuevo): ");
+        System.out.println("Ingrese el uso (true si el juego esta usado o  false si el juego esta nuevo): ");
         Boolean uso = entrada.nextBoolean();
         System.out.println("Ingrese el precio del juego: ");
         float precio = entrada.nextFloat();
-        System.out.println("Ingrese pegi (Edad m�nima recomendada para jugar: ");
+        System.out.println("Ingrese pegi (Edad minima recomendada para jugar: ");
         int pegi = entrada.nextInt();
         System.out.println("Ingrese el nombre plataforma asociada al juego: ");
         String plataforma = entrada.next();
@@ -89,12 +88,12 @@ public class Juego extends Producto implements Serializable{
         System.out.println(Datos.listaJuegos);
     }
     
-    // M�todo para seleccionar los juegos que se desean vender 
+    // Metodo para seleccionar los juegos que se desean vender.
     public static void ventaJuego(Cliente cliente) {
     	Scanner entrada = new Scanner(System.in);
-    	//si la entrada fue 2, se muestran los juegos disponibles y se pide la cantidad de juegos a vender
+    	// Si la entrada fue 2, se muestran los juegos disponibles y se pide la cantidad de juegos a vender.
 		Juego.juegosRegistrados();
-		System.out.println("�Cu�ntos juegos desea vender?: ");
+		System.out.println("�Cuantos juegos desea vender?: ");
 		int tope = entrada.nextInt();
 		Juego.juegosRegistrados();
 		System.out.println("Seleccione el indice de el/los Juego/s que desea vender: ");
@@ -105,14 +104,14 @@ public class Juego extends Producto implements Serializable{
 			Juego.juegoVendido((Juego)pro);
 		}
 		
-		//se hace el llamado al metodo de la clase Datos para generar una factura de venta
+		// Se hace el llamado al metodo de la clase Datos para generar una factura de venta.
 		Factura.generarFacturaVenta(productos, cliente);
 		cliente.agregarPunto();
 		Juego.juegosRegistrados();
     }
     
     
- // Método que moodifica el precio de algunos juegos, dado un array de indices y un array de precios.
+    // Metodo que moodifica el precio de algunos juegos, dado un array de indices y un array de precios.
     public static void modificarPreciosJuegos(int[] ints, int[] precios){
         int indice = 0;
         for (int i: ints){
@@ -121,7 +120,7 @@ public class Juego extends Producto implements Serializable{
         }
     }
     
-    // M�todo que devuelve un Arraylist con los juegos seg�n los indices ingresados por el usuario
+    // Metodo que devuelve un Arraylist con los juegos segun los indices ingresados por el usuario.
     public static ArrayList<Producto> juegoPorIndice(int[] ints){
         ArrayList<Producto> nuevaLista = new ArrayList<Producto>();
         for (int i: ints){
@@ -139,7 +138,7 @@ public class Juego extends Producto implements Serializable{
 		}
 	}
 	
-	// M�todo para eliminar un juego de la base de datos luego de haber sido vendido. 
+	// Metodo para eliminar un juego de la base de datos luego de haber sido vendido. 
 	public static void juegoVendido(Juego juego) {
 		Datos.listaJuegos.remove(juego);
 	}
@@ -166,7 +165,7 @@ public class Juego extends Producto implements Serializable{
         return todoslosNombres;
     }
 	
-	// M�todo que obtiene el juego m�s vendido en la tienda
+	// Metodo que obtiene el juego mas vendido en la tienda.
 	public static void JuegoMasVendido(){
         ArrayList<String> nombres = Juego.productosVendidos();
         ArrayList<String> nombresUnicos = new ArrayList<String>();
@@ -181,8 +180,9 @@ public class Juego extends Producto implements Serializable{
         }
     }
 	
+	// Metodo que recomienda los juegos de la tienda por la edad minima sugerida para ser jugados.
 	public static void recomendarPorEdad() {
-		System.out.println("Juegos recomendados para edad de 6 años a 12 años inclusive: "+"\n");
+		System.out.println("Juegos recomendados para edad de 6 a�os a 12 años inclusive: "+"\n");
 		
 		for(Juego juego:Datos.listaJuegos) {
 			if(juego.pegi<=12) {				
@@ -190,7 +190,7 @@ public class Juego extends Producto implements Serializable{
 			}
 		}	
 		System.out.println("\n");
-		System.out.println("\n"+"Juegos recomendados para edad de mas de 12 años a 18 años inclusive: "+"\n");
+		System.out.println("\n"+"Juegos recomendados para edad de mas de 12 a�os a 18 a�os inclusive: "+"\n");
 		
 			for(Juego juego:Datos.listaJuegos) {
 				if(juego.pegi>12&&juego.pegi<=18) {	
@@ -199,20 +199,17 @@ public class Juego extends Producto implements Serializable{
 				}
 			}
 			System.out.println("\n");
-			System.out.println("\n"+"Juegos recomendados para edad de +18 años: "+"\n");
+			System.out.println("\n"+"Juegos recomendados para edad de +18 a�os: "+"\n");
 			for(Juego juego:Datos.listaJuegos) {
 				if(juego.pegi>18) {	
 					System.out.println("Nombre del Juego: "+juego.getNombre()+"  ||  "+" Genero: "+juego.getGenero()+"  ||  "+" Precio: "+juego.getPrecio()+"  ||  "+"Edad recomendada para jugar: "+juego.getPegi());
 
 				}			
 			}
-		
-		
-		
 	}
+	
     
-
-    // Se crea el constructor de la clase Juego, con sus atributos como parámetros.
+    // Se crea el constructor de la clase Juego, con sus atributos como parametros.
     public Juego(String nombre, boolean uso, float precio, int pegi, String plataforma, String genero) {
         super(nombre, uso, precio);
         this.pegi = pegi;
@@ -220,11 +217,9 @@ public class Juego extends Producto implements Serializable{
         this.genero = genero;
     }
     
-
-    // Se crea el toString de la clase Juego, el cual mostrará por pantalla el nombre del juego,  la plataforma a la que pertenece y su precio.
+    // Se crea el toString de la clase Juego, el cual mostrara por pantalla el nombre del juego, la plataforma a la que pertenece y su precio.
     @Override
     public String toString() {
         return "Nombre del juego: "+ getNombre() + "  ||  " + "Plataforma asociada al juego: " + plataforma + "  ||  " + "Precio: " + "COP $" + getPrecio() ;
     }
 }
-
