@@ -60,6 +60,6 @@ public class Detalle implements Serializable{
     // el nombre del producto involucrado en el detalle y el precio del detalle, el cual depende del tipo de servicio realizado.
     
     public String toString() {
-        return  " " + tiposervicio + " " + producto.getNombre() + " " + precio;
+    	 return  " :  " + "Tipo de servicio: " +  tiposervicio + "  ||  " + "Nombre del producto: " +  producto.getNombre() + "  ||  " + "Subtotal: " + "COP $"+  precio;
     }
 }

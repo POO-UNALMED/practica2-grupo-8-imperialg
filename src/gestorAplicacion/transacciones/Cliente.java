@@ -89,13 +89,13 @@ public class Cliente implements Serializable {
     // de la tienda. 
     public static void ingresarCliente() {
     	Scanner entrada = new Scanner(System.in);
-        System.out.println("Ingrese nombre de Cliente: ");
+        System.out.println("Ingrese su nombre: ");
         String nombre = entrada.next();
-        System.out.println("Ingrese cedula: ");
+        System.out.println("Ingrese su cedula: ");
         int cc = entrada.nextInt();
-        System.out.println("Ingrese celular: ");
+        System.out.println("Ingrese su celular: ");
         long celular = entrada.nextLong();
-        System.out.println("Ingrese email: ");
+        System.out.println("Ingrese su email: ");
         String email = entrada.next();
         Cliente cliente = new Cliente(nombre, cc, celular, email);
         //listaClientes.add(cliente);
@@ -156,13 +156,13 @@ public class Cliente implements Serializable {
  				aux = cliente.getPuntos();
  				cl = cliente;
  			}
- 		}System.out.println(cl);
+ 		}System.out.println (cl);
  	}
     
     // Se crea el toString de la clase Cliente, el cual retorna el nombre del cliente, su cédula
     // y la cantidad de puntos que posee en la tienda.
     public String toString(){
-        return nombre + "    " + cc + "     " + puntos;
+        return "Nombre: " + nombre + "  ||  " + "C.C: " + cc + "  ||  " + "Puntos del cliente: " +  puntos;
     }
  
     //este método agregara puntos al cliente, cada vez que este realice una compra de algun producto de la tienda.

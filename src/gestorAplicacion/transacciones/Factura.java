@@ -90,7 +90,7 @@ public class Factura implements Serializable {
         }
         Factura factura = new Factura(cliente, listaDetalles);
         agregarFactura(factura);
-        System.out.println("Su venta ha sido realizada correctamente");
+        System.out.println("Su venta ha sido realizada exitosamente.");
         System.out.println(factura);
 
     }
@@ -114,6 +114,6 @@ public class Factura implements Serializable {
             detas += detalle.toString() + "\n";
             total += detalle.getPrecio();
         }
-        return idFactura + "   "+ /*+ fecha + */"     "  + cliente.getNombre() + "\n" + detas + "total: " + total;
+        return  "ID Factura: " + idFactura + "  ||  " +  "Nombre del cliente: " + cliente.getNombre() + "\n" +  "Detalle " + detas + "Total a pagar: " + "COP $" + total;
         }
 }
