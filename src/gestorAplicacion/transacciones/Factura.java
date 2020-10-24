@@ -22,26 +22,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import BaseDatos.Datos;
-import gestorAplicacion.producto.Producto;
+import gestorAplicacion.producto.*;
 
 public class Factura implements Serializable {
     private static final long serialVersionUID = 1L;
     private int idFactura;
-/*
-    private LocalDate fecha = LocalDate.now(); // devuelve la fecha en la que se genera una factura
-*/
     private Cliente cliente;
-/*
-    private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // formato de fecha dado en dï¿½a/mes/aï¿½o.
-*/
     private ArrayList<Detalle> detalles = new ArrayList<Detalle>(); // Lista que contiene todos los detalles de una factura.
     private static ArrayList<Factura> listaFacturas = Datos.listaFacturas; // Lista donde se almacenan las facturas.
-
-/*
-    public String getFecha() {
-        return fecha.format(formato);
-    }
-*/
 
     // Se crean los mï¿½todos Get y Set de los atributos de la Clase Factura.
     
@@ -116,4 +104,42 @@ public class Factura implements Serializable {
         }
         return  "ID Factura: " + idFactura + "  ||  " +  "Nombre del cliente: " + cliente.getNombre() + "\n" +  "Detalle " + detas + "Total a pagar: " + "COP $" + total;
         }
+    
+    
+    // Generar factura cuando se haya producido una venta de una consola  en la tienda.
+    public static void generarFacturaVenta1(ArrayList<Consola> productos, Cliente cliente){
+        ArrayList<Detalle> listaDetalles = new ArrayList<Detalle>();
+        for (Producto producto: productos){
+            Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta");
+            listaDetalles.add(detalle);
+        }
+        Factura factura = new Factura(cliente, listaDetalles);
+        agregarFactura(factura);
+        System.out.println(factura);
+
+    }
+    
+    // Generar factura cuando se haya producido una venta de un periférico  en la tienda.
+     public static void generarFacturaVenta2(ArrayList<Periferico> productos, Cliente cliente){
+        ArrayList<Detalle> listaDetalles = new ArrayList<Detalle>();
+        for (Producto producto: productos){
+            Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta");
+            listaDetalles.add(detalle);
+        }
+        Factura factura = new Factura(cliente, listaDetalles);
+        agregarFactura(factura);
+        System.out.println(factura);
+    }
+    
+    // Generar factura cuando se haya producido una venta de un juego en la tienda.
+    public static void generarFacturaVenta3(ArrayList<Juego> productos, Cliente cliente){
+        ArrayList<Detalle> listaDetalles = new ArrayList<Detalle>();
+        for (Producto producto: productos){
+            Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta");
+            listaDetalles.add(detalle);
+        }
+        Factura factura = new Factura(cliente, listaDetalles);
+        agregarFactura(factura);
+        System.out.println(factura);
+    }
 }

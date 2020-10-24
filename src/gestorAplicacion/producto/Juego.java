@@ -16,13 +16,13 @@
 
 package gestorAplicacion.producto;
 
-import java.util.Scanner;
+import java.util.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.Serializable;
 import BaseDatos.Datos;
 import gestorAplicacion.transacciones.*;
-import java.util.ArrayList;
+
 
 public class Juego extends Producto implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -104,6 +104,7 @@ public class Juego extends Producto implements Serializable{
 			System.out.println(pro);
 			Juego.juegoVendido((Juego)pro);
 		}
+		
 		//se hace el llamado al metodo de la clase Datos para generar una factura de venta
 		Factura.generarFacturaVenta(productos, cliente);
 		cliente.agregarPunto();
@@ -111,6 +112,7 @@ public class Juego extends Producto implements Serializable{
     }
     
     
+    // MÈtodo que devuelve un Arraylist con los juegos seg˙n los indices ingresados por el usuario
     public static ArrayList<Producto> juegoPorIndice(int[] ints){
         ArrayList<Producto> nuevaLista = new ArrayList<Producto>();
         for (int i: ints){
@@ -128,9 +130,47 @@ public class Juego extends Producto implements Serializable{
 		}
 	}
 	
+	// MÈtodo para eliminar un juego de la base de datos luego de haber sido vendido. 
 	public static void juegoVendido(Juego juego) {
 		Datos.listaJuegos.remove(juego);
 	}
+	
+	 // Se crea un arraylist que contiene los nombres de los juegos que se han vendido y la frecuencia de venta de cada uno.
+	public static ArrayList<String> productosVendidos(){
+        ArrayList<Detalle> todoslosdetalles = new ArrayList<Detalle>();
+        for (Factura factura: Datos.listaFacturas){
+            todoslosdetalles.addAll(factura.getDetalles());
+        }
+        ArrayList<Detalle> depurados = new ArrayList<Detalle>();
+        for (Detalle detalle: todoslosdetalles){
+            if(detalle.getTiposervicio()== "Venta"){
+                depurados.add(detalle);
+            }
+        }
+        ArrayList<String> todoslosNombres = new ArrayList<String>();
+        for (Detalle detalle: depurados){
+            if(detalle.getProducto() instanceof Juego){
+                todoslosNombres.add(detalle.getProducto().nombre);
+                System.out.println(detalle.getProducto().nombre);
+            }
+        }
+        return todoslosNombres;
+    }
+	
+	// MÈtodo que obtiene el juego m·s vendido en la tienda
+	public static void JuegoMasVendido(){
+        ArrayList<String> nombres = Juego.productosVendidos();
+        ArrayList<String> nombresUnicos = new ArrayList<String>();
+        for (String nombre: nombres){
+            if(!nombresUnicos.contains(nombre))
+                nombresUnicos.add(nombre);
+        }
+        ArrayList<Integer> numeroDeUnidadesVendidas = new ArrayList<Integer>();
+        int i = 0;
+        for (String nombre: nombresUnicos){
+            System.out.println(nombre + " " +Collections.frequency(nombres, nombre));
+        }
+    }
     
 
     // Se crea el constructor de la clase Juego, con sus atributos como par√°metros.
@@ -142,7 +182,7 @@ public class Juego extends Producto implements Serializable{
     }
     
 
-    // Se crea el toString de la clase Consola, el cual mostrar√° por pantalla el nombre del juego y la plataforma a la que pertenece.
+    // Se crea el toString de la clase Juego, el cual mostrar√° por pantalla el nombre del juego,  la plataforma a la que pertenece y su precio.
     @Override
     public String toString() {
         return "Nombre del juego: "+ getNombre() + "  ||  " + "Plataforma asociada al juego: " + plataforma + "  ||  " + "Precio: " + "COP $" + getPrecio() ;

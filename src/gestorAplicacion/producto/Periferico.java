@@ -22,7 +22,7 @@ import BaseDatos.Datos;
 import gestorAplicacion.transacciones.*;
 import java.util.*;
 
-public class Periferico extends Producto implements Serializable{
+public class Periferico extends Producto implements Serializable,Hardware{
 	private static final long serialVersionUID = 1L;
     private String plataforma;
     private boolean estado;
@@ -72,9 +72,11 @@ public class Periferico extends Producto implements Serializable{
         Periferico.perifericosRegistrados();
         System.out.println(Datos.listaPerifericos);
     }
+    
+    // Método para seleccionar los perifericos a vender y posteirormente generar una factura.
     public static void ventaPeriferico(Cliente cliente) {
     	Scanner entrada = new Scanner(System.in);
-    	//si la entrada fue 3, se muestran los perifercios disponibles y se pide la cantidad de perifericos a vender
+    	//si la entrada fue 3, se muestran los perifercios disponibles y se pide la cantidad de perifericos a vender.
 		Periferico.perifericosRegistrados();
 		System.out.println("¿Cuántos periféricos desea vender?:");
 		int tope = entrada.nextInt();
@@ -93,7 +95,7 @@ public class Periferico extends Producto implements Serializable{
 		Periferico.perifericosRegistrados();
     }
     
-    // 
+ // Método que devuelve un Arraylist con los periféricos según los indices ingresados por el usuario
     public static ArrayList<Producto> perifericoPorIndice(int[] ints){
         ArrayList<Producto> nuevaLista = new ArrayList<Producto>();
         for (int i: ints){
@@ -139,18 +141,25 @@ public class Periferico extends Producto implements Serializable{
     	}
     }
     
+    // Método para eliminar un periferico de la base de datos de la tienda luego de ser vendido.
     public static void perifericoVendido(Periferico periferico) {
     	Datos.listaPerifericos.remove(periferico);
     }
     
-    
+    // Se crea un arraylist que contiene los nombres de los periféricos que se han vendido y la frecuencia de venta de cada uno.
     public static ArrayList<String> productosVendidos(){
         ArrayList<Detalle> todoslosdetalles = new ArrayList<Detalle>();
         for (Factura factura: Datos.listaFacturas){
             todoslosdetalles.addAll(factura.getDetalles());
         }
-        ArrayList<String> todoslosNombres = new ArrayList<String>();
+        ArrayList<Detalle> depurados = new ArrayList<Detalle>();
         for (Detalle detalle: todoslosdetalles){
+            if(detalle.getTiposervicio()== "Venta"){
+                depurados.add(detalle);
+            }
+        }
+        ArrayList<String> todoslosNombres = new ArrayList<String>();
+        for (Detalle detalle: depurados){
             if(detalle.getProducto() instanceof Periferico){
                 todoslosNombres.add(detalle.getProducto().nombre);
                 System.out.println(detalle.getProducto().nombre);
@@ -158,7 +167,8 @@ public class Periferico extends Producto implements Serializable{
         }
         return todoslosNombres;
     }
-
+    
+    // Método que obtiene el periférico mas vendido de la tienda.
     public static void perifericoMasVendido(){
         ArrayList<String> nombres = Periferico.productosVendidos();
         ArrayList<String> nombresUnicos = new ArrayList<String>();
@@ -171,6 +181,23 @@ public class Periferico extends Producto implements Serializable{
         for (String nombre: nombresUnicos){
             System.out.println(nombre + " " +Collections.frequency(nombres, nombre));
         }
+    }
+    
+    @Override
+    // Si el estado se encuentra en false, quiere decir que el periférico esta reparado o bueno en su defecto.
+    public void Reparar() {
+        this.estado = false;
+    }
+    @Override
+    // String que retorna la descripción del producto, aquí aplica ligadura dinámica.
+    public String descripcionProducto(){
+        String checker= null;
+        if (estado){
+            checker = "Averiado/a";
+        } else if (!estado){
+            checker = "Funcional";
+        }
+        return getNombre()  +" en estado: " + checker;
     }
 }
 

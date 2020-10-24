@@ -13,6 +13,9 @@
 *            - Anderson Elian Gutierrez 
 *            - Santiago Valencia Mejia
 *            - Daniel Alejandro Giraldo  */
+
+/*Cabecera en la clase: la clase Ui carga y guarda todos los datos en los archivos .txt, adem√°s llama el
+ * menu principal con el que el usuario va a interactuar*/
  
 package uiMain;
 import BaseDatos.Datos;
@@ -21,8 +24,6 @@ import gestorAplicacion.producto.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-/*Cabecera en la clase: la clase Ui carga y guarda todos los datos en los archivos .txt, adem√°s llama el
- * menu principal con el que el usuario va a interactuar*/
 
 public class Ui {
 	public static Datos datos = new Datos();
@@ -47,6 +48,7 @@ public class Ui {
 		System.out.println("**BIENVENIDO A IMPERIALGAMING, LA MEJOR TIENDA VIRTUAL**"+"\n");
 		this.menu(datos);
 	}
+	
 	//este metodo menu es el principal, le pedir√° una opcion de ingreso al usuario y de acuerdo a la opcion, 
 	//mediante switches muestre su respectivo submenu
 	public void menu(Datos datos){
@@ -121,6 +123,7 @@ public class Ui {
 		} else if (verificador == 2) {
 			cliente = Cliente.clienteNoRegistrado();
 		}	
+		
 		//se le pide al usuario una entrada despues de saber si esta registrado o no
 		System.out.println("øQue articulo desea vender?: Ingrese una opcion");
 		System.out.println("0. Volver");
@@ -147,6 +150,8 @@ public class Ui {
 		}
 	}	
 	
+	
+	// MÈtodo para implementar el men˙ de servicios tÈcnicos (Reparaciones y modificaciones de productos). 
 	public void menuServiciosTecnicos(Datos datos){
 		//Verificamos s√≠ el cliente ya est√° registrado a trav√©s de enteros.
 		System.out.println("øEl cliente ya est· registrado?"+"\n");
@@ -173,7 +178,7 @@ public class Ui {
 			int determinante = entrada.nextInt();
 			switch (determinante){
 				case 1: {
-					//si la entrada fue 1 se modifica la consola y se genera un detalle
+					// Si la entrada fue 1 se modifica la consola y se genera un detalle
 					System.out.println("Ingrese el nombre de la consola: ");
 					String nombre = entrada.next();
 					System.out.println("Ingrese el color de la consola: ");
@@ -192,7 +197,7 @@ public class Ui {
 					break;
 				}
 				case 2: {
-					//si la entrada fue 2 se modifica el periferico y se genera un detalle
+					// Si la entrada fue 2 se modifica el periferico y se genera un detalle
 					System.out.println("Ingrese el nombre de la consola: ");
 					String nombre = entrada.next();
 					System.out.println("Ingrese el estado de la consola (true si la ocnsola se encuentra mala o false si se encuentra buena)");
@@ -209,7 +214,7 @@ public class Ui {
 			}
 		}
 		
-		//genera una factura y la agrega a la lista listaFacturas en la clase Datos a traves del metodo agregar factura
+		// Genera una factura y la agrega a la lista listaFacturas en la clase Datos a traves del metodo agregar factura
 		Factura factura = new Factura(cliente, detalles);
 		Factura.agregarFactura(factura);
 		System.out.println(factura);
@@ -217,7 +222,7 @@ public class Ui {
 	}	
 	
 
-	// este m√©todo sera ejecutado si la opcion del usuario en el menu principal fue 4.Imperial
+	// Este m√©todo sera ejecutado si la opcion del usuario en el menu principal fue 4.Imperial
 	public void menuImperial(Datos datos){
 		System.out.println("Ingrese una opciÛn");
 		System.out.println("0. Volver");

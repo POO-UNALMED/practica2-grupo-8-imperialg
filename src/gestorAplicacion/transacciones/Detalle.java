@@ -47,7 +47,7 @@ public class Detalle implements Serializable{
         this.tiposervicio = tiposervicio;
     }
     
-    // Se crea el constructor de la clase Detalle, el cual recibe como parametros los atributos de esta clase
+    // Se crea el constructor de la clase Detalle, el cual recibe como parametros los atributos de esta clase.
     public Detalle(Producto producto, float precio, String tiposervicio) {
         this.producto = producto;
         this.precio = precio;

@@ -50,7 +50,7 @@ public abstract class Producto implements Serializable{
         this.nombre = nombre;
     }
     
-    //
+    // Método que especifica los indices para seleccionar uno o más productos.
 	public static int[] seleccionProductos(int tope){
 		 Scanner entrada = new Scanner(System.in);
 		int[] ints = new int[tope];
@@ -60,7 +60,6 @@ public abstract class Producto implements Serializable{
 		}
 		return ints;
 	}
-
 
     public abstract String toString();
 
@@ -74,5 +73,16 @@ public abstract class Producto implements Serializable{
     // Constructor que cambia el nombre del producto.
     public Producto(String nombre) {
         this.nombre=nombre;
+    }
+    
+    //String que retorna la descripción de un producto.
+    public String descripcionProducto(){
+        String checker1 = "";
+        if(uso){
+            checker1 = " usado";
+        } else if (!uso){
+            checker1 = " nuevo";
+        }
+        return getNombre() + " " + checker1;
     }
 }

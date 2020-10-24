@@ -24,7 +24,7 @@ import java.util.*;
 
 import java.io.Serializable;
 
-public class Consola extends Producto implements Serializable {
+public class Consola extends Producto implements Serializable, Hardware {
 	private static final long serialVersionUID = 1L;
     private String color;
     private boolean estado;
@@ -156,28 +156,28 @@ public class Consola extends Producto implements Serializable {
     public String toString() {
         return "Nombre de la consola: " + getNombre() + "  ||  " + "Capacidad de almacenamiento: " +  almacenamiento + "Gb" +  "  ||  " + "Version de la consola: " +  getVersion() + "  ||  " + "Precio: " + "COP $" + getPrecio();
     }
+  
     
-   // se crea metodo repararConsola para comprobar si la consola ya se ha reparado.
-    public void repararConsola(Consola consola){
-    	if (consola.getEstado()==false){
-    		System.out.println("La Consola ya se encuentra reparada.");
-    	}else {
-    		consola.setEstado(false);
-    		System.out.println("Se ha reparado la consola.");
-    	}
-    }
-    
+    // Método para eliminar una consola de la base de datos de la tienda luego de ser vendida.
     public static void consolaVendida(Consola consola) {
     	Datos.listaConsolas.remove(consola);
     }
     
+    
+    // Se crea un arraylist que contiene los nombres de las consolas que se han vendido y la frecuencia de venta de cada uno.
     public static ArrayList<String> productosVendidos(){
         ArrayList<Detalle> todoslosdetalles = new ArrayList<Detalle>();
         for (Factura factura: Datos.listaFacturas){
             todoslosdetalles.addAll(factura.getDetalles());
         }
-        ArrayList<String> todoslosNombres = new ArrayList<String>();
+        ArrayList<Detalle> depurados = new ArrayList<Detalle>();
         for (Detalle detalle: todoslosdetalles){
+            if(detalle.getTiposervicio()== "Venta"){
+                depurados.add(detalle);
+            }
+        }
+        ArrayList<String> todoslosNombres = new ArrayList<String>();
+        for (Detalle detalle: depurados){
             if(detalle.getProducto() instanceof Consola){
                 todoslosNombres.add(detalle.getProducto().nombre);
                 System.out.println(detalle.getProducto().nombre);
@@ -185,7 +185,8 @@ public class Consola extends Producto implements Serializable {
         }
         return todoslosNombres;
     }
-
+    
+    // Método para obtener la consola más vendida de la tienda.
     public static void consolaMasVendida(){
         ArrayList<String> nombres = Consola.productosVendidos();
         ArrayList<String> nombresUnicos = new ArrayList<String>();
@@ -198,6 +199,48 @@ public class Consola extends Producto implements Serializable {
         for (String nombre: nombresUnicos){
             System.out.println("Nombre de la consola: " + nombre + "  ||  " + "Unidades vendidas: " + Collections.frequency(nombres, nombre));
         }
+        
+    }
+    
+    
+    // Implementación del método reparar (Si el estado es false, indica que la consola está reparada en su defecto buena).
+    public void Reparar() {
+        this.estado = false;
+    }
+    
+    // Método para cambiar el color de una consola.
+    public void modificarReparar(String color){
+        this.estado= false;
+        this.color = color;
+    }
+    
+    // Método para cambiar la capacidad de almacenamiento (en GB) de una consola.
+    public void modificarReparar(int almacenamiento){
+        this.estado = false;
+        this.almacenamiento = almacenamiento;
+    }
+    
+    // Método que obtiene la descripción de las consolas de listaConsolas.
+    public static void descripcionConsolas() {
+        int indiceConsola = 1;
+        for (Consola consola : Datos.listaConsolas) {
+            System.out.println(indiceConsola + " " + consola.descripcionProducto());
+            indiceConsola ++;
+        }
+    }
+    
+    
+    //String que retorna la descripción del producto, aquí aplica ligadura dinámica.
+    // La descripción de una consola consta de: Su versión, su capacidad de almacenamiento y su estado ( buena o mala )
+    @Override
+    public String descripcionProducto(){
+        String checker= null;
+        if (estado){
+            checker = "Averiado/a";
+        } else if (!estado){
+            checker = "Funcional";
+        }
+        return "Nombre de la consola: " +   getNombre() +  "  ||  " + "Versión: " + getVersion() + "  ||  " +  "Con almacenamiento de: " + almacenamiento + "Gb" +  "  ||  "   +  " en estado: " + checker;
     }
         
 }

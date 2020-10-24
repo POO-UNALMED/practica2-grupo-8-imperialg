@@ -30,7 +30,6 @@ public class Cliente implements Serializable {
     private static ArrayList<Cliente> listaClientes = Datos.listaClientes; // lista en la cual se almacenar�n todos los clientes 
     //  registrados en la tienda.
    
-
     public Cliente() {
 
     }
@@ -134,12 +133,13 @@ public class Cliente implements Serializable {
 		return seleccionarCliente(i-1);
 	}
 	
-	//este metodo registra un cliente
+	// Este metodo registra un cliente
 	public static Cliente clienteNoRegistrado(){
 		ingresarCliente();
 		return seleccionarUltimoCliente();
 	}
- // Mostrar en pantalla los clientes registrados:
+	
+	// Mostrar en pantalla los clientes registrados:
  	public static void clientesRegistrados() {
  		int indiceCliente = 1;
  		for (Cliente cliente : Datos.listaClientes) {
@@ -147,6 +147,8 @@ public class Cliente implements Serializable {
  			indiceCliente ++;
  		}
  	}
+ 	
+ 	// M�todo para obtener al cliente con mas puntos de la tienda.
  	public static void clienteConMasPuntos() {
  		int aux = 0;
  		Cliente cl=null;
@@ -165,11 +167,11 @@ public class Cliente implements Serializable {
         return "Nombre: " + nombre + "  ||  " + "C.C: " + cc + "  ||  " + "Puntos del cliente: " +  puntos;
     }
  
-    //este método agregara puntos al cliente, cada vez que este realice una compra de algun producto de la tienda.
+    // Este método agregara puntos al cliente, cada vez que este realice una compra de algun producto de la tienda.
     public void agregarPunto() {
     	puntos++;
     }    
-    //esta sobrecarga de método es para agregar x puntos al cliente dada una promocion
+    // Esta sobrecarga de método es para agregar x puntos al cliente dada una promocion
     public void agregarPunto(int x) {
     	this.puntos+=x;
     }

@@ -13,7 +13,6 @@
 
 
 package BaseDatos;
-
 import gestorAplicacion.producto.Consola;
 import gestorAplicacion.producto.Juego;
 import gestorAplicacion.producto.Periferico;
@@ -121,6 +120,8 @@ public class Datos{
             e.printStackTrace();
         }
     }
+    
+    // Leer los datos de facturas.
     public void leerDatosFacturas(){
      try{
         FileInputStream di = new FileInputStream("src/BaseDatos/temp/Facturas.txt");
