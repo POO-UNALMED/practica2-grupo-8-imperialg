@@ -89,13 +89,13 @@ public class Datos{
 
     // Guardar datos de transacciones
     public void guardarDatos1() {
-        try {        	
+        try {
             FileOutputStream c = new FileOutputStream(new File("src/BaseDatos/temp/Clientes.txt"));
-            FileOutputStream d = new FileOutputStream(new File("src/BaseDatos/temp/Facturas.txt"));           
+            FileOutputStream d = new FileOutputStream(new File("src/BaseDatos/temp/Facturas.txt"));
             ObjectOutputStream o = new ObjectOutputStream(c);
-            ObjectOutputStream p = new ObjectOutputStream(d);            
+            ObjectOutputStream p = new ObjectOutputStream(d);
             o.writeObject(listaClientes);
-            p.writeObject(listaFacturas);   
+            p.writeObject(listaFacturas);
             o.close();
             p.close();
             c.close();
@@ -103,29 +103,40 @@ public class Datos{
         } catch (FileNotFoundException e) {
             System.out.println("No se encuentra el archivo");
         } catch (IOException e) {
-            System.out.println("sssssss");
+            System.out.println("Error Flujo de inicialización xd2");
         }
     }
 
     public void leerDatos1() {
         try {
             FileInputStream ci = new FileInputStream("src/BaseDatos/temp/Clientes.txt");
-            FileInputStream di = new FileInputStream("src/BaseDatos/temp/Facturas.txt");
             ObjectInputStream oi = new ObjectInputStream(ci);
-            ObjectInputStream pi = new ObjectInputStream(di);
             listaClientes = (ArrayList<Cliente>) oi.readObject();
-            listaFacturas = (ArrayList<Factura>) pi.readObject();
             oi.close();
-            pi.close();
             ci.close();
-            di.close();
         } catch (FileNotFoundException e) {
             System.out.println("No se encuentra el archivo");
         } catch (IOException e) {
-            System.out.println("Error Flujo zación");
+            System.out.println("Error Flujo de inicialización xd");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+    public void leerDatosFacturas(){
+     try{
+        FileInputStream di = new FileInputStream("src/BaseDatos/temp/Facturas.txt");
+        ObjectInputStream pi = new ObjectInputStream(di);
+        listaFacturas = (ArrayList<Factura>) pi.readObject();
+        pi.close();
+        di.close();
+    } catch (FileNotFoundException e) {
+        System.out.println("No se encuentra el archivo");
+    } catch (IOException e) {
+        System.out.println("Error Flujo de inicialización xd");
+        e.printStackTrace();
+    } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+    }
     }
 
 }

@@ -22,21 +22,19 @@ import java.util.Scanner;
 public class Ui {
 	public static Datos datos = new Datos();
 	
-	public static void main(String[] Args) {		
-		Ui uimain = new Ui();
-		datos.leerDatos();
-		datos.leerDatos1();
-		Consola.consolasRegistradas();
-		Factura.getListaFacturas();
-		System.out.println(Datos.listaFacturas);
-		Periferico.perifericosRegistrados();
-		Juego.juegosRegistrados();
-		Cliente.clientesRegistrados();
-		uimain.menuprincipal(datos);
-		datos.guardarDatos();
-		datos.guardarDatos1();
+	public static void main(String[] Args) {
+        Ui uimain = new Ui();
+        datos.leerDatos();
+        datos.leerDatos1();
+        datos.leerDatosFacturas();
+        Factura.facturasRegistradas();
+        Cliente.clientesRegistrados();
+        //System.out.println(Datos.listaFacturas);
+        //Consola.consolaMasVendida();
+        uimain.menuprincipal(datos);
+        datos.guardarDatos();
+        datos.guardarDatos1();
 	}
-	
 // se usa el scanner entrada para recibir la entrada del usuario en cada caso que se requiera ingresar un dato
 	Scanner entrada = new Scanner(System.in);
 	

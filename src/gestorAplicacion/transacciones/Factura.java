@@ -16,26 +16,33 @@
 // se crearon los métodos básicos (Get y Set).
 
 package gestorAplicacion.transacciones;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.io.Serializable;
+
 import BaseDatos.Datos;
 import gestorAplicacion.producto.Producto;
 
 public class Factura implements Serializable {
     private static final long serialVersionUID = 1L;
     private int idFactura;
+/*
     private LocalDate fecha = LocalDate.now(); // devuelve la fecha en la que se genera una factura
+*/
     private Cliente cliente;
+/*
     private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // formato de fecha dado en d�a/mes/a�o.
+*/
     private ArrayList<Detalle> detalles = new ArrayList<Detalle>(); // Lista que contiene todos los detalles de una factura.
     private static ArrayList<Factura> listaFacturas = Datos.listaFacturas; // Lista donde se almacenan las facturas.
 
+/*
     public String getFecha() {
         return fecha.format(formato);
     }
-    
+*/
+
     // Se crean los m�todos Get y Set de los atributos de la Clase Factura.
     
     public Cliente getCliente() {
@@ -56,7 +63,7 @@ public class Factura implements Serializable {
     
     // Agrega una factura a listaFacturas.
     public static void agregarFactura(Factura factura){
-        listaFacturas.add(factura);
+        Datos.listaFacturas.add(factura);
     }
 
     public Factura(Cliente cliente) {
@@ -68,9 +75,10 @@ public class Factura implements Serializable {
     public Factura(Cliente cliente, ArrayList<Detalle> detalles) {
         this.cliente = cliente;
         this.detalles = detalles;
+        //agregarFactura(this);
     }
     public static ArrayList<Factura> getListaFacturas() {
-        return Datos.listaFacturas;
+        return listaFacturas;
     }
     
     // generar factura cuando se haya producido una venta en la tienda.                                     
@@ -81,25 +89,24 @@ public class Factura implements Serializable {
             listaDetalles.add(detalle);
         }
         Factura factura = new Factura(cliente, listaDetalles);
-        //agregarFactura(factura);
-        System.out.println("Su venta ha sido realizada correctamente");        
+        agregarFactura(factura);
+        System.out.println("Su venta ha sido realizada correctamente");
         System.out.println(factura);
-        Datos.listaFacturas.add(factura);
-        System.out.println("lllll"+Datos.listaFacturas);
 
     }
     
     // Mostrar en pantalla las facturas registradas:
-	public static void facturasRegistradas(Datos datos) {
+	public static void facturasRegistradas() {
 		for (Factura factura : Datos.listaFacturas) {
 			System.out.println(factura.toString());
 		}
 	}
 
-    @Override
-    //  Se crea el toString de la clase Factura, el cual mostrará por pantalla el Id asociado a la factura, la fecha en que se 
+
+    //  Se crea el toString de la clase Factura, el cual mostrará por pantalla el Id asociado a la factura, la fecha en que se
     // generó la fatura, el nombre del cliente al cual se le generó la factura, los detalles que componen a la factura y el valor
-    // total de la factura. 
+    // total de la factura.
+    @Override
     public String toString(){
         String detas = "";
         float total = 0;
@@ -107,6 +114,6 @@ public class Factura implements Serializable {
             detas += detalle.toString() + "\n";
             total += detalle.getPrecio();
         }
-        return "ID: "+idFactura + "   ||  "+"Fecha: " + fecha + "   ||   "+"Cliente: "+ cliente.getNombre() + "\n" + detas + "total: " + total; 
+        return idFactura + "   "+ /*+ fecha + */"     "  + cliente.getNombre() + "\n" + detas + "total: " + total;
         }
 }
