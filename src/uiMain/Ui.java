@@ -48,7 +48,7 @@ public class Ui {
 	// Mediante switches muestre su respectivo submenu.
 	public void menu(Datos datos){
 	        System.out.println("Ingrese una opcion:"+"\n");
-	        System.out.println("1. Ingresar Clientes");
+	        System.out.println("1. Ingresar o eliminar Clientes");
 	        System.out.println("2. Ingresar o Eliminar Productos");
 	        System.out.println("3. Vender Productos");
 	        System.out.println("4. Servicios tecnicos");
@@ -58,8 +58,7 @@ public class Ui {
 	        int i = entrada.nextInt();
 	        switch (i){
 	            case 1:
-	                Cliente.ingresarCliente();
-	                this.menu(datos);
+	            	this.menuFlujoClientes();
 	                break;
 	            case 2:
 	            	this.menuAgregarBorrarProductos(datos);
@@ -156,16 +155,19 @@ public class Ui {
 				this.menuVender(datos);
 			case 1: {
 				Consola.ventaConsola(cliente);
+				datos.guardarDatos1();
 				this.presioneParaVolver();
 				break;
 			}
 			case 2: {
 				Juego.ventaJuego(cliente);
+				datos.guardarDatos1();
 				this.presioneParaVolver();
 				break;
 			}
 			case 3: {
 				Periferico.ventaPeriferico(cliente);
+				datos.guardarDatos1();
 				this.presioneParaVolver();
 				break;
 
@@ -202,10 +204,12 @@ public class Ui {
 				case 1:
 					// Si la entrada fue 1 se modifica la consola y se genera un detalle.
 					Consola.modificarConsola(detalles);
+					datos.guardarDatos1();
 					break;				
 				case 2: 
 					// Si la entrada fue 2 se modifica el periferico y se genera un detalle.
 					Periferico.modificarPeriferico(detalles);
+					datos.guardarDatos1();
 					break;				
 			}
 		}		
@@ -214,6 +218,7 @@ public class Ui {
 		Factura factura = new Factura(Datos.listaFacturas.size(),cliente, detalles);
 		Factura.agregarFactura(factura);
 		System.out.println(factura);
+		datos.guardarDatos1();
 		this.presioneParaVolver();
 
 	}	
@@ -359,6 +364,8 @@ public class Ui {
 		int[] precios = this.especificacionPrecios(tope);
 		Consola.modificarPreciosConsolas(ints, precios);
 		System.out.println("Sus precios han sido modificados correctamente.");
+		datos.guardarDatos();
+
 	}
 	
 	// Metodo para modificar el precio de los perifericos de la tienda.
@@ -372,6 +379,7 @@ public class Ui {
 		int[] precios = this.especificacionPrecios(tope);
 		Periferico.modificarPreciosPerifericos(ints, precios);
 		System.out.println("Sus precios han sido modificados correctamente.");
+		datos.guardarDatos();
 	}
 	
 	// Metodo para modificar el precio de los juegos de la tienda.
@@ -385,6 +393,7 @@ public class Ui {
 		int[] precios = this.especificacionPrecios(tope);
 		Juego.modificarPreciosJuegos(ints, precios);
 		System.out.println("Sus precios han sido modificados correctamente.");
+		datos.guardarDatos();
 
 	}
 	
@@ -409,9 +418,30 @@ public class Ui {
 		return precios;
 	}
 	
+	//Menu que especifica si el usuario quiere ingresar o eliminar un cliente
+	public void menuFlujoClientes() {
+        System.out.println("Ingrese una opcion:"+"\n");
+        System.out.println("0.Volver");
+        System.out.println("1.Ingresar un cliente");
+        System.out.println("2.Eliminar un cliente");
+        int j = entrada.nextInt();
+        switch(j) {
+        	case 0:
+        		this.menu(datos);
+        	case 1:
+        		Cliente.ingresarCliente();
+        		datos.guardarDatos1();
+        		this.presioneParaVolver();
+        	case 2:
+        		Cliente.borrarCliente();
+        		datos.guardarDatos1();
+        		this.presioneParaVolver();
+        }
+	}
+	
 	// Opción que permita presionar para volver:
 	public void presioneParaVolver() {
-		System.out.println("Presione cualquier tecla para volver al menu principal");
+		System.out.println("Ingrese cualquier valor para volver al menu principal");
 		String algo = entrada.next();
 		this.menu(datos);
 	}

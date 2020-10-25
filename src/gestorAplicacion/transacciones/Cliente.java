@@ -188,7 +188,15 @@ public class Cliente implements Serializable {
     public String toString(){
         return "Nombre: " + nombre + "  ||  " + "C.C: " + cc + "  ||  " + "Puntos del cliente: " +  puntos;
     }
- 
+	// Metodo para eliminar un cliente de la base de datos. 
+	public static void borrarCliente() {
+		Scanner entrada = new Scanner(System.in);    	
+    	clientesRegistrados();
+    	System.out.println("Ingrese el indice del Cliente que desea borrar: ");
+    	int indice = entrada.nextInt(); 		
+		Datos.listaClientes.remove(Datos.listaClientes.remove(indice-1));
+		clientesRegistrados();
+	}
     // Este metodo agregara 1 punto al cliente, cada vez que este realice una compra de un periferico o un juego.
     public void agregarPunto() {
     	puntos++;
