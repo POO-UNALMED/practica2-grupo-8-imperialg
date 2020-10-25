@@ -69,8 +69,8 @@ public class Periferico extends Producto implements Serializable,Hardware{
         String plataforma = entrada.next();
         Periferico periferico = new Periferico(nombre, uso, precio, plataforma);       
         Datos.listaPerifericos.add(periferico);
+        System.out.println("\n"+"Se ha actualizado la lista de Perifericos: "+"\n");
         Periferico.perifericosRegistrados();
-        System.out.println(Datos.listaPerifericos);
     }
     
     // Metodo para seleccionar los perifericos a vender y posteirormente generar una factura.
@@ -78,9 +78,8 @@ public class Periferico extends Producto implements Serializable,Hardware{
     	Scanner entrada = new Scanner(System.in);
     	// Si la entrada fue 3, se muestran los perifercios disponibles y se pide la cantidad de perifericos a vender.
 		Periferico.perifericosRegistrados();
-		System.out.println("�Cuantos perifericos desea vender?:");
+		System.out.println("Ingrese la cantidad de perifericos a vender:");
 		int tope = entrada.nextInt();
-		Periferico.perifericosRegistrados();
 		System.out.println("Seleccione el indice de el/los periferico/s que desea vender: )");
 		int[] ints = Producto.seleccionProductos(tope);
 		ArrayList<Producto> productos = Periferico.perifericoPorIndice(ints);
@@ -90,7 +89,6 @@ public class Periferico extends Producto implements Serializable,Hardware{
 		// Se hace el llamado al metodo de la clase Datos para generar una factura de venta.
 		Factura.generarFacturaVenta(productos, cliente);
 		cliente.agregarPunto();
-		Periferico.perifericosRegistrados();
     }
     
     
@@ -107,7 +105,7 @@ public class Periferico extends Producto implements Serializable,Hardware{
 	public static void perifericosRegistrados() {
 		int indicePeriferico = 1;
 		for (Periferico periferico : Datos.listaPerifericos) {
-			System.out.println(indicePeriferico + " " + periferico.toString());
+			System.out.println("Indice: "+indicePeriferico + " " + periferico.toString());
 			indicePeriferico ++;
 		}
 	}
@@ -127,7 +125,7 @@ public class Periferico extends Producto implements Serializable,Hardware{
     // cual esta asociado.
     @Override
     public String toString() {
-        return  "Nombre del periferico: " + getNombre() + "  ||  " + "Plataforma asociada al periferico: " + plataforma + "  ||  " + "Precio: " + "COP $" +  getPrecio();
+        return  "Nombre del periferico: " + getNombre() + "  ||  " + "Plataforma asociada al periferico: " + plataforma + "  ||  " + "Precio: " + "COP $" +  getPrecio()+this.descripcionProducto();
     }
 
     // Se crea metodo repararPeriferico para comprobar si el periferico ya se ha reparado.
@@ -159,80 +157,106 @@ public class Periferico extends Producto implements Serializable,Hardware{
         }
     }
     
-    // Se crea un arraylist que contiene los nombres de los perifericos que se han vendido y la frecuencia de venta de cada uno.
-	 // Se crea un arraylist que contiene los nombres de los juegos que se han vendido y la frecuencia de venta de cada uno.
-	public static ArrayList<String> productosVendidos(){
-       ArrayList<Detalle> todoslosdetalles = new ArrayList<Detalle>();
-       for (Factura factura: Datos.listaFacturas){
-           todoslosdetalles.addAll(factura.getDetalles());
-           
-       }
-       ArrayList<Detalle> depurados = new ArrayList<Detalle>();
-       for (Detalle detalle: todoslosdetalles){
-           if(detalle.getTiposervicio().equals("Venta")){            	
-               depurados.add(detalle);
+    public static Float precioss(String nombre) {
+    	Float todoslosprecios = (float) 0;
+           for (Factura factura: Datos.listaFacturas){
+        	   if(factura.getDetalles().get(0).getProducto().nombre.equals(nombre)) {
+        		   todoslosprecios += factura.getDetalles().get(0).getPrecio();
+        	   }   	   
            }
-       }
-       ArrayList<String> todoslosNombres = new ArrayList<String>();
-       for (Detalle detalle: depurados){        	
-           if(detalle.getProducto() instanceof Periferico){
-               todoslosNombres.add(detalle.getProducto().nombre);
+          return todoslosprecios;
+    }    
+    
+    public static int unidadess(String nombre) {
+    	int todaslasfacturas = 0;
+           for (Factura factura: Datos.listaFacturas){
+        	   if(factura.getDetalles().get(0).getProducto().nombre.equals(nombre)) {
+        		   todaslasfacturas += factura.getDetalles().get(0).getUnidades();
+        	   }   	   
            }
-       }
-       
-      return todoslosNombres;
-   }
-	public static Float precioPeriferico(String nombre){
-		float precio = 0;
-		for(Periferico periferico: Datos.listaPerifericos){
-			if(periferico.getNombre().equals(nombre)) {
-				precio = periferico.getPrecio();
-			}
-		}return precio;
-	}
-	// Metodo que obtiene el juego mas vendido en la tienda.
-	public static void PerifericosMasVendidos(){		
-       ArrayList<String> nombres = Periferico.productosVendidos();
-       ArrayList<String> nombresUnicos = new ArrayList<String>();
-       for (String nombre: nombres){
-           if(!nombresUnicos.contains(nombre))
-               nombresUnicos.add(nombre);
-       }
-       System.out.println("Nombre Del Periferico"+"       ||      "+"Unidades Vendidas"+ "    ||    "+" Sutotal ");
-       Float total = (float) 0;
-       for (String nombre: nombresUnicos){
-       	total += precioPeriferico(nombre)*Collections.frequency(nombres, nombre);
-           System.out.println("  "+nombre + "                " +Collections.frequency(nombres, nombre)+" Unidades"+"                   "+precioPeriferico(nombre)*Collections.frequency(nombres, nombre)+"$ COP");
-       } System.out.println("***TOTAL DE GANANCIAS POR VENTA DE PERIFERICOS: ||"+total+"$ COP|| ***");       
-       
-   }
-	
-	
-	public static void perifericoMasVendido(){
-		
-       ArrayList<String> nombres = Periferico.productosVendidos();
-       ArrayList<String> nombresUnicos = new ArrayList<String>();
-       ArrayList<Integer> cantidadesunidad = new ArrayList<Integer>();
-       for (String nombre: nombres){
-           if(!nombresUnicos.contains(nombre))
-               nombresUnicos.add(nombre);
-       }
-       //System.out.println("Lista de todos los Perifericos y las cantidades vendidas: "+"\n");
-       for (String nombre: nombresUnicos){
-           //System.out.println("Nombre del Periferico: "+nombre + "  ||  "+"Unidades Vendidas: " +Collections.frequency(nombres, nombre));
-           cantidadesunidad.add(Collections.frequency(nombres, nombre));
-       }
-       
-       int aux = 0;
-       String s = "";
-       for(int x=0;x<cantidadesunidad.size();x++) {
-       	if(cantidadesunidad.get(x)>aux) {
-       		aux = cantidadesunidad.get(x);
-       		s = nombresUnicos.get(x);
-       	}
-       }System.out.println("\n"+"NOMBRE DEL PERIFERICO MAS VENDIDO: "+s+"  ||  "+"Unidades Vendidas: "+aux);
-       
-   }
+          return todaslasfacturas;
+    }
+    // Se crea un arraylist que contiene los nombres de las consolas que se han vendido y la frecuencia de venta de cada uno.
+    public static ArrayList<String> productosVendidos(){
+        ArrayList<Detalle> todoslosdetalles = new ArrayList<Detalle>();
+        for (Factura factura: Datos.listaFacturas){
+            todoslosdetalles.addAll(factura.getDetalles());
+            
+        }
+        ArrayList<Detalle> depurados = new ArrayList<Detalle>();
+        for (Detalle detalle: todoslosdetalles){
+            if(detalle.getTiposervicio().equals("Venta")){            	
+                depurados.add(detalle);
+            }
+        }
+        ArrayList<String> todoslosNombres = new ArrayList<String>();
+        for (Detalle detalle: depurados){        	
+            if(detalle.getProducto() instanceof Periferico){
+                todoslosNombres.add(detalle.getProducto().nombre);
+            }
+        }
+        
+       return todoslosNombres;
+    }
+ 	public static Float precioPeriferico(String nombre){
+ 		float precio = 0;
+ 		for(Periferico periferico: Datos.listaPerifericos){
+ 			if(periferico.getNombre().equals(nombre)) {
+ 				precio = periferico.getPrecio();
+ 			}
+ 		}return precio;
+ 	}
+ 	// Metodo que obtiene el juego mas vendido en la tienda.
+ 	public static void PerifericosMasVendidos(){		
+        ArrayList<String> nombres = Periferico.productosVendidos();        
+        ArrayList<String> nombresUnicos = new ArrayList<String>();
+        for (String nombre: nombres){
+            if(!nombresUnicos.contains(nombre))
+                nombresUnicos.add(nombre);
+        }
+        System.out.println("Nombre del Periferico"+"       ||      "+"Unidades Vendidas"+ "    ||    "+"Precio por unidad"+"    ||    "+" Subtotal ");
+        Float total = (float) 0;
+        for (String nombre: nombresUnicos){
+        	total += precioss(nombre);
+            System.out.println("    "+nombre + "                           " +unidadess(nombre) +" undidades                 "+precioPeriferico(nombre)+"$ COP "+"              "+precioss(nombre));
+        } System.out.println("***TOTAL DE GANANCIAS POR VENTA DE PERIFERICOS: ||"+total+"$ COP|| ***");       
+        
+    }
+ 	
+ 	
+ 	public static void PerifericoMasVendido(){
+ 		
+        ArrayList<String> nombres = Periferico.productosVendidos();
+        ArrayList<String> nombresUnicos = new ArrayList<String>();
+        ArrayList<Integer> cantidadesunidad = new ArrayList<Integer>();
+        for (String nombre: nombres){
+            if(!nombresUnicos.contains(nombre))
+                nombresUnicos.add(nombre);
+        }
+        for (String nombre: nombresUnicos){
+            cantidadesunidad.add(unidadess(nombre));
+        }
+        
+        int aux = 0;
+        String s = "";
+        for(int x=0;x<cantidadesunidad.size();x++) {
+        	if(cantidadesunidad.get(x)>aux) {
+        		aux = cantidadesunidad.get(x);
+        		s = nombresUnicos.get(x);
+        	}
+        }System.out.println("\n"+"NOMBRE DEL PERIFERICO MAS VENDIDO: "+s+"  ||  "+"Unidades Vendidas: "+aux);
+        
+        int aux1 = cantidadesunidad.get(0);
+        String s1 = "";
+        for(int x=0;x<cantidadesunidad.size();x++) {
+        	if(cantidadesunidad.get(x)<=aux1) {
+        		aux1 = cantidadesunidad.get(x);
+        		s1 = nombresUnicos.get(x);
+        	}
+        }System.out.println("\n"+"NOMBRE DEL PERIFERICO MENOS VENDIDO: "+s1+"  ||  "+"Unidades Vendidas: "+aux1);
+        
+        
+    }
     
     // Metodo que modifica los perifericos externos.
     public static void modificarPeriferico(ArrayList<Detalle> detalles) {

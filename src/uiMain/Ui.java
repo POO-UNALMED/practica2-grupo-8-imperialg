@@ -34,8 +34,8 @@ public class Ui {
        // Juego.productosVendidos();
         //Juego.productosVendidosY();
         //Consola.ConsolaMasVendida();
-        //Consola.ConsolasMasVendidas();
-        Consola.precioss();
+        Consola.ConsolasMasVendidas();
+        //Consola.precioss("Play2");
         //Factura.facturasRegistradas();
         //Cliente.clientesRegistrados();
        // Consola.consolaMasVendida();
@@ -202,7 +202,7 @@ public class Ui {
 		}		
 		
 		// Genera una factura y la agrega a la lista listaFacturas en la clase Datos a traves del metodo agregar factura.
-		Factura factura = new Factura(cliente, detalles);
+		Factura factura = new Factura(Datos.listaFacturas.size(),cliente, detalles);
 		Factura.agregarFactura(factura);
 		System.out.println(factura);
 
@@ -293,7 +293,7 @@ public class Ui {
 			System.out.println("\n");
 			Juego.JuegoMasVendido();
 			System.out.println("\n");
-			Periferico.perifericoMasVendido();
+			Periferico.PerifericoMasVendido();
 		}
 		
 	}

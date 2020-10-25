@@ -158,6 +158,11 @@ public class Cliente implements Serializable {
  				cl = cliente;
  			}
  		}System.out.println (cl);
+ 		if(cl.getPuntos()>=20) {
+ 			System.out.println("\n"+"El cliente "+cl.getNombre()+" Tiene un bono de 200.000 COP en nuestra tienda por alcanzar los 20 puntos ");
+ 		}else {
+ 			System.out.println("\n"+"Al cliente "+cl.getNombre()+" le faltan "+(20-cl.getPuntos())+" para ganar un bono ");
+ 		}
  	}
     
     // Se crea el toString de la clase Cliente, el cual retorna el nombre del cliente, su cedula

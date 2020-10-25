@@ -84,18 +84,16 @@ public class Juego extends Producto implements Serializable{
         String genero = entrada.next();
         Juego juego = new Juego(nombre, uso, precio, pegi, plataforma, genero);
         Datos.listaJuegos.add(juego);
+        System.out.println("\n"+"Se ha actualizado la lista de Juegos: "+"\n");
         Juego.juegosRegistrados();
-        System.out.println(Datos.listaJuegos);
     }
     
     // Metodo para seleccionar los juegos que se desean vender.
     public static void ventaJuego(Cliente cliente) {
     	Scanner entrada = new Scanner(System.in);
-    	// Si la entrada fue 2, se muestran los juegos disponibles y se pide la cantidad de juegos a vender.
 		Juego.juegosRegistrados();
-		System.out.println("�Cuantos juegos desea vender?: ");
+		System.out.println("Ingrese la cantidad de juegos a vender: ");
 		int tope = entrada.nextInt();
-		Juego.juegosRegistrados();
 		System.out.println("Seleccione el indice de el/los Juego/s que desea vender: ");
 		int[] ints = Producto.seleccionProductos(tope);
 		ArrayList<Producto> productos = Juego.juegoPorIndice(ints);
@@ -105,8 +103,7 @@ public class Juego extends Producto implements Serializable{
 		
 		// Se hace el llamado al metodo de la clase Datos para generar una factura de venta.
 		Factura.generarFacturaVenta(productos, cliente);
-		cliente.agregarPunto();
-		Juego.juegosRegistrados();
+		cliente.agregarPunto();		
     }
     
     
@@ -132,7 +129,7 @@ public class Juego extends Producto implements Serializable{
 	public static void juegosRegistrados() {
 		int indiceJuego = 1;
 		for (Juego juego : Datos.listaJuegos) {
-			System.out.println(indiceJuego + " " + juego.toString());
+			System.out.println("Indice: "+indiceJuego + " " + juego.toString());
 			indiceJuego ++;
 		}
 	}
@@ -147,79 +144,105 @@ public class Juego extends Producto implements Serializable{
 		juegosRegistrados();
 	}
 	
-	 // Se crea un arraylist que contiene los nombres de los juegos que se han vendido y la frecuencia de venta de cada uno.
-	public static ArrayList<String> productosVendidos(){
-        ArrayList<Detalle> todoslosdetalles = new ArrayList<Detalle>();
-        for (Factura factura: Datos.listaFacturas){
-            todoslosdetalles.addAll(factura.getDetalles());
-            
-        }
-        ArrayList<Detalle> depurados = new ArrayList<Detalle>();
-        for (Detalle detalle: todoslosdetalles){
-            if(detalle.getTiposervicio().equals("Venta")){            	
-                depurados.add(detalle);
-            }
-        }
-        ArrayList<String> todoslosNombres = new ArrayList<String>();
-        for (Detalle detalle: depurados){        	
-            if(detalle.getProducto() instanceof Juego){
-                todoslosNombres.add(detalle.getProducto().nombre);
-            }
-        }
-        
-       return todoslosNombres;
-    }
-	public static Float preciojuego(String nombre){
-		float precio = 0;
-		for(Juego juego: Datos.listaJuegos){
-			if(juego.getNombre().equals(nombre)) {
-				precio = juego.getPrecio();
-			}
-		}return precio;
-	}
-	// Metodo que obtiene el juego mas vendido en la tienda.
-	public static void JuegosMasVendidos(){		
-        ArrayList<String> nombres = Juego.productosVendidos();
-        ArrayList<String> nombresUnicos = new ArrayList<String>();
-        for (String nombre: nombres){
-            if(!nombresUnicos.contains(nombre))
-                nombresUnicos.add(nombre);
-        }
-        System.out.println("Nombre Del Juego"+"       ||      "+"Unidades Vendidas"+ "    ||    "+" Sutotal ");
-        Float total = (float) 0;
-        for (String nombre: nombresUnicos){
-        	total += preciojuego(nombre)*Collections.frequency(nombres, nombre);
-            System.out.println("  "+nombre + "                " +Collections.frequency(nombres, nombre)+" Unidades"+"                   "+preciojuego(nombre)*Collections.frequency(nombres, nombre)+"$ COP");
-        } System.out.println("***TOTAL DE GANANCIAS POR VENTA DE JUEGOS: ||"+total+"$ COP|| ***");       
-        
-    }
-	
-	
-	public static void JuegoMasVendido(){
-		
-        ArrayList<String> nombres = Juego.productosVendidos();
-        ArrayList<String> nombresUnicos = new ArrayList<String>();
-        ArrayList<Integer> cantidadesunidad = new ArrayList<Integer>();
-        for (String nombre: nombres){
-            if(!nombresUnicos.contains(nombre))
-                nombresUnicos.add(nombre);
-        }
-        //System.out.println("Lista de todos los Juegos y las cantidades vendidas: "+"\n");
-        for (String nombre: nombresUnicos){
-            //System.out.println("Nombre del Juego: "+nombre + "  ||  "+"Unidades Vendidas: " +Collections.frequency(nombres, nombre));
-            cantidadesunidad.add(Collections.frequency(nombres, nombre));
-        }
-        
-        int aux = 0;
-        String s = "";
-        for(int x=0;x<cantidadesunidad.size();x++) {
-        	if(cantidadesunidad.get(x)>aux) {
-        		aux = cantidadesunidad.get(x);
-        		s = nombresUnicos.get(x);
-        	}
-        }System.out.println("\n"+"NOMBRE DEL JUEGO MAS VENDIDO: "+s+"  ||  "+"Unidades Vendidas: "+aux);
-        
-    }
+	 public static Float precioss(String nombre) {
+	    Float todoslosprecios = (float) 0;
+	         for (Factura factura: Datos.listaFacturas){
+	       	   if(factura.getDetalles().get(0).getProducto().nombre.equals(nombre)) {
+	        		   todoslosprecios += factura.getDetalles().get(0).getPrecio();
+	       	   }   	   
+	       }
+	          return todoslosprecios;
+	  }    
+	    
+	    public static int unidadess(String nombre) {
+	    	int todaslasfacturas = 0;
+	           for (Factura factura: Datos.listaFacturas){
+	        	   if(factura.getDetalles().get(0).getProducto().nombre.equals(nombre)) {
+	        		   todaslasfacturas += factura.getDetalles().get(0).getUnidades();
+	        	   }   	   
+	           }
+	          return todaslasfacturas;
+	    }
+	    // Se crea un arraylist que contiene los nombres de las consolas que se han vendido y la frecuencia de venta de cada uno.
+	    public static ArrayList<String> productosVendidos(){
+	        ArrayList<Detalle> todoslosdetalles = new ArrayList<Detalle>();
+	        for (Factura factura: Datos.listaFacturas){
+	            todoslosdetalles.addAll(factura.getDetalles());
+	            
+	        }
+	        ArrayList<Detalle> depurados = new ArrayList<Detalle>();
+	        for (Detalle detalle: todoslosdetalles){
+	            if(detalle.getTiposervicio().equals("Venta")){            	
+	                depurados.add(detalle);
+	            }
+	        }
+	        ArrayList<String> todoslosNombres = new ArrayList<String>();
+	        for (Detalle detalle: depurados){        	
+	            if(detalle.getProducto() instanceof Juego){
+	                todoslosNombres.add(detalle.getProducto().nombre);
+	            }
+	        }
+	        
+	       return todoslosNombres;
+	    }
+	 	public static Float precioJuego(String nombre){
+	 		float precio = 0;
+	 		for(Juego juego: Datos.listaJuegos){
+	 			if(juego.getNombre().equals(nombre)) {
+	 				precio = juego.getPrecio();
+	 			}
+	 		}return precio;
+	 	}
+	 	// Metodo que obtiene el juego mas vendido en la tienda.
+	 	public static void JuegosMasVendidos(){		
+	        ArrayList<String> nombres = Juego.productosVendidos();        
+	        ArrayList<String> nombresUnicos = new ArrayList<String>();
+	        for (String nombre: nombres){
+	            if(!nombresUnicos.contains(nombre))
+	                nombresUnicos.add(nombre);
+	        }
+	        System.out.println("Nombre del Juego"+"       ||      "+"Unidades Vendidas"+ "    ||    "+"Precio por unidad"+"    ||    "+" Subtotal ");
+	        Float total = (float) 0;
+	        for (String nombre: nombresUnicos){
+	        	total += precioss(nombre);
+	            System.out.println("    "+nombre + "                           " +unidadess(nombre) +" undidades                 "+precioJuego(nombre)+"$ COP "+"              "+precioss(nombre));
+	        } System.out.println("***TOTAL DE GANANCIAS POR VENTA DE JUEGOS: ||"+total+"$ COP|| ***");       
+	        
+	    }
+	 	
+	 	
+	 	public static void JuegoMasVendido(){
+	 		
+	        ArrayList<String> nombres = Juego.productosVendidos();
+	        ArrayList<String> nombresUnicos = new ArrayList<String>();
+	        ArrayList<Integer> cantidadesunidad = new ArrayList<Integer>();
+	        for (String nombre: nombres){
+	            if(!nombresUnicos.contains(nombre))
+	                nombresUnicos.add(nombre);
+	        }
+	        for (String nombre: nombresUnicos){
+	            cantidadesunidad.add(unidadess(nombre));
+	        }
+	        
+	        int aux = 0;
+	        String s = "";
+	        for(int x=0;x<cantidadesunidad.size();x++) {
+	        	if(cantidadesunidad.get(x)>aux) {
+	        		aux = cantidadesunidad.get(x);
+	        		s = nombresUnicos.get(x);
+	        	}
+	        }System.out.println("\n"+"NOMBRE DEL JUEGO MAS VENDID0: "+s+"  ||  "+"Unidades Vendidas: "+aux);
+	        
+	        int aux1 = cantidadesunidad.get(0);
+	        String s1 = "";
+	        for(int x=0;x<cantidadesunidad.size();x++) {
+	        	if(cantidadesunidad.get(x)<=aux1) {
+	        		aux1 = cantidadesunidad.get(x);
+	        		s1 = nombresUnicos.get(x);
+	        	}
+	        }System.out.println("\n"+"NOMBRE DEL JUEGO MENOS VENDIDO: "+s1+"  ||  "+"Unidades Vendidas: "+aux1);
+	        
+	    }
 	
 	// Metodo que recomienda los juegos de la tienda por la edad minima sugerida para ser jugados.
 	public static void recomendarPorEdad() {
@@ -261,6 +284,6 @@ public class Juego extends Producto implements Serializable{
     // Se crea el toString de la clase Juego, el cual mostrara por pantalla el nombre del juego, la plataforma a la que pertenece y su precio.
     @Override
     public String toString() {
-        return "Nombre del juego: "+ getNombre() + "  ||  " + "Plataforma asociada al juego: " + plataforma + "  ||  " + "Precio: " + "COP $" + getPrecio() ;
+        return "Nombre del juego: "+ getNombre() + "  ||  " + "Plataforma asociada al juego: " + plataforma + "  ||  " + "Precio: " + "COP $" + getPrecio() + this.descripcionProducto();
     }
 }

@@ -67,7 +67,8 @@ public class Factura implements Serializable {
 
     // Se crea el constructor de la clase Factura con los parametros de Cliente y detalles (lista con todos los detalles que
     // componen la factura).
-    public Factura(Cliente cliente, ArrayList<Detalle> detalles) {
+    public Factura(int idFactura,Cliente cliente, ArrayList<Detalle> detalles) {
+    	this.idFactura=idFactura;
         this.cliente = cliente;
         this.detalles = detalles;
     }
@@ -85,7 +86,7 @@ public class Factura implements Serializable {
             Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta",unidades);
             listaDetalles.add(detalle);
         }
-        Factura factura = new Factura(cliente, listaDetalles);
+        Factura factura = new Factura(Datos.listaFacturas.size(),cliente, listaDetalles);
         agregarFactura(factura);
         System.out.println("Su venta ha sido realizada exitosamente.");
         System.out.println(factura);
@@ -124,7 +125,7 @@ public class Factura implements Serializable {
             Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta",2);
             listaDetalles.add(detalle);
         }
-        Factura factura = new Factura(cliente, listaDetalles);
+        Factura factura = new Factura(Datos.listaFacturas.size(),cliente, listaDetalles);
         agregarFactura(factura);
         System.out.println(factura);
 
@@ -140,7 +141,7 @@ public class Factura implements Serializable {
             Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta",unidades);
             listaDetalles.add(detalle);
         }
-        Factura factura = new Factura(cliente, listaDetalles);
+        Factura factura = new Factura(Datos.listaFacturas.size(),cliente, listaDetalles);
         agregarFactura(factura);
         System.out.println(factura);
     }
@@ -155,7 +156,7 @@ public class Factura implements Serializable {
             Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta",unidades);
             listaDetalles.add(detalle);
         }
-        Factura factura = new Factura(cliente, listaDetalles);
+        Factura factura = new Factura(Datos.listaFacturas.size(),cliente, listaDetalles);
         agregarFactura(factura);
         System.out.println(factura);
     }

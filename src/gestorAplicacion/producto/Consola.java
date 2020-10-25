@@ -90,26 +90,24 @@ public class Consola extends Producto implements Serializable, Hardware {
         int almacenamiento = entrada.nextInt();
         Consola consola = new Consola(nombre, uso, precio, color, version, almacenamiento);
         Datos.listaConsolas.add(consola);
+        System.out.println("\n"+"Se ha actualizado la lista de Consolas: "+"\n");
         Consola.consolasRegistradas();
-        System.out.println(Datos.listaConsolas);
     }
     public static void ventaConsola(Cliente cliente) {
     	// Si la entrada fue 1, se muestran las consolas disponibles y se pide la cantidad de consolas a vender.
     	Scanner entrada = new Scanner(System.in);
 		Consola.consolasRegistradas();
-		System.out.println("�Cuantas consolas desea vender?: ");
-		int tope = entrada.nextInt();				
+		System.out.println("Ingrese la cantidad de Consolas a vender: ");
+		int tope = entrada.nextInt();			
 		System.out.println("Ingrese el indice de la/s consola/s que desea vender: ");
 		int[] ints = Producto.seleccionProductos(tope);
 		ArrayList<Producto> productos = Consola.consolaPorIndice(ints);
 		for (Producto pro: productos){
 			System.out.println(pro);			
-		}	
-		
+		}			
 		//se hace el llamado al metodo de la clase Datos para generar una factura de venta
 		Factura.generarFacturaVenta(productos, cliente);
 		cliente.agregarPunto(5);
-		consolasRegistradas();
 		Cliente.clientesRegistrados();
     }
     
@@ -164,7 +162,7 @@ public class Consola extends Producto implements Serializable, Hardware {
 	public static void consolasRegistradas() {
 		int indiceConsola = 1;
 		for (Consola consola : Datos.listaConsolas) {
-			System.out.println(indiceConsola + "  ||  " + consola.toString());
+			System.out.println("Indice: "+indiceConsola + "  ||  " + consola.toString());
 			indiceConsola ++;
 		}
 	}
@@ -172,7 +170,7 @@ public class Consola extends Producto implements Serializable, Hardware {
     // Se crea el toString de la clase Consola, el cual mostrara por pantalla la consola y sus caracteristicas.
     @Override
     public String toString() {
-        return "Nombre de la consola: " + getNombre() + "  ||  " + "Capacidad de almacenamiento: " +  almacenamiento + " Gb" + "  ||  " +"Garantia: "+ garantia +" meses "+"  ||  " + "Version de la consola: " +  getVersion() + "  ||  " + "Precio: " + "COP $" + getPrecio();
+        return "Nombre de la consola: " + getNombre() + "  ||  " + "Capacidad de almacenamiento: " +  almacenamiento + " Gb" + "  ||  " +"Garantia: "+ garantia +" meses "+"  ||  " + "Version de la consola: " +  getVersion() + "  ||  " + "Precio: " + "COP $" + getPrecio()+"  ||  "+this.descripcionProducto();
     }
   
     
@@ -185,27 +183,25 @@ public class Consola extends Producto implements Serializable, Hardware {
     	Datos.listaConsolas.remove(Datos.listaConsolas.get(indice-1));
     	consolasRegistradas();
     }
-    
-    public static ArrayList<Float> precioss() {
-    	   ArrayList<Detalle> todoslosdetalles = new ArrayList<Detalle>();
+  
+    public static Float precioss(String nombre) {
+    	Float todoslosprecios = (float) 0;
            for (Factura factura: Datos.listaFacturas){
-               todoslosdetalles.addAll(factura.getDetalles());
-               
-           }System.out.println(todoslosdetalles);
-           ArrayList<Detalle> depurados = new ArrayList<Detalle>();
-           for (Detalle detalle: todoslosdetalles){
-               if(detalle.getTiposervicio().equals("Venta")){            	
-                   depurados.add(detalle);
-               }
-           }System.out.println(depurados);
-           ArrayList<Float> todoslosNombres = new ArrayList<Float>();
-           for (Detalle detalle: depurados){        	
-               if(detalle.getProducto() instanceof Consola){
-                   todoslosNombres.add((float) detalle.getPrecio());
-               }System.out.println(todoslosNombres);
+        	   if(factura.getDetalles().get(0).getProducto().nombre.equals(nombre)) {
+        		   todoslosprecios += factura.getDetalles().get(0).getPrecio();
+        	   }   	   
            }
-           
-          return todoslosNombres;
+          return todoslosprecios;
+    }    
+    
+    public static int unidadess(String nombre) {
+    	int todaslasfacturas = 0;
+           for (Factura factura: Datos.listaFacturas){
+        	   if(factura.getDetalles().get(0).getProducto().nombre.equals(nombre)) {
+        		   todaslasfacturas += factura.getDetalles().get(0).getUnidades();
+        	   }   	   
+           }
+          return todaslasfacturas;
     }
     // Se crea un arraylist que contiene los nombres de las consolas que se han vendido y la frecuencia de venta de cada uno.
     public static ArrayList<String> productosVendidos(){
@@ -213,18 +209,18 @@ public class Consola extends Producto implements Serializable, Hardware {
         for (Factura factura: Datos.listaFacturas){
             todoslosdetalles.addAll(factura.getDetalles());
             
-        }System.out.println(todoslosdetalles);
+        }
         ArrayList<Detalle> depurados = new ArrayList<Detalle>();
         for (Detalle detalle: todoslosdetalles){
             if(detalle.getTiposervicio().equals("Venta")){            	
                 depurados.add(detalle);
             }
-        }System.out.println(depurados);
+        }
         ArrayList<String> todoslosNombres = new ArrayList<String>();
         for (Detalle detalle: depurados){        	
             if(detalle.getProducto() instanceof Consola){
                 todoslosNombres.add(detalle.getProducto().nombre);
-            }System.out.println(todoslosNombres);
+            }
         }
         
        return todoslosNombres;
@@ -239,17 +235,17 @@ public class Consola extends Producto implements Serializable, Hardware {
  	}
  	// Metodo que obtiene el juego mas vendido en la tienda.
  	public static void ConsolasMasVendidas(){		
-        ArrayList<String> nombres = Consola.productosVendidos();
+        ArrayList<String> nombres = Consola.productosVendidos();        
         ArrayList<String> nombresUnicos = new ArrayList<String>();
         for (String nombre: nombres){
             if(!nombresUnicos.contains(nombre))
                 nombresUnicos.add(nombre);
         }
-        System.out.println("Nombre de la Consola"+"       ||      "+"Unidades Vendidas"+ "    ||    "+" Subtotal ");
+        System.out.println("Nombre de la Consola"+"       ||      "+"Unidades Vendidas"+ "    ||    "+"Precio por unidad"+"    ||    "+" Subtotal ");
         Float total = (float) 0;
         for (String nombre: nombresUnicos){
-        	total += precioConsola(nombre)*Collections.frequency(nombres, nombre);
-            System.out.println("    "+nombre + "                    " +Collections.frequency(nombres, nombre)+" Unidades"+"                   "+precioConsola(nombre)*Collections.frequency(nombres, nombre)+"$ COP");
+        	total += precioss(nombre);
+            System.out.println("    "+nombre + "                           " +unidadess(nombre) +" undidades                 "+precioConsola(nombre)+"$ COP "+"              "+precioss(nombre));
         } System.out.println("***TOTAL DE GANANCIAS POR VENTA DE CONSOLAS: ||"+total+"$ COP|| ***");       
         
     }
@@ -264,10 +260,8 @@ public class Consola extends Producto implements Serializable, Hardware {
             if(!nombresUnicos.contains(nombre))
                 nombresUnicos.add(nombre);
         }
-        //System.out.println("Lista de todos los Perifericos y las cantidades vendidas: "+"\n");
         for (String nombre: nombresUnicos){
-            //System.out.println("Nombre del Periferico: "+nombre + "  ||  "+"Unidades Vendidas: " +Collections.frequency(nombres, nombre));
-            cantidadesunidad.add(Collections.frequency(nombres, nombre));
+            cantidadesunidad.add(unidadess(nombre));
         }
         
         int aux = 0;
@@ -278,6 +272,15 @@ public class Consola extends Producto implements Serializable, Hardware {
         		s = nombresUnicos.get(x);
         	}
         }System.out.println("\n"+"NOMBRE DE LA CONSOLA MAS VENDIDA: "+s+"  ||  "+"Unidades Vendidas: "+aux);
+        
+        int aux1 = cantidadesunidad.get(0);
+        String s1 = "";
+        for(int x=0;x<cantidadesunidad.size();x++) {
+        	if(cantidadesunidad.get(x)<=aux1) {
+        		aux1 = cantidadesunidad.get(x);
+        		s1 = nombresUnicos.get(x);
+        	}
+        }System.out.println("\n"+"NOMBRE DE LA CONSOLA MENOS VENDIDA: "+s1+"  ||  "+"Unidades Vendidas: "+aux1);
         
     }
     
@@ -311,7 +314,7 @@ public class Consola extends Producto implements Serializable, Hardware {
     public static void descripcionConsolas() {
         int indiceConsola = 1;
         for (Consola consola : Datos.listaConsolas) {
-            System.out.println(indiceConsola + " " + consola.descripcionProducto());
+            System.out.println("Indice: "+indiceConsola + " " + consola.descripcionProducto());
             indiceConsola ++;
         }
     }
