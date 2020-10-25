@@ -17,9 +17,9 @@
 
 package gestorAplicacion.transacciones;
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
+
+
 
 import BaseDatos.Datos;
 import gestorAplicacion.producto.*;
@@ -27,10 +27,17 @@ import gestorAplicacion.producto.*;
 public class Factura implements Serializable {
     private static final long serialVersionUID = 1L;
     private static int idFactura;
+    //private static LocalDate now = LocalDate.now(); 
+    //private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"); 
     private Cliente cliente;
     private ArrayList<Detalle> detalles = new ArrayList<Detalle>(); // Lista que contiene todos los detalles de una factura.
     private static ArrayList<Factura> listaFacturas = Datos.listaFacturas; // Lista donde se almacenan las facturas.
 
+    //public static String getFecha() {
+    	//return now.format(dtf); 
+    //}
+      
+    
     // Se crean los metodos Get y Set de los atributos de la Clase Factura.
     
     public Cliente getCliente() {
@@ -88,7 +95,7 @@ public class Factura implements Serializable {
     // Mostrar en pantalla las facturas registradas.
 	public static void facturasRegistradas() {
 		for (Factura factura : Datos.listaFacturas) {
-			System.out.println(factura.toString());
+			System.out.println(factura.toString()+"\n");
 			idFactura++;
 		}
 	}
@@ -106,7 +113,7 @@ public class Factura implements Serializable {
             detas += detalle.toString() + "\n";
             total += detalle.getPrecio();
         }
-        return  "ID Factura: " + idFactura + "  ||  " +  "Nombre del cliente: " + cliente.getNombre() + "\n" +  "Detalle " + detas + "Total a pagar: " + "COP $" + total;
+        return  "ID Factura: " + idFactura + "  ||  "+  "Nombre del cliente: " + cliente.getNombre() + "\n" +  "Detalle: "+"\n"+ detas + "Total a pagar: " + "COP $" + total;
         }
     
     

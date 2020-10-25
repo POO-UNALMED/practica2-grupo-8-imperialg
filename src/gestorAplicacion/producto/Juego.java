@@ -152,36 +152,73 @@ public class Juego extends Producto implements Serializable{
         ArrayList<Detalle> todoslosdetalles = new ArrayList<Detalle>();
         for (Factura factura: Datos.listaFacturas){
             todoslosdetalles.addAll(factura.getDetalles());
+            
         }
         ArrayList<Detalle> depurados = new ArrayList<Detalle>();
         for (Detalle detalle: todoslosdetalles){
-            if(detalle.getTiposervicio()== "Venta"){
+            if(detalle.getTiposervicio().equals("Venta")){            	
                 depurados.add(detalle);
             }
         }
         ArrayList<String> todoslosNombres = new ArrayList<String>();
-        for (Detalle detalle: depurados){
+        for (Detalle detalle: depurados){        	
             if(detalle.getProducto() instanceof Juego){
                 todoslosNombres.add(detalle.getProducto().nombre);
-                System.out.println(detalle.getProducto().nombre);
             }
         }
-        return todoslosNombres;
+        
+       return todoslosNombres;
     }
-	
+	public static Float preciojuego(String nombre){
+		float precio = 0;
+		for(Juego juego: Datos.listaJuegos){
+			if(juego.getNombre().equals(nombre)) {
+				precio = juego.getPrecio();
+			}
+		}return precio;
+	}
 	// Metodo que obtiene el juego mas vendido en la tienda.
-	public static void JuegoMasVendido(){
+	public static void JuegosMasVendidos(){		
         ArrayList<String> nombres = Juego.productosVendidos();
         ArrayList<String> nombresUnicos = new ArrayList<String>();
         for (String nombre: nombres){
             if(!nombresUnicos.contains(nombre))
                 nombresUnicos.add(nombre);
         }
-        ArrayList<Integer> numeroDeUnidadesVendidas = new ArrayList<Integer>();
-        int i = 0;
+        System.out.println("Nombre Del Juego"+"       ||      "+"Unidades Vendidas"+ "    ||    "+" Sutotal ");
+        Float total = (float) 0;
         for (String nombre: nombresUnicos){
-            System.out.println(nombre + " " +Collections.frequency(nombres, nombre));
+        	total += preciojuego(nombre)*Collections.frequency(nombres, nombre);
+            System.out.println("  "+nombre + "                " +Collections.frequency(nombres, nombre)+" Unidades"+"                   "+preciojuego(nombre)*Collections.frequency(nombres, nombre)+"$ COP");
+        } System.out.println("***TOTAL DE GANANCIAS POR VENTA DE JUEGOS: ||"+total+"$ COP|| ***");       
+        
+    }
+	
+	
+	public static void JuegoMasVendido(){
+		
+        ArrayList<String> nombres = Juego.productosVendidos();
+        ArrayList<String> nombresUnicos = new ArrayList<String>();
+        ArrayList<Integer> cantidadesunidad = new ArrayList<Integer>();
+        for (String nombre: nombres){
+            if(!nombresUnicos.contains(nombre))
+                nombresUnicos.add(nombre);
         }
+        //System.out.println("Lista de todos los Juegos y las cantidades vendidas: "+"\n");
+        for (String nombre: nombresUnicos){
+            //System.out.println("Nombre del Juego: "+nombre + "  ||  "+"Unidades Vendidas: " +Collections.frequency(nombres, nombre));
+            cantidadesunidad.add(Collections.frequency(nombres, nombre));
+        }
+        
+        int aux = 0;
+        String s = "";
+        for(int x=0;x<cantidadesunidad.size();x++) {
+        	if(cantidadesunidad.get(x)>aux) {
+        		aux = cantidadesunidad.get(x);
+        		s = nombresUnicos.get(x);
+        	}
+        }System.out.println("\n"+"NOMBRE DEL JUEGO MAS VENDIDO: "+s+"  ||  "+"Unidades Vendidas: "+aux);
+        
     }
 	
 	// Metodo que recomienda los juegos de la tienda por la edad minima sugerida para ser jugados.

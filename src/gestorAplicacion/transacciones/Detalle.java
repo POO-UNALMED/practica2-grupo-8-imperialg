@@ -47,7 +47,9 @@ public class Detalle implements Serializable{
     public void setTiposervicio(String tiposervicio) {
         this.tiposervicio = tiposervicio;
     }
-    
+    public int getUnidades() {
+    	return unidades;
+    }
     // Se crea el constructor de la clase Detalle, el cual recibe como parametros los atributos de esta clase.
     public Detalle(Producto producto, float precio, String tiposervicio,int unidades) {
         this.producto = producto;
@@ -62,6 +64,6 @@ public class Detalle implements Serializable{
     // el nombre del producto involucrado en el detalle y el precio del detalle, el cual depende del tipo de servicio realizado.
     
     public String toString() {
-    	 return  " :  " + "Tipo de servicio: " +  tiposervicio + "  ||  " + "Nombre del producto: " +  producto.getNombre() + "  ||  " + "Unidades: "+ unidades+"  ||  "+"Precio unitario: "+producto.getPrecio()+"  ||  "+"Total: " + "COP $"+  precio;
+    	 return  "  " + "Tipo de servicio: " +  tiposervicio + "  ||  " + "Nombre del producto: "+ producto.getNombre() + "  ||  " + "Unidades: "+ unidades+"  ||  "+"Precio unitario: "+producto.getPrecio()+"  ||  "+"Subtotal: " + "COP $"+  precio;
     }
 }

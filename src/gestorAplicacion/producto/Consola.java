@@ -15,7 +15,6 @@
 // los cuales almacenaran informacion acerca de cada Consola que se vaya registrando en la plataforma.
 
 package gestorAplicacion.producto;
-import java.util.ArrayList;
 import BaseDatos.Datos;
 import gestorAplicacion.transacciones.*;
 import java.util.*;
@@ -187,42 +186,98 @@ public class Consola extends Producto implements Serializable, Hardware {
     	consolasRegistradas();
     }
     
-    
+    public static ArrayList<Float> precioss() {
+    	   ArrayList<Detalle> todoslosdetalles = new ArrayList<Detalle>();
+           for (Factura factura: Datos.listaFacturas){
+               todoslosdetalles.addAll(factura.getDetalles());
+               
+           }System.out.println(todoslosdetalles);
+           ArrayList<Detalle> depurados = new ArrayList<Detalle>();
+           for (Detalle detalle: todoslosdetalles){
+               if(detalle.getTiposervicio().equals("Venta")){            	
+                   depurados.add(detalle);
+               }
+           }System.out.println(depurados);
+           ArrayList<Float> todoslosNombres = new ArrayList<Float>();
+           for (Detalle detalle: depurados){        	
+               if(detalle.getProducto() instanceof Consola){
+                   todoslosNombres.add((float) detalle.getPrecio());
+               }System.out.println(todoslosNombres);
+           }
+           
+          return todoslosNombres;
+    }
     // Se crea un arraylist que contiene los nombres de las consolas que se han vendido y la frecuencia de venta de cada uno.
     public static ArrayList<String> productosVendidos(){
         ArrayList<Detalle> todoslosdetalles = new ArrayList<Detalle>();
         for (Factura factura: Datos.listaFacturas){
             todoslosdetalles.addAll(factura.getDetalles());
-        }
+            
+        }System.out.println(todoslosdetalles);
         ArrayList<Detalle> depurados = new ArrayList<Detalle>();
         for (Detalle detalle: todoslosdetalles){
-            if(detalle.getTiposervicio()== "Venta"){
+            if(detalle.getTiposervicio().equals("Venta")){            	
                 depurados.add(detalle);
             }
-        }
+        }System.out.println(depurados);
         ArrayList<String> todoslosNombres = new ArrayList<String>();
-        for (Detalle detalle: depurados){
+        for (Detalle detalle: depurados){        	
             if(detalle.getProducto() instanceof Consola){
                 todoslosNombres.add(detalle.getProducto().nombre);
-                System.out.println(detalle.getProducto().nombre);
-            }
+            }System.out.println(todoslosNombres);
         }
-        return todoslosNombres;
+        
+       return todoslosNombres;
     }
-    
-    // Metodo para obtener la consola mas vendida de la tienda.
-    public static void consolaMasVendida(){
+ 	public static Float precioConsola(String nombre){
+ 		float precio = 0;
+ 		for(Consola consola: Datos.listaConsolas){
+ 			if(consola.getNombre().equals(nombre)) {
+ 				precio = consola.getPrecio();
+ 			}
+ 		}return precio;
+ 	}
+ 	// Metodo que obtiene el juego mas vendido en la tienda.
+ 	public static void ConsolasMasVendidas(){		
         ArrayList<String> nombres = Consola.productosVendidos();
         ArrayList<String> nombresUnicos = new ArrayList<String>();
         for (String nombre: nombres){
             if(!nombresUnicos.contains(nombre))
                 nombresUnicos.add(nombre);
         }
-        ArrayList<Integer> numeroDeUnidadesVendidas = new ArrayList<Integer>();
-        int i = 0;
+        System.out.println("Nombre de la Consola"+"       ||      "+"Unidades Vendidas"+ "    ||    "+" Subtotal ");
+        Float total = (float) 0;
         for (String nombre: nombresUnicos){
-            System.out.println("Nombre de la consola: " + nombre + "  ||  " + "Unidades vendidas: " + Collections.frequency(nombres, nombre));
+        	total += precioConsola(nombre)*Collections.frequency(nombres, nombre);
+            System.out.println("    "+nombre + "                    " +Collections.frequency(nombres, nombre)+" Unidades"+"                   "+precioConsola(nombre)*Collections.frequency(nombres, nombre)+"$ COP");
+        } System.out.println("***TOTAL DE GANANCIAS POR VENTA DE CONSOLAS: ||"+total+"$ COP|| ***");       
+        
+    }
+ 	
+ 	
+ 	public static void ConsolaMasVendida(){
+ 		
+        ArrayList<String> nombres = Consola.productosVendidos();
+        ArrayList<String> nombresUnicos = new ArrayList<String>();
+        ArrayList<Integer> cantidadesunidad = new ArrayList<Integer>();
+        for (String nombre: nombres){
+            if(!nombresUnicos.contains(nombre))
+                nombresUnicos.add(nombre);
         }
+        //System.out.println("Lista de todos los Perifericos y las cantidades vendidas: "+"\n");
+        for (String nombre: nombresUnicos){
+            //System.out.println("Nombre del Periferico: "+nombre + "  ||  "+"Unidades Vendidas: " +Collections.frequency(nombres, nombre));
+            cantidadesunidad.add(Collections.frequency(nombres, nombre));
+        }
+        
+        int aux = 0;
+        String s = "";
+        for(int x=0;x<cantidadesunidad.size();x++) {
+        	if(cantidadesunidad.get(x)>aux) {
+        		aux = cantidadesunidad.get(x);
+        		s = nombresUnicos.get(x);
+        	}
+        }System.out.println("\n"+"NOMBRE DE LA CONSOLA MAS VENDIDA: "+s+"  ||  "+"Unidades Vendidas: "+aux);
         
     }
     
