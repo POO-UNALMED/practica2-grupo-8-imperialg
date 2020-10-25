@@ -12,6 +12,8 @@
 *            - Daniel Alejandro Giraldo  */
 
 
+// En este modulo se implementa la serializacion de datos, con el fin de poder ser almacenados en archivos .txt y asi poder ser
+// accesados a ellos en cualquier momento por el administrador del software.
 package BaseDatos;
 import gestorAplicacion.producto.Consola;
 import gestorAplicacion.producto.Juego;
@@ -138,5 +140,4 @@ public class Datos{
         e.printStackTrace();
     }
     }
-
 }

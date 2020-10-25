@@ -105,9 +105,11 @@ public class Consola extends Producto implements Serializable, Hardware {
 		for (Producto pro: productos){
 			System.out.println(pro);			
 		}			
+		
 		//se hace el llamado al metodo de la clase Datos para generar una factura de venta
 		Factura.generarFacturaVenta(productos, cliente);
 		cliente.agregarPunto(5);
+		System.out.println("\n"+ "Lista de Clientes con puntos actualizados despues de la compra:" +"\n");
 		Cliente.clientesRegistrados();
     }
     
@@ -127,7 +129,7 @@ public class Consola extends Producto implements Serializable, Hardware {
 		String tiposervicio = entrada.next();
 		System.out.println("Ingrese el precio del servicio tecnico: ");
 		float precio = entrada.nextFloat();
-		System.out.println("Ingrese las unidades: ");
+		System.out.println("Ingrese las unidades a las que se les aplicara el servicio tecnico: ");
 		int unidades = entrada.nextInt();
 		Detalle detalle = new Detalle(producto, precio, tiposervicio,unidades);
 		detalles.add(detalle);
@@ -225,6 +227,7 @@ public class Consola extends Producto implements Serializable, Hardware {
         
        return todoslosNombres;
     }
+    
  	public static Float precioConsola(String nombre){
  		float precio = 0;
  		for(Consola consola: Datos.listaConsolas){
@@ -246,11 +249,11 @@ public class Consola extends Producto implements Serializable, Hardware {
         for (String nombre: nombresUnicos){
         	total += precioss(nombre);
             System.out.println("    "+nombre + "                           " +unidadess(nombre) +" undidades                 "+precioConsola(nombre)+"$ COP "+"              "+precioss(nombre));
-        } System.out.println("***TOTAL DE GANANCIAS POR VENTA DE CONSOLAS: ||"+total+"$ COP|| ***");       
+        } System.out.println("***** TOTAL DE GANANCIAS POR VENTA DE CONSOLAS: " + "||" + "COP $ " + total + " *****");
         
     }
  	
- 	
+ 	// Metodo para conocer cual es la consola mas vendida de la tienda-
  	public static void ConsolaMasVendida(){
  		
         ArrayList<String> nombres = Consola.productosVendidos();
@@ -284,7 +287,8 @@ public class Consola extends Producto implements Serializable, Hardware {
         
     }
     
- // Metodo que moodifica el precio de algunas consolas, dado un array de indices y un array de precios.
+ 	
+ 	// Metodo que moodifica el precio de algunas consolas, dado un array de indices y un array de precios.
     public static void modificarPreciosConsolas(int[] ints, int[] precios){
         int indice = 0;
         for (int i: ints){
@@ -330,6 +334,6 @@ public class Consola extends Producto implements Serializable, Hardware {
         } else if (!estado){
             checker = "Funcional";
         }
-        return "Nombre de la consola: " +   getNombre() +  "  ||  " + "Version: " + getVersion() + "  ||  " +  "Con almacenamiento de: " + almacenamiento + " Gb" +  "  ||  " + "Garantia: "+ garantia +" meses "+ "En estado: " + checker;
+        return "En estado: " + checker;
     }    
 }

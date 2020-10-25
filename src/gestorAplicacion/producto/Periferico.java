@@ -63,7 +63,7 @@ public class Periferico extends Producto implements Serializable,Hardware{
         String nombre = entrada.next();
         System.out.println("Ingrese el uso (true si el periferico esta usado o  false si el periferico esta nuevo): ");
         Boolean uso = entrada.nextBoolean();
-        System.out.println("Ingrese el precio del perferico (En COP $): ");
+        System.out.println("Ingrese el precio del perferico: ");
         float precio = entrada.nextFloat();
         System.out.println("Ingrese el nombre plataforma asociada al periferico: ");
         String plataforma = entrada.next();
@@ -80,7 +80,7 @@ public class Periferico extends Producto implements Serializable,Hardware{
 		Periferico.perifericosRegistrados();
 		System.out.println("Ingrese la cantidad de perifericos a vender:");
 		int tope = entrada.nextInt();
-		System.out.println("Seleccione el indice de el/los periferico/s que desea vender: )");
+		System.out.println("Seleccione el indice de el/los periferico/s que desea vender: ");
 		int[] ints = Producto.seleccionProductos(tope);
 		ArrayList<Producto> productos = Periferico.perifericoPorIndice(ints);
 		for(Producto pro: productos) {
@@ -89,6 +89,8 @@ public class Periferico extends Producto implements Serializable,Hardware{
 		// Se hace el llamado al metodo de la clase Datos para generar una factura de venta.
 		Factura.generarFacturaVenta(productos, cliente);
 		cliente.agregarPunto();
+		System.out.println("\n"+ "Lista de Clientes con puntos actualizados despues de la compra:" +"\n");
+		Cliente.clientesRegistrados();
     }
     
     
@@ -105,7 +107,7 @@ public class Periferico extends Producto implements Serializable,Hardware{
 	public static void perifericosRegistrados() {
 		int indicePeriferico = 1;
 		for (Periferico periferico : Datos.listaPerifericos) {
-			System.out.println("Indice: "+indicePeriferico + " " + periferico.toString());
+			System.out.println("Indice: "+indicePeriferico + "  ||  " + periferico.toString());
 			indicePeriferico ++;
 		}
 	}
@@ -157,6 +159,7 @@ public class Periferico extends Producto implements Serializable,Hardware{
         }
     }
     
+    // Suma de precios en listaFacturas dado un nombre de periferico
     public static Float precioss(String nombre) {
     	Float todoslosprecios = (float) 0;
            for (Factura factura: Datos.listaFacturas){
@@ -167,6 +170,7 @@ public class Periferico extends Producto implements Serializable,Hardware{
           return todoslosprecios;
     }    
     
+    // Suma de las unidades vendidas en listaFacturas dado un nombre de periferico
     public static int unidadess(String nombre) {
     	int todaslasfacturas = 0;
            for (Factura factura: Datos.listaFacturas){
@@ -198,6 +202,8 @@ public class Periferico extends Producto implements Serializable,Hardware{
         
        return todoslosNombres;
     }
+    
+    // Permite ver el precio de un periferico en la lista de facturas dado su nombre.
  	public static Float precioPeriferico(String nombre){
  		float precio = 0;
  		for(Periferico periferico: Datos.listaPerifericos){
@@ -223,7 +229,7 @@ public class Periferico extends Producto implements Serializable,Hardware{
         
     }
  	
- 	
+ 	// Metodo que permite conocer el periferico que se vende con mas frecuencia en la tienda.
  	public static void PerifericoMasVendido(){
  		
         ArrayList<String> nombres = Periferico.productosVendidos();
@@ -253,9 +259,9 @@ public class Periferico extends Producto implements Serializable,Hardware{
         		aux1 = cantidadesunidad.get(x);
         		s1 = nombresUnicos.get(x);
         	}
-        }System.out.println("\n"+"NOMBRE DEL PERIFERICO MENOS VENDIDO: "+s1+"  ||  "+"Unidades Vendidas: "+aux1);
+        }
         
-        
+        System.out.println("\n"+"NOMBRE DEL PERIFERICO MENOS VENDIDO: "+s1+"  ||  "+"Unidades Vendidas: "+aux1);
     }
     
     // Metodo que modifica los perifericos externos.
@@ -290,6 +296,6 @@ public class Periferico extends Producto implements Serializable,Hardware{
         } else if (!estado){
             checker = "Funcional";
         }
-        return getNombre()  +" En estado: " + checker;
+        return "  ||  "  + " Estado: " + checker;
     }
 }

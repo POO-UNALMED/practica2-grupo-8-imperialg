@@ -86,6 +86,6 @@ public abstract class Producto implements Serializable{
         } else if (!uso){
             checker1 = " Nuevo";
         }
-        return getNombre() + " " + checker1;
+        return "  ||  " + "Estado:"  + checker1;
     }
 }

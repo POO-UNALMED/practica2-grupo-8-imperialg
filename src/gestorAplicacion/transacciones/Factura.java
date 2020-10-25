@@ -27,17 +27,10 @@ import gestorAplicacion.producto.*;
 public class Factura implements Serializable {
     private static final long serialVersionUID = 1L;
     private static int idFactura;
-    //private static LocalDate now = LocalDate.now(); 
-    //private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"); 
     private Cliente cliente;
     private ArrayList<Detalle> detalles = new ArrayList<Detalle>(); // Lista que contiene todos los detalles de una factura.
     private static ArrayList<Factura> listaFacturas = Datos.listaFacturas; // Lista donde se almacenan las facturas.
 
-    //public static String getFecha() {
-    	//return now.format(dtf); 
-    //}
-      
-    
     // Se crean los metodos Get y Set de los atributos de la Clase Factura.
     
     public Cliente getCliente() {
@@ -88,7 +81,7 @@ public class Factura implements Serializable {
         }
         Factura factura = new Factura(Datos.listaFacturas.size(),cliente, listaDetalles);
         agregarFactura(factura);
-        System.out.println("Su venta ha sido realizada exitosamente.");
+        System.out.println("***** SU VENTA HA SIDO REALIZADA EXITOSAMENTE *****");
         System.out.println(factura);
 
     }

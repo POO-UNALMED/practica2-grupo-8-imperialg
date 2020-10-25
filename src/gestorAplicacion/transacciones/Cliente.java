@@ -98,6 +98,7 @@ public class Cliente implements Serializable {
         String email = entrada.next();
         Cliente cliente = new Cliente(nombre, cc, celular, email);
         Datos.listaClientes.add(cliente);
+        System.out.println("\n"+ "Se ha actualizado la lista de Clientes."+"\n");
         Cliente.clientesRegistrados();
         
     }
@@ -126,6 +127,7 @@ public class Cliente implements Serializable {
     
     // Selecciona el cliente registrado marcado con el indice i.
 	public static Cliente clienteRegistrado(){ 
+		System.out.println("Ingrese el indice del cliente al cual se le aplicara la transaccion: "+"\n");
 		 Scanner entrada = new Scanner(System.in); 
 		clientesRegistrados();                                           
 		int i = entrada.nextInt();
@@ -142,13 +144,14 @@ public class Cliente implements Serializable {
  	public static void clientesRegistrados() {
  		int indiceCliente = 1;
  		for (Cliente cliente : Datos.listaClientes) {
- 			System.out.println(indiceCliente + " " + cliente.toString());
+ 			System.out.println("Indice: " + indiceCliente + "  ||  " + cliente.toString());
  			indiceCliente ++;
  		}
  	}
  	
  	// Metodo para obtener al cliente con mas puntos de la tienda.
  	public static void clienteConMasPuntos() {
+ 		Scanner entrada = new Scanner(System.in);
  		int aux = 0;
  		Cliente cl=null;
  		for(Cliente cliente:Datos.listaClientes ) {
@@ -159,10 +162,25 @@ public class Cliente implements Serializable {
  			}
  		}System.out.println (cl);
  		if(cl.getPuntos()>=20) {
- 			System.out.println("\n"+"El cliente "+cl.getNombre()+" Tiene un bono de 200.000 COP en nuestra tienda por alcanzar los 20 puntos ");
+ 			System.out.println("\n"+"El cliente "+cl.getNombre()+" Tiene un bono de COP $ 300.000 en nuestra tienda por alcanzar los 20 puntos ");
+ 			System.out.println("¿Desea redimir el bono al cliente " + cl.getNombre() + " ?"+"\n");
+ 			System.out.println("Ingrese una opcion: ");
+ 			System.out.println("1. Si "+"\n"+"2. No");
+ 			int eleccion = entrada.nextInt();
+ 			switch (eleccion){
+ 			case 1:
+ 				cl.agregarPunto(0);
+ 				System.out.println("Se ha redimido el bono y se ha actualizado la lista de los clientes con los nuevos puntos."+"\n");
+ 				clientesRegistrados();
+ 				break;
+ 			
+ 			case 2:
+ 				break;
+ 			}
  		}else {
- 			System.out.println("\n"+"Al cliente "+cl.getNombre()+" le faltan "+(20-cl.getPuntos())+" para ganar un bono ");
+ 			System.out.println("\n"+"Al cliente "+cl.getNombre()+" le faltan "+(20-cl.getPuntos())+" puntos para ganar un bono ");
  		}
+ 		
  	}
     
     // Se crea el toString de la clase Cliente, el cual retorna el nombre del cliente, su cedula
@@ -177,6 +195,11 @@ public class Cliente implements Serializable {
     }    
     // Esta sobrecarga de metodo es para agregar 5 puntos al cliente cuando compra cualquier consola.
     public void agregarPunto(int x) {
-    	this.puntos+=x;
+    	if(x==0) {
+    		this.puntos=0;
+    	}
+    	else {
+    		this.puntos+=x;
+    	}
     }
 }

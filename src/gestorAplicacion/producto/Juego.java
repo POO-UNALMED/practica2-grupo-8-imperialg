@@ -76,7 +76,7 @@ public class Juego extends Producto implements Serializable{
         Boolean uso = entrada.nextBoolean();
         System.out.println("Ingrese el precio del juego: ");
         float precio = entrada.nextFloat();
-        System.out.println("Ingrese pegi (Edad minima recomendada para jugar: ");
+        System.out.println("Ingrese pegi (Edad minima recomendada para jugar): ");
         int pegi = entrada.nextInt();
         System.out.println("Ingrese el nombre plataforma asociada al juego: ");
         String plataforma = entrada.next();
@@ -103,7 +103,9 @@ public class Juego extends Producto implements Serializable{
 		
 		// Se hace el llamado al metodo de la clase Datos para generar una factura de venta.
 		Factura.generarFacturaVenta(productos, cliente);
-		cliente.agregarPunto();		
+		cliente.agregarPunto();
+		System.out.println("\n"+ "Lista de Clientes con puntos actualizados despues de la compra:" +"\n");
+		Cliente.clientesRegistrados();
     }
     
     
@@ -129,7 +131,7 @@ public class Juego extends Producto implements Serializable{
 	public static void juegosRegistrados() {
 		int indiceJuego = 1;
 		for (Juego juego : Datos.listaJuegos) {
-			System.out.println("Indice: "+indiceJuego + " " + juego.toString());
+			System.out.println("Indice: "+indiceJuego +"  ||  "+ juego.toString());
 			indiceJuego ++;
 		}
 	}
@@ -193,6 +195,7 @@ public class Juego extends Producto implements Serializable{
 	 			}
 	 		}return precio;
 	 	}
+	 	
 	 	// Metodo que obtiene el juego mas vendido en la tienda.
 	 	public static void JuegosMasVendidos(){		
 	        ArrayList<String> nombres = Juego.productosVendidos();        
@@ -201,12 +204,12 @@ public class Juego extends Producto implements Serializable{
 	            if(!nombresUnicos.contains(nombre))
 	                nombresUnicos.add(nombre);
 	        }
-	        System.out.println("Nombre del Juego"+"       ||      "+"Unidades Vendidas"+ "    ||    "+"Precio por unidad"+"    ||    "+" Subtotal ");
+	        System.out.println("Nombre del Juego "+"       ||      "+"Unidades Vendidas "+ "    ||    "+"Precio por unidad"+"    ||    "+" Subtotal ");
 	        Float total = (float) 0;
 	        for (String nombre: nombresUnicos){
 	        	total += precioss(nombre);
 	            System.out.println("    "+nombre + "                           " +unidadess(nombre) +" undidades                 "+precioJuego(nombre)+"$ COP "+"              "+precioss(nombre));
-	        } System.out.println("***TOTAL DE GANANCIAS POR VENTA DE JUEGOS: ||"+total+"$ COP|| ***");       
+	        } System.out.println("***** TOTAL DE GANANCIAS POR VENTA DE JUEGOS: " + "||" + "COP $ " + total + " *****");       
 	        
 	    }
 	 	
@@ -246,7 +249,7 @@ public class Juego extends Producto implements Serializable{
 	
 	// Metodo que recomienda los juegos de la tienda por la edad minima sugerida para ser jugados.
 	public static void recomendarPorEdad() {
-		System.out.println("Juegos recomendados para edad de 6 aï¿½os a 12 aÃ±os inclusive: "+"\n");
+		System.out.println("Juegos recomendados para edad de 6 años a 12 años inclusive: "+"\n");
 		
 		for(Juego juego:Datos.listaJuegos) {
 			if(juego.pegi<=12) {				
@@ -254,7 +257,7 @@ public class Juego extends Producto implements Serializable{
 			}
 		}	
 		System.out.println("\n");
-		System.out.println("\n"+"Juegos recomendados para edad de mas de 12 aï¿½os a 18 aï¿½os inclusive: "+"\n");
+		System.out.println("\n"+"Juegos recomendados para edad de mas de 12 años a 18 años inclusive: "+"\n");
 		
 			for(Juego juego:Datos.listaJuegos) {
 				if(juego.pegi>12&&juego.pegi<=18) {	
@@ -263,7 +266,7 @@ public class Juego extends Producto implements Serializable{
 				}
 			}
 			System.out.println("\n");
-			System.out.println("\n"+"Juegos recomendados para edad de +18 aï¿½os: "+"\n");
+			System.out.println("\n"+"Juegos recomendados para edad de +18 años: "+"\n");
 			for(Juego juego:Datos.listaJuegos) {
 				if(juego.pegi>18) {	
 					System.out.println("Nombre del Juego: "+juego.getNombre()+"  ||  "+" Genero: "+juego.getGenero()+"  ||  "+" Precio: "+juego.getPrecio()+"  ||  "+"Edad recomendada para jugar: "+juego.getPegi());
