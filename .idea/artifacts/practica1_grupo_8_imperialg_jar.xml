@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="practica1-grupo-8-imperialg:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/practica1_grupo_8_imperialg_jar</output-path>
+    <root id="archive" name="practica1-grupo-8-imperialg.jar">
+      <element id="module-output" name="practica1-grupo-8-imperialg" />
+    </root>
+  </artifact>
+</component>

@@ -53,11 +53,13 @@ public class Ui {
 	        System.out.println("3. Vender Productos");
 	        System.out.println("4. Servicios tecnicos");
 	        System.out.println("5. Imperial");
+	        System.out.println("6. Salir del sistema");
 	        
 	        int i = entrada.nextInt();
 	        switch (i){
 	            case 1:
 	                Cliente.ingresarCliente();
+	                this.menu(datos);
 	                break;
 	            case 2:
 	            	this.menuAgregarBorrarProductos(datos);
@@ -71,12 +73,16 @@ public class Ui {
 	            case 5:
 	                this.menuImperial(datos);
 	                break;
+	            case 6:
+	            	datos.guardarDatos();
+	            	datos.guardarDatos1();
+	            	System.exit(1);
 	        }
 	    }
 	
 	// Este metodo sera ejecutado si la opcion del usuario en el menu principal fue 2: Ingresar o Eliminar productos.
 	public void menuAgregarBorrarProductos(Datos datos){
-		System.out.println("Ingrese una opcion");
+		System.out.println("Ingrese una opcion:");
 		System.out.println("0. Volver");
 		System.out.println("1. Ingresar Consola/s");
 		System.out.println("2. Ingresar Juego/s");
@@ -92,21 +98,30 @@ public class Ui {
 				this.menu(datos);
 			case 1:
 				Consola.ingresarConsola();
+				this.presioneParaVolver();
 				break;
 			case 2:
 				Juego.ingresarJuego();
+				this.presioneParaVolver();
 				break;
 			case 3:
 				Periferico.ingresarPeriferico();
+				this.presioneParaVolver();
 				break;
 			case 4:
 				Consola.borrarConsola();
+				System.out.println("Su consola ha sido eliminada correctamente");
+				this.presioneParaVolver();
 				break;
 			case 5:
 				Juego.borrarJuego();
+				System.out.println("Su juego ha sido eliminado correctamente");
+				this.presioneParaVolver();
 				break;
 			case 6:
 				Periferico.borrarPeriferico();
+				System.out.println("Su periferico ha sido eliminado correctamente");
+				this.presioneParaVolver();
 				break;
 		}
 	}
@@ -141,14 +156,17 @@ public class Ui {
 				this.menuVender(datos);
 			case 1: {
 				Consola.ventaConsola(cliente);
+				this.presioneParaVolver();
 				break;
 			}
 			case 2: {
 				Juego.ventaJuego(cliente);
+				this.presioneParaVolver();
 				break;
 			}
 			case 3: {
 				Periferico.ventaPeriferico(cliente);
+				this.presioneParaVolver();
 				break;
 
 			}
@@ -196,12 +214,13 @@ public class Ui {
 		Factura factura = new Factura(Datos.listaFacturas.size(),cliente, detalles);
 		Factura.agregarFactura(factura);
 		System.out.println(factura);
+		this.presioneParaVolver();
 
 	}	
 	
 	// Este metodo sera ejecutado si la opcion del usuario en el menu principal fue 5.Imperial.
     public void menuImperial(Datos datos){
-        System.out.println("Ingrese una opcion");
+        System.out.println("Ingrese una opcion:");
         System.out.println("0. Volver");
         System.out.println("1. Modificar Precios");
         System.out.println("2. Ver Historial y Reportes");
@@ -218,16 +237,18 @@ public class Ui {
                 break;
             case 3:
             	Cliente.clienteConMasPuntos();
+				this.presioneParaVolver();
             	break;
             case 4:
             	Juego.recomendarPorEdad();
+				this.presioneParaVolver();
             	break;
         }
     }
     
     // Metodo para manejar los reportes que se generan en la tienda.
 	public void menuReportes(){
-		System.out.println("Ingrese una opcion");
+		System.out.println("Ingrese una opcion:");
 		System.out.println("0. Volver");
 		System.out.println("1. Ver todos los Clientes Registrados ");
 		System.out.println("2. Ver todas las Consolas disponibles en la tienda");
@@ -243,27 +264,33 @@ public class Ui {
 				break;
 			case 1:
 				Cliente.clientesRegistrados();
+				this.presioneParaVolver();
 				break;
 			case 2:
 				Consola.consolasRegistradas();
+				this.presioneParaVolver();
 				break;
 			case 3:
 				Periferico.perifericosRegistrados();
+				this.presioneParaVolver();
 				break;
 			case 4:
 				Juego.juegosRegistrados();
+				this.presioneParaVolver();
 				break;
 			case 5:
 				Factura.facturasRegistradas();
+				this.presioneParaVolver();
 				break;
 			case 6:
 				this.menureportesvendidos();
+				this.presioneParaVolver();
 		}
 	}
 	
 	// Metodo para conocer las ganancias de la tienda y para conocer los productos mas y menos vendidos. 
 	public void menureportesvendidos() {
-		System.out.println("Ingrese una opcion");
+		System.out.println("Ingrese una opcion:");
 		System.out.println("0. Volver");
 		System.out.println("1. Ver Productos Vendidos y las Ganancias");
 		System.out.println("2. Ver Productos Mas y Menos Vendidos de la tienda");
@@ -278,7 +305,8 @@ public class Ui {
 			System.out.println("\n");
 			Juego.JuegosMasVendidos();
 			System.out.println("\n");
-			Periferico.PerifericosMasVendidos();			
+			Periferico.PerifericosMasVendidos();	
+			this.presioneParaVolver();
 			break;
 		case 2:
 			Consola.ConsolaMasVendida();
@@ -286,6 +314,7 @@ public class Ui {
 			Juego.JuegoMasVendido();
 			System.out.println("\n");
 			Periferico.PerifericoMasVendido();
+			this.presioneParaVolver();
 		}
 		
 	}
@@ -303,13 +332,18 @@ public class Ui {
 				this.menuImperial(datos);
 			case 1:
 				this.menuModificarPreciosConsolas();
+		        this.menuprincipal(datos);
+				this.presioneParaVolver();
 				break;
 			case 2:
 				this.menuModificarPreciosPerifericos();
+		        this.menuprincipal(datos);
+				this.presioneParaVolver();
 
 				break;
 			case 3:
 				this.menuModificarPreciosJuegos();
+				this.presioneParaVolver();
 				break;
 		}
 	}
@@ -351,6 +385,7 @@ public class Ui {
 		int[] precios = this.especificacionPrecios(tope);
 		Juego.modificarPreciosJuegos(ints, precios);
 		System.out.println("Sus precios han sido modificados correctamente.");
+
 	}
 	
 	// Selecciona un conjunto de productos dado un indice y los ingresa a una lista estatica.
@@ -373,4 +408,12 @@ public class Ui {
 		}
 		return precios;
 	}
+	
+	// Opción que permita presionar para volver:
+	public void presioneParaVolver() {
+		System.out.println("Presione cualquier tecla para volver al menu principal");
+		String algo = entrada.next();
+		this.menu(datos);
+	}
+	
 }
