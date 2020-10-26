@@ -47,13 +47,13 @@ public class Ui {
 	// Este metodo menu es el principal, le pedira una opcion de ingreso al usuario y de acuerdo a la opcion, 
 	// Mediante switches muestre su respectivo submenu.
 	public void menu(Datos datos){
-	        System.out.println("Ingrese una opcion:"+"\n");
-	        System.out.println("1. Ingresar o eliminar Clientes");
+	        System.out.println("Ingrese Una Opcion:"+"\n");
+	        System.out.println("1. Ingresar o Eliminar Clientes");
 	        System.out.println("2. Ingresar o Eliminar Productos");
 	        System.out.println("3. Vender Productos");
-	        System.out.println("4. Servicios tecnicos");
+	        System.out.println("4. Servicios Tecnicos");
 	        System.out.println("5. Imperial");
-	        System.out.println("6. Salir del sistema");
+	        System.out.println("6. Salir Del Sistema");
 	        
 	        int i = entrada.nextInt();
 	        switch (i){
@@ -81,7 +81,7 @@ public class Ui {
 	
 	// Este metodo sera ejecutado si la opcion del usuario en el menu principal fue 2: Ingresar o Eliminar productos.
 	public void menuAgregarBorrarProductos(Datos datos){
-		System.out.println("Ingrese una opcion:");
+		System.out.println("Ingrese Una Opcion:"+"\n");
 		System.out.println("0. Volver");
 		System.out.println("1. Ingresar Consola/s");
 		System.out.println("2. Ingresar Juego/s");
@@ -109,17 +109,17 @@ public class Ui {
 				break;
 			case 4:
 				Consola.borrarConsola();
-				System.out.println("Su consola ha sido eliminada correctamente");
+				System.out.println("Su Consola Ha Sido Eliminada Correctamente.");
 				this.presioneParaVolver();
 				break;
 			case 5:
 				Juego.borrarJuego();
-				System.out.println("Su juego ha sido eliminado correctamente");
+				System.out.println("Su Juego Ha Sido Eliminado Correctamente.");
 				this.presioneParaVolver();
 				break;
 			case 6:
 				Periferico.borrarPeriferico();
-				System.out.println("Su periferico ha sido eliminado correctamente");
+				System.out.println("Su Periferico Ha Sido Eliminado Correctamente.");
 				this.presioneParaVolver();
 				break;
 		}
@@ -127,10 +127,10 @@ public class Ui {
 	
 	// Este metodo sera ejecutado si la opcion del usuario en el menu principal fue 3:Vender Productos.
 	public void menuVender(Datos datos){
-		System.out.println("¿El cliente ya esta registrado?"+"\n");
+		System.out.println("¿El Cliente Ya Esta Registrado?"+"\n");
 		System.out.println("0. Volver");
-		System.out.println("1. Si el cliente esta registrado");
-		System.out.println("2. Si el cliente NO esta registrado");
+		System.out.println("1. Si El Cliente Esta Registrado");
+		System.out.println("2. Si El Cliente NO Esta Registrado");
 		int verificador = entrada.nextInt();
 		
 		// Un entero que verifica si el cliente esta o no registrado y ejecutar el respectivo metodo.
@@ -144,7 +144,7 @@ public class Ui {
 		}	
 		
 		// Se le pide al usuario una entrada despues de saber si esta registrado o no.
-		System.out.println("¿Que articulo desea vender? Ingrese una opcion: ");
+		System.out.println("¿Que Producto Desea Vender? Ingrese Una Opcion: "+"\n");
 		System.out.println("0. Volver");
 		System.out.println("1. Consola/s");
 		System.out.println("2. Juego/s");
@@ -179,10 +179,10 @@ public class Ui {
 	public void menuServiciosTecnicos(Datos datos){
 		
 		// Verificamos si el cliente ya esta registrado a traves de enteros.
-		System.out.println("¿El cliente ya esta registrado?"+"\n");
+		System.out.println("¿El Cliente Ya Esta Registrado?"+"\n");
 		System.out.println("0. Volver");
-		System.out.println("1. Si el cliente esta registrado");
-		System.out.println("2. Si el cliente NO esta registrado");
+		System.out.println("1. Si El Cliente Esta Registrado");
+		System.out.println("2. Si El Cliente NO Esta Registrado");
 		int verificador = entrada.nextInt(); // A traves de esta variable se verifica con if si el cliente esta registrado.
 		Cliente cliente = new Cliente(); // Hacemos una instancia de cliente con el fin de que el codigo compile sin problemas.
 		if (verificador == 0){
@@ -192,13 +192,13 @@ public class Ui {
 		} else if (verificador == 2) {
 			cliente = Cliente.clienteNoRegistrado();
 		}
-		System.out.println("¿Cuantos productos requieren de servicio tecnico?");
+		System.out.println("¿Cuantos Productos Requieren De Servicio Tecnico?"+"\n");
 		int i = entrada.nextInt(); // Scanner para saber cuantos productos se crearan.
 		ArrayList<Detalle> detalles = new ArrayList<Detalle>(); // Lista que almacenara cada detalle.
 		for (int j = 0; j < i ; j++) {
-			System.out.println("¿Desea modificar una consola o un periferico?");
-			System.out.println("1. Modificar una consola");
-			System.out.println("2. Modificar un periferico");
+			System.out.println("¿Desea Modificar Una Consola O Un Periferico?"+"\n");
+			System.out.println("1. Modificar Una Consola");
+			System.out.println("2. Modificar Un Periferico");
 			int determinante = entrada.nextInt();
 			switch (determinante){
 				case 1:
@@ -225,12 +225,12 @@ public class Ui {
 	
 	// Este metodo sera ejecutado si la opcion del usuario en el menu principal fue 5.Imperial.
     public void menuImperial(Datos datos){
-        System.out.println("Ingrese una opcion:");
+        System.out.println("Ingrese Una Upcion:"+"\n");
         System.out.println("0. Volver");
         System.out.println("1. Modificar Precios");
         System.out.println("2. Ver Historial y Reportes");
-        System.out.println("3. Ver Cliente con mas Puntos");
-        System.out.println("4. Recomendar Juegos por Edad");
+        System.out.println("3. Ver Cliente Con Mas Puntos");
+        System.out.println("4. Recomendar Juegos Por Edad");
         int i = entrada.nextInt();
         switch (i){
             case 0:
@@ -253,14 +253,14 @@ public class Ui {
     
     // Metodo para manejar los reportes que se generan en la tienda.
 	public void menuReportes(){
-		System.out.println("Ingrese una opcion:");
+		System.out.println("Ingrese Una Opcion:"+"\n");
 		System.out.println("0. Volver");
-		System.out.println("1. Ver todos los Clientes Registrados ");
-		System.out.println("2. Ver todas las Consolas disponibles en la tienda");
-		System.out.println("3. Ver todos los Perifericos disponibles en la tienda");
-		System.out.println("4. Ver todos los Juegos disponibles en la tienda");
-		System.out.println("5. Lista de facturas que hay registradas en el sistema");
-		System.out.println("6. Reporte de todos los productos vendidos");
+		System.out.println("1. Ver Todos Los Clientes Registrados");
+		System.out.println("2. Ver Todas Las Consolas Disponibles En La Tienda");
+		System.out.println("3. Ver Todos Los Perifericos Disponibles En La Tienda");
+		System.out.println("4. Ver Todos Los Juegos Disponibles En La Tienda");
+		System.out.println("5. Lista De Facturas Que Hay Registradas En El Sistema");
+		System.out.println("6. Reporte De Todos Los Productos Vendidos");
 
 		int verificador = entrada.nextInt();
 		switch (verificador){
@@ -295,10 +295,10 @@ public class Ui {
 	
 	// Metodo para conocer las ganancias de la tienda y para conocer los productos mas y menos vendidos. 
 	public void menureportesvendidos() {
-		System.out.println("Ingrese una opcion:");
+		System.out.println("Ingrese Una Opcion:"+"\n");
 		System.out.println("0. Volver");
-		System.out.println("1. Ver Productos Vendidos y las Ganancias");
-		System.out.println("2. Ver Productos Mas y Menos Vendidos de la tienda");
+		System.out.println("1. Ver Productos Vendidos y Las Ganancias");
+		System.out.println("2. Ver Productos Mas y Menos Vendidos De La Tienda");
 		int verificador = entrada.nextInt();
 		
 		switch(verificador) {
@@ -326,11 +326,11 @@ public class Ui {
 	
 	// Metodo para modificar el precio de los productos de la tienda.
 	public void menuModificarPrecios(){
-		System.out.println("¿Que desea modificar? Seleccione una opcion: ");
+		System.out.println("¿Que Desea Modificar? Seleccione Una Opcion: "+"\n");
 		System.out.println("0. Volver");
-		System.out.println("1. Modificar precios de Consolas");
-		System.out.println("2. Modificar precios de Perifericos");
-		System.out.println("3. Modificar precios de Juegos");
+		System.out.println("1. Modificar Precios De Consolas");
+		System.out.println("2. Modificar Precios De Perifericos");
+		System.out.println("3. Modificar Precios De Juegos");
 		int verificador = entrada.nextInt();
 		switch (verificador){
 			case 0:
@@ -356,14 +356,14 @@ public class Ui {
 	// Metodo para modificar el precio de las consolas de la tienda.
 	public void menuModificarPreciosConsolas(){
 		Consola.consolasRegistradas();
-		System.out.println("¿ A cuantas consolas desea cambiarles el precio?");
+		System.out.println("¿A Cuantas Consolas Desea Cambiarles El Precio?"+"\n");
 		int tope = entrada.nextInt();
-		System.out.println("Ingrese uno a uno y separados por un espacio en blanco el indice de las consolas a las que desea cambiarles de precio: ");
+		System.out.println("Ingrese Uno A Uno Y Separados Por Un Espacio En Blanco El Indice De Las Consolas A Las Que Desea Cambiarles De Precio: ");
 		int[] ints = this.seleccionProductos(tope);
-		System.out.println("Ingrese uno a uno y separados por un espacio en blanco el nuevo precio de las consolas a las que desea cambiarles el precio: ");
+		System.out.println("Ingrese Uno A Uno Y Separados Por Un Espacio En Blanco El Nuevo Precio  De Las Consolas A Las Que Desea Cambiarles De Precio: ");
 		int[] precios = this.especificacionPrecios(tope);
 		Consola.modificarPreciosConsolas(ints, precios);
-		System.out.println("Sus precios han sido modificados correctamente.");
+		System.out.println("Sus Precios Han Sido Modificados Correctamente.");
 		datos.guardarDatos();
 
 	}
@@ -371,28 +371,28 @@ public class Ui {
 	// Metodo para modificar el precio de los perifericos de la tienda.
 	public void menuModificarPreciosPerifericos(){
 		Periferico.perifericosRegistrados();
-		System.out.println("¿Cuantos productos desea cambiar de precio?");
+		System.out.println("¿Cuantos Perifericos desea cambiar de precio?"+"\n");
 		int tope = entrada.nextInt();
-		System.out.println("Ingrese uno a uno y separados por un espacio en blanco el indice de los perifericos a los que desea cambiarles el precio: ");
+		System.out.println("Ingrese Uno A Uno Y Separados Por Un Espacio En Blanco El Indice De Los Perifericos A Los Que Desea Cambiarles De Precio: ");
 		int[] ints = this.seleccionProductos(tope);
-		System.out.println("Ingrese uno a uno y separados por un espacio en blanco el nuevo precio de los perifericos a los que desea cambiarles el precio: ");
+		System.out.println("Ingrese Uno A Uno Y Separados Por Un Espacio En Blanco El Nuevo Precio  De Los Perifericos A Los Que Desea Cambiarles De Precio: ");
 		int[] precios = this.especificacionPrecios(tope);
 		Periferico.modificarPreciosPerifericos(ints, precios);
-		System.out.println("Sus precios han sido modificados correctamente.");
+		System.out.println("Sus Precios Han Sido Modificados Correctamente.");
 		datos.guardarDatos();
 	}
 	
 	// Metodo para modificar el precio de los juegos de la tienda.
 	public void menuModificarPreciosJuegos(){
 		Juego.juegosRegistrados();
-		System.out.println("¿Cuantos productos desea cambiar de precio?");
+		System.out.println("¿Cuantos Juegos Desea Cambiar De Precio?"+"\n");
 		int tope = entrada.nextInt();
-		System.out.println("Ingrese uno a uno y separados por un espacio en blanco el indice de los juegos a los que desea cambiarles el precio: ");
+		System.out.println("Ingrese Uno A Uno Y Separados Por Un Espacio En Blanco El Indice De Los Juegos A Los Que Desea Cambiarles De Precio: ");
 		int[] ints = this.seleccionProductos(tope);
-		System.out.println("Ingrese uno a uno y separados por un espacio en blanco el nuevo precio de los juegos a los que desea cambiarles el precio: ");
+		System.out.println("Ingrese Uno A Uno Y Separados Por Un Espacio En Blanco El Nuevo Precio De Los Juegos A Las Que Desea Cambiarles De Precio: ");
 		int[] precios = this.especificacionPrecios(tope);
 		Juego.modificarPreciosJuegos(ints, precios);
-		System.out.println("Sus precios han sido modificados correctamente.");
+		System.out.println("Sus Precios Han Sido Modificados Correctamente.");
 		datos.guardarDatos();
 
 	}
@@ -409,7 +409,7 @@ public class Ui {
 	
 	// Especifica los nuevos precios de los productos. 
 	public int[] especificacionPrecios(int tope){
-		System.out.println("Ingrese uno a uno y separados por un espacio en blanco los indices de los productos que desea modificar: ");
+		System.out.println("Ingrese Uno A Uno Y Separados Por Un Espacio En Blanco Los Indices De Los Productos Que Desea Modificar: "+"\n");
 		Scanner entrada = new Scanner(System.in);
 		int[] precios = new int[tope];
 		for(int i=0; i<tope; i++) {
@@ -420,10 +420,10 @@ public class Ui {
 	
 	//Menu que especifica si el usuario quiere ingresar o eliminar un cliente
 	public void menuFlujoClientes() {
-        System.out.println("Ingrese una opcion:"+"\n");
+        System.out.println("Ingrese Una Opcion:"+"\n");
         System.out.println("0.Volver");
-        System.out.println("1.Ingresar un cliente");
-        System.out.println("2.Eliminar un cliente");
+        System.out.println("1.Ingresar Un Cliente");
+        System.out.println("2.Eliminar Un Cliente");
         int j = entrada.nextInt();
         switch(j) {
         	case 0:
@@ -439,9 +439,9 @@ public class Ui {
         }
 	}
 	
-	// Opción que permita presionar para volver:
+	// Opción que permita presionar para volver al menu principal.
 	public void presioneParaVolver() {
-		System.out.println("Ingrese cualquier valor para volver al menu principal");
+		System.out.println("Ingrese Cualquier Valor Para Volver Al Menu Principal");
 		String algo = entrada.next();
 		this.menu(datos);
 	}
