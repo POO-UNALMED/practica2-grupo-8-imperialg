@@ -10,7 +10,7 @@
 /* Autores:   - Santiago Franco Valencia 
 *            - Anderson Elian Gutierrez 
 *            - Santiago Valencia Mejia
-*            - Daniel Alejandro Giraldo  */
+*                                        */
 
 /*Cabecera en la clase: la clase Ui carga y guarda todos los datos en los archivos .txt, ademas llama el
  * menu principal con el que el usuario va a interactuar*/
@@ -356,7 +356,7 @@ public class Ui {
 	// Metodo para modificar el precio de las consolas de la tienda.
 	public void menuModificarPreciosConsolas(){
 		Consola.consolasRegistradas();
-		System.out.println("¿A Cuantas Consolas Desea Cambiarles El Precio?"+"\n");
+		System.out.println("¿A Cuantas Consolas Desea Cambiarles El Precio?");
 		int tope = entrada.nextInt();
 		System.out.println("Ingrese Uno A Uno Y Separados Por Un Espacio En Blanco El Indice De Las Consolas A Las Que Desea Cambiarles De Precio: ");
 		int[] ints = this.seleccionProductos(tope);
@@ -365,13 +365,14 @@ public class Ui {
 		Consola.modificarPreciosConsolas(ints, precios);
 		System.out.println("Sus Precios Han Sido Modificados Correctamente.");
 		datos.guardarDatos();
+		this.presioneParaVolver();
 
 	}
 	
 	// Metodo para modificar el precio de los perifericos de la tienda.
 	public void menuModificarPreciosPerifericos(){
 		Periferico.perifericosRegistrados();
-		System.out.println("¿Cuantos Perifericos desea cambiar de precio?"+"\n");
+		System.out.println("¿Cuantos Perifericos desea cambiar de precio?");
 		int tope = entrada.nextInt();
 		System.out.println("Ingrese Uno A Uno Y Separados Por Un Espacio En Blanco El Indice De Los Perifericos A Los Que Desea Cambiarles De Precio: ");
 		int[] ints = this.seleccionProductos(tope);
@@ -380,12 +381,13 @@ public class Ui {
 		Periferico.modificarPreciosPerifericos(ints, precios);
 		System.out.println("Sus Precios Han Sido Modificados Correctamente.");
 		datos.guardarDatos();
+		this.presioneParaVolver();
 	}
 	
 	// Metodo para modificar el precio de los juegos de la tienda.
 	public void menuModificarPreciosJuegos(){
 		Juego.juegosRegistrados();
-		System.out.println("¿Cuantos Juegos Desea Cambiar De Precio?"+"\n");
+		System.out.println("¿Cuantos Juegos Desea Cambiar De Precio?");
 		int tope = entrada.nextInt();
 		System.out.println("Ingrese Uno A Uno Y Separados Por Un Espacio En Blanco El Indice De Los Juegos A Los Que Desea Cambiarles De Precio: ");
 		int[] ints = this.seleccionProductos(tope);
@@ -394,7 +396,7 @@ public class Ui {
 		Juego.modificarPreciosJuegos(ints, precios);
 		System.out.println("Sus Precios Han Sido Modificados Correctamente.");
 		datos.guardarDatos();
-
+		this.presioneParaVolver();
 	}
 	
 	// Selecciona un conjunto de productos dado un indice y los ingresa a una lista estatica.
@@ -409,7 +411,6 @@ public class Ui {
 	
 	// Especifica los nuevos precios de los productos. 
 	public int[] especificacionPrecios(int tope){
-		System.out.println("Ingrese Uno A Uno Y Separados Por Un Espacio En Blanco Los Indices De Los Productos Que Desea Modificar: "+"\n");
 		Scanner entrada = new Scanner(System.in);
 		int[] precios = new int[tope];
 		for(int i=0; i<tope; i++) {
@@ -417,7 +418,7 @@ public class Ui {
 		}
 		return precios;
 	}
-	
+
 	//Menu que especifica si el usuario quiere ingresar o eliminar un cliente
 	public void menuFlujoClientes() {
         System.out.println("Ingrese Una Opcion:"+"\n");

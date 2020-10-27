@@ -9,8 +9,7 @@
 /* Autores:   - Santiago Franco Valencia 
 *            - Anderson Elian Gutierrez 
 *            - Santiago Valencia Mejia
-*            - Daniel Alejandro Giraldo  */
-
+*                                        */
 
 // En este modulo se implementa la serializacion de datos, con el fin de poder ser almacenados en archivos .txt y asi poder ser
 // accesados a ellos en cualquier momento por el administrador del software.
@@ -55,7 +54,7 @@ public class Datos{
         } catch (FileNotFoundException e) {
             System.out.println("No se encuentra el archivo");
         } catch (IOException e) {
-            System.out.println("Error Flujo de inicialización");
+            System.out.println("Error Flujo de inicializacion");
         }
     }
     
@@ -80,7 +79,7 @@ public class Datos{
         } catch (FileNotFoundException e) {
             System.out.println("No se encuentra el archivo");
         } catch (IOException e) {
-            System.out.println("Error Flujo de inicialización");
+            System.out.println("Error Flujo de inicializacion");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -103,7 +102,7 @@ public class Datos{
         } catch (FileNotFoundException e) {
             System.out.println("No se encuentra el archivo");
         } catch (IOException e) {
-            System.out.println("Error Flujo de inicialización xd2");
+            System.out.println("Error Flujo de inicializacion xd2");
         }
     }
 
@@ -117,7 +116,7 @@ public class Datos{
         } catch (FileNotFoundException e) {
             System.out.println("No se encuentra el archivo");
         } catch (IOException e) {
-            System.out.println("Error Flujo de inicialización xd");
+            System.out.println("Error Flujo de inicializacion xd");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -134,7 +133,7 @@ public class Datos{
     } catch (FileNotFoundException e) {
         System.out.println("No se encuentra el archivo");
     } catch (IOException e) {
-        System.out.println("Error Flujo de inicialización xd");
+        System.out.println("Error Flujo de inicializacion xd");
         e.printStackTrace();
     } catch (ClassNotFoundException e) {
         e.printStackTrace();

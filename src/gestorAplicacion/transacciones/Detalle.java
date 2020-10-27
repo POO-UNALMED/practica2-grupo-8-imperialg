@@ -9,7 +9,7 @@
 /* Autores:   - Santiago Franco Valencia 
 *            - Anderson Elian Gutierrez 
 *            - Santiago Valencia Mejia
-*            - Daniel Alejandro Giraldo  */
+*                                        */
 
 // En este modulo se crea la clase Detalle, asi como sus metodos basicos (Get y Set), ademas se definen un conjunto de atributos
 // para su funcionamiento. Esta clase se vera  implementada en cada una de las lineas que componen una Factura, pues una Factura         

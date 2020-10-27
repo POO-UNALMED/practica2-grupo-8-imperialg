@@ -9,7 +9,7 @@
 /* Autores:   - Santiago Franco Valencia 
 *            - Anderson Elian Gutierrez 
 *            - Santiago Valencia Mejia
-*            - Daniel Alejandro Giraldo  */
+*                                        */
 
 // En este modulo se crea la clase Factura, en la cual se veran reflejados todos los detalles que la componen, por esta razon,
 // en esta clase se implementa una lista llamada "detalles" en la que se encuentran los detalles asociados a la factura. Ademas

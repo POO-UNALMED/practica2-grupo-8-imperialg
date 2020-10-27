@@ -9,7 +9,7 @@
 /* Autores:   - Santiago Franco Valencia 
 *            - Anderson Elian Gutierrez 
 *            - Santiago Valencia Mejia
-*            - Daniel Alejandro Giraldo  */
+*                                        */
 
 // En este modulo se crea la clase Consola, asi como sus metodos basicos (Get y Set), ademas se definen un conjunto de atributos,
 // los cuales almacenaran informacion acerca de cada Consola que se vaya registrando en la plataforma.
