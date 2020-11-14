@@ -14,31 +14,35 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
-import java.util.Random;
 
 public class VentanaInicial extends Application {
     public void start(Stage myStage) throws Exception {
-        //Creaci贸n de ventana inicial
+    	
+    	
+        //Creacion de ventana inicial
         GridPane p0 = new GridPane();
-        //Partici贸n en dos partes:
+        //Particion en dos partes:
         GridPane p1 = new GridPane();
         GridPane p2 = new GridPane();
+        p0.setStyle("-fx-background-color:LIGHTSTEELBLUE;");
         //Agregar a p0:
         p0.add(p1, 0, 0);
-        p0.add(p2, 0, 1);
+        p0.add(p2, 1, 0);
 
         myStage.setTitle("IMPERIAL-GAMING");
 
-        //Creaci贸n de p3 como un label:
-        Labeled p3 = new Label("Bienvenido a IMPERIAL GAMING, la mejor tienda virtual");
+        //Creacion de p3 como un label:
+        Label p3 = new Label("Bienvenido a IMPERIAL GAMING, la mejor tienda virtual");
+        p3.setFont(new Font("Arial Black",23));
+        
         p3.setPrefWidth(200);
         p3.setWrapText(true);
 
-        //Creaci贸n de p4:
+        //Creacion de p4:
         VBox p4 = new VBox();
-
-        //Bot贸n de acceso en p4:
+        //Boton de acceso en p4:
 
         Button botonp4 = new Button("Ingresar al sistema");
         botonp4.setMaxHeight(1500);
@@ -53,7 +57,7 @@ public class VentanaInicial extends Application {
         p0.setHgap(10);
         p0.setVgap(10);
 
-        //Creaci贸n de botones
+        //Creacion de botones
         Button boton1 = new Button("Hola");
         Button boton2 = new Button("Hola1");
         boton1.setMaxHeight(Double.MAX_VALUE);
@@ -67,7 +71,7 @@ public class VentanaInicial extends Application {
         Image image4 = new Image("file:src/img/image4.jpg");
         Image image5 = new Image("file:src/img/image5.jpg");
 
-        //Creaci贸n de imageView:
+        //Creacion de imageView:
 
         ImageView imageView = new ImageView(image1);
         ImageView imageView2 = new ImageView(image2);
@@ -86,15 +90,21 @@ public class VentanaInicial extends Application {
 
         // Crear el label p5
 
-        Label p5 = new Label("Aqu铆 puedo colocar cualquier cosa, en este caso usaremos un chanchullo");
+       Label p5 = new Label("HOJA DE VIDA DE ANDERSON GUTIERREZ BUENO:\n\nSoy estudiante de Ingenieria De Sistemas e "
+       		+ "Inform醫ica de la UNAL, tengo 20 anios, me encuentro\ncursando el quinto semestre y actualmente estoy viendo el curso de Programacion orientada"
+       		+ " a objetos,\ndictado por el Docente Jaime Alberto Guman Luna.\n\n");
+       Label p5_1 = new Label("HOJA DE VIDA DE SANTIAGO VALENCIA MEJIA:\n\nSoy estudiante de Ingenieria de Sistemas e Informatica en la UNAL, tengo 20 anios, "
+       		+ "me encuentro\nactualmente cursando el quinto semestre, estoy viendo el curso de Programacion Orientada a Objetos\ny soy uno de "
+       		+ "los Autores del presente proyecto.\n\n\n");
+       Label p5_2 = new Label("HOJA DE VIDA DE SANTIAGO FRANCO VALENCIA:\n\nSoy estudiante del programa de Estadistica de la UNAL");
 
         //Anadir p5 a p2:
         p2.add(p5,0,0);
+        p2.add(p5_1,0,1);
+        p2.add(p5_2,0,2);
 
 
         //Interactividad a imagen:
-
-
         imageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
             int contador = 0;
             @Override
@@ -113,12 +123,24 @@ public class VentanaInicial extends Application {
                 }
             }
         });
+        
+        imageView.setOnMouseClicked(new EventHandler<MouseEvent>(){
 
-
-        Scene escena = new Scene(p0, 800, 600);
+			@Override
+			public void handle(MouseEvent event) {
+				
+			}
+        	
+        });
+        
+        Scene escena = new Scene(p0, 1000, 800);
         myStage.setScene(escena);
 
         myStage.show();
+        
     }
-
+    
+	public static void main(String[] args) {
+        launch(args);
+    }
 }
