@@ -61,10 +61,34 @@ public class VentanaInicial extends Application {
         Image image2 = new Image("file:src/img/image2.jpg");
         Image image3 = new Image("file:src/img/image3.jpg");
         Image image4 = new Image("file:src/img/image4.jpg");
-        Image image5 = new Image("file:src/img/image5.jpg");         
+        Image image5 = new Image("file:src/img/image5.jpg");
+        Image imagens1= new Image("file:src/img/santiagov1.jpg");
+        Image imagens2= new Image("file:src/img/santiagov2.jpg");
+        Image imagens3= new Image("file:src/img/santiagov3.jpg");
+        Image imagens4= new Image("file:src/img/santiagov4.jpg");
+        		
 
         ImageView imageView = new ImageView(image1);
-  
+        ImageView imagens11 = new ImageView(imagens1);
+        ImageView imagens22 = new ImageView(imagens2);
+        ImageView imagens33 = new ImageView(imagens3);
+        ImageView imagens44 = new ImageView(imagens4);
+        
+
+        imagens11.setFitWidth(270);
+        imagens11.setPreserveRatio(true);
+        
+        imagens22.setFitWidth(280);
+        imagens22.setPreserveRatio(true);
+        
+        imagens33.setFitWidth(270);
+        imagens33.setPreserveRatio(true);
+        
+        
+        imagens44.setFitWidth(288);
+        imagens44.setPreserveRatio(true);
+        
+
         //Anadir imagen a p4:
         p4.getChildren().add(0,imageView);
 
@@ -81,12 +105,20 @@ public class VentanaInicial extends Application {
        String p5_1 = new String("HOJA DE VIDA DE SANTIAGO VALENCIA MEJIA:\n\nSoy estudiante de Ingenieria de Sistemas e Informatica en la UNAL, tengo 20 anios, me encuentro actualmente cursando el quinto semestre, estoy viendo el curso de Programacion Orientada a Objetos y soy uno de los Autores del presente proyecto.\n\n\n");
        String p5_2 = new String("HOJA DE VIDA DE SANTIAGO FRANCO VALENCIA:\n\nSoy estudiante de Ingenieria de Sistemas e Informatica en la UNAL, tengo 20 anios, me encuentro actualmente cursando el quinto semestre, estoy viendo el curso de Programacion Orientada a Objetos y soy uno de los Autores del presente proyecto.\n\n\n");
  
+       GridPane p6 = new GridPane();
+       p6.add(imagens11,0,0);
+       p6.add(imagens22,1,1);
+       p6.add(imagens33,0,1);
+       p6.add(imagens44,1,0);
+       
+       
         //Anadir p5 a p2:
        Label p05 = new Label(p5);
        p05.setMaxWidth(600);
        p05.setWrapText(true);
        
         p2.add(p05,0,0);
+        p2.add(p6,0,1);
 
         //Interactividad a imagen:
         imageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
