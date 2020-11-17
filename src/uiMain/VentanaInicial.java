@@ -30,6 +30,8 @@ public class VentanaInicial extends Application {
 		Menu inicio = new Menu("Inicio");
 		barramenu.getMenus().add(inicio);
 		MenuItem salir = new MenuItem("Salir");
+		SalirHandlerClass handler = new SalirHandlerClass();
+		salir.setOnAction(handler);
 		MenuItem descripcion = new MenuItem("Descripcion");
 		SeparatorMenuItem separator = new SeparatorMenuItem();
 		inicio.getItems().addAll(descripcion,separator,salir);
@@ -223,13 +225,20 @@ public class VentanaInicial extends Application {
     }
     //cambiar de ventana inico a ventana usuario        
     class botonp4HandlerClass implements EventHandler<ActionEvent>{
-		
 		public void handle(ActionEvent event) {
 			System.out.println("Se dio clic en el boton, eso es para cambiar de ventana");
 		
 		}
 		
 	}
+    
+    class SalirHandlerClass implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent arg0) {
+		System.exit(0);
+			
+		}
+    	
+    }
     
 	public static void main(String[] args) {
         launch(args);
