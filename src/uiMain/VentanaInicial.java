@@ -1,9 +1,11 @@
 package uiMain;
 
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,9 +13,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
+import javafx.scene.paint.Color;
 
 
 public class VentanaInicial extends Application {
@@ -34,25 +37,27 @@ public class VentanaInicial extends Application {
 
         //Creacion de p3 como un label:
         Label p3 = new Label("Bienvenido a IMPERIAL GAMING, la mejor tienda virtual");
-        p3.setFont(new Font("Arial Black",23));
+        p3.setTextFill(Color.web("#000000"));
+        p3.setFont(Font.font ("Unispace", 30));
         
-        p3.setPrefWidth(400);
+        p3.setPrefWidth(500);
         p3.setWrapText(true);
 
         //Creacion de p4:
-        VBox p4 = new VBox();
+        VBox p4 = new VBox(100);
         
         //Boton de acceso en p4:
-        Button botonp4 = new Button("Ingresar al sistema");
-        botonp4.setMaxHeight(1500);
-        botonp4.setMaxWidth(1000);
+        Button botonp4 = new Button("INGRESAR AL SISTEMA");
+        botonp4.setScaleX(2);
+        botonp4.setScaleY(2);
         botonp4HandlerClass BotonVentanaU = new botonp4HandlerClass();
 		botonp4.setOnAction(BotonVentanaU);
 
         //Espaciado en subpaneles:
         p1.setPadding(new Insets(10, 10, 10, 10));
+        p2.setPadding(new Insets(15, 15, 15, 15));
         p1.setHgap(8);
-        p1.setVgap(8);
+        p1.setVgap(50);
         p0.setHgap(10);
         p0.setVgap(10);
         
@@ -77,9 +82,10 @@ public class VentanaInicial extends Application {
         //
         //
         //
-        		
-
+    
         ImageView imageView = new ImageView(image1);
+        imageView.setFitWidth(420);
+        imageView.setPreserveRatio(true); 
         ImageView imagens11 = new ImageView(imagens1);
         ImageView imagens22 = new ImageView(imagens2);
         ImageView imagens33 = new ImageView(imagens3);
@@ -96,6 +102,7 @@ public class VentanaInicial extends Application {
 
         //Anadir imagen a p4:
         p4.getChildren().add(0,imageView);
+        p4.setAlignment(Pos.CENTER);
 
         //Anadir boton a p4
         p4.getChildren().add(1,botonp4);
@@ -118,13 +125,14 @@ public class VentanaInicial extends Application {
        
         //Anadir p5 a p2:
        Label p05 = new Label(p5);
+       p05.setTextFill(Color.web("#000000"));
        p05.setMaxWidth(600);
        p05.setWrapText(true);
        
         p2.add(p05,0,0);
         p2.add(p6,0,1);
 
-        //Interactividad a imagen:
+        //Interactividad a imagenes:c
         imageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -145,8 +153,22 @@ public class VentanaInicial extends Application {
 				}
 			}
 		});
-          
         
+        // Evento para cambiar de color el texto de las hojas de vida cuando se pasa el mouse sobre ellas.
+        p05.setOnMouseMoved(new EventHandler<MouseEvent>() {
+        	@Override
+			public void handle(MouseEvent event) {
+        		if(p05.getTextFill().equals("#000000")) {
+        			p05.setTextFill(Color.web("#6495ED"));
+        		}
+        		else {
+        		p05.setTextFill(Color.web("#000000"));
+        	}
+        	}
+        });
+        
+        
+        // Evento para pasar las fotos de los autores segun la hoja de vida que se clickee.
         p05.setOnMouseClicked(new EventHandler<MouseEvent>(){			
 			public void handle(MouseEvent event) {
 				if(event.getSource().equals(p05)) {
@@ -157,10 +179,12 @@ public class VentanaInicial extends Application {
 						imagens33.setImage(imagena3);
 						imagens44.setImage(imagena4);
 					}
+					
 					else if(p05.getText().equals(p5_1)) {
 						p05.setText(p5_2);
-						//aqui santiago franco añade sus imagenes
+						//aqui santiago franco agrega sus imagenes.
 					}
+					
 					else if(p05.getText().equals(p5_2)) {
 						p05.setText(p5);
 						imagens11.setImage(imagens1);
@@ -174,8 +198,8 @@ public class VentanaInicial extends Application {
 			}
         	
         });
-        
-        Scene escena = new Scene(p0, 1000, 800);
+ 
+        Scene escena = new Scene(p0, 1100, 900);
         myStage.setScene(escena);
 
         myStage.show();
