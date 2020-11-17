@@ -155,15 +155,18 @@ public class VentanaInicial extends Application {
 		});
         
         // Evento para cambiar de color el texto de las hojas de vida cuando se pasa el mouse sobre ellas.
-        p05.setOnMouseMoved(new EventHandler<MouseEvent>() {
+        p05.setOnMouseEntered(new EventHandler<MouseEvent>() {
         	@Override
 			public void handle(MouseEvent event) {
-        		if(p05.getTextFill().equals("#000000")) {
-        			p05.setTextFill(Color.web("#6495ED"));
-        		}
-        		else {
-        		p05.setTextFill(Color.web("#000000"));
+        		p05.setTextFill(Color.web("#6495ED"));       	
+        		
         	}
+        });
+        
+        p05.setOnMouseExited(new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent event) {
+        		p05.setTextFill(Color.web("#000000"));       	
+        		
         	}
         });
         
