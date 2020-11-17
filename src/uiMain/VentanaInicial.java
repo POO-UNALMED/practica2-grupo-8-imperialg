@@ -62,10 +62,21 @@ public class VentanaInicial extends Application {
         Image image3 = new Image("file:src/img/image3.jpg");
         Image image4 = new Image("file:src/img/image4.jpg");
         Image image5 = new Image("file:src/img/image5.jpg");
+        //fotos Santiago Valencia
         Image imagens1= new Image("file:src/img/santiagov1.jpg");
         Image imagens2= new Image("file:src/img/santiagov2.jpg");
         Image imagens3= new Image("file:src/img/santiagov3.jpg");
         Image imagens4= new Image("file:src/img/santiagov4.jpg");
+        //fotos Anderson 
+        Image imagena1 = new Image("file:src/img/andersong1.jpg");
+        Image imagena2 = new Image("file:src/img/andersong2.jpg");
+        Image imagena3 = new Image("file:src/img/andersong3.jpg");
+        Image imagena4 = new Image("file:src/img/andersong4.jpg");
+        //fotos Santiago Franco
+        //
+        //
+        //
+        //
         		
 
         ImageView imageView = new ImageView(image1);
@@ -73,21 +84,15 @@ public class VentanaInicial extends Application {
         ImageView imagens22 = new ImageView(imagens2);
         ImageView imagens33 = new ImageView(imagens3);
         ImageView imagens44 = new ImageView(imagens4);
-        
 
         imagens11.setFitWidth(270);
-        imagens11.setPreserveRatio(true);
-        
+        imagens11.setPreserveRatio(true);        
         imagens22.setFitWidth(280);
-        imagens22.setPreserveRatio(true);
-        
+        imagens22.setPreserveRatio(true);        
         imagens33.setFitWidth(270);
-        imagens33.setPreserveRatio(true);
-        
-        
+        imagens33.setPreserveRatio(true);        
         imagens44.setFitWidth(288);
-        imagens44.setPreserveRatio(true);
-        
+        imagens44.setPreserveRatio(true);        
 
         //Anadir imagen a p4:
         p4.getChildren().add(0,imageView);
@@ -100,9 +105,8 @@ public class VentanaInicial extends Application {
         p1.add(p4, 0, 1);
 
         // Crear el label p5
-       
-       String p5 = new String("HOJA DE VIDA DE ANDERSON GUTIERREZ BUENO:\n\nSoy estudiante de Ingenieria De Sistemas e Informatica de la UNAL, tengo 20 anios, me encuentro cursando el quinto semestre y actualmente estoy viendo el curso de Programacion orientada a objetos, dictado por el Docente Jaime Alberto Guman Luna.\n\n\n");
-       String p5_1 = new String("HOJA DE VIDA DE SANTIAGO VALENCIA MEJIA:\n\nSoy estudiante de Ingenieria de Sistemas e Informatica en la UNAL, tengo 20 anios, me encuentro actualmente cursando el quinto semestre, estoy viendo el curso de Programacion Orientada a Objetos y soy uno de los Autores del presente proyecto.\n\n\n");
+       String p5 = new String("HOJA DE VIDA DE SANTIAGO VALENCIA MEJIA:\n\nSoy estudiante de Ingenieria de Sistemas e Informatica en la UNAL, tengo 20 anios, me encuentro actualmente cursando el quinto semestre, estoy viendo el curso de Programacion Orientada a Objetos y soy uno de los Autores del presente proyecto.\n\n\n");
+       String p5_1 = new String("HOJA DE VIDA DE ANDERSON GUTIERREZ BUENO:\n\nSoy estudiante de Ingenieria De Sistemas e Informatica de la UNAL, tengo 20 anios, me encuentro cursando el quinto semestre y actualmente estoy viendo el curso de Programacion orientada a objetos, dictado por el Docente Jaime Alberto Guman Luna.\n\n\n");
        String p5_2 = new String("HOJA DE VIDA DE SANTIAGO FRANCO VALENCIA:\n\nSoy estudiante de Ingenieria de Sistemas e Informatica en la UNAL, tengo 20 anios, me encuentro actualmente cursando el quinto semestre, estoy viendo el curso de Programacion Orientada a Objetos y soy uno de los Autores del presente proyecto.\n\n\n");
  
        GridPane p6 = new GridPane();
@@ -148,12 +152,22 @@ public class VentanaInicial extends Application {
 				if(event.getSource().equals(p05)) {
 					if(p05.getText().equals(p5)) {
 						p05.setText(p5_1);
+						imagens11.setImage(imagena1);
+						imagens22.setImage(imagena2);
+						imagens33.setImage(imagena3);
+						imagens44.setImage(imagena4);
 					}
 					else if(p05.getText().equals(p5_1)) {
 						p05.setText(p5_2);
+						//aqui santiago franco añade sus imagenes
 					}
 					else if(p05.getText().equals(p5_2)) {
 						p05.setText(p5);
+						imagens11.setImage(imagens1);
+						imagens22.setImage(imagens2);
+						imagens33.setImage(imagens3);
+						imagens44.setImage(imagens4);
+						
 					}
 				}
 				
