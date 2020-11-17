@@ -17,19 +17,32 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SeparatorMenuItem;
 
 
 public class VentanaInicial extends Application {
 	public void start(Stage myStage) throws Exception {    	
+		
+		MenuBar barramenu = new MenuBar();
+		Menu inicio = new Menu("Inicio");
+		barramenu.getMenus().add(inicio);
+		MenuItem salir = new MenuItem("Salir");
+		MenuItem descripcion = new MenuItem("Descripcion");
+		SeparatorMenuItem separator = new SeparatorMenuItem();
+		inicio.getItems().addAll(descripcion,separator,salir);
     	
         //Creacion de ventana inicial
         GridPane p0 = new GridPane();
+        p0.getChildren().add(barramenu);
         //Particion en dos partes:
         GridPane p1 = new GridPane();
         GridPane p2 = new GridPane();
         //Agregar a p0:
-        p0.add(p1, 0, 0);
-        p0.add(p2, 1, 0);
+        p0.add(p1, 0, 1);
+        p0.add(p2, 1, 1);
         //agregar el fondo a p0
         p0.setStyle("-fx-background-image: url(\"file:src/img/fondo.png\"); " + "-fx-background-size: cover;");
 
@@ -44,7 +57,7 @@ public class VentanaInicial extends Application {
         p3.setWrapText(true);
 
         //Creacion de p4:
-        VBox p4 = new VBox(100);
+        VBox p4 = new VBox(50);
         
         //Boton de acceso en p4:
         Button botonp4 = new Button("INGRESAR AL SISTEMA");
@@ -102,11 +115,11 @@ public class VentanaInicial extends Application {
 
         //Anadir imagen a p4:
         p4.getChildren().add(0,imageView);
-        p4.setAlignment(Pos.CENTER);
+        p4.setAlignment(Pos.BOTTOM_CENTER);
 
         //Anadir boton a p4
         p4.getChildren().add(1,botonp4);
-
+        
         //Anadir p4 y p3 a p1:
         p1.add(p3, 0, 0);
         p1.add(p4, 0, 1);
