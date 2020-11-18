@@ -6,7 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -15,7 +17,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.scene.paint.Color;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.Menu;
@@ -27,6 +31,7 @@ public class VentanaInicial extends Application {
 	public void start(Stage myStage) throws Exception {    	
 		
 		MenuBar barramenu = new MenuBar();
+		barramenu.set
 		Menu inicio = new Menu("Inicio");
 		barramenu.getMenus().add(inicio);
 		MenuItem salir = new MenuItem("Salir");
@@ -34,12 +39,15 @@ public class VentanaInicial extends Application {
 		salir.setOnAction(handler);
 		MenuItem descripcion = new MenuItem("Descripcion");
 		SeparatorMenuItem separator = new SeparatorMenuItem();
+		DescripcionHandlerClas handler1 = new DescripcionHandlerClas();
+		descripcion.setOnAction(handler1);
 		inicio.getItems().addAll(descripcion,separator,salir);
+		
     	
         //Creacion de ventana inicial
         GridPane p0 = new GridPane();
         p0.getChildren().add(barramenu);
-        //Particion en dos partes:
+        //Particion en dos partes:.
         GridPane p1 = new GridPane();
         GridPane p2 = new GridPane();
         //Agregar a p0:
@@ -51,15 +59,15 @@ public class VentanaInicial extends Application {
         myStage.setTitle("IMPERIAL-GAMING");
 
         //Creacion de p3 como un label:
-        Label p3 = new Label("Bienvenido a IMPERIAL GAMING, la mejor tienda virtual");
+        Label p3 = new Label("¡Bienvenido a IMPERIAL GAMING, la mejor tienda virtual!");
         p3.setTextFill(Color.web("#000000"));
-        p3.setFont(Font.font ("Unispace", 30));
+        p3.setFont(Font.font ("Unispace", 35));
         
         p3.setPrefWidth(500);
         p3.setWrapText(true);
 
         //Creacion de p4:
-        VBox p4 = new VBox(50);
+        VBox p4 = new VBox(100);
         
         //Boton de acceso en p4:
         Button botonp4 = new Button("INGRESAR AL SISTEMA");
@@ -173,7 +181,7 @@ public class VentanaInicial extends Application {
         p05.setOnMouseEntered(new EventHandler<MouseEvent>() {
         	@Override
 			public void handle(MouseEvent event) {
-        		p05.setTextFill(Color.web("#6495ED"));       	
+        		p05.setTextFill(Color.web("#00008B"));       	
         		
         	}
         });
@@ -232,8 +240,18 @@ public class VentanaInicial extends Application {
 		
 	}
     
+    class DescripcionHandlerClas implements EventHandler<ActionEvent>{
+    	public void handle(ActionEvent event) {
+    		Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
+    		dialogoDescripcion.setTitle("IMPERIAL GAMING");
+    		dialogoDescripcion.setHeaderText("Descripcion de la Aplicacion");
+    		dialogoDescripcion.setContentText("IMPERIAL GAMING es un Software que permite al administrador de una tienda de videojuegos poder llevar un control detallado de las transacciones que se lleven a cabo, asi como tener la posibilidad de consultar historiales de clientes registrados, facturas detalladas y ademas, acceder a 5 funcionalidades espciales que le dan un valor agregado al aplicativo");
+    		dialogoDescripcion.showAndWait();	
+    	}
+    }
+    
     class SalirHandlerClass implements EventHandler<ActionEvent>{
-		public void handle(ActionEvent arg0) {
+		public void handle(ActionEvent event) {
 		System.exit(0);
 			
 		}
