@@ -280,9 +280,6 @@ public class VentanaInicial extends Application {
     	
     }
     
-    public Stage getStage() {
-    	return window;
-    }
     
 	public static void main(String[] args) {
         launch(args);

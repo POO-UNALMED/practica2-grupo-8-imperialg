@@ -58,6 +58,9 @@ class VentanaImperial{
 
         //Items de ayuda:
         MenuItem acerca = new MenuItem("Acerca de");
+        AcercaDeHandlerClass handler1= new AcercaDeHandlerClass();
+        acerca.setOnAction(handler1);
+        
 
         //Agregar items a menus:
 
@@ -93,20 +96,26 @@ class VentanaImperial{
         escenaimperial = new Scene(vusuario, 1100, 900);
         
 
-        
-
-    }
-    
-    
-    class SalirHandlerClass implements EventHandler<ActionEvent>{
-	public void handle(ActionEvent event) {
-		VentanaInicial.window.setScene(VentanaInicial.escena);
-
-		
 	}
-}
-    public Scene getEscena() {
-    	return escenaimperial;
-    }
     
+    class AcercaDeHandlerClass implements EventHandler<ActionEvent>{
+    	public void handle(ActionEvent event) {
+    		Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
+    		dialogoDescripcion.setTitle("IMPERIAL GAMING");
+    		dialogoDescripcion.setHeaderText("Version 1.0 Todos Los Derechos Reservados.");
+    		dialogoDescripcion.setContentText("Desarrolladores Software IMPERIAL GAMING:\n\n-Anderson Elian Gutierrez Bueno.\n-Santiago Valencia Mejia.\n-Santiago Franco Valencia.");
+    		dialogoDescripcion.showAndWait();
+    	}
+    }
+
+	class SalirHandlerClass implements EventHandler<ActionEvent> {
+		public void handle(ActionEvent event) {
+			VentanaInicial.window.setScene(VentanaInicial.escena);
+		}
+	}
+
+	public Scene getEscena() {
+		return escenaimperial;
+	}
+
 }
