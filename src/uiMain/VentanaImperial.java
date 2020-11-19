@@ -31,13 +31,11 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VentanaImperial extends Application {
-
-    public void start(Stage primaryStage) throws Exception {
-    	
-    	
-    	////////////////////////// Ventana Imperial ////////////////////////////////
-    	
+class VentanaImperial{
+	private Scene escenaimperial;
+	
+////////////////////////// Ventana Imperial ////////////////////////////////
+    public VentanaImperial(){    	
         //Creacion de barra de menus:
         MenuBar barramenu = new MenuBar();
 
@@ -90,15 +88,11 @@ public class VentanaImperial extends Application {
         visorConsolas.setItems(listica);
 
         vusuario.getChildren().add(visorConsolas);
-        Scene imperial = new Scene(vusuario, 1000, 800);
+        escenaimperial = new Scene(vusuario, 1100, 900);
 
-
-        primaryStage.setScene(imperial);
-        primaryStage.show();
-
+    }
+    public Scene getEscena() {
+    	return escenaimperial;
     }
     
-    public static void main(String[] args) {
-        launch(args);
-    }
 }

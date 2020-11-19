@@ -44,8 +44,11 @@ import javafx.scene.control.SeparatorMenuItem;
 
 
 public class VentanaInicial extends Application {
-	public void start(Stage myStage) throws Exception {    	
-		
+	
+	public static Stage window = new Stage(); 
+	
+	public void start(Stage myStage) throws Exception { 
+		window = myStage;		
 		MenuBar barramenu = new MenuBar();
 		Menu inicio = new Menu("Inicio");
 		barramenu.getMenus().add(inicio);
@@ -71,7 +74,7 @@ public class VentanaInicial extends Application {
         //agregar el fondo a p0
         p0.setStyle("-fx-background-image: url(\"file:src/img/fondo.png\"); " + "-fx-background-size: cover;");
 
-        myStage.setTitle("IMPERIAL-GAMING");
+        window.setTitle("IMPERIAL-GAMING");
 
         //Creacion de p3 como un label:
         Label p3 = new Label("Bienvenido a IMPERIAL GAMING, la mejor tienda virtual");
@@ -149,7 +152,7 @@ public class VentanaInicial extends Application {
 
         // Crear el label p5
        String p5 = new String("HOJA DE VIDA DE SANTIAGO VALENCIA MEJIA:\n\nMi nombre es Santiago Valencia Mejia, soy Tecnico en Diseno Grafico, actualmente estudio de Ingenieria de Sistemas e Informatica en la UNAL, tengo 20 anios, me encuentro cursando el quinto semestre, estoy viendo el curso de Programacion Orientada a Objetos y soy uno de los Autores del presente proyecto. Me gustaria dedicarme a futuro en el campo de Redes y Telecomunicaciones.\n\n\n");
-       String p5_1 = new String("HOJA DE VIDA DE ANDERSON GUTIERREZ BUENO:\n\nMi nombre es Anderson Elian Gutierrez Bueno, soy Tecnico en Sistemas, tengo 20 anios y actualmente estudio Ingenieria de Sistemas e Informatica en la UNAL, estoy cursando el quinto semestre y soy uno de los autores del presente proyecto. Quisiera dedicarme en un futuro como desarrolador de Software.\n\n\n");
+       String p5_1 = new String("HOJA DE VIDA DE ANDERSON GUTIERREZ BUENO:\n\nMi nombre es Anderson Elian Gutierrez Bueno, soy Tecnico en Sistemas, tengo 20 anios y actualmente estudio Ingenieria de Sistemas e Informatica en la UNAL, estoy cursando el quinto semestre y soy uno de los autores del presente proyecto. Quisiera dedicarme en un futuro como desarrollador de Software.\n\n\n");
        String p5_2 = new String("HOJA DE VIDA DE SANTIAGO FRANCO VALENCIA:\n\nMi nombre es Santiago Franco Valencia, soy tecnico en Diseno e Integracion de Multimedia, actualmente estoy culminando el 5to semestre de estadistica, me gustan mucho los juegos de cartas y la literatura, quisiera dedicarme a la consultoria o ser un analista financiero.\n\n\n");
  
        GridPane p6 = new GridPane();
@@ -167,43 +170,6 @@ public class VentanaInicial extends Application {
        
         p2.add(p05,0,0);
         p2.add(p6,0,1);
-
-        ///////////////////////////Ventana Imperial////////////////////////////////
-        //Creacion de barra de menus:
-        MenuBar barramenuI = new MenuBar();
-
-        //Creacion de menus:
-        Menu archivo = new Menu("Archivo");
-        Menu procon = new Menu("Procesos y consultas");
-        Menu aiuda = new Menu("Ayuda");
-
-        //Items de archivo:
-        MenuItem usuario = new MenuItem("Usuario");
-        MenuItem salir2 = new MenuItem("Salir");
-
-
-        //Items de procesos y consultas:
-        MenuItem vender = new MenuItem("Vender");
-        MenuItem sertec = new MenuItem("Servicio tecnico");
-        MenuItem stock = new MenuItem("Anadir o remover Stock");
-        MenuItem consultas = new MenuItem("Consultas");
-
-        //Items de ayuda:
-        MenuItem acerca = new MenuItem("Acerca de");
-
-        //Agregar items a menus:
-        archivo.getItems().addAll(usuario, salir2);
-        procon.getItems().addAll(vender,sertec,stock, consultas);
-        aiuda.getItems().addAll(acerca);
-
-
-        //Agregar menus:
-        barramenuI.getMenus().addAll(archivo, procon, aiuda);
-
-        VBox vusuario = new VBox();
-        vusuario.getChildren().add(barramenuI);
-
-        Scene imperial = new Scene(vusuario, 1000, 800);
 
 
         //Interactividad a imagenes:
@@ -283,23 +249,15 @@ public class VentanaInicial extends Application {
         botonp4.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                myStage.setTitle("Ventana Imperial");
-                myStage.setScene(imperial);
+                window.setTitle("Ventana Imperial");
+                window.setScene(new VentanaImperial().getEscena());
             }
         });
  
         Scene escena = new Scene(p0, 1100, 900);
-        myStage.setScene(escena);
-
-        //Interactividad items archivo:
-        salir2.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                myStage.setScene(escena);
-            }
-        });
-
-        myStage.show();
+        window.setScene(escena);
+        window.show();
+        
         
     }
 	
