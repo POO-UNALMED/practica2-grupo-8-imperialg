@@ -31,7 +31,9 @@ public class VentanaInicial extends Application {
 	public void start(Stage myStage) throws Exception {    	
 		
 		MenuBar barramenu = new MenuBar();
+/*
 		barramenu.set
+*/
 		Menu inicio = new Menu("Inicio");
 		barramenu.getMenus().add(inicio);
 		MenuItem salir = new MenuItem("Salir");
@@ -59,7 +61,7 @@ public class VentanaInicial extends Application {
         myStage.setTitle("IMPERIAL-GAMING");
 
         //Creacion de p3 como un label:
-        Label p3 = new Label("¡Bienvenido a IMPERIAL GAMING, la mejor tienda virtual!");
+        Label p3 = new Label("ï¿½Bienvenido a IMPERIAL GAMING, la mejor tienda virtual!");
         p3.setTextFill(Color.web("#000000"));
         p3.setFont(Font.font ("Unispace", 35));
         
@@ -73,8 +75,6 @@ public class VentanaInicial extends Application {
         Button botonp4 = new Button("INGRESAR AL SISTEMA");
         botonp4.setScaleX(2);
         botonp4.setScaleY(2);
-        botonp4HandlerClass BotonVentanaU = new botonp4HandlerClass();
-		botonp4.setOnAction(BotonVentanaU);
 
         //Espaciado en subpaneles:
         p1.setPadding(new Insets(10, 10, 10, 10));
@@ -101,27 +101,27 @@ public class VentanaInicial extends Application {
         Image imagena3 = new Image("file:src/img/andersong3.jpg");
         Image imagena4 = new Image("file:src/img/andersong4.jpg");
         //fotos Santiago Franco
-        //
-        //
-        //
-        //
+        Image imagensf1= new Image("file:src/img/sf1.jpg");
+        Image imagensf2= new Image("file:src/img/sf2.jpg");
+        Image imagensf3= new Image("file:src/img/sf3.jpg");
+        Image imagensf4= new Image("file:src/img/sf4.jpg");
     
         ImageView imageView = new ImageView(image1);
-        imageView.setFitWidth(420);
+        imageView.setFitWidth(400);
         imageView.setPreserveRatio(true); 
         ImageView imagens11 = new ImageView(imagens1);
         ImageView imagens22 = new ImageView(imagens2);
         ImageView imagens33 = new ImageView(imagens3);
         ImageView imagens44 = new ImageView(imagens4);
 
-        imagens11.setFitWidth(270);
+        imagens11.setFitWidth(250);
         imagens11.setPreserveRatio(true);        
-        imagens22.setFitWidth(280);
+        imagens22.setFitWidth(250);
         imagens22.setPreserveRatio(true);        
-        imagens33.setFitWidth(270);
+        imagens33.setFitWidth(250);
         imagens33.setPreserveRatio(true);        
-        imagens44.setFitWidth(288);
-        imagens44.setPreserveRatio(true);        
+        imagens44.setFitWidth(250);
+        imagens44.setPreserveRatio(true);
 
         //Anadir imagen a p4:
         p4.getChildren().add(0,imageView);
@@ -136,7 +136,7 @@ public class VentanaInicial extends Application {
 
         // Crear el label p5
        String p5 = new String("HOJA DE VIDA DE SANTIAGO VALENCIA MEJIA:\n\nSoy estudiante de Ingenieria de Sistemas e Informatica en la UNAL, tengo 20 anios, me encuentro actualmente cursando el quinto semestre, estoy viendo el curso de Programacion Orientada a Objetos y soy uno de los Autores del presente proyecto.\n\n\n");
-       String p5_1 = new String("HOJA DE VIDA DE ANDERSON GUTIERREZ BUENO:\n\nSoy estudiante de Ingenieria De Sistemas e Informatica de la UNAL, tengo 20 anios, me encuentro cursando el quinto semestre y actualmente estoy viendo el curso de Programacion orientada a objetos, dictado por el Docente Jaime Alberto Guman Luna.\n\n\n");
+       String p5_1 = new String("HOJA DE VIDA DE ANDERSON GUTIERREZ BUENO:\n\nMi nombre es Santiago Franco Valencia, soy tecnico en diseno e integracion de multimedia, actualmente estoy culminando el 5to semestre de estadistica, me gustan mucho los juegos de cartas y la literatura, quisiera dedicarme a la consultoria o ser un analista financiero.\n\n\n");
        String p5_2 = new String("HOJA DE VIDA DE SANTIAGO FRANCO VALENCIA:\n\nSoy estudiante de Ingenieria de Sistemas e Informatica en la UNAL, tengo 20 anios, me encuentro actualmente cursando el quinto semestre, estoy viendo el curso de Programacion Orientada a Objetos y soy uno de los Autores del presente proyecto.\n\n\n");
  
        GridPane p6 = new GridPane();
@@ -155,7 +155,46 @@ public class VentanaInicial extends Application {
         p2.add(p05,0,0);
         p2.add(p6,0,1);
 
-        //Interactividad a imagenes:c
+        ///////////////////////////Ventana Imperial////////////////////////////////
+        //Creacion de barra de menus:
+        MenuBar barramenuI = new MenuBar();
+
+        //Creacion de menus:
+        Menu archivo = new Menu("Archivo");
+        Menu procon = new Menu("Procesos y consultas");
+        Menu aiuda = new Menu("Ayuda");
+
+        //Items de archivo:
+        MenuItem usuario = new MenuItem("Usuario");
+        MenuItem salir2 = new MenuItem("Salir");
+
+
+        //Items de procesos y consultas:
+        MenuItem vender = new MenuItem("Vender");
+        MenuItem sertec = new MenuItem("Servicio tecnico");
+        MenuItem stock = new MenuItem("Anadir o remover Stock");
+        MenuItem consultas = new MenuItem("Consultas");
+
+        //Items de ayuda:
+        MenuItem acerca = new MenuItem("Acerca de");
+
+        //Agregar items a menus:
+
+        archivo.getItems().addAll(usuario, salir2);
+        procon.getItems().addAll(vender,sertec,stock, consultas);
+        aiuda.getItems().addAll(acerca);
+
+
+        //Agregar menus:
+        barramenuI.getMenus().addAll(archivo, procon, aiuda);
+
+        VBox vusuario = new VBox();
+        vusuario.getChildren().add(barramenuI);
+
+        Scene imperial = new Scene(vusuario, 1000, 800);
+
+
+        //Interactividad a imagenes:
         imageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -208,8 +247,10 @@ public class VentanaInicial extends Application {
 					
 					else if(p05.getText().equals(p5_1)) {
 						p05.setText(p5_2);
-						//aqui santiago franco agrega sus imagenes.
-					}
+                        imagens11.setImage(imagensf1);
+                        imagens22.setImage(imagensf2);
+                        imagens33.setImage(imagensf3);
+                        imagens44.setImage(imagensf4);					}
 					
 					else if(p05.getText().equals(p5_2)) {
 						p05.setText(p5);
@@ -224,22 +265,35 @@ public class VentanaInicial extends Application {
 			}
         	
         });
+
+        //Evento para cambiar de escenas:
+        botonp4.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                myStage.setTitle("Ventana Imperial");
+                myStage.setScene(imperial);
+            }
+        });
  
         Scene escena = new Scene(p0, 1100, 900);
         myStage.setScene(escena);
 
+        //Interactividad items archivo:
+
+        salir2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                myStage.setScene(escena);
+            }
+        });
+
+
+
         myStage.show();
         
     }
-    //cambiar de ventana inico a ventana usuario        
-    class botonp4HandlerClass implements EventHandler<ActionEvent>{
-		public void handle(ActionEvent event) {
-			System.out.println("Se dio clic en el boton, eso es para cambiar de ventana");
-		
-		}
-		
-	}
-    
+    ///////////////Manejadores de eventos:////////////////////////////////
+
     class DescripcionHandlerClas implements EventHandler<ActionEvent>{
     	public void handle(ActionEvent event) {
     		Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
