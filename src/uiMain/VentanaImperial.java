@@ -1,5 +1,19 @@
-package uiMain;
+/*1). En las fuentes se incluira la siguiente documentacion:
+         Cabecera del archivo: funcionalidad del modulo, autores, componentes del modulo, etc.
+         Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
+         sean relevantes.
+         Cabeceras en los metodos, comentando su proposito y describiendo los parametros de entrada/salida.
+         Comentarios en lineas de codigo de relevante interes o importancia.
+         Otros aspectos de interes a tener en cuenta por el profesor.*/
 
+/* Autores:   - Santiago Franco Valencia 
+*            - Anderson Elian Gutierrez 
+*            - Santiago Valencia Mejia
+*                                        */
+
+// Este modulo se encarga de la interacciqn que tendra el usuario con el programa, aqui es donde se veran reflejadas todas las funcionalidades
+// la aplicacion.
+package uiMain;
 import BaseDatos.Datos;
 import gestorAplicacion.producto.Consola;
 import gestorAplicacion.transacciones.Factura;
@@ -20,8 +34,10 @@ import java.util.List;
 public class VentanaImperial extends Application {
 
     public void start(Stage primaryStage) throws Exception {
-
-///////////////////////////Ventana Imperial////////////////////////////////
+    	
+    	
+    	////////////////////////// Ventana Imperial ////////////////////////////////
+    	
         //Creacion de barra de menus:
         MenuBar barramenu = new MenuBar();
 
@@ -57,7 +73,7 @@ public class VentanaImperial extends Application {
         vusuario.getChildren().add(barramenu);
 
         VBox vusuario2 =new VBox();
-        Label lbl = new Label("Hay que trabajar acá");
+        Label lbl = new Label("Hay que trabajar aca");
 
 
 

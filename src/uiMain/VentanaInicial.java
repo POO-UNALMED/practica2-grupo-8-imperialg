@@ -1,6 +1,22 @@
+/*1). En las fuentes se incluira la siguiente documentacion:
+         Cabecera del archivo: funcionalidad del modulo, autores, componentes del modulo, etc.
+         Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
+         sean relevantes.
+         Cabeceras en los metodos, comentando su proposito y describiendo los parametros de entrada/salida.
+         Comentarios en lineas de codigo de relevante interes o importancia.
+         Otros aspectos de interes a tener en cuenta por el profesor.*/
+
+/* Autores:   - Santiago Franco Valencia 
+*            - Anderson Elian Gutierrez 
+*            - Santiago Valencia Mejia
+*                                        */
+
+// Este modulo se encarga de presentar al usuario una ventana inicial donde podra ver informacion acerca de la aplicacion, los autores del 
+// Software, sus hojas de vida, 4 fotos de cada uno y tener a disposicion un boton para cambiar a la ventana de usuario, donde podra
+// hacer uso de todas las funcionalidades con las que cuenta el aplicativo. Adicional a esto, el usuario podra salir de aplicacion mediante 
+// el uso del menu ubicado en la parte superior izquierda llamado "inicio" y posteriormente haciendo uso de la opcion "salir".
+
 package uiMain;
-
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -31,9 +47,6 @@ public class VentanaInicial extends Application {
 	public void start(Stage myStage) throws Exception {    	
 		
 		MenuBar barramenu = new MenuBar();
-/*
-		barramenu.set
-*/
 		Menu inicio = new Menu("Inicio");
 		barramenu.getMenus().add(inicio);
 		MenuItem salir = new MenuItem("Salir");
@@ -61,7 +74,7 @@ public class VentanaInicial extends Application {
         myStage.setTitle("IMPERIAL-GAMING");
 
         //Creacion de p3 como un label:
-        Label p3 = new Label("�Bienvenido a IMPERIAL GAMING, la mejor tienda virtual!");
+        Label p3 = new Label("Bienvenido a IMPERIAL GAMING, la mejor tienda virtual");
         p3.setTextFill(Color.web("#000000"));
         p3.setFont(Font.font ("Unispace", 35));
         
@@ -135,9 +148,9 @@ public class VentanaInicial extends Application {
         p1.add(p4, 0, 1);
 
         // Crear el label p5
-       String p5 = new String("HOJA DE VIDA DE SANTIAGO VALENCIA MEJIA:\n\nSoy estudiante de Ingenieria de Sistemas e Informatica en la UNAL, tengo 20 anios, me encuentro actualmente cursando el quinto semestre, estoy viendo el curso de Programacion Orientada a Objetos y soy uno de los Autores del presente proyecto.\n\n\n");
-       String p5_1 = new String("HOJA DE VIDA DE ANDERSON GUTIERREZ BUENO:\n\nMi nombre es Santiago Franco Valencia, soy tecnico en diseno e integracion de multimedia, actualmente estoy culminando el 5to semestre de estadistica, me gustan mucho los juegos de cartas y la literatura, quisiera dedicarme a la consultoria o ser un analista financiero.\n\n\n");
-       String p5_2 = new String("HOJA DE VIDA DE SANTIAGO FRANCO VALENCIA:\n\nSoy estudiante de Ingenieria de Sistemas e Informatica en la UNAL, tengo 20 anios, me encuentro actualmente cursando el quinto semestre, estoy viendo el curso de Programacion Orientada a Objetos y soy uno de los Autores del presente proyecto.\n\n\n");
+       String p5 = new String("HOJA DE VIDA DE SANTIAGO VALENCIA MEJIA:\n\nMi nombre es Santiago Valencia Mejia, soy Tecnico en Diseno Grafico, actualmente estudio de Ingenieria de Sistemas e Informatica en la UNAL, tengo 20 anios, me encuentro cursando el quinto semestre, estoy viendo el curso de Programacion Orientada a Objetos y soy uno de los Autores del presente proyecto. Me gustaria dedicarme a futuro en el campo de Redes y Telecomunicaciones.\n\n\n");
+       String p5_1 = new String("HOJA DE VIDA DE ANDERSON GUTIERREZ BUENO:\n\nMi nombre es Anderson Elian Gutierrez Bueno, soy Tecnico en Sistemas, tengo 20 anios y actualmente estudio Ingenieria de Sistemas e Informatica en la UNAL, estoy cursando el quinto semestre y soy uno de los autores del presente proyecto. Quisiera dedicarme en un futuro como desarrolador de Software.\n\n\n");
+       String p5_2 = new String("HOJA DE VIDA DE SANTIAGO FRANCO VALENCIA:\n\nMi nombre es Santiago Franco Valencia, soy tecnico en Diseno e Integracion de Multimedia, actualmente estoy culminando el 5to semestre de estadistica, me gustan mucho los juegos de cartas y la literatura, quisiera dedicarme a la consultoria o ser un analista financiero.\n\n\n");
  
        GridPane p6 = new GridPane();
        p6.add(imagens11,0,0);
@@ -179,7 +192,6 @@ public class VentanaInicial extends Application {
         MenuItem acerca = new MenuItem("Acerca de");
 
         //Agregar items a menus:
-
         archivo.getItems().addAll(usuario, salir2);
         procon.getItems().addAll(vender,sertec,stock, consultas);
         aiuda.getItems().addAll(acerca);
@@ -250,7 +262,8 @@ public class VentanaInicial extends Application {
                         imagens11.setImage(imagensf1);
                         imagens22.setImage(imagensf2);
                         imagens33.setImage(imagensf3);
-                        imagens44.setImage(imagensf4);					}
+                        imagens44.setImage(imagensf4);
+					}
 					
 					else if(p05.getText().equals(p5_2)) {
 						p05.setText(p5);
@@ -279,7 +292,6 @@ public class VentanaInicial extends Application {
         myStage.setScene(escena);
 
         //Interactividad items archivo:
-
         salir2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -287,13 +299,11 @@ public class VentanaInicial extends Application {
             }
         });
 
-
-
         myStage.show();
         
     }
-    ///////////////Manejadores de eventos:////////////////////////////////
-
+	
+    ///////////////Manejadores de eventos://////////////////
     class DescripcionHandlerClas implements EventHandler<ActionEvent>{
     	public void handle(ActionEvent event) {
     		Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
