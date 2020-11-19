@@ -100,7 +100,7 @@ class VentanaImperial{
     
     class SalirHandlerClass implements EventHandler<ActionEvent>{
 	public void handle(ActionEvent event) {
-		VentanaInicial.window.setScene(VentanaInicial.window.getScene());
+		VentanaInicial.window.setScene(VentanaInicial.escena);
 
 		
 	}

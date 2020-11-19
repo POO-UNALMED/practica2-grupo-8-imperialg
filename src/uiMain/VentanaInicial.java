@@ -46,7 +46,7 @@ import javafx.scene.control.SeparatorMenuItem;
 public class VentanaInicial extends Application {
 	
 	public static Stage window = new Stage(); 
-	
+	public static Scene escena;
 	public void start(Stage myStage) throws Exception { 
 		window = myStage;		
 		MenuBar barramenu = new MenuBar();
@@ -254,7 +254,7 @@ public class VentanaInicial extends Application {
             }
         });
  
-        Scene escena = new Scene(p0, 1100, 900);
+        escena = new Scene(p0, 1100, 900);
         window.setScene(escena);
         window.show();
         
