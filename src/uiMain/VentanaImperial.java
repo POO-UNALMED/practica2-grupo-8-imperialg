@@ -27,7 +27,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,11 +46,14 @@ class VentanaImperial{
         //Items de archivo:
         MenuItem usuario = new MenuItem("Usuario");
         MenuItem salir = new MenuItem("Salir");
+        SalirHandlerClass handler = new SalirHandlerClass();
+        salir.setOnAction(handler);
 
         //Items de procesos y consultas:
         MenuItem vender = new MenuItem("Vender");
         MenuItem sertec = new MenuItem("Servicio tecnico");
-        MenuItem stock = new MenuItem("Anadir o remover Stock");
+        MenuItem usuarios = new MenuItem("Agregar o eliminar usuarios");
+        MenuItem stock = new MenuItem("Agregar o eliminar Stock");
         MenuItem consultas = new MenuItem("Consultas");
 
         //Items de ayuda:
@@ -60,7 +62,7 @@ class VentanaImperial{
         //Agregar items a menus:
 
         archivo.getItems().addAll(usuario, salir);
-        procon.getItems().addAll(vender,sertec,stock, consultas);
+        procon.getItems().addAll(vender,sertec,usuarios,stock, consultas);
         aiuda.getItems().addAll(acerca);
 
 
@@ -89,8 +91,20 @@ class VentanaImperial{
 
         vusuario.getChildren().add(visorConsolas);
         escenaimperial = new Scene(vusuario, 1100, 900);
+        
+
+        
 
     }
+    
+    
+    class SalirHandlerClass implements EventHandler<ActionEvent>{
+	public void handle(ActionEvent event) {
+		VentanaInicial.window.setScene(VentanaInicial.window.getScene());
+
+		
+	}
+}
     public Scene getEscena() {
     	return escenaimperial;
     }
