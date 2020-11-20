@@ -71,6 +71,7 @@ class VentanaImperial{
     	detalleproceso.setAlignment(Pos.CENTER);
     	detalleproceso.setScaleX(1.5);
     	detalleproceso.setScaleY(1.5);
+    	detalleproceso.setEditable(false);
     	GridPane formularioingresoc1 = new GridPane();
     	Label nombre = new Label("Nombre:");
     	nombre.setScaleX(1.2);
@@ -109,7 +110,7 @@ class VentanaImperial{
     	
     	
 /////////////////// Inicio Formulario Ingresar Consola ////////////////////////////
-    	ingresarconsola = new VBox(40);
+    	ingresarconsola = new VBox(60);
     	ingresarconsola.setAlignment(Pos.CENTER);
     	TextField proceso1 = new TextField("Ingresar una Consola a la Base De Datos");
     	proceso1.setScaleX(1.3);
@@ -118,27 +119,28 @@ class VentanaImperial{
     	proceso1.setAlignment(Pos.CENTER);
     	TextField detalleproceso1 = new TextField("Debe llenar todos los campos correspondientes para ingresar una Consola");
     	detalleproceso1.setAlignment(Pos.CENTER);
+    	detalleproceso1.setEditable(false);
     	detalleproceso1.setScaleX(1.5);
     	detalleproceso.setScaleY(1.5);
     	GridPane formularioingresocons1 = new GridPane();
     	Label nombrecon = new Label("Nombre:");
-    	nombrecon.setScaleX(1.2);
-    	nombrecon.setScaleY(1.2);
+    	nombrecon.setScaleX(1.1);
+    	nombrecon.setScaleY(1.1);
     	Label usocon = new Label("Uso de la Consola:");
-    	usocon.setScaleX(1.2);
-    	usocon.setScaleY(1.2);
+    	usocon.setScaleX(1.1);
+    	usocon.setScaleY(1.1);
     	Label preciocon = new Label("Precio:");
-    	preciocon.setScaleX(1.2);
-    	preciocon.setScaleY(1.2);
+    	preciocon.setScaleX(1.1);
+    	preciocon.setScaleY(1.1);
     	Label colorcon = new Label("Color:");
-    	colorcon.setScaleX(1.2);
-    	colorcon.setScaleY(1.2);
+    	colorcon.setScaleX(1.1);
+    	colorcon.setScaleY(1.1);
     	Label versioncon = new Label("Version:");
-    	versioncon.setScaleX(1.2);
-    	versioncon.setScaleY(1.2);
+    	versioncon.setScaleX(1.1);
+    	versioncon.setScaleY(1.1);
     	Label capacidadcon = new Label("Almacenamiento (Gb):");
-    	capacidadcon.setScaleX(1.2);
-    	capacidadcon.setScaleY(1.2);
+    	capacidadcon.setScaleX(1.1);
+    	capacidadcon.setScaleY(1.1);
     	Button ingresarcon = new Button("Ingresar");
 
     	BotonIngresarConsolaHandlerClass ingresarConsola = new BotonIngresarConsolaHandlerClass();
@@ -160,8 +162,8 @@ class VentanaImperial{
     	formularioingresocons1.add(versioncons,1 ,4);
     	formularioingresocons1.add(capacidadcon, 0, 5);
     	formularioingresocons1.add(capacidadcons, 1, 5);
-    	formularioingresocons1.add(ingresar, 0, 6);
-    	formularioingresocons1.add(cancelar,1 ,6);	
+    	formularioingresocons1.add(ingresarcon, 0, 6);
+    	formularioingresocons1.add(cancelarcon,1 ,6);	
     	ingresarconsola.getChildren().addAll(proceso1,detalleproceso1,formularioingresocons1);
     	
     	
