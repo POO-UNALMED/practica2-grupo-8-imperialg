@@ -41,6 +41,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.control.TextArea;
 
 
 public class VentanaInicial extends Application {
@@ -166,8 +167,7 @@ public class VentanaInicial extends Application {
        Label p05 = new Label(p5);
        p05.setTextFill(Color.web("#000000"));
        p05.setMaxWidth(600);
-       p05.setWrapText(true);
-       
+       p05.setWrapText(true);       
         p2.add(p05,0,0);
         p2.add(p6,0,1);
 

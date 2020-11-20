@@ -86,20 +86,12 @@ public class Cliente implements Serializable {
     
     // Metodo para recopilar por pantalla los datos basicos del cliente, para luego ser ingresado a la base de datos 
     // de la tienda. 
-    public static void ingresarCliente() {
-    	Scanner entrada = new Scanner(System.in);
-        System.out.println("Ingrese su nombre: ");
-        String nombre = entrada.next();
-        System.out.println("Ingrese su cedula: ");
-        int cc = entrada.nextInt();
-        System.out.println("Ingrese su celular: ");
-        long celular = entrada.nextLong();
-        System.out.println("Ingrese su e-mail: ");
-        String email = entrada.next();
+    public static void ingresarCliente(String nombre,int cc,long celular,String email) {
         Cliente cliente = new Cliente(nombre, cc, celular, email);
         Datos.listaClientes.add(cliente);
         System.out.println("\n"+ "Se ha actualizado la lista de Clientes."+"\n");
         Cliente.clientesRegistrados();
+        
         
     }
     
@@ -136,7 +128,7 @@ public class Cliente implements Serializable {
 	
 	// Este metodo registra un cliente.
 	public static Cliente clienteNoRegistrado(){
-		ingresarCliente();
+		//ingresarCliente();
 		return seleccionarUltimoCliente();
 	}
 	
@@ -163,7 +155,7 @@ public class Cliente implements Serializable {
  		}System.out.println (cl);
  		if(cl.getPuntos()>=20) {
  			System.out.println("\n"+"El cliente "+cl.getNombre()+" Tiene un bono de COP $ 300.000 en nuestra tienda por alcanzar los 20 puntos ");
- 			System.out.println("¿Desea redimir el bono al cliente " + cl.getNombre() + " ?"+"\n");
+ 			System.out.println("ï¿½Desea redimir el bono al cliente " + cl.getNombre() + " ?"+"\n");
  			System.out.println("Ingrese una opcion: ");
  			System.out.println("1. Si "+"\n"+"2. No");
  			int eleccion = entrada.nextInt();
