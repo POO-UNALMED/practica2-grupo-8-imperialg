@@ -86,17 +86,17 @@ class VentanaImperial{
     	detalleproceso.setEditable(false);
     	GridPane formularioingresoc1 = new GridPane();
     	Label nombre = new Label("Nombre:");
-    	nombre.setScaleX(1.2);
-    	nombre.setScaleY(1.2);
+    	nombre.setScaleX(1.1);
+    	nombre.setScaleY(1.1);
     	Label cedula = new Label("Cedula:");
-    	cedula.setScaleX(1.2);
-    	cedula.setScaleY(1.2);
+    	cedula.setScaleX(1.1);
+    	cedula.setScaleY(1.1);
     	Label celular = new Label("Nro Celular:");
-    	celular.setScaleX(1.2);
-    	celular.setScaleY(1.2);
+    	celular.setScaleX(1.1);
+    	celular.setScaleY(1.1);
     	Label email = new Label("e-mail:");
-    	email.setScaleX(1.2);
-    	email.setScaleY(1.2);
+    	email.setScaleX(1.1);
+    	email.setScaleY(1.1);
     	Button ingresar = new Button("Ingresar");    	
     	BotonIngresarUsuarioHandlerClass ingresarUsuario = new BotonIngresarUsuarioHandlerClass();
         ingresar.setOnAction(ingresarUsuario);
@@ -120,7 +120,7 @@ class VentanaImperial{
     	
     	
 /////////////////// Inicio Formulario Ingresar Consola ////////////////////////////
-    	ingresarconsola = new VBox(40);
+    	ingresarconsola = new VBox(50);
     	ingresarconsola.setAlignment(Pos.CENTER);
     	TextField proceso1 = new TextField("Ingresar una Consola a la Base De Datos");
     	proceso1.setMaxWidth(500);
@@ -177,7 +177,7 @@ class VentanaImperial{
     	
     	
 /////////////////// Inicio Formulario Ingresar Juego ////////////////////////////
-		ingresarjuego = new VBox(40);
+		ingresarjuego = new VBox(50);
 		ingresarjuego.setAlignment(Pos.CENTER);
 		TextField procesoj = new TextField("Ingresar un Juego a la Base De Datos");
 		procesoj.setMaxWidth(500);
@@ -189,23 +189,23 @@ class VentanaImperial{
 		detalleprocesoj.setMaxWidth(800);
 		GridPane formularioingresojuego = new GridPane();
 		Label nombrejuego = new Label("Nombre:");
-		nombrecon.setScaleX(1.1);
-		nombrecon.setScaleY(1.1);
+		nombrejuego.setScaleX(1.1);
+		nombrejuego.setScaleY(1.1);
 		Label usojuego = new Label("Uso del Juego:");
-		usocon.setScaleX(1.1);
-		usocon.setScaleY(1.1);
+		usojuego.setScaleX(1.1);
+		usojuego.setScaleY(1.1);
 		Label preciojuego = new Label("Precio:");
-		preciocon.setScaleX(1.1);
-		preciocon.setScaleY(1.1);
+		preciojuego.setScaleX(1.1);
+		preciojuego.setScaleY(1.1);
 		Label pegijuego = new Label("Pegi:");
-		colorcon.setScaleX(1.1);
-		colorcon.setScaleY(1.1);
+		pegijuego.setScaleX(1.1);
+		pegijuego.setScaleY(1.1);
 		Label plataformajuego = new Label("Plataforma Asociada:");
-		versioncon.setScaleX(1.1);
-		versioncon.setScaleY(1.1);
+		plataformajuego.setScaleX(1.1);
+		plataformajuego.setScaleY(1.1);
 		Label generojuego = new Label("Genero:");
-		capacidadcon.setScaleX(1.1);
-		capacidadcon.setScaleY(1.1);
+		generojuego.setScaleX(1.1);
+		generojuego.setScaleY(1.1);
 		Button ingresarjueg = new Button("Ingresar");
 		BotonIngresarJuegoHandlerClass ingresarJuego = new BotonIngresarJuegoHandlerClass();
 		ingresarjueg.setOnAction(ingresarJuego);
@@ -245,17 +245,17 @@ class VentanaImperial{
 		detalleprocesop.setEditable(false);
 		GridPane formularioingresop = new GridPane();
 		Label nombreper = new Label("Nombre:");
-		nombreper.setScaleX(1.2);
-		nombreper.setScaleY(1.2);
+		nombreper.setScaleX(1.1);
+		nombreper.setScaleY(1.1);
 		Label usoper = new Label("Uso del Periferico:");
-		usoper.setScaleX(1.2);
-		usoper.setScaleY(1.2);
+		usoper.setScaleX(1.1);
+		usoper.setScaleY(1.1);
 		Label precioper = new Label("Precio:");
-		precioper.setScaleX(1.2);
-		precioper.setScaleY(1.2);
+		precioper.setScaleX(1.1);
+		precioper.setScaleY(1.1);
 		Label plataformaper = new Label("Plataforma asociada:");
-		plataformaper.setScaleX(1.2);
-		plataformaper.setScaleY(1.2);
+		plataformaper.setScaleX(1.1);
+		plataformaper.setScaleY(1.1);
 		Button ingresarper = new Button("Ingresar");
 		BotonIngresarPerifericoHandlerClass  ingresarperiferico = new BotonIngresarPerifericoHandlerClass();
 		ingresarper.setOnAction(ingresarperiferico);
