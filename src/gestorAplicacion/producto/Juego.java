@@ -72,27 +72,7 @@ public class Juego extends Producto implements Serializable{
         Juego juego = new Juego(nombre, uso, precio, pegi, plataforma, genero);
         Datos.listaJuegos.add(juego);
     }
-    
-    // Metodo para seleccionar los juegos que se desean vender.
-    public static void ventaJuego(Cliente cliente) {
-    	Scanner entrada = new Scanner(System.in);
-		Juego.juegosRegistrados();
-		System.out.println("Ingrese la cantidad de juegos a vender: ");
-		int tope = entrada.nextInt();
-		System.out.println("Seleccione el indice de el/los Juego/s que desea vender: ");
-		int[] ints = Producto.seleccionProductos(tope);
-		ArrayList<Producto> productos = Juego.juegoPorIndice(ints);
-		for(Producto pro: productos) {
-			System.out.println(pro);
-		}
-		
-		// Se hace el llamado al metodo de la clase Datos para generar una factura de venta.
-		Factura.generarFacturaVenta(productos, cliente);
-		cliente.agregarPunto();
-		System.out.println("\n"+ "Lista de Clientes con puntos actualizados despues de la compra:" +"\n");
-		Cliente.clientesRegistrados();
-    }
-    
+
     
     // Metodo que moodifica el precio de algunos juegos, dado un array de indices y un array de precios.
     public static void modificarPreciosJuegos(int[] ints, int[] precios){

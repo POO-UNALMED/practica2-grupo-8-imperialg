@@ -62,26 +62,7 @@ public class Periferico extends Producto implements Serializable,Hardware{
         Periferico periferico = new Periferico(nombre, uso, precio, plataforma);       
         Datos.listaPerifericos.add(periferico);
     }
-    
-    // Metodo para seleccionar los perifericos a vender y posteirormente generar una factura.
-    public static void ventaPeriferico(Cliente cliente) {
-    	Scanner entrada = new Scanner(System.in);
-    	// Si la entrada fue 3, se muestran los perifercios disponibles y se pide la cantidad de perifericos a vender.
-		Periferico.perifericosRegistrados();
-		System.out.println("Ingrese la cantidad de perifericos a vender:");
-		int tope = entrada.nextInt();
-		System.out.println("Seleccione el indice de el/los periferico/s que desea vender: ");
-		int[] ints = Producto.seleccionProductos(tope);
-		ArrayList<Producto> productos = Periferico.perifericoPorIndice(ints);
-		for(Producto pro: productos) {
-			System.out.println(pro);						
-		}
-		// Se hace el llamado al metodo de la clase Datos para generar una factura de venta.
-		Factura.generarFacturaVenta(productos, cliente);
-		cliente.agregarPunto();
-		System.out.println("\n"+ "Lista de Clientes con puntos actualizados despues de la compra:" +"\n");
-		Cliente.clientesRegistrados();
-    }
+
     
     
     // Metodo que devuelve un Arraylist con los perifericos segun los indices ingresados por el usuario.

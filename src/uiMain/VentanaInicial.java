@@ -17,6 +17,7 @@
 // el uso del menu ubicado en la parte superior izquierda llamado "inicio" y posteriormente haciendo uso de la opcion "salir".
 
 package uiMain;
+import BaseDatos.Datos;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -282,6 +283,9 @@ public class VentanaInicial extends Application {
     
     
 	public static void main(String[] args) {
+	    Datos datos = new Datos();
+	    datos.leerDatos1();
+	    datos.leerDatos();
         launch(args);
     }
 }

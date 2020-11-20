@@ -92,7 +92,6 @@ public class Consola extends Producto implements Serializable, Hardware {
 		}			
 		
 		//se hace el llamado al metodo de la clase Datos para generar una factura de venta
-		Factura.generarFacturaVenta(productos, cliente);
 		cliente.agregarPunto(5);
 		System.out.println("\n"+ "Lista de Clientes con puntos actualizados despues de la compra:" +"\n");
 		Cliente.clientesRegistrados();
