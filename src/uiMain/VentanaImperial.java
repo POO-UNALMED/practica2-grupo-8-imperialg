@@ -22,6 +22,9 @@ import gestorAplicacion.transacciones.Cliente;
 import gestorAplicacion.transacciones.Detalle;
 import gestorAplicacion.transacciones.Factura;
 import javafx.application.Application;
+import javafx.scene.control.ComboBox;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -44,7 +47,6 @@ class VentanaImperial{
 	
 	private Scene escenaimperial;
 	VBox vusuario = new VBox(15);
-
 	
 	VBox ingresarcliente;
 	TextField nombrec = new TextField();
@@ -139,7 +141,15 @@ class VentanaImperial{
     	Label nombrecon = new Label("Nombre:");
     	nombrecon.setScaleX(1.1);
     	nombrecon.setScaleY(1.1);
-    	Label usocon = new Label("Uso de la Consola:");
+    	Label usocon = new Label("Uso de la Consola:");    	
+    	ComboBox<String> usoconsola = new ComboBox<String>();
+    	usoconsola.getItems().addAll("Nueva","Usada");
+    	usoconsola.setPromptText("Seleccione una opcion");
+    	usoconsola.valueProperty().addListener(new ChangeListener<String>() {
+    		public void changed(ObservableValue x,String y,String t) {
+    			usocons.setText(t);
+    		}
+    	});    	
     	usocon.setScaleX(1.1);
     	usocon.setScaleY(1.1);
     	Label preciocon = new Label("Precio:");
@@ -166,7 +176,7 @@ class VentanaImperial{
     	formularioingresocons1.add(nombrecon, 0, 0);
     	formularioingresocons1.add(nombrecons,1 ,0);
     	formularioingresocons1.add(usocon, 0, 1);
-    	formularioingresocons1.add(usocons,1 ,1);
+    	formularioingresocons1.add(usoconsola,1 ,1);
     	formularioingresocons1.add(preciocon, 0, 2);
     	formularioingresocons1.add(preciocons,1 ,2);
     	formularioingresocons1.add(colorcon, 0, 3);
@@ -197,6 +207,14 @@ class VentanaImperial{
 		nombrejuego.setScaleX(1.1);
 		nombrejuego.setScaleY(1.1);
 		Label usojuego = new Label("Uso del Juego:");
+		ComboBox<String> usojue = new ComboBox<String>();
+    	usojue.getItems().addAll("Nuevo","Usado");
+    	usojue.setPromptText("Seleccione una opcion");
+    	usojue.valueProperty().addListener(new ChangeListener<String>() {
+    		public void changed(ObservableValue x,String y,String t) {
+    			usojueg.setText(t);
+    		}
+    	});    	
 		usojuego.setScaleX(1.1);
 		usojuego.setScaleY(1.1);
 		Label preciojuego = new Label("Precio:");
@@ -222,7 +240,7 @@ class VentanaImperial{
 		formularioingresojuego.add(nombrejuego, 0, 0);
 		formularioingresojuego.add(nombrejueg, 1, 0);
 		formularioingresojuego.add(usojuego, 0, 1);
-		formularioingresojuego.add(usojueg, 1, 1);
+		formularioingresojuego.add(usojue, 1, 1);
 		formularioingresojuego.add(preciojuego, 0, 2);
 		formularioingresojuego.add(preciojueg, 1, 2);
 		formularioingresojuego.add(pegijuego, 0, 3);
@@ -253,6 +271,14 @@ class VentanaImperial{
 		nombreper.setScaleX(1.1);
 		nombreper.setScaleY(1.1);
 		Label usoper = new Label("Uso del Periferico:");
+		ComboBox<String> usop = new ComboBox<String>();
+    	usop.getItems().addAll("Nuevo","Usado");
+    	usop.setPromptText("Seleccione una opcion");
+    	usop.valueProperty().addListener(new ChangeListener<String>() {
+    		public void changed(ObservableValue x,String y,String t) {
+    			usoperif.setText(t);
+    		}
+    	});    	
 		usoper.setScaleX(1.1);
 		usoper.setScaleY(1.1);
 		Label precioper = new Label("Precio:");
@@ -272,7 +298,7 @@ class VentanaImperial{
 		formularioingresop.add(nombreper, 0, 0);
 		formularioingresop.add(nombreperif, 1, 0);
 		formularioingresop.add(usoper, 0, 1);
-		formularioingresop.add(usoperif, 1, 1);
+		formularioingresop.add(usop, 1, 1);
 		formularioingresop.add(precioper, 0, 2);
 		formularioingresop.add(precioperif, 1, 2);
 		formularioingresop.add(plataformaper, 0, 3);
@@ -280,14 +306,7 @@ class VentanaImperial{
 		formularioingresop.add(ingresarper, 0, 4);
 		formularioingresop.add(cancelarper, 1, 4);
 		ingresarpreriferico.getChildren().addAll(procesop, detalleprocesop, formularioingresop);
-/////////////////// Fin Formulario Ingresar Periferico //////////////////////////// 
-
-    	
-    	
-    	
-    	
-    	
-    	
+/////////////////// Fin Formulario Ingresar Periferico //////////////////////////////
     	
         //Creacion de barra de menus:
         MenuBar barramenu = new MenuBar();
@@ -348,8 +367,8 @@ class VentanaImperial{
 		txt.setAlignment(Pos.CENTER);
 		txt.setMaxWidth(700);
 		txt.setEditable(false);
-        vusuario.getChildren().add(txt);
-        vusuario.setAlignment(Pos.CENTER);
+        //vusuario.getChildren().add(txt);
+        //vusuario.setAlignment(Pos.CENTER);
 
 
         ListView<String> visorConsolas = new ListView<String>();
@@ -393,7 +412,7 @@ class VentanaImperial{
 		Button sendJuegos = new Button("Agregar al carrito");
 		Button sendPerifericos = new Button("Agregar al carrito");
 
-		//Creaciion de Hbox para los respectivos ingresos del usuario al carrito
+		//Creacion de Hbox para los respectivos ingresos del usuario al carrito
 		HBox pane1 = new HBox();
 		HBox pane2 = new HBox();
 		HBox pane3 = new HBox();
@@ -500,14 +519,20 @@ class VentanaImperial{
 
 			}
 		});
-
-		vusuario.getChildren().add(pane1);
-		vusuario.getChildren().add(pane2);
-		vusuario.getChildren().add(pane3);
-		vusuario.getChildren().add(lista);
-		vusuario.getChildren().add(info);
-		vusuario.getChildren().add(comboClientes);
-		vusuario.getChildren().addAll(botonrefresh, generarF);
+		VBox defecto = new VBox(10);
+		defecto.setSpacing(10);
+		defecto.setAlignment(Pos.CENTER);
+		defecto.setPadding(new Insets(10,10,10,10));
+		
+		defecto.getChildren().add(pane1);
+		defecto.getChildren().add(pane2);
+		defecto.getChildren().add(pane3);
+		defecto.getChildren().add(lista);
+		defecto.getChildren().add(info);
+		defecto.getChildren().add(comboClientes);
+		defecto.getChildren().addAll(botonrefresh, generarF);
+		
+		vusuario.getChildren().add(defecto);
 		escenaimperial = new Scene(vusuario, 1100, 900);
 
 	}
@@ -551,12 +576,17 @@ class VentanaImperial{
 	class BotonIngresarConsolaHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			String nombre = nombrecons.getText();
-			Boolean uso = Boolean.parseBoolean(usocons.getText());
+			Boolean uso=false;
+			if(usocons.getText().equals("Nueva")) {
+				uso  = false;				
+			}else if(usocons.getText().equals("Usada")) {
+				uso = true;
+			}
 			Float precio = Float.parseFloat(preciocons.getText());
 			String color = colorcons.getText();
 			String version = versioncons.getText();
 			int almacenamiento = Integer.parseInt(capacidadcons.getText());
-			Consola.ingresarConsola(nombre,uso,precio,color,version,almacenamiento);
+			Consola.ingresarConsola(nombre,uso,precio,color,version,almacenamiento);			
 		}
 	}
 	class agregarJuegoHandlerClass implements EventHandler<ActionEvent>{
@@ -567,7 +597,12 @@ class VentanaImperial{
 	class BotonIngresarJuegoHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			String nombre = nombrejueg.getText();
-			Boolean uso = Boolean.parseBoolean(usojueg.getText());
+			Boolean uso = false;
+			if(usojueg.getText().equals("Nuevo")) {
+				uso  = false;				
+			}else if(usojueg.getText().equals("Usado")) {
+				uso = true;
+			}
 			Float precio = Float.parseFloat(preciojueg.getText());
 			int pegi = Integer.parseInt(pegijueg.getText());
 			String plataforma = plataformajueg.getText();
@@ -580,7 +615,12 @@ class VentanaImperial{
 	class BotonIngresarPerifericoHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			String nombre = nombreperif.getText();
-			Boolean uso = Boolean.parseBoolean(usoperif.getText());
+			Boolean uso = false;
+			if(usoperif.getText().equals("Nuevo")) {
+				uso  = false;				
+			}else if(usoperif.getText().equals("Usado")) {
+				uso = true;
+			}
 			Float precio = Float.parseFloat(precioperif.getText());
 			String plataforma = plataformaperif.getText();
 			Periferico.ingresarPeriferico(nombre, uso, precio, plataforma);
