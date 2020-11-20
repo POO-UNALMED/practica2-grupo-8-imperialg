@@ -96,7 +96,7 @@ public class Ui {
 			case 0:
 				this.menu(datos);
 			case 1:
-				Consola.ingresarConsola();
+				//Consola.ingresarConsola();
 				this.presioneParaVolver();
 				break;
 			case 2:

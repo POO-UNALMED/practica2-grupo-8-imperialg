@@ -89,10 +89,7 @@ public class Cliente implements Serializable {
     public static void ingresarCliente(String nombre,int cc,long celular,String email) {
         Cliente cliente = new Cliente(nombre, cc, celular, email);
         Datos.listaClientes.add(cliente);
-        System.out.println("\n"+ "Se ha actualizado la lista de Clientes."+"\n");
         Cliente.clientesRegistrados();
-        
-        
     }
     
     // Metodo que agrega el cliente que se registra en una lista juntos con los demas clientes registrados anteriormente.

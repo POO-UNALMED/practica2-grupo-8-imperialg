@@ -28,8 +28,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 import javafx.geometry.Insets;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,50 +37,137 @@ import java.util.List;
 class VentanaImperial{
 	
 	private Scene escenaimperial;
-	VBox vusuario = new VBox();
+	VBox vusuario = new VBox(15);
+	
 	VBox ingresarcliente;
 	TextField nombrec = new TextField();
 	TextField cedulac = new TextField();
 	TextField celularc = new TextField();
 	TextField emailc = new TextField();
 	
+	VBox ingresarconsola;
+	TextField nombrecons = new TextField();
+	TextField usocons = new TextField();
+	TextField preciocons = new TextField();
+	TextField colorcons = new TextField();
+	TextField versioncons = new TextField();
+	TextField capacidadcons = new TextField();
 	
 	
+
 ////////////////////////// Ventana Imperial ////////////////////////////////
+	
     public VentanaImperial(){
+    	
 /////////////////// Inicio Formulario Ingresar Cliente ////////////////////////////
     	ingresarcliente = new VBox(50);
     	ingresarcliente.setAlignment(Pos.CENTER);
-    	TextField proceso = new TextField("Ingresar un cliente a la base de datos");
+    	TextField proceso = new TextField("Ingresar un Cliente a la Base De Datos");
+    	proceso.setScaleX(1.3);
+    	proceso.setScaleY(1.3);
     	proceso.setEditable(false);
     	proceso.setAlignment(Pos.CENTER);
-    	proceso.setPrefWidth(500);
-    	TextArea detalleproceso = new TextArea("Debe llenar todos los campos correspondientes para ingresar satisfactoriamente un cliente");
-    	GridPane formularioingresocl = new GridPane();
+    	TextField detalleproceso = new TextField("Debe llenar todos los campos correspondientes para ingresar un Cliente");
+    	detalleproceso.setAlignment(Pos.CENTER);
+    	detalleproceso.setScaleX(1.5);
+    	detalleproceso.setScaleY(1.5);
+    	GridPane formularioingresoc1 = new GridPane();
     	Label nombre = new Label("Nombre:");
+    	nombre.setScaleX(1.2);
+    	nombre.setScaleY(1.2);
     	Label cedula = new Label("Cedula:");
+    	cedula.setScaleX(1.2);
+    	cedula.setScaleY(1.2);
     	Label celular = new Label("Nro Celular:");
+    	celular.setScaleX(1.2);
+    	celular.setScaleY(1.2);
     	Label email = new Label("e-mail:");
+    	email.setScaleX(1.2);
+    	email.setScaleY(1.2);
     	Button ingresar = new Button("Ingresar");
+
+    	
     	BotonIngresarUsuarioHandlerClass ingresarUsuario = new BotonIngresarUsuarioHandlerClass();
         ingresar.setOnAction(ingresarUsuario);
     	Button cancelar = new Button("Cancelar");
-    	formularioingresocl.setPadding(new Insets(10,10,10,10));
-    	formularioingresocl.setVgap(10);
-    	formularioingresocl.setHgap(10);
-    	formularioingresocl.setAlignment(Pos.CENTER);
-    	formularioingresocl.add(nombre, 0, 0);
-    	formularioingresocl.add(nombrec,1 ,0);
-    	formularioingresocl.add(cedula, 0, 1);
-    	formularioingresocl.add(cedulac,1 ,1);
-    	formularioingresocl.add(celular, 0, 2);
-    	formularioingresocl.add(celularc,1 ,2);
-    	formularioingresocl.add(email, 0, 3);
-    	formularioingresocl.add(emailc,1 ,3);
-    	formularioingresocl.add(ingresar, 0, 4);
-    	formularioingresocl.add(cancelar,1 ,4);	
-    	ingresarcliente.getChildren().addAll(proceso,detalleproceso,formularioingresocl);
-/////////////////// Fin Formulario Ingresar Cliente ////////////////////////////    	
+    	formularioingresoc1.setPadding(new Insets(10,10,10,10));
+    	formularioingresoc1.setVgap(20);
+    	formularioingresoc1.setHgap(20);
+    	formularioingresoc1.setAlignment(Pos.CENTER);
+    	formularioingresoc1.add(nombre, 0, 0);
+    	formularioingresoc1.add(nombrec,1 ,0);
+    	formularioingresoc1.add(cedula, 0, 1);
+    	formularioingresoc1.add(cedulac,1 ,1);
+    	formularioingresoc1.add(celular, 0, 2);
+    	formularioingresoc1.add(celularc,1 ,2);
+    	formularioingresoc1.add(email, 0, 3);
+    	formularioingresoc1.add(emailc,1 ,3);
+    	formularioingresoc1.add(ingresar, 0, 4);
+    	formularioingresoc1.add(cancelar,1 ,4);	
+    	ingresarcliente.getChildren().addAll(proceso,detalleproceso,formularioingresoc1);
+/////////////////// Fin Formulario Ingresar Cliente //////////////////////////// 
+    	
+    	
+/////////////////// Inicio Formulario Ingresar Consola ////////////////////////////
+    	ingresarconsola = new VBox(40);
+    	ingresarconsola.setAlignment(Pos.CENTER);
+    	TextField proceso1 = new TextField("Ingresar una Consola a la Base De Datos");
+    	proceso1.setScaleX(1.3);
+    	proceso1.setScaleY(1.3);
+    	proceso1.setEditable(false);
+    	proceso1.setAlignment(Pos.CENTER);
+    	TextField detalleproceso1 = new TextField("Debe llenar todos los campos correspondientes para ingresar una Consola");
+    	detalleproceso1.setAlignment(Pos.CENTER);
+    	detalleproceso1.setScaleX(1.5);
+    	detalleproceso.setScaleY(1.5);
+    	GridPane formularioingresocons1 = new GridPane();
+    	Label nombrecon = new Label("Nombre:");
+    	nombrecon.setScaleX(1.2);
+    	nombrecon.setScaleY(1.2);
+    	Label usocon = new Label("Uso de la Consola:");
+    	usocon.setScaleX(1.2);
+    	usocon.setScaleY(1.2);
+    	Label preciocon = new Label("Precio:");
+    	preciocon.setScaleX(1.2);
+    	preciocon.setScaleY(1.2);
+    	Label colorcon = new Label("Color:");
+    	colorcon.setScaleX(1.2);
+    	colorcon.setScaleY(1.2);
+    	Label versioncon = new Label("Version:");
+    	versioncon.setScaleX(1.2);
+    	versioncon.setScaleY(1.2);
+    	Label capacidadcon = new Label("Almacenamiento (Gb):");
+    	capacidadcon.setScaleX(1.2);
+    	capacidadcon.setScaleY(1.2);
+    	Button ingresarcon = new Button("Ingresar");
+
+    	BotonIngresarConsolaHandlerClass ingresarConsola = new BotonIngresarConsolaHandlerClass();
+        ingresarcon.setOnAction(ingresarConsola); 
+        Button cancelarcon = new Button("Cancelar");
+    	formularioingresocons1.setPadding(new Insets(10,10,10,10));
+    	formularioingresocons1.setVgap(20);
+    	formularioingresocons1.setHgap(20);
+    	formularioingresocons1.setAlignment(Pos.CENTER);
+    	formularioingresocons1.add(nombrecon, 0, 0);
+    	formularioingresocons1.add(nombrecons,1 ,0);
+    	formularioingresocons1.add(usocon, 0, 1);
+    	formularioingresocons1.add(usocons,1 ,1);
+    	formularioingresocons1.add(preciocon, 0, 2);
+    	formularioingresocons1.add(preciocons,1 ,2);
+    	formularioingresocons1.add(colorcon, 0, 3);
+    	formularioingresocons1.add(colorcons,1 ,3);
+    	formularioingresocons1.add(versioncon, 0, 4);
+    	formularioingresocons1.add(versioncons,1 ,4);
+    	formularioingresocons1.add(capacidadcon, 0, 5);
+    	formularioingresocons1.add(capacidadcons, 1, 5);
+    	formularioingresocons1.add(ingresar, 0, 6);
+    	formularioingresocons1.add(cancelar,1 ,6);	
+    	ingresarconsola.getChildren().addAll(proceso1,detalleproceso1,formularioingresocons1);
+    	
+    	
+    	
+    	
+    	
     	
         //Creacion de barra de menus:
         MenuBar barramenu = new MenuBar();
@@ -120,9 +207,15 @@ class VentanaImperial{
         usuarios.getItems().addAll(agregarUsuario,eliminarUsuario);
         
         //Agregar items a item stock:
-        MenuItem agregarStock = new MenuItem("Ingresar nuevo Stock"); 
+        Menu agregarStock = new Menu("Ingresar nuevo Stock");
+        MenuItem agregarConsola= new MenuItem("Agregar Consola");
+        agregarConsolaHandlerClass handlerConsola = new agregarConsolaHandlerClass();
+        agregarConsola.setOnAction(handlerConsola);
+        MenuItem agregarJuego= new MenuItem("Agregar Juego");
+        MenuItem agregarPeriferico= new MenuItem("Agregar Periferico");
         MenuItem eliminarStock = new MenuItem("Eliminar un Stock Registrado");
         stock.getItems().addAll(agregarStock,eliminarStock);
+        agregarStock.getItems().addAll(agregarConsola,agregarJuego,agregarPeriferico);
         //Agregar menus:
         barramenu.getMenus().addAll(archivo, procon, aiuda);        
         vusuario.getChildren().add(barramenu);
@@ -138,11 +231,8 @@ class VentanaImperial{
         ObservableList<String> listica = FXCollections.observableArrayList(listaPrueba);
         visorConsolas.setItems(listica);
 
-       // vusuario.getChildren().add(visorConsolas);
+        
         escenaimperial = new Scene(vusuario, 1100, 900);    
-        
-    	
-        
 
 	}
     
@@ -177,8 +267,24 @@ class VentanaImperial{
 		}
 	}
 	
-
-
+	class BotonIngresarConsolaHandlerClass implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent event) {
+			String nombre = nombrecons.getText();
+			Boolean uso = Boolean.parseBoolean(usocons.getText());
+			Float precio = Float.parseFloat(preciocons.getText());
+			String color = colorcons.getText();
+			String version = versioncons.getText();
+			int almacenamiento = Integer.parseInt(capacidadcons.getText());
+			Consola.ingresarConsola(nombre,uso,precio,color,version,almacenamiento);
+		}
+	}
+	
+	class agregarConsolaHandlerClass implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent event) {
+			vusuario.getChildren().set(1,ingresarconsola);
+		}
+	}
+	
 	public Scene getEscena() {
 		return escenaimperial;
 	}

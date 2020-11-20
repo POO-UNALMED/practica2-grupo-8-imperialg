@@ -74,24 +74,9 @@ public class Consola extends Producto implements Serializable, Hardware {
     
     // Metodo que le solicita al usuario ingresar los datos basicos de la consola que posteriormente se ingresara la base
     // de datos de la tienda.
-    public static void ingresarConsola() {
-    	Scanner entrada = new Scanner(System.in);
-        System.out.println("Ingrese el nombre de consola: ");
-        String nombre = entrada.next();
-        System.out.println("Ingrese el uso (true si la consola esta usada o  false si la consola esta nueva): ");
-        Boolean uso = entrada.nextBoolean();
-        System.out.println("Ingrese el precio de la consola: ");
-        float precio = entrada.nextFloat();
-        System.out.println("Ingrese el color de la consola: ");
-        String color = entrada.next();
-        System.out.println("Ingrese el  nombre de la version de la consola: ");
-        String version = entrada.next();
-        System.out.println("Ingrese la capacidad de almacenamiento en Gb: ");
-        int almacenamiento = entrada.nextInt();
+    public static void ingresarConsola(String nombre,Boolean uso,float precio,String color,String version,int almacenamiento) {
         Consola consola = new Consola(nombre, uso, precio, color, version, almacenamiento);
         Datos.listaConsolas.add(consola);
-        System.out.println("\n"+"Se ha actualizado la lista de Consolas: "+"\n");
-        Consola.consolasRegistradas();
     }
     public static void ventaConsola(Cliente cliente) {
     	// Si la entrada fue 1, se muestran las consolas disponibles y se pide la cantidad de consolas a vender.
