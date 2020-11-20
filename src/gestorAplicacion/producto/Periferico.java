@@ -57,20 +57,10 @@ public class Periferico extends Producto implements Serializable,Hardware{
     
     // Metodo que solicita al usuario por pantalla los datos basicos del periferico, para posteriormente agregarlo a la base de 
     // datos de la tienda. 
-    public static void ingresarPeriferico() {
+    public static void ingresarPeriferico(String nombre,Boolean uso,float precio,String plataforma) {
     	Scanner entrada = new Scanner(System.in);
-        System.out.println("Ingrese el nombre del periferico: ");
-        String nombre = entrada.next();
-        System.out.println("Ingrese el uso (true si el periferico esta usado o  false si el periferico esta nuevo): ");
-        Boolean uso = entrada.nextBoolean();
-        System.out.println("Ingrese el precio del perferico: ");
-        float precio = entrada.nextFloat();
-        System.out.println("Ingrese el nombre plataforma asociada al periferico: ");
-        String plataforma = entrada.next();
         Periferico periferico = new Periferico(nombre, uso, precio, plataforma);       
         Datos.listaPerifericos.add(periferico);
-        System.out.println("\n"+"Se ha actualizado la lista de Perifericos: "+"\n");
-        Periferico.perifericosRegistrados();
     }
     
     // Metodo para seleccionar los perifericos a vender y posteirormente generar una factura.

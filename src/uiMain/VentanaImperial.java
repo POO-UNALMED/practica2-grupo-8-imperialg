@@ -17,6 +17,7 @@ package uiMain;
 import BaseDatos.Datos;
 import gestorAplicacion.producto.Consola;
 import gestorAplicacion.producto.Juego;
+import gestorAplicacion.producto.Periferico;
 import gestorAplicacion.transacciones.Cliente;
 import gestorAplicacion.transacciones.Factura;
 import javafx.application.Application;
@@ -61,6 +62,12 @@ class VentanaImperial{
 	TextField pegijueg = new TextField();
 	TextField plataformajueg = new TextField();
 	TextField generojueg = new TextField();
+	
+	VBox ingresarpreriferico;
+	TextField nombreperif = new TextField();
+	TextField usoperif = new TextField();
+	TextField precioperif = new TextField();
+	TextField plataformaperif = new TextField();
 
 ////////////////////////// Ventana Imperial ////////////////////////////////
 	
@@ -168,6 +175,7 @@ class VentanaImperial{
     	ingresarconsola.getChildren().addAll(proceso1,detalleproceso1,formularioingresocons1);
 /////////////////// Fin Formulario Ingresar Consola //////////////////////////// 
     	
+    	
 /////////////////// Inicio Formulario Ingresar Juego ////////////////////////////
 		ingresarjuego = new VBox(40);
 		ingresarjuego.setAlignment(Pos.CENTER);
@@ -222,6 +230,53 @@ class VentanaImperial{
 		formularioingresojuego.add(cancelarjueg, 1, 6);
 		ingresarjuego.getChildren().addAll(procesoj, detalleprocesoj, formularioingresojuego);
 /////////////////// Fin Formulario Ingresar Juego //////////////////////////// 
+		
+		
+/////////////////// Inicio Formulario Ingresar Periferico ////////////////////////////
+		ingresarpreriferico = new VBox(50);
+		ingresarpreriferico.setAlignment(Pos.CENTER);
+		TextField procesop = new TextField("Ingresar un Periferico a la Base De Datos");
+		procesop.setMaxWidth(500);
+		procesop.setEditable(false);
+		procesop.setAlignment(Pos.CENTER);
+		TextField detalleprocesop = new TextField("Debe llenar todos los campos correspondientes para ingresar un Periferico");
+		detalleprocesop.setAlignment(Pos.CENTER);
+		detalleprocesop.setMaxWidth(800);
+		detalleprocesop.setEditable(false);
+		GridPane formularioingresop = new GridPane();
+		Label nombreper = new Label("Nombre:");
+		nombreper.setScaleX(1.2);
+		nombreper.setScaleY(1.2);
+		Label usoper = new Label("Uso del Periferico:");
+		usoper.setScaleX(1.2);
+		usoper.setScaleY(1.2);
+		Label precioper = new Label("Precio:");
+		precioper.setScaleX(1.2);
+		precioper.setScaleY(1.2);
+		Label plataformaper = new Label("Plataforma asociada:");
+		plataformaper.setScaleX(1.2);
+		plataformaper.setScaleY(1.2);
+		Button ingresarper = new Button("Ingresar");
+		BotonIngresarPerifericoHandlerClass  ingresarperiferico = new BotonIngresarPerifericoHandlerClass();
+		ingresarper.setOnAction(ingresarperiferico);
+		Button cancelarper = new Button("Cancelar");
+		formularioingresop.setPadding(new Insets(10, 10, 10, 10));
+		formularioingresop.setVgap(20);
+		formularioingresop.setHgap(20);
+		formularioingresop.setAlignment(Pos.CENTER);
+		formularioingresop.add(nombreper, 0, 0);
+		formularioingresop.add(nombreperif, 1, 0);
+		formularioingresop.add(usoper, 0, 1);
+		formularioingresop.add(usoperif, 1, 1);
+		formularioingresop.add(precioper, 0, 2);
+		formularioingresop.add(precioperif, 1, 2);
+		formularioingresop.add(plataformaper, 0, 3);
+		formularioingresop.add(plataformaperif, 1, 3);
+		formularioingresop.add(ingresarper, 0, 4);
+		formularioingresop.add(cancelarper, 1, 4);
+		ingresarpreriferico.getChildren().addAll(procesop, detalleprocesop, formularioingresop);
+/////////////////// Fin Formulario Ingresar Periferico //////////////////////////// 
+
     	
     	
     	
@@ -275,6 +330,8 @@ class VentanaImperial{
         agregarJuegoHandlerClass handlerJuego = new agregarJuegoHandlerClass();
         agregarJuego.setOnAction(handlerJuego);
         MenuItem agregarPeriferico= new MenuItem("Agregar Periferico");
+        agregarPerifericoHandlerClass handlerper = new agregarPerifericoHandlerClass();
+        agregarPeriferico.setOnAction(handlerper);
         MenuItem eliminarStock = new MenuItem("Eliminar un Stock Registrado");
         stock.getItems().addAll(agregarStock,eliminarStock);
         agregarStock.getItems().addAll(agregarConsola,agregarJuego,agregarPeriferico);
@@ -362,7 +419,21 @@ class VentanaImperial{
 		}
 	}
 	
+	class BotonIngresarPerifericoHandlerClass implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent event) {
+			String nombre = nombreperif.getText();
+			Boolean uso = Boolean.parseBoolean(usoperif.getText());
+			Float precio = Float.parseFloat(precioperif.getText());
+			String plataforma = plataformaperif.getText();
+			Periferico.ingresarPeriferico(nombre, uso, precio, plataforma);
+		}
+	}
 	
+	class  agregarPerifericoHandlerClass implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent event) {
+			vusuario.getChildren().set(1, ingresarpreriferico);
+		}
+	}
 	
 	public Scene getEscena() {
 		return escenaimperial;

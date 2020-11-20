@@ -104,7 +104,7 @@ public class Ui {
 				this.presioneParaVolver();
 				break;
 			case 3:
-				Periferico.ingresarPeriferico();
+				//Periferico.ingresarPeriferico();
 				this.presioneParaVolver();
 				break;
 			case 4:
