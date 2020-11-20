@@ -100,7 +100,7 @@ public class Ui {
 				this.presioneParaVolver();
 				break;
 			case 2:
-				Juego.ingresarJuego();
+				//Juego.ingresarJuego();
 				this.presioneParaVolver();
 				break;
 			case 3:

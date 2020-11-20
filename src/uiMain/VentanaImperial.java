@@ -16,6 +16,7 @@
 package uiMain;
 import BaseDatos.Datos;
 import gestorAplicacion.producto.Consola;
+import gestorAplicacion.producto.Juego;
 import gestorAplicacion.transacciones.Cliente;
 import gestorAplicacion.transacciones.Factura;
 import javafx.application.Application;
@@ -53,7 +54,13 @@ class VentanaImperial{
 	TextField versioncons = new TextField();
 	TextField capacidadcons = new TextField();
 	
-	
+	VBox ingresarjuego;
+	TextField nombrejueg = new TextField();
+	TextField usojueg = new TextField();
+	TextField preciojueg = new TextField();
+	TextField pegijueg = new TextField();
+	TextField plataformajueg = new TextField();
+	TextField generojueg = new TextField();
 
 ////////////////////////// Ventana Imperial ////////////////////////////////
 	
@@ -63,14 +70,12 @@ class VentanaImperial{
     	ingresarcliente = new VBox(50);
     	ingresarcliente.setAlignment(Pos.CENTER);
     	TextField proceso = new TextField("Ingresar un Cliente a la Base De Datos");
-    	proceso.setScaleX(1.3);
-    	proceso.setScaleY(1.3);
+    	proceso.setMaxWidth(500);
     	proceso.setEditable(false);
     	proceso.setAlignment(Pos.CENTER);
     	TextField detalleproceso = new TextField("Debe llenar todos los campos correspondientes para ingresar un Cliente");
     	detalleproceso.setAlignment(Pos.CENTER);
-    	detalleproceso.setScaleX(1.5);
-    	detalleproceso.setScaleY(1.5);
+    	detalleproceso.setMaxWidth(800);
     	detalleproceso.setEditable(false);
     	GridPane formularioingresoc1 = new GridPane();
     	Label nombre = new Label("Nombre:");
@@ -85,9 +90,7 @@ class VentanaImperial{
     	Label email = new Label("e-mail:");
     	email.setScaleX(1.2);
     	email.setScaleY(1.2);
-    	Button ingresar = new Button("Ingresar");
-
-    	
+    	Button ingresar = new Button("Ingresar");    	
     	BotonIngresarUsuarioHandlerClass ingresarUsuario = new BotonIngresarUsuarioHandlerClass();
         ingresar.setOnAction(ingresarUsuario);
     	Button cancelar = new Button("Cancelar");
@@ -110,18 +113,16 @@ class VentanaImperial{
     	
     	
 /////////////////// Inicio Formulario Ingresar Consola ////////////////////////////
-    	ingresarconsola = new VBox(60);
+    	ingresarconsola = new VBox(40);
     	ingresarconsola.setAlignment(Pos.CENTER);
     	TextField proceso1 = new TextField("Ingresar una Consola a la Base De Datos");
-    	proceso1.setScaleX(1.3);
-    	proceso1.setScaleY(1.3);
+    	proceso1.setMaxWidth(500);
     	proceso1.setEditable(false);
     	proceso1.setAlignment(Pos.CENTER);
     	TextField detalleproceso1 = new TextField("Debe llenar todos los campos correspondientes para ingresar una Consola");
     	detalleproceso1.setAlignment(Pos.CENTER);
     	detalleproceso1.setEditable(false);
-    	detalleproceso1.setScaleX(1.5);
-    	detalleproceso.setScaleY(1.5);
+    	detalleproceso1.setMaxWidth(800);
     	GridPane formularioingresocons1 = new GridPane();
     	Label nombrecon = new Label("Nombre:");
     	nombrecon.setScaleX(1.1);
@@ -165,6 +166,63 @@ class VentanaImperial{
     	formularioingresocons1.add(ingresarcon, 0, 6);
     	formularioingresocons1.add(cancelarcon,1 ,6);	
     	ingresarconsola.getChildren().addAll(proceso1,detalleproceso1,formularioingresocons1);
+/////////////////// Fin Formulario Ingresar Consola //////////////////////////// 
+    	
+/////////////////// Inicio Formulario Ingresar Juego ////////////////////////////
+		ingresarjuego = new VBox(40);
+		ingresarjuego.setAlignment(Pos.CENTER);
+		TextField procesoj = new TextField("Ingresar un Juego a la Base De Datos");
+		procesoj.setMaxWidth(500);
+		procesoj.setEditable(false);
+		procesoj.setAlignment(Pos.CENTER);
+		TextField detalleprocesoj = new TextField("Debe llenar todos los campos correspondientes para ingresar un Juego");
+		detalleprocesoj.setAlignment(Pos.CENTER);
+		detalleprocesoj.setEditable(false);
+		detalleprocesoj.setMaxWidth(800);
+		GridPane formularioingresojuego = new GridPane();
+		Label nombrejuego = new Label("Nombre:");
+		nombrecon.setScaleX(1.1);
+		nombrecon.setScaleY(1.1);
+		Label usojuego = new Label("Uso del Juego:");
+		usocon.setScaleX(1.1);
+		usocon.setScaleY(1.1);
+		Label preciojuego = new Label("Precio:");
+		preciocon.setScaleX(1.1);
+		preciocon.setScaleY(1.1);
+		Label pegijuego = new Label("Pegi:");
+		colorcon.setScaleX(1.1);
+		colorcon.setScaleY(1.1);
+		Label plataformajuego = new Label("Plataforma Asociada:");
+		versioncon.setScaleX(1.1);
+		versioncon.setScaleY(1.1);
+		Label generojuego = new Label("Genero:");
+		capacidadcon.setScaleX(1.1);
+		capacidadcon.setScaleY(1.1);
+		Button ingresarjueg = new Button("Ingresar");
+		BotonIngresarJuegoHandlerClass ingresarJuego = new BotonIngresarJuegoHandlerClass();
+		ingresarjueg.setOnAction(ingresarJuego);
+		Button cancelarjueg = new Button("Cancelar");
+		formularioingresojuego.setPadding(new Insets(10, 10, 10, 10));
+		formularioingresojuego.setVgap(20);
+		formularioingresojuego.setHgap(20);
+		formularioingresojuego.setAlignment(Pos.CENTER);
+		formularioingresojuego.add(nombrejuego, 0, 0);
+		formularioingresojuego.add(nombrejueg, 1, 0);
+		formularioingresojuego.add(usojuego, 0, 1);
+		formularioingresojuego.add(usojueg, 1, 1);
+		formularioingresojuego.add(preciojuego, 0, 2);
+		formularioingresojuego.add(preciojueg, 1, 2);
+		formularioingresojuego.add(pegijuego, 0, 3);
+		formularioingresojuego.add(pegijueg, 1, 3);
+		formularioingresojuego.add(plataformajuego, 0, 4);
+		formularioingresojuego.add(plataformajueg, 1, 4);
+		formularioingresojuego.add(generojuego, 0, 5);
+		formularioingresojuego.add(generojueg, 1, 5);
+		formularioingresojuego.add(ingresarjueg, 0, 6);
+		formularioingresojuego.add(cancelarjueg, 1, 6);
+		ingresarjuego.getChildren().addAll(procesoj, detalleprocesoj, formularioingresojuego);
+/////////////////// Fin Formulario Ingresar Juego //////////////////////////// 
+    	
     	
     	
     	
@@ -214,6 +272,8 @@ class VentanaImperial{
         agregarConsolaHandlerClass handlerConsola = new agregarConsolaHandlerClass();
         agregarConsola.setOnAction(handlerConsola);
         MenuItem agregarJuego= new MenuItem("Agregar Juego");
+        agregarJuegoHandlerClass handlerJuego = new agregarJuegoHandlerClass();
+        agregarJuego.setOnAction(handlerJuego);
         MenuItem agregarPeriferico= new MenuItem("Agregar Periferico");
         MenuItem eliminarStock = new MenuItem("Eliminar un Stock Registrado");
         stock.getItems().addAll(agregarStock,eliminarStock);
@@ -268,7 +328,11 @@ class VentanaImperial{
 			Cliente.ingresarCliente(nombre, cedula, celular, correo);
 		}
 	}
-	
+	class agregarConsolaHandlerClass implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent event) {
+			vusuario.getChildren().set(1,ingresarconsola);
+		}
+	}	
 	class BotonIngresarConsolaHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			String nombre = nombrecons.getText();
@@ -280,12 +344,25 @@ class VentanaImperial{
 			Consola.ingresarConsola(nombre,uso,precio,color,version,almacenamiento);
 		}
 	}
-	
-	class agregarConsolaHandlerClass implements EventHandler<ActionEvent>{
+	class agregarJuegoHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
-			vusuario.getChildren().set(1,ingresarconsola);
+			vusuario.getChildren().set(1,ingresarjuego);
 		}
 	}
+	class BotonIngresarJuegoHandlerClass implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent event) {
+			String nombre = nombrejueg.getText();
+			Boolean uso = Boolean.parseBoolean(usojueg.getText());
+			Float precio = Float.parseFloat(preciojueg.getText());
+			int pegi = Integer.parseInt(pegijueg.getText());
+			String plataforma = plataformajueg.getText();
+			String genero = generojueg.getText();
+			Juego.ingresarJuego(nombre, uso, precio, pegi, plataforma, genero);
+			
+		}
+	}
+	
+	
 	
 	public Scene getEscena() {
 		return escenaimperial;

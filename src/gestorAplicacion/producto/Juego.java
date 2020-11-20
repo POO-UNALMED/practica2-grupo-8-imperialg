@@ -68,24 +68,9 @@ public class Juego extends Producto implements Serializable{
     
     // Metodo que le solicita al usuario ingresar los datos basicos del juego que posteriormente se ingresara a la base
     // de datos de la tienda.
-    public static void ingresarJuego() {
-    	Scanner entrada = new Scanner(System.in);
-        System.out.println("Ingrese el nombre del juego: ");
-        String nombre = entrada.next();
-        System.out.println("Ingrese el uso (true si el juego esta usado o  false si el juego esta nuevo): ");
-        Boolean uso = entrada.nextBoolean();
-        System.out.println("Ingrese el precio del juego: ");
-        float precio = entrada.nextFloat();
-        System.out.println("Ingrese pegi (Edad minima recomendada para jugar): ");
-        int pegi = entrada.nextInt();
-        System.out.println("Ingrese el nombre plataforma asociada al juego: ");
-        String plataforma = entrada.next();
-        System.out.println("Ingrese el genero del juego: ");
-        String genero = entrada.next();
+    public static void ingresarJuego(String nombre, boolean uso, float precio, int pegi, String plataforma, String genero) {
         Juego juego = new Juego(nombre, uso, precio, pegi, plataforma, genero);
         Datos.listaJuegos.add(juego);
-        System.out.println("\n"+"Se ha actualizado la lista de Juegos: "+"\n");
-        Juego.juegosRegistrados();
     }
     
     // Metodo para seleccionar los juegos que se desean vender.
@@ -249,7 +234,7 @@ public class Juego extends Producto implements Serializable{
 	
 	// Metodo que recomienda los juegos de la tienda por la edad minima sugerida para ser jugados.
 	public static void recomendarPorEdad() {
-		System.out.println("Juegos recomendados para edad de 6 años a 12 años inclusive: "+"\n");
+		System.out.println("Juegos recomendados para edad de 6 aï¿½os a 12 aï¿½os inclusive: "+"\n");
 		
 		for(Juego juego:Datos.listaJuegos) {
 			if(juego.pegi<=12) {				
@@ -257,7 +242,7 @@ public class Juego extends Producto implements Serializable{
 			}
 		}	
 		System.out.println("\n");
-		System.out.println("\n"+"Juegos recomendados para edad de mas de 12 años a 18 años inclusive: "+"\n");
+		System.out.println("\n"+"Juegos recomendados para edad de mas de 12 aï¿½os a 18 aï¿½os inclusive: "+"\n");
 		
 			for(Juego juego:Datos.listaJuegos) {
 				if(juego.pegi>12&&juego.pegi<=18) {	
@@ -266,7 +251,7 @@ public class Juego extends Producto implements Serializable{
 				}
 			}
 			System.out.println("\n");
-			System.out.println("\n"+"Juegos recomendados para edad de +18 años: "+"\n");
+			System.out.println("\n"+"Juegos recomendados para edad de +18 aï¿½os: "+"\n");
 			for(Juego juego:Datos.listaJuegos) {
 				if(juego.pegi>18) {	
 					System.out.println("Nombre del Juego: "+juego.getNombre()+"  ||  "+" Genero: "+juego.getGenero()+"  ||  "+" Precio: "+juego.getPrecio()+"  ||  "+"Edad recomendada para jugar: "+juego.getPegi());
