@@ -44,6 +44,7 @@ class VentanaImperial{
 	
 	private Scene escenaimperial;
 	VBox vusuario = new VBox(15);
+
 	
 	VBox ingresarcliente;
 	TextField nombrec = new TextField();
@@ -339,11 +340,16 @@ class VentanaImperial{
         MenuItem eliminarStock = new MenuItem("Eliminar un Stock Registrado");
         stock.getItems().addAll(agregarStock,eliminarStock);
         agregarStock.getItems().addAll(agregarConsola,agregarJuego,agregarPeriferico);
+        
         //Agregar menus:
         barramenu.getMenus().addAll(archivo, procon, aiuda);        
         vusuario.getChildren().add(barramenu);
-        TextField txt = new TextField("Hola");
+        TextField txt = new TextField("A continuacion seleccione los productos que desea comprar");
+		txt.setAlignment(Pos.CENTER);
+		txt.setMaxWidth(700);
+		txt.setEditable(false);
         vusuario.getChildren().add(txt);
+        vusuario.setAlignment(Pos.CENTER);
 
 
         ListView<String> visorConsolas = new ListView<String>();
@@ -383,9 +389,9 @@ class VentanaImperial{
 
 		//Botones para añadir productos al carrito:
 
-		Button sendConsolas = new Button("Anadir al carrito");
-		Button sendJuegos = new Button("Anadir al carrito");
-		Button sendPerifericos = new Button("Anadir al carrito");
+		Button sendConsolas = new Button("Agregar al carrito");
+		Button sendJuegos = new Button("Agregar al carrito");
+		Button sendPerifericos = new Button("Agregar al carrito");
 
 		//Creaciion de Hbox para los respectivos ingresos del usuario al carrito
 		HBox pane1 = new HBox();
@@ -393,6 +399,7 @@ class VentanaImperial{
 		HBox pane3 = new HBox();
 
 		//Anadir elementos a los Hbox:
+		
 		pane1.getChildren().addAll(comboConsolas, cantidad1, sendConsolas);
 		pane2.getChildren().addAll(comboJuegos,cantidad2,sendJuegos);
 		pane3.getChildren().addAll(comboPerifericos,cantidad3,sendPerifericos);
@@ -470,6 +477,11 @@ class VentanaImperial{
 				lista.refresh();
 			}
 		});
+		
+		TextField info = new TextField("A continuacion seleccione el Cliente al cual desea aplicar la transaccion");
+		info.setAlignment(Pos.CENTER);
+		info.setEditable(false);
+		info.setMaxWidth(700);
 
 		//Lista observable de clientes:
 		ObservableList<Cliente> listaClientes= FXCollections.observableArrayList(Datos.listaClientes);
@@ -479,7 +491,6 @@ class VentanaImperial{
 
 		//Boton para generar una transaccion:
 		Button generarF = new Button("Finalizar transaccion");
-
 		generarF.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -490,13 +501,11 @@ class VentanaImperial{
 			}
 		});
 
-
-
-
 		vusuario.getChildren().add(pane1);
 		vusuario.getChildren().add(pane2);
 		vusuario.getChildren().add(pane3);
 		vusuario.getChildren().add(lista);
+		vusuario.getChildren().add(info);
 		vusuario.getChildren().add(comboClientes);
 		vusuario.getChildren().addAll(botonrefresh, generarF);
 		escenaimperial = new Scene(vusuario, 1100, 900);
@@ -516,6 +525,7 @@ class VentanaImperial{
 	class SalirHandlerClass implements EventHandler<ActionEvent> {
 		public void handle(ActionEvent event) {
 			VentanaInicial.window.setScene(VentanaInicial.escena);
+			 VentanaInicial.window.setTitle("IMPERIAL-GAMING");
 		}
 	}
 	class agregarUsuarioHandlerClass implements EventHandler<ActionEvent>{

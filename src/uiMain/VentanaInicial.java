@@ -103,11 +103,12 @@ public class VentanaInicial extends Application {
         p0.setVgap(10);
         
         //Importar Imagenes:
-        Image image1 = new Image("file:src/img/image1.jpg");
-        Image image2 = new Image("file:src/img/image2.jpg");
-        Image image3 = new Image("file:src/img/image3.jpg");
+        Image image1 = new Image("file:src/img/image3.jpg");
+        Image image2 = new Image("file:src/img/image1.jpg");
+        Image image3 = new Image("file:src/img/image2.jpg");
         Image image4 = new Image("file:src/img/image4.jpg");
         Image image5 = new Image("file:src/img/image5.jpg");
+
         //fotos Santiago Valencia
         Image imagens1= new Image("file:src/img/santiagov1.jpg");
         Image imagens2= new Image("file:src/img/santiagov2.jpg");
