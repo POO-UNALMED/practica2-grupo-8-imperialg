@@ -258,7 +258,7 @@ public class VentanaInicial extends Application {
         });
 
         HBox hbox = new HBox(new ModificarConsola().getModificarConsola(), new ModificarJuego().getModificarJuego(), new ModificarCliente().getModificarCliente(), new ModificarPeriferico().getModificarPeriferico());
-        escena = new Scene(hbox, 1100, 900);
+        escena = new Scene(p0, 1100, 900);
         window.setScene(escena);
         window.show();
         
