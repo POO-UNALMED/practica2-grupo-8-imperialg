@@ -129,6 +129,10 @@ public class VentanaConsultas {
 		imagens11.setFitWidth(30);
 		imagens11.setFitHeight(20);
 		Button consultar = new Button("Consultar", imagens11);
+		Button salir = new Button("Salir");
+		BotonSalir botonsalir = new BotonSalir();
+        salir.setOnAction(botonsalir);
+		
 		
 		menu.setPromptText("Seleccione una opcion");
 		BotonConsultaHandlerClass ingresarConsola = new BotonConsultaHandlerClass();
@@ -139,6 +143,7 @@ public class VentanaConsultas {
 		opciones.setHgap(15);
 		opciones.add(menu, 0, 0);
 		opciones.add(consultar, 1, 0);
+		opciones.add(salir, 2, 0);
 		submenu.getChildren().add(opciones);
 		submenu.getChildren().add(1,new VBox());
 		submenu.getChildren().add(2,new VBox());
@@ -199,6 +204,12 @@ public class VentanaConsultas {
 	class BotonMostrarJuegosRegistrados implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			submenu.getChildren().set(2, lsjuego);
+		}
+	}
+	
+	class BotonSalir implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent event) {
+			//VentanaImperial.DevolverDefectoUHandlerClass;
 		}
 	}
 
