@@ -34,6 +34,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -392,8 +394,13 @@ class VentanaImperial{
 		ComboBox comboJuegos = new ComboBox(listajuegos);
 		ComboBox comboPerifericos = new ComboBox(listaperifericos);
 		ComboBox comboConsolas = new ComboBox(listaconsolas);
-
-
+		comboJuegos.setPromptText("Seleccione Juegos");
+		comboJuegos.setPrefWidth(750);
+		comboPerifericos.setPromptText("Seleccione Perifericos");
+		comboPerifericos.setPrefWidth(750);
+		comboConsolas.setPromptText("Seleccione Consolas");
+		comboConsolas.setPrefWidth(750);
+		
 		//Creacion de Array de carrito e implementacion:
 		ArrayList<Detalle> carrito = new ArrayList<Detalle>();
 		ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
@@ -422,6 +429,7 @@ class VentanaImperial{
 		pane1.getChildren().addAll(comboConsolas, cantidad1, sendConsolas);
 		pane2.getChildren().addAll(comboJuegos,cantidad2,sendJuegos);
 		pane3.getChildren().addAll(comboPerifericos,cantidad3,sendPerifericos);
+	
 
 		//Anadir juegos al carrito:
 
