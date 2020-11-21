@@ -94,16 +94,7 @@ public class Juego extends Producto implements Serializable{
 			indiceJuego ++;
 		}
 	}
-	
-	// Metodo para eliminar un juego de la base de datos. 
-	public static void borrarJuego() {
-		Scanner entrada = new Scanner(System.in);    	
-    	juegosRegistrados();
-    	System.out.println("Ingrese el indice del Juego que desea borrar: ");
-    	int indice = entrada.nextInt(); 		
-		Datos.listaJuegos.remove(Datos.listaJuegos.remove(indice-1));
-		juegosRegistrados();
-	}
+
 	
 	 public static Float precioss(String nombre) {
 	    Float todoslosprecios = (float) 0;

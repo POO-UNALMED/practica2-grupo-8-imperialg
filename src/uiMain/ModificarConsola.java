@@ -34,6 +34,7 @@ public class ModificarConsola {
 
 
     public ModificarConsola(){
+
         //Creacion Vbox para modificar consola:
         modificarConsola = new VBox(50);
         modificarConsola.setAlignment(Pos.CENTER);
