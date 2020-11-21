@@ -37,8 +37,41 @@ public class VentanaConsultas {
 	VBox consultas = new VBox(15);
 	TextField textconsulta = new TextField();
 	GridPane opciones;
+	VBox submenu = new VBox(10);
+	VBox clpuntos;
+	VBox juegoedad;
+	HBox histreportes;
 	
 	public VentanaConsultas() {
+//////////////////////////// Historial y reportes //////////////////////////////////////////
+		histreportes = new HBox(15);
+		histreportes.setAlignment(Pos.CENTER);
+		MenuBar reportes = new MenuBar();
+		Menu repor1 = new Menu("Reportes de ventas");
+		MenuItem ganancias = new MenuItem("Ganancias");
+		MenuItem prodvendidos = new MenuItem("Productos Mas y Menos Vendidos");
+		repor1.getItems().addAll(ganancias,prodvendidos);
+		reportes.getMenus().add(repor1);
+		Button clregistrados = new Button("Clientes registrados");
+		Button consdisp = new Button("Consolas disponibles");
+		Button perdisp = new Button("Perifericos disponibles");
+		Button juegdisp = new Button("Juegos disponibles");
+		Button facturas = new Button("Facturas registradas");
+		
+		histreportes.getChildren().addAll(reportes,consdisp,perdisp,juegdisp,facturas,clregistrados);
+		
+////////////////////////////Fin Historial y reportes //////////////////////////////////////////
+		
+////////////////////////////Ver cliente con mas puntos //////////////////////////////////////////
+		clpuntos = new VBox();
+		clpuntos.getChildren().add(new Button("Aqui deberia mostrar el cliente con mas puntos"));
+////////////////////////////Fin Ver cliente con mas puntos //////////////////////////////////////////		
+		
+////////////////////////////Recomendar Juegos por edad //////////////////////////////////////////
+		juegoedad = new VBox(10);
+		juegoedad.getChildren().add(new Button("Aqui deberia mostrar las recomendaciones de juegos por edad"));
+		
+////////////////////////////Fin recomendar juegos por edad //////////////////////////////////////////	
 		consultas.setAlignment(Pos.CENTER);
 		consultas.setPadding(new Insets(10,10,10,10));
 		TextField cons = new TextField("Consultas IMPERIAL-GAMING");
@@ -63,23 +96,28 @@ public class VentanaConsultas {
 		opciones.setHgap(15);
 		opciones.add(menu, 0, 0);
 		opciones.add(consultar, 1, 0);
+		submenu.getChildren().add(opciones);
+		submenu.getChildren().add(1,new VBox());
 		
-		consultas.getChildren().addAll(cons,opciones);
+		consultas.getChildren().addAll(cons,submenu);
 	}
 	
 	
 	class BotonConsultaHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
+			
 			String consulta = textconsulta.getText();
 			if(consulta.equals("Modificar Precios")) {
 				
 			}
 			else if(consulta.equals("Ver Historial y Reportes")) {
-				
+				submenu.getChildren().set(1, histreportes);
 			}
 			else if(consulta.equals("Ver Cliente Con Mas Puntos")) {
+				submenu.getChildren().set(1, clpuntos);
 				
-			}else if(consulta.equals("Recomendar Juegos Por Edad")) {				
+			}else if(consulta.equals("Recomendar Juegos Por Edad")) {
+				submenu.getChildren().set(1,juegoedad);			
 			}
 		}
 	}
