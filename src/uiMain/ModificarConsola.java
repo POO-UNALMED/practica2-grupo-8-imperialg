@@ -178,9 +178,9 @@ public class ModificarConsola {
             consola.setVersion(versioncons.getText());
             consola.setPrecio(Float.parseFloat(preciocons.getText()));
             if(usocons.getText().equals("Nueva")) {
-                consola.setUso(false);
+                //consola.setUso(false);
             }else if(usocons.getText().equals("Usada")) {
-                consola.setUso(true);
+                //consola.setUso(true);
             }
             System.out.println(consola);
             Consola.consolasRegistradas();

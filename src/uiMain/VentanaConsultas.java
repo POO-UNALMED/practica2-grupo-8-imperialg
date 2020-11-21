@@ -8,7 +8,8 @@ import gestorAplicacion.transacciones.Cliente;
 import gestorAplicacion.transacciones.Detalle;
 import gestorAplicacion.transacciones.Factura;
 import javafx.application.Application;
-import javafx.scene.control.ComboBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -60,7 +61,8 @@ public class VentanaConsultas {
 		
 		histreportes.getChildren().addAll(reportes,consdisp,perdisp,juegdisp,facturas,clregistrados);
 		
-////////////////////////////Fin Historial y reportes //////////////////////////////////////////
+//////////////////////////// Fin Historial y reportes //////////////////////////////////////////
+		
 		
 ////////////////////////////Ver cliente con mas puntos //////////////////////////////////////////
 		clpuntos = new VBox();
@@ -86,8 +88,14 @@ public class VentanaConsultas {
     		}
     	});
 		
+		
+		Image imagens1= new Image("file:src/img/lupa.png");
+		ImageView imagens11 = new ImageView(imagens1);
+		imagens11.setFitWidth(30);
+		imagens11.setFitHeight(20);
+		Button consultar = new Button("Consultar", imagens11);
+		
 		menu.setPromptText("Seleccione una opcion");
-		Button consultar = new Button("Consultar");
 		BotonConsultaHandlerClass ingresarConsola = new BotonConsultaHandlerClass();
         consultar.setOnAction(ingresarConsola);
 		opciones = new GridPane();
