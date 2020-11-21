@@ -338,6 +338,8 @@ class VentanaImperial{
         Menu usuarios = new Menu("Agregar o eliminar usuarios");
         Menu stock = new Menu("Agregar o eliminar Stock");
         MenuItem consultas = new MenuItem("Consultas");
+        ConsultasHandlerClass handlerConsultas = new ConsultasHandlerClass();
+        consultas.setOnAction(handlerConsultas);
 
         //Items de ayuda:
         MenuItem acerca = new MenuItem("Acerca de");
@@ -524,6 +526,12 @@ class VentanaImperial{
 	class  agregarPerifericoHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			vusuario.getChildren().set(1, ingresarpreriferico);
+		}
+	}
+	class ConsultasHandlerClass implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent event) {
+			vusuario.getChildren().set(1, new VentanaConsultas().consultas);
+			
 		}
 	}
 	

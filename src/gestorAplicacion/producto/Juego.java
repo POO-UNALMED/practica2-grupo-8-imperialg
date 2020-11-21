@@ -207,31 +207,33 @@ public class Juego extends Producto implements Serializable{
 	    }
 	
 	// Metodo que recomienda los juegos de la tienda por la edad minima sugerida para ser jugados.
-	public static void recomendarPorEdad() {
-		System.out.println("Juegos recomendados para edad de 6 a�os a 12 a�os inclusive: "+"\n");
+	public static ArrayList<String> recomendarPorEdad() {
+		ArrayList<String> lista = new ArrayList<String>();
+		//System.out.println("Juegos recomendados para edad de 6 a�os a 12 a�os inclusive: "+"\n");
 		
 		for(Juego juego:Datos.listaJuegos) {
 			if(juego.pegi<=12) {				
-				System.out.println("Nombre del Juego: "+juego.getNombre()+"  ||  "+" Genero: "+juego.getGenero()+"  ||  "+" Precio: "+juego.getPrecio()+"  ||  "+"Edad recomendada para jugar: "+juego.getPegi());
+				lista.add("Nombre del Juego: "+juego.getNombre()+"  ||  "+" Genero: "+juego.getGenero()+"  ||  "+" Precio: "+juego.getPrecio()+"  ||  "+"Edad recomendada para jugar: "+juego.getPegi());
 			}
 		}	
-		System.out.println("\n");
-		System.out.println("\n"+"Juegos recomendados para edad de mas de 12 a�os a 18 a�os inclusive: "+"\n");
+		//System.out.println("\n");
+		//System.out.println("\n"+"Juegos recomendados para edad de mas de 12 a�os a 18 a�os inclusive: "+"\n");
 		
 			for(Juego juego:Datos.listaJuegos) {
 				if(juego.pegi>12&&juego.pegi<=18) {	
-					System.out.println("Nombre del Juego: "+juego.getNombre()+"  ||  "+" Genero: "+juego.getGenero()+"  ||  "+" Precio: "+juego.getPrecio()+"  ||  "+"Edad recomendada para jugar: "+juego.getPegi());
+					lista.add("Nombre del Juego: "+juego.getNombre()+"  ||  "+" Genero: "+juego.getGenero()+"  ||  "+" Precio: "+juego.getPrecio()+"  ||  "+"Edad recomendada para jugar: "+juego.getPegi());
 
 				}
 			}
-			System.out.println("\n");
-			System.out.println("\n"+"Juegos recomendados para edad de +18 a�os: "+"\n");
+			//System.out.println("\n");
+			//System.out.println("\n"+"Juegos recomendados para edad de +18 a�os: "+"\n");
 			for(Juego juego:Datos.listaJuegos) {
 				if(juego.pegi>18) {	
-					System.out.println("Nombre del Juego: "+juego.getNombre()+"  ||  "+" Genero: "+juego.getGenero()+"  ||  "+" Precio: "+juego.getPrecio()+"  ||  "+"Edad recomendada para jugar: "+juego.getPegi());
+					lista.add("Nombre del Juego: "+juego.getNombre()+"  ||  "+" Genero: "+juego.getGenero()+"  ||  "+" Precio: "+juego.getPrecio()+"  ||  "+"Edad recomendada para jugar: "+juego.getPegi());
 
 				}			
 			}
+			return lista;
 	}
 	
     
