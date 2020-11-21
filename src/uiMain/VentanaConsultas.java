@@ -42,6 +42,7 @@ public class VentanaConsultas {
 	VBox clpuntos;
 	VBox juegoedad;
 	HBox histreportes;
+	ListView<Cliente> lsclient;
 	
 	public VentanaConsultas() {
 //////////////////////////// Historial y reportes //////////////////////////////////////////
@@ -54,6 +55,11 @@ public class VentanaConsultas {
 		repor1.getItems().addAll(ganancias,prodvendidos);
 		reportes.getMenus().add(repor1);
 		Button clregistrados = new Button("Clientes registrados");
+		ObservableList<Cliente> listaclientes = FXCollections.observableArrayList(Datos.listaClientes);
+		lsclient = new ListView();
+		lsclient.setItems(listaclientes);
+		BotonMostrarClientesRegistrados clreg = new BotonMostrarClientesRegistrados();
+        clregistrados.setOnAction(clreg);
 		Button consdisp = new Button("Consolas disponibles");
 		Button perdisp = new Button("Perifericos disponibles");
 		Button juegdisp = new Button("Juegos disponibles");
@@ -106,6 +112,7 @@ public class VentanaConsultas {
 		opciones.add(consultar, 1, 0);
 		submenu.getChildren().add(opciones);
 		submenu.getChildren().add(1,new VBox());
+		submenu.getChildren().add(2,new VBox());
 		
 		consultas.getChildren().addAll(cons,submenu);
 	}
@@ -127,6 +134,13 @@ public class VentanaConsultas {
 			}else if(consulta.equals("Recomendar Juegos Por Edad")) {
 				submenu.getChildren().set(1,juegoedad);			
 			}
+		}
+	}
+	
+	class BotonMostrarClientesRegistrados implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent event) {
+			submenu.getChildren().set(2,lsclient);
+			
 		}
 	}
 
