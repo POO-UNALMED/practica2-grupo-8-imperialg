@@ -66,12 +66,6 @@ public class Juego extends Producto implements Serializable{
         return Datos.listaJuegos;
     }
     
-    // Metodo que le solicita al usuario ingresar los datos basicos del juego que posteriormente se ingresara a la base
-    // de datos de la tienda.
-    public static void ingresarJuego(String nombre, boolean uso, float precio, int pegi, String plataforma, String genero) {
-        Juego juego = new Juego(nombre, uso, precio, pegi, plataforma, genero);
-        Datos.listaJuegos.add(juego);
-    }
 
     
     // Metodo que moodifica el precio de algunos juegos, dado un array de indices y un array de precios.
@@ -247,6 +241,7 @@ public class Juego extends Producto implements Serializable{
         this.pegi = pegi;
         this.plataforma = plataforma;
         this.genero = genero;
+        Datos.listaJuegos.add(this);
     }
     
     // Se crea el toString de la clase Juego, el cual mostrara por pantalla el nombre del juego, la plataforma a la que pertenece y su precio.

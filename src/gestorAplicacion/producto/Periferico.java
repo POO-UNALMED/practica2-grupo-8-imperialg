@@ -53,17 +53,7 @@ public class Periferico extends Producto implements Serializable,Hardware{
     
     public ArrayList<Periferico> getListaPerifericos() {
         return Datos.listaPerifericos;
-    }
-    
-    // Metodo que solicita al usuario por pantalla los datos basicos del periferico, para posteriormente agregarlo a la base de 
-    // datos de la tienda. 
-    public static void ingresarPeriferico(String nombre,Boolean uso,float precio,String plataforma) {
-    	Scanner entrada = new Scanner(System.in);
-        Periferico periferico = new Periferico(nombre, uso, precio, plataforma);       
-        Datos.listaPerifericos.add(periferico);
-    }
-
-    
+    }  
     
     // Metodo que devuelve un Arraylist con los perifericos segun los indices ingresados por el usuario.
     public static ArrayList<Producto> perifericoPorIndice(int[] ints){
@@ -87,6 +77,7 @@ public class Periferico extends Producto implements Serializable,Hardware{
     public Periferico(String nombre, boolean uso, float precio, String plataforma) {
         super(nombre, uso, precio);
         this.plataforma = plataforma;
+        Datos.listaPerifericos.add(this);
     }
 
     // Constructor que retornara el nobre del periferico y el estado del mismo (bueno o malo).

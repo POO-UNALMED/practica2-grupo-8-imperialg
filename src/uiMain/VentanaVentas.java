@@ -157,6 +157,7 @@ public class VentanaVentas{
         //Lista observable de clientes:
         ObservableList<Cliente> listaClientes= FXCollections.observableArrayList(Datos.listaClientes);
         ComboBox comboClientes = new ComboBox(listaClientes);
+        comboClientes.setPromptText("Lista de Clientes Registrados ");
 
 
 

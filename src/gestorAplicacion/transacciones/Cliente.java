@@ -82,14 +82,7 @@ public class Cliente implements Serializable {
         this.cc = cc;
         this.celular = celular;
         this.email = email;
-    }
-    
-    // Metodo para recopilar por pantalla los datos basicos del cliente, para luego ser ingresado a la base de datos 
-    // de la tienda. 
-    public static void ingresarCliente(String nombre,int cc,long celular,String email) {
-        Cliente cliente = new Cliente(nombre, cc, celular, email);
-        Datos.listaClientes.add(cliente);
-        Cliente.clientesRegistrados();
+        Datos.listaClientes.add(this);
     }
     
     // Metodo que agrega el cliente que se registra en una lista juntos con los demas clientes registrados anteriormente.

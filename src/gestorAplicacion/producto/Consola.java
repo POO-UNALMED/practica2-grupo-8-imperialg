@@ -71,13 +71,6 @@ public class Consola extends Producto implements Serializable, Hardware {
     public ArrayList<Consola> getListaConsolas() {
         return Datos.listaConsolas;
     }
-    
-    // Metodo que le solicita al usuario ingresar los datos basicos de la consola que posteriormente se ingresara la base
-    // de datos de la tienda.
-    public static void ingresarConsola(String nombre,Boolean uso,float precio,String color,String version,int almacenamiento) {
-        Consola consola = new Consola(nombre, uso, precio, color, version, almacenamiento);
-        Datos.listaConsolas.add(consola);
-    }
     public static void ventaConsola(Cliente cliente) {
     	// Si la entrada fue 1, se muestran las consolas disponibles y se pide la cantidad de consolas a vender.
     	Scanner entrada = new Scanner(System.in);
@@ -133,7 +126,8 @@ public class Consola extends Producto implements Serializable, Hardware {
         super(nombre, uso, precio);
         this.color = color;
         this.version = version;
-        this.almacenamiento = almacenamiento;      
+        this.almacenamiento = almacenamiento;
+        Datos.listaConsolas.add(this);
     }
     
     // Constructor que se utilizara con la finalidad de crear consolas para reparar.

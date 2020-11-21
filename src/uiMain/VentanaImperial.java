@@ -49,6 +49,7 @@ class VentanaImperial{
 	
 	private Scene escenaimperial;
 	VBox vusuario = new VBox(15);
+	VBox defecto = new VBox();
 	
 	VBox ingresarcliente;
 	TextField nombrec = new TextField();
@@ -109,8 +110,6 @@ class VentanaImperial{
     	Button ingresar = new Button("Ingresar");    	
     	BotonIngresarUsuarioHandlerClass ingresarUsuario = new BotonIngresarUsuarioHandlerClass();
         ingresar.setOnAction(ingresarUsuario);
-        ConfirmarIngresoUHandlerClass mensajeconfirmacion = new ConfirmarIngresoUHandlerClass();
-        ingresar.setOnAction(mensajeconfirmacion);
     	Button cancelar = new Button("Cancelar");
     	DevolverDefectoUHandlerClass devolverdefectou = new DevolverDefectoUHandlerClass();
     	cancelar.setOnAction(devolverdefectou);
@@ -172,10 +171,10 @@ class VentanaImperial{
     	capacidadcon.setScaleY(1.1);
     	Button ingresarcon = new Button("Ingresar");
     	BotonIngresarConsolaHandlerClass ingresarConsola = new BotonIngresarConsolaHandlerClass();
-        ingresarcon.setOnAction(ingresarConsola); 
-        ConfirmarIngresoCHandlerClass mensajeconfirmacionc = new ConfirmarIngresoCHandlerClass();
-        ingresarcon.setOnAction(mensajeconfirmacionc);
+        ingresarcon.setOnAction(ingresarConsola);
         Button cancelarcon = new Button("Cancelar");
+        DevolverDefectoUHandlerClass devolverdefectoc = new DevolverDefectoUHandlerClass();
+    	cancelarcon.setOnAction(devolverdefectoc);
     	formularioingresocons1.setPadding(new Insets(10,10,10,10));
     	formularioingresocons1.setVgap(20);
     	formularioingresocons1.setHgap(20);
@@ -239,9 +238,9 @@ class VentanaImperial{
 		Button ingresarjueg = new Button("Ingresar");
 		BotonIngresarJuegoHandlerClass ingresarJuego = new BotonIngresarJuegoHandlerClass();
 		ingresarjueg.setOnAction(ingresarJuego);
-		ConfirmarIngresoJHandlerClass confirmacionjuegoc = new ConfirmarIngresoJHandlerClass();
-		ingresarjueg.setOnAction(confirmacionjuegoc);
 		Button cancelarjueg = new Button("Cancelar");
+		DevolverDefectoUHandlerClass devolverdefectoj = new DevolverDefectoUHandlerClass();
+    	cancelarjueg.setOnAction(devolverdefectoj);
 		formularioingresojuego.setPadding(new Insets(10, 10, 10, 10));
 		formularioingresojuego.setVgap(20);
 		formularioingresojuego.setHgap(20);
@@ -299,9 +298,9 @@ class VentanaImperial{
 		Button ingresarper = new Button("Ingresar");
 		BotonIngresarPerifericoHandlerClass  ingresarperiferico = new BotonIngresarPerifericoHandlerClass();
 		ingresarper.setOnAction(ingresarperiferico);
-		ConfirmarIngresoPHandlerClass confirmacionper = new ConfirmarIngresoPHandlerClass();
-		ingresarper.setOnAction(confirmacionper);
 		Button cancelarper = new Button("Cancelar");
+		DevolverDefectoUHandlerClass devolverdefectop = new DevolverDefectoUHandlerClass();
+    	cancelarper.setOnAction(devolverdefectop);
 		formularioingresop.setPadding(new Insets(10, 10, 10, 10));
 		formularioingresop.setVgap(20);
 		formularioingresop.setHgap(20);
@@ -378,17 +377,13 @@ class VentanaImperial{
 		txt.setAlignment(Pos.CENTER);
 		txt.setMaxWidth(700);
 		txt.setEditable(false);
-        //vusuario.getChildren().add(txt);
-        //vusuario.setAlignment(Pos.CENTER);
-
-
-
+        
 		//Creacion de Array de carrito:
 		ArrayList<Detalle> carrito = new ArrayList<Detalle>();
 
 
 		//Importacion de vbox de defecto:
-		VBox defecto = new VentanaVentas(carrito).getDefecto();
+		defecto = new VentanaVentas(carrito).getDefecto();
 
 		vusuario.getChildren().add(defecto);
 		escenaimperial = new Scene(vusuario, 1100, 900);
@@ -405,52 +400,10 @@ class VentanaImperial{
     	}
     }
     
-    class ConfirmarIngresoUHandlerClass implements EventHandler<ActionEvent>{
-    	public void handle(ActionEvent event) {
-    		Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
-    		dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
-    		dialogoDescripcion.setHeaderText("Usted acaba de agregar un nuevo Cliente a la base de datos de la tienda.");
-    		dialogoDescripcion.setContentText("Proceso Exitoso.");
-    		dialogoDescripcion.showAndWait();
-    		
-    	}
-    }
-    
-    class ConfirmarIngresoCHandlerClass implements EventHandler<ActionEvent>{
-    	public void handle(ActionEvent event) {
-    		Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
-    		dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
-    		dialogoDescripcion.setHeaderText("Usted acaba de agregar una nueva Consola a la base de datos de la tienda.");
-    		dialogoDescripcion.setContentText("Proceso Exitoso.");
-    		dialogoDescripcion.showAndWait();
-    		
-    	}
-    }
-    
-    class ConfirmarIngresoJHandlerClass implements EventHandler<ActionEvent>{
-    	public void handle(ActionEvent event) {
-    		Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
-    		dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
-    		dialogoDescripcion.setHeaderText("Usted acaba de agregar un nuevo Juego a la base de datos de la tienda.");
-    		dialogoDescripcion.setContentText("Proceso Exitoso.");
-    		dialogoDescripcion.showAndWait();
-    		
-    	}
-    }
-    
-    class ConfirmarIngresoPHandlerClass implements EventHandler<ActionEvent>{
-    	public void handle(ActionEvent event) {
-    		Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
-    		dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
-    		dialogoDescripcion.setHeaderText("Usted acaba de agregar un nuevo Periferico a la base de datos de la tienda.");
-    		dialogoDescripcion.setContentText("Proceso Exitoso.");
-    		dialogoDescripcion.showAndWait();
-    		
-    	}
-    }
-    
     class DevolverDefectoUHandlerClass implements EventHandler<ActionEvent>{
     	public void handle(ActionEvent event) {
+    		vusuario.getChildren().setAll(new VentanaImperial().vusuario);
+    	
     		
     	}
     }
@@ -473,7 +426,14 @@ class VentanaImperial{
 			int cedula = Integer.parseInt(cedulac.getText());
 			Long celular = Long.parseLong(cedulac.getText());
 			String correo = emailc.getText();
-			Cliente.ingresarCliente(nombre, cedula, celular, correo);
+			new Cliente(nombre, cedula, celular, correo);
+			//Dialogo de confirmacion despues de agregado el cliente
+			Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
+    		dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
+    		dialogoDescripcion.setHeaderText("Usted acaba de agregar un nuevo Cliente a la base de datos de la tienda.");
+    		dialogoDescripcion.setContentText("Proceso Exitoso.");
+    		dialogoDescripcion.showAndWait();
+    		vusuario.getChildren().setAll(new VentanaImperial().vusuario);
 		}
 	}
 	
@@ -496,7 +456,14 @@ class VentanaImperial{
 			String color = colorcons.getText();
 			String version = versioncons.getText();
 			int almacenamiento = Integer.parseInt(capacidadcons.getText());
-			Consola.ingresarConsola(nombre,uso,precio,color,version,almacenamiento);			
+			new Consola(nombre,uso,precio,color,version,almacenamiento);
+			
+			Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
+    		dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
+    		dialogoDescripcion.setHeaderText("Usted acaba de agregar una nueva Consola a la base de datos de la tienda.");
+    		dialogoDescripcion.setContentText("Proceso Exitoso.");
+    		dialogoDescripcion.showAndWait();
+    		vusuario.getChildren().setAll(new VentanaImperial().vusuario);
 		}
 	}
 	
@@ -518,7 +485,15 @@ class VentanaImperial{
 			int pegi = Integer.parseInt(pegijueg.getText());
 			String plataforma = plataformajueg.getText();
 			String genero = generojueg.getText();
-			Juego.ingresarJuego(nombre, uso, precio, pegi, plataforma, genero);
+			new Juego(nombre, uso, precio, pegi, plataforma, genero);
+			//Dialogo de confirmacion despues de agregado el juego
+			Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
+    		dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
+    		dialogoDescripcion.setHeaderText("Usted acaba de agregar un nuevo Juego a la base de datos de la tienda.");
+    		dialogoDescripcion.setContentText("Proceso Exitoso.");
+    		dialogoDescripcion.showAndWait();
+    		vusuario.getChildren().setAll(new VentanaImperial().vusuario);
+    		
 			
 		}
 	}
@@ -534,7 +509,15 @@ class VentanaImperial{
 			}
 			Float precio = Float.parseFloat(precioperif.getText());
 			String plataforma = plataformaperif.getText();
-			Periferico.ingresarPeriferico(nombre, uso, precio, plataforma);
+			new Periferico(nombre, uso, precio, plataforma);
+			//Dialogo de confirmacion despues de agregado el periferico
+			Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
+			dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
+    		dialogoDescripcion.setHeaderText("Usted acaba de agregar un nuevo Periferico a la base de datos de la tienda.");
+    		dialogoDescripcion.setContentText("Proceso Exitoso.");
+    		dialogoDescripcion.showAndWait();
+    		vusuario.getChildren().setAll(new VentanaImperial().vusuario);
+			
 		}
 	}
 	
