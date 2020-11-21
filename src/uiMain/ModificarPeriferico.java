@@ -114,7 +114,18 @@ public class ModificarPeriferico {
         formularioingresop.add(plataformaperif, 1, 3);
         formularioingresop.add(modificarper, 0, 4);
         formularioingresop.add(cancelarper, 1, 4);
+
+        //Interactividad:
+
+        ComboBoxPerifericoSeleccionado comboBoxPerifericoSeleccionado = new ComboBoxPerifericoSeleccionado();
+        listaperif.setOnAction(comboBoxPerifericoSeleccionado);
+
+        BotonModificarPeriferico botonModificarPeriferico = new BotonModificarPeriferico();
+        modificarper.setOnAction(botonModificarPeriferico);
+
+        //Anadir elementos al vbox
         modificarPeriferico.getChildren().addAll(procesop, detalleprocesop, listaperif,formularioingresop);
+
 
     }
 
@@ -158,5 +169,15 @@ public class ModificarPeriferico {
 
         }
 
+    }
+
+    //Eliminar un periferico de la base de datos:
+
+    class BotonEliminarPeriferico implements EventHandler<ActionEvent>{
+        @Override
+        public void handle(ActionEvent event) {
+            Periferico periferico = (Periferico) listaperif.getSelectionModel().getSelectedItem();
+            Datos.listaPerifericos.remove(periferico);
+        }
     }
 }

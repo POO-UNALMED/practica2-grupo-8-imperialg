@@ -125,6 +125,14 @@ public class ModificarJuego {
         formularioingresojuego.add(modificarjueg, 0, 6);
         formularioingresojuego.add(cancelarjueg, 1, 6);
 
+        //Interactividad
+
+        ComboBoxJuegoSeleccionado comboBoxJuegoSeleccionado = new ComboBoxJuegoSeleccionado();
+        listamj.setOnAction(comboBoxJuegoSeleccionado);
+
+        BotonModificarJuego botonModificarJuego = new BotonModificarJuego();
+        modificarjueg.setOnAction(botonModificarJuego);
+
         //Anadir elementos al vbox
         modificarJuego.getChildren().addAll(procesoj, detalleprocesoj,listamj, formularioingresojuego);
 
@@ -146,11 +154,12 @@ public class ModificarJuego {
             preciojueg.setText(Float.toString(juego.getPrecio()));
             pegijueg.setText(Integer.toString(juego.getPegi()));
             plataformajueg.setText(juego.getPlataforma());
+            generojueg.setText(juego.getGenero());
             Boolean uso = juego.getUso();
             if (uso == true){
-                usojue.getSelectionModel().select(2);
-            } else if(!uso){
                 usojue.getSelectionModel().select(1);
+            } else if(!uso){
+                usojue.getSelectionModel().select(0);
             }
         }
     }
@@ -165,15 +174,25 @@ public class ModificarJuego {
             juego.setPrecio(Float.parseFloat(preciojueg.getText()));
             juego.setPegi(Integer.parseInt(pegijueg.getText()));
             juego.setPlataforma(plataformajueg.getText());
-            if(usojueg.getText().equals("Nuevo")) {
+            juego.setGenero(generojueg.getText());
+            if(usojue.getSelectionModel().getSelectedItem().equals("Nuevo")) {
                 juego.setUso(false);
-            }else if(usojueg.getText().equals("Usado")) {
+            }else if(usojue.getSelectionModel().getSelectedItem().equals("Usado")) {
                 juego.setUso(true);
             }
             System.out.println(juego);
-
+            Juego.juegosRegistrados();
         }
 
+    }
+
+    //Eliminar un juego de la base de datos:
+    class BotonEliminarJuego implements EventHandler<ActionEvent>{
+        @Override
+        public void handle(ActionEvent event) {
+            Juego juego = (Juego) listamj.getSelectionModel().getSelectedItem();
+            Datos.listaJuegos.remove(juego);
+        }
     }
 
 
