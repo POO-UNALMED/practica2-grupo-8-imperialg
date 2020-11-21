@@ -43,6 +43,10 @@ public class VentanaConsultas {
 	VBox juegoedad;
 	HBox histreportes;
 	ListView<Cliente> lsclient;
+	ListView<Consola>lscons;
+	ListView<Periferico>lsper;
+	ListView<Juego>lsjuego;
+	ListView<Factura>lsfact;
 	
 	public VentanaConsultas() {
 //////////////////////////// Historial y reportes //////////////////////////////////////////
@@ -54,16 +58,41 @@ public class VentanaConsultas {
 		MenuItem prodvendidos = new MenuItem("Productos Mas y Menos Vendidos");
 		repor1.getItems().addAll(ganancias,prodvendidos);
 		reportes.getMenus().add(repor1);
+		
 		Button clregistrados = new Button("Clientes registrados");
 		ObservableList<Cliente> listaclientes = FXCollections.observableArrayList(Datos.listaClientes);
 		lsclient = new ListView();
 		lsclient.setItems(listaclientes);
 		BotonMostrarClientesRegistrados clreg = new BotonMostrarClientesRegistrados();
         clregistrados.setOnAction(clreg);
+        
 		Button consdisp = new Button("Consolas disponibles");
+		ObservableList<Consola> listaconsolas = FXCollections.observableArrayList(Datos.listaConsolas);
+		lscons = new ListView();
+		lscons.setItems(listaconsolas);
+		BotonMostrarConsolasRegistradas conreg = new BotonMostrarConsolasRegistradas();
+        consdisp.setOnAction(conreg);
+        
 		Button perdisp = new Button("Perifericos disponibles");
+		ObservableList<Periferico> listaperifericos = FXCollections.observableArrayList(Datos.listaPerifericos);
+		lsper = new ListView();
+		lsper.setItems(listaperifericos);
+		BotonMostrarPerifericosRegistrados perreg = new BotonMostrarPerifericosRegistrados();
+        perdisp.setOnAction(perreg);
+        
 		Button juegdisp = new Button("Juegos disponibles");
+		ObservableList<Juego> listajuegos = FXCollections.observableArrayList(Datos.listaJuegos);
+		lsjuego = new ListView();
+		lsjuego.setItems(listajuegos);
+		BotonMostrarJuegosRegistrados juereg = new BotonMostrarJuegosRegistrados();
+        juegdisp.setOnAction(juereg);
+        
 		Button facturas = new Button("Facturas registradas");
+		ObservableList<Factura> listafacturas = FXCollections.observableArrayList(Datos.listaFacturas);
+		lsfact = new ListView();
+		lsfact.setItems(listafacturas);
+		BotonMostrarFacturasRegistradas factreg = new BotonMostrarFacturasRegistradas();
+        facturas.setOnAction(factreg);
 		
 		histreportes.getChildren().addAll(reportes,consdisp,perdisp,juegdisp,facturas,clregistrados);
 		
@@ -143,6 +172,37 @@ public class VentanaConsultas {
 			
 		}
 	}
+	
+	class BotonMostrarConsolasRegistradas implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent event) {
+			submenu.getChildren().set(2, lscons);
+			
+			
+		}
+	}
+	
+	class BotonMostrarPerifericosRegistrados implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent event) {
+			submenu.getChildren().set(2, lsper);
+			
+			
+		}
+	}
+	
+	class BotonMostrarFacturasRegistradas implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent event) {
+			submenu.getChildren().set(2, lsfact);
+			
+		}
+	}
+	
+	class BotonMostrarJuegosRegistrados implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent event) {
+			submenu.getChildren().set(2, lsjuego);
+		}
+	}
 
 }
+	
+
 
