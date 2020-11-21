@@ -50,7 +50,7 @@ public class VentanaConsultas {
 	
 	public VentanaConsultas() {
 //////////////////////////// Historial y reportes //////////////////////////////////////////
-		histreportes = new HBox(15);
+		histreportes = new HBox(20);
 		histreportes.setAlignment(Pos.CENTER);
 		MenuBar reportes = new MenuBar();
 		Menu repor1 = new Menu("Reportes de ventas");
@@ -112,6 +112,8 @@ public class VentanaConsultas {
 		consultas.setAlignment(Pos.CENTER);
 		consultas.setPadding(new Insets(10,10,10,10));
 		TextField cons = new TextField("Consultas IMPERIAL-GAMING");
+		cons.setScaleX(1.2);
+		cons.setScaleY(1.2);
 		cons.setMaxWidth(500);
     	cons.setEditable(false);
     	cons.setAlignment(Pos.CENTER);
@@ -129,7 +131,11 @@ public class VentanaConsultas {
 		imagens11.setFitWidth(30);
 		imagens11.setFitHeight(20);
 		Button consultar = new Button("Consultar", imagens11);
+		consultar.setScaleX(1.1);
+		consultar.setScaleY(1.1);
 		Button salir = new Button("Salir");
+		salir.setScaleX(1.1);
+		salir.setScaleY(1.1);
 		BotonSalir botonsalir = new BotonSalir();
         salir.setOnAction(botonsalir);
 		
@@ -139,8 +145,8 @@ public class VentanaConsultas {
         consultar.setOnAction(ingresarConsola);
 		opciones = new GridPane();
 		opciones.setPadding(new Insets(10,10,10,10));
-		opciones.setVgap(15);
-		opciones.setHgap(15);
+		opciones.setVgap(20);
+		opciones.setHgap(30);
 		opciones.add(menu, 0, 0);
 		opciones.add(consultar, 1, 0);
 		opciones.add(salir, 2, 0);
@@ -209,7 +215,7 @@ public class VentanaConsultas {
 	
 	class BotonSalir implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
-			//VentanaImperial.DevolverDefectoUHandlerClass;
+			consultas.getChildren().setAll(new VentanaImperial().vusuario);
 		}
 	}
 
