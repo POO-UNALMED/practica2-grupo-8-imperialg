@@ -109,7 +109,11 @@ class VentanaImperial{
     	Button ingresar = new Button("Ingresar");    	
     	BotonIngresarUsuarioHandlerClass ingresarUsuario = new BotonIngresarUsuarioHandlerClass();
         ingresar.setOnAction(ingresarUsuario);
+        ConfirmarIngresoUHandlerClass mensajeconfirmacion = new ConfirmarIngresoUHandlerClass();
+        ingresar.setOnAction(mensajeconfirmacion);
     	Button cancelar = new Button("Cancelar");
+    	DevolverDefectoUHandlerClass devolverdefectou = new DevolverDefectoUHandlerClass();
+    	cancelar.setOnAction(devolverdefectou);
     	formularioingresoc1.setPadding(new Insets(10,10,10,10));
     	formularioingresoc1.setVgap(20);
     	formularioingresoc1.setHgap(20);
@@ -167,9 +171,10 @@ class VentanaImperial{
     	capacidadcon.setScaleX(1.1);
     	capacidadcon.setScaleY(1.1);
     	Button ingresarcon = new Button("Ingresar");
-
     	BotonIngresarConsolaHandlerClass ingresarConsola = new BotonIngresarConsolaHandlerClass();
         ingresarcon.setOnAction(ingresarConsola); 
+        ConfirmarIngresoCHandlerClass mensajeconfirmacionc = new ConfirmarIngresoCHandlerClass();
+        ingresarcon.setOnAction(mensajeconfirmacionc);
         Button cancelarcon = new Button("Cancelar");
     	formularioingresocons1.setPadding(new Insets(10,10,10,10));
     	formularioingresocons1.setVgap(20);
@@ -234,6 +239,8 @@ class VentanaImperial{
 		Button ingresarjueg = new Button("Ingresar");
 		BotonIngresarJuegoHandlerClass ingresarJuego = new BotonIngresarJuegoHandlerClass();
 		ingresarjueg.setOnAction(ingresarJuego);
+		ConfirmarIngresoJHandlerClass confirmacionjuegoc = new ConfirmarIngresoJHandlerClass();
+		ingresarjueg.setOnAction(confirmacionjuegoc);
 		Button cancelarjueg = new Button("Cancelar");
 		formularioingresojuego.setPadding(new Insets(10, 10, 10, 10));
 		formularioingresojuego.setVgap(20);
@@ -292,6 +299,8 @@ class VentanaImperial{
 		Button ingresarper = new Button("Ingresar");
 		BotonIngresarPerifericoHandlerClass  ingresarperiferico = new BotonIngresarPerifericoHandlerClass();
 		ingresarper.setOnAction(ingresarperiferico);
+		ConfirmarIngresoPHandlerClass confirmacionper = new ConfirmarIngresoPHandlerClass();
+		ingresarper.setOnAction(confirmacionper);
 		Button cancelarper = new Button("Cancelar");
 		formularioingresop.setPadding(new Insets(10, 10, 10, 10));
 		formularioingresop.setVgap(20);
@@ -554,6 +563,56 @@ class VentanaImperial{
     		dialogoDescripcion.showAndWait();
     	}
     }
+    
+    class ConfirmarIngresoUHandlerClass implements EventHandler<ActionEvent>{
+    	public void handle(ActionEvent event) {
+    		Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
+    		dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
+    		dialogoDescripcion.setHeaderText("Usted acaba de agregar un nuevo Cliente a la base de datos de la tienda.");
+    		dialogoDescripcion.setContentText("Proceso Exitoso.");
+    		dialogoDescripcion.showAndWait();
+    		
+    	}
+    }
+    
+    class ConfirmarIngresoCHandlerClass implements EventHandler<ActionEvent>{
+    	public void handle(ActionEvent event) {
+    		Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
+    		dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
+    		dialogoDescripcion.setHeaderText("Usted acaba de agregar una nueva Consola a la base de datos de la tienda.");
+    		dialogoDescripcion.setContentText("Proceso Exitoso.");
+    		dialogoDescripcion.showAndWait();
+    		
+    	}
+    }
+    
+    class ConfirmarIngresoJHandlerClass implements EventHandler<ActionEvent>{
+    	public void handle(ActionEvent event) {
+    		Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
+    		dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
+    		dialogoDescripcion.setHeaderText("Usted acaba de agregar un nuevo Juego a la base de datos de la tienda.");
+    		dialogoDescripcion.setContentText("Proceso Exitoso.");
+    		dialogoDescripcion.showAndWait();
+    		
+    	}
+    }
+    
+    class ConfirmarIngresoPHandlerClass implements EventHandler<ActionEvent>{
+    	public void handle(ActionEvent event) {
+    		Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
+    		dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
+    		dialogoDescripcion.setHeaderText("Usted acaba de agregar un nuevo Periferico a la base de datos de la tienda.");
+    		dialogoDescripcion.setContentText("Proceso Exitoso.");
+    		dialogoDescripcion.showAndWait();
+    		
+    	}
+    }
+    
+    class DevolverDefectoUHandlerClass implements EventHandler<ActionEvent>{
+    	public void handle(ActionEvent event) {
+    		
+    	}
+    }
 
 	class SalirHandlerClass implements EventHandler<ActionEvent> {
 		public void handle(ActionEvent event) {
@@ -576,11 +635,13 @@ class VentanaImperial{
 			Cliente.ingresarCliente(nombre, cedula, celular, correo);
 		}
 	}
+	
 	class agregarConsolaHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			vusuario.getChildren().set(1,ingresarconsola);
 		}
 	}	
+	
 	class BotonIngresarConsolaHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			String nombre = nombrecons.getText();
@@ -597,6 +658,7 @@ class VentanaImperial{
 			Consola.ingresarConsola(nombre,uso,precio,color,version,almacenamiento);			
 		}
 	}
+	
 	class agregarJuegoHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			vusuario.getChildren().set(1,ingresarjuego);
@@ -641,7 +703,7 @@ class VentanaImperial{
 		}
 	}
 	
-	public Scene getEscena() {
+	public  Scene getEscena() {
 		return escenaimperial;
 	}
 

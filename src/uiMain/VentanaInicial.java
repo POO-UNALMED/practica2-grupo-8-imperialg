@@ -281,8 +281,7 @@ public class VentanaInicial extends Application {
 		}
     	
     }
-    
-    
+       
 	public static void main(String[] args) {
 	    Datos datos = new Datos();
 	    datos.leerDatos1();
