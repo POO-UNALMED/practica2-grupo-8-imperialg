@@ -316,8 +316,7 @@ class VentanaImperial{
 		formularioingresop.add(ingresarper, 0, 4);
 		formularioingresop.add(cancelarper, 1, 4);
 		ingresarpreriferico.getChildren().addAll(procesop, detalleprocesop, formularioingresop);
-/////////////////// Fin Formulario Ingresar Periferico //////////////////////////////
-    	
+/////////////////// Fin Formulario Ingresar Periferico //////////////////////////////    	
         //Creacion de barra de menus:
         MenuBar barramenu = new MenuBar();
 
