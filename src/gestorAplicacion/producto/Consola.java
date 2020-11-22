@@ -313,5 +313,7 @@ public class Consola extends Producto implements Serializable, Hardware {
             checker = "Funcional";
         }
         return "En estado: " + checker;
-    }    
+    }
+
+
 }

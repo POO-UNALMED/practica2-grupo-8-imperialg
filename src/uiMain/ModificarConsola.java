@@ -2,6 +2,7 @@ package uiMain;
 
 import BaseDatos.Datos;
 import gestorAplicacion.producto.Consola;
+import gestorAplicacion.producto.Juego;
 import gestorAplicacion.transacciones.Cliente;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -34,6 +35,7 @@ public class ModificarConsola {
 
 
     public ModificarConsola(){
+
         //Creacion Vbox para modificar consola:
         modificarConsola = new VBox(50);
         modificarConsola.setAlignment(Pos.CENTER);
@@ -127,8 +129,6 @@ public class ModificarConsola {
         formularioingresocons1.add(capacidadcons, 1, 5);
         formularioingresocons1.add(ingresarcon, 0, 6);
         formularioingresocons1.add(cancelarcon,1 ,6);
-        modificarConsola.getChildren().addAll(proceso1,detalleproceso1,listamcons,formularioingresocons1);
-
 
         //Anadir Interactividad a formulario:
 
@@ -139,6 +139,11 @@ public class ModificarConsola {
 
         BotonModificarConsola botonModificarConsola = new BotonModificarConsola();
         ingresarcon.setOnAction(botonModificarConsola);
+
+        //Anadir elementos al Vbox
+        modificarConsola.getChildren().addAll(proceso1,detalleproceso1,listamcons,formularioingresocons1);
+
+
 
     }
 
@@ -187,5 +192,15 @@ public class ModificarConsola {
 
         }
 
+    }
+
+    //Eliminar una consola de la base de datos:
+
+    class BotonEliminarConsola implements EventHandler<ActionEvent>{
+        @Override
+        public void handle(ActionEvent event) {
+            Consola consola = (Consola) listamcons.getSelectionModel().getSelectedItem();
+            Datos.listaConsolas.remove(consola);
+        }
     }
 }

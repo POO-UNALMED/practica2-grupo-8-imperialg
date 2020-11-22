@@ -154,4 +154,13 @@ public class ModificarCliente {
         }
 
     }
+    //Eliminar un cliente de la base de datos:
+    class BotonEliminarCliente implements EventHandler<ActionEvent>{
+        @Override
+        public void handle(ActionEvent event) {
+            Cliente cliente = (Cliente) listamc.getSelectionModel().getSelectedItem();
+            Datos.listaClientes.remove(cliente);
+        }
+    }
+
 }

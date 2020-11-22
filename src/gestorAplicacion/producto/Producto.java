@@ -37,6 +37,10 @@ public abstract class Producto implements Serializable{
         return uso;
     }
 
+    public void setUso(Boolean uso) {
+        this.uso = uso;
+    }
+
     public int getId() {
         return id;
     }
