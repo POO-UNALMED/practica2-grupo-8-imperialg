@@ -26,7 +26,7 @@ import gestorAplicacion.producto.*;
 
 public class Factura implements Serializable {
     private static final long serialVersionUID = 1L;
-    private static int idFactura;
+    private int idFactura;
     private Cliente cliente;
     private ArrayList<Detalle> detalles = new ArrayList<Detalle>(); // Lista que contiene todos los detalles de una factura.
     private static ArrayList<Factura> listaFacturas = Datos.listaFacturas; // Lista donde se almacenan las facturas.
@@ -61,9 +61,10 @@ public class Factura implements Serializable {
     // Se crea el constructor de la clase Factura con los parametros de Cliente y detalles (lista con todos los detalles que
     // componen la factura).
     public Factura(Cliente cliente, ArrayList<Detalle> detalles) {
-        this.idFactura= 1;
         this.cliente = cliente;
         this.detalles = detalles;
+        this.idFactura=(Datos.listaFacturas.size());
+        Datos.listaFacturas.add(this);
     }
     public static ArrayList<Factura> getListaFacturas() {
         return listaFacturas;
@@ -74,7 +75,7 @@ public class Factura implements Serializable {
     public static void facturasRegistradas() {
         for (Factura factura : Datos.listaFacturas) {
             System.out.println(factura.toString()+"\n");
-            idFactura++;
+            
         }
     }
 

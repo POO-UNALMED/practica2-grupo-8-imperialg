@@ -537,5 +537,8 @@ class VentanaImperial{
 	public  Scene getEscena() {
 		return escenaimperial;
 	}
+	public VBox getvusuario() {
+		return vusuario;
+	}
 
 }

@@ -286,6 +286,9 @@ public class VentanaInicial extends Application {
 	    Datos datos = new Datos();
 	    datos.leerDatos1();
 	    datos.leerDatos();
+	    datos.leerDatosFacturas();
+	    datos.guardarDatos();
+        datos.guardarDatos1();
         launch(args);
     }
 }

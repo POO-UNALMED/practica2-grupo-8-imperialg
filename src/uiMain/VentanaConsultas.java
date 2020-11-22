@@ -47,7 +47,6 @@ public class VentanaConsultas {
 	ListView<Periferico>lsper;
 	ListView<Juego>lsjuego;
 	ListView<Factura>lsfact;
-	
 	public VentanaConsultas() {
 //////////////////////////// Historial y reportes //////////////////////////////////////////
 		histreportes = new HBox(20);
@@ -106,7 +105,48 @@ public class VentanaConsultas {
 		
 ////////////////////////////Recomendar Juegos por edad //////////////////////////////////////////
 		juegoedad = new VBox(10);
-		juegoedad.getChildren().add(new Button("Aqui deberia mostrar las recomendaciones de juegos por edad"));
+		
+		TextField edad12 = new TextField("Juegos recomendados para edad de 6 anios a 12 anios inclusive");
+		ArrayList<String>juegos12 = new ArrayList<String>();
+		for(Juego juego:Datos.listaJuegos) {
+			if(juego.getPegi()<=12) {				
+				juegos12.add("Nombre del Juego: "+juego.getNombre()+"  ||  "+" Genero: "+juego.getGenero()+"  ||  "+" Precio: "+juego.getPrecio()+"  ||  "+"Edad recomendada para jugar: "+juego.getPegi());
+			}
+		}
+		ObservableList<String> listajuego12 = FXCollections.observableArrayList(juegos12);
+		ListView<String>lsjueg12 = new ListView();
+		lsjueg12.setItems(listajuego12);
+		lsjueg12.setMaxSize(1000, 100);
+		
+		TextField edad18 = new TextField("Juegos recomendados para edad de mas de 12 anios a 18 anios inclusive");
+		ArrayList<String>juegos18 = new ArrayList<String>();
+		for(Juego juego:Datos.listaJuegos) {
+			if(juego.getPegi()>12&&juego.getPegi()<=18) {	
+				juegos18.add("Nombre del Juego: "+juego.getNombre()+"  ||  "+" Genero: "+juego.getGenero()+"  ||  "+" Precio: "+juego.getPrecio()+"  ||  "+"Edad recomendada para jugar: "+juego.getPegi());
+
+			}
+		}
+		ObservableList<String> listajuego18 = FXCollections.observableArrayList(juegos18);
+		ListView<String>lsjueg18 = new ListView();
+		lsjueg18.setItems(listajuego18);
+		lsjueg18.setMaxSize(1000, 100);
+		
+		TextField edadmas18 = new TextField("Juegos recomendados para edad de +18 anios");
+		ArrayList<String>juegosmas18 = new ArrayList<String>();
+		for(Juego juego:Datos.listaJuegos) {
+			if(juego.getPegi()>18) {	
+				juegosmas18.add("Nombre del Juego: "+juego.getNombre()+"  ||  "+" Genero: "+juego.getGenero()+"  ||  "+" Precio: "+juego.getPrecio()+"  ||  "+"Edad recomendada para jugar: "+juego.getPegi());
+
+			}			
+		}
+		ObservableList<String> listajuegomas18 = FXCollections.observableArrayList(juegosmas18);
+		ListView<String>lsjuegmas18 = new ListView();
+		lsjuegmas18.setItems(listajuegomas18);
+		lsjuegmas18.setMaxSize(1000, 100);
+		
+		
+		juegoedad.getChildren().addAll(edad12,lsjueg12,edad18,lsjueg18,edadmas18,lsjuegmas18);
+		
 		
 ////////////////////////////Fin recomendar juegos por edad //////////////////////////////////////////	
 		consultas.setAlignment(Pos.CENTER);
@@ -215,7 +255,7 @@ public class VentanaConsultas {
 	
 	class BotonSalir implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
-			consultas.getChildren().setAll(new VentanaImperial().vusuario);
+			VentanaInicial.window.setScene(new VentanaImperial().getEscena());
 		}
 	}
 
