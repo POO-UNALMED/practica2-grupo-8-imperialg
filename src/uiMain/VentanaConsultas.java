@@ -47,6 +47,7 @@ public class VentanaConsultas {
 	ListView<Periferico>lsper;
 	ListView<Juego>lsjuego;
 	ListView<Factura>lsfact;
+	Cliente cl;
 	public VentanaConsultas() {
 //////////////////////////// Historial y reportes //////////////////////////////////////////
 		histreportes = new HBox(20);
@@ -99,14 +100,52 @@ public class VentanaConsultas {
 		
 		
 ////////////////////////////Ver cliente con mas puntos //////////////////////////////////////////
-		clpuntos = new VBox();
-		clpuntos.getChildren().add(new Button("Aqui deberia mostrar el cliente con mas puntos"));
+		clpuntos = new VBox(20);
+		clpuntos.setAlignment(Pos.CENTER);				
+		int aux = 0;
+ 		cl=null;
+ 		for(Cliente cliente:Datos.listaClientes ) {
+ 			
+ 			if(cliente.getPuntos()>aux) {
+ 				aux = cliente.getPuntos();
+ 				cl = cliente;
+ 			}
+ 		}
+ 		
+ 		if(cl.getPuntos()>=20) {
+ 			TextField clp = new TextField("El cliente "+cl.getNombre()+" Tiene un bono de COP $ 300.000 en nuestra tienda por alcanzar los 20 puntos ");
+ 			TextField desea = new TextField("Desea redimir el bono al cliente " + cl.getNombre() + " ?");
+ 			desea.setEditable(false);
+ 			desea.setMaxWidth(500);
+ 			desea.setAlignment(Pos.CENTER);
+ 			clp.setEditable(false);
+ 			clp.setMaxWidth(800);
+ 			clp.setAlignment(Pos.CENTER);
+ 			Button redimir = new Button("Redimir Bono");
+ 			BotonRedimir redimirptos = new BotonRedimir();
+ 	        redimir.setOnAction(redimirptos);
+ 			Button noredimir = new Button("NO Redimir"); 
+ 			BotonNoRedimir noredimirptos = new BotonNoRedimir();
+ 	        noredimir.setOnAction(noredimirptos);
+ 	        HBox red = new HBox(15);
+ 	        red.setAlignment(Pos.CENTER); 	        
+ 	        red.getChildren().addAll(redimir,noredimir);
+ 			clpuntos.getChildren().addAll(clp,desea,red);
+ 		}else {
+ 			TextField faltanptos = new TextField("Al cliente "+cl.getNombre()+" le faltan "+(20-cl.getPuntos())+" puntos para ganar un bono ");
+ 			faltanptos.setEditable(false);
+ 			faltanptos.setMaxWidth(700);
+ 			faltanptos.setAlignment(Pos.CENTER);
+ 			clpuntos.getChildren().add(faltanptos);
+ 		}			
 ////////////////////////////Fin Ver cliente con mas puntos //////////////////////////////////////////		
 		
 ////////////////////////////Recomendar Juegos por edad //////////////////////////////////////////
-		juegoedad = new VBox(10);
-		
+		juegoedad = new VBox(15);
+		juegoedad.setAlignment(Pos.CENTER);
 		TextField edad12 = new TextField("Juegos recomendados para edad de 6 anios a 12 anios inclusive");
+		edad12.setMaxWidth(500);
+		edad12.setEditable(false);
 		ArrayList<String>juegos12 = new ArrayList<String>();
 		for(Juego juego:Datos.listaJuegos) {
 			if(juego.getPegi()<=12) {				
@@ -119,6 +158,8 @@ public class VentanaConsultas {
 		lsjueg12.setMaxSize(1000, 100);
 		
 		TextField edad18 = new TextField("Juegos recomendados para edad de mas de 12 anios a 18 anios inclusive");
+		edad18.setMaxWidth(500);
+		edad18.setEditable(false);
 		ArrayList<String>juegos18 = new ArrayList<String>();
 		for(Juego juego:Datos.listaJuegos) {
 			if(juego.getPegi()>12&&juego.getPegi()<=18) {	
@@ -132,6 +173,8 @@ public class VentanaConsultas {
 		lsjueg18.setMaxSize(1000, 100);
 		
 		TextField edadmas18 = new TextField("Juegos recomendados para edad de +18 anios");
+		edadmas18.setMaxWidth(500);
+		edadmas18.setEditable(false);
 		ArrayList<String>juegosmas18 = new ArrayList<String>();
 		for(Juego juego:Datos.listaJuegos) {
 			if(juego.getPegi()>18) {	
@@ -254,6 +297,25 @@ public class VentanaConsultas {
 	}
 	
 	class BotonSalir implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent event) {
+			VentanaInicial.window.setScene(new VentanaImperial().getEscena());
+		}
+	}
+	
+	class BotonRedimir implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent event) {
+			cl.agregarPunto(0);
+			Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
+    		dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
+    		dialogoDescripcion.setHeaderText("Usted acaba de redimir los puntos del cliente "+cl.getNombre());
+    		dialogoDescripcion.setContentText("Proceso Exitoso.");
+    		dialogoDescripcion.showAndWait();
+    		VentanaInicial.window.setScene(new VentanaImperial().getEscena());
+			
+		}
+	}
+	
+	class BotonNoRedimir implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			VentanaInicial.window.setScene(new VentanaImperial().getEscena());
 		}

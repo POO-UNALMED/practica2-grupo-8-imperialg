@@ -131,40 +131,6 @@ public class Cliente implements Serializable {
  		}
  	}
  	
- 	// Metodo para obtener al cliente con mas puntos de la tienda.
- 	public static void clienteConMasPuntos() {
- 		Scanner entrada = new Scanner(System.in);
- 		int aux = 0;
- 		Cliente cl=null;
- 		for(Cliente cliente:Datos.listaClientes ) {
- 			
- 			if(cliente.getPuntos()>aux) {
- 				aux = cliente.getPuntos();
- 				cl = cliente;
- 			}
- 		}System.out.println (cl);
- 		if(cl.getPuntos()>=20) {
- 			System.out.println("\n"+"El cliente "+cl.getNombre()+" Tiene un bono de COP $ 300.000 en nuestra tienda por alcanzar los 20 puntos ");
- 			System.out.println("�Desea redimir el bono al cliente " + cl.getNombre() + " ?"+"\n");
- 			System.out.println("Ingrese una opcion: ");
- 			System.out.println("1. Si "+"\n"+"2. No");
- 			int eleccion = entrada.nextInt();
- 			switch (eleccion){
- 			case 1:
- 				cl.agregarPunto(0);
- 				System.out.println("Se ha redimido el bono y se ha actualizado la lista de los clientes con los nuevos puntos."+"\n");
- 				clientesRegistrados();
- 				break;
- 			
- 			case 2:
- 				break;
- 			}
- 		}else {
- 			System.out.println("\n"+"Al cliente "+cl.getNombre()+" le faltan "+(20-cl.getPuntos())+" puntos para ganar un bono ");
- 		}
- 		
- 	}
-    
     // Se crea el toString de la clase Cliente, el cual retorna el nombre del cliente, su cedula
     // y la cantidad de puntos que posee en la tienda.
     public String toString(){

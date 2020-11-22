@@ -32,7 +32,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -256,8 +255,7 @@ public class VentanaInicial extends Application {
                 window.setScene(new VentanaImperial().getEscena());
             }
         });
-
-        HBox hbox = new HBox(new ModificarConsola().getModificarConsola(), new ModificarJuego().getModificarJuego(), new ModificarCliente().getModificarCliente(), new ModificarPeriferico().getModificarPeriferico());
+ 
         escena = new Scene(p0, 1100, 900);
         window.setScene(escena);
         window.show();
