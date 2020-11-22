@@ -42,6 +42,8 @@ public class VentanaConsultas {
 	VBox clpuntos;
 	VBox juegoedad;
 	HBox histreportes;
+	VBox gananciastienda;
+	ListView<String>gananciass;
 	ListView<Cliente> lsclient;
 	ListView<Consola>lscons;
 	ListView<Periferico>lsper;
@@ -55,6 +57,9 @@ public class VentanaConsultas {
 		MenuBar reportes = new MenuBar();
 		Menu repor1 = new Menu("Reportes de ventas");
 		MenuItem ganancias = new MenuItem("Ganancias");
+		GananciasHandlerClass handler = new GananciasHandlerClass();
+		ganancias.setOnAction(handler);
+		
 		MenuItem prodvendidos = new MenuItem("Productos Mas y Menos Vendidos");
 		repor1.getItems().addAll(ganancias,prodvendidos);
 		reportes.getMenus().add(repor1);
@@ -191,7 +196,44 @@ public class VentanaConsultas {
 		juegoedad.getChildren().addAll(edad12,lsjueg12,edad18,lsjueg18,edadmas18,lsjuegmas18);
 		
 		
-////////////////////////////Fin recomendar juegos por edad //////////////////////////////////////////	
+////////////////////////////Fin recomendar juegos por edad //////////////////////////////////////////
+		
+		
+//////////////////////////// Ver Ganancias de la tienda //////////////////////////////////////////
+		
+		ArrayList<String> consolasmv = new ArrayList<String>();
+		ObservableList<String> totalgananciass = FXCollections.observableArrayList(consolasmv);
+		TextField totalganancias;
+		gananciass = new ListView();
+		gananciass.setItems(totalgananciass);
+		gananciastienda = new VBox(20);
+		gananciastienda.setAlignment(Pos.CENTER);
+		TextField textoganancias = new TextField("Total de ganancias por venta de Consolas");
+		textoganancias.setAlignment(Pos.CENTER);
+		textoganancias.setMaxWidth(500);
+		textoganancias.setEditable(false);
+	
+	 	// Metodo que obtiene el juego mas vendido en la tienda.
+	
+	        ArrayList<String> nombres = Consola.productosVendidos();        
+	        ArrayList<String> nombresUnicos = new ArrayList<String>();
+	        for (String nombre: nombres){
+	            if(!nombresUnicos.contains(nombre))
+	                nombresUnicos.add(nombre);
+	        }
+	        //System.out.println("Nombre de la Consola"+"       ||      "+"Unidades Vendidas"+ "    ||    "+"Precio por unidad"+"    ||    "+" Subtotal ");
+	        Float total = (float) 0;
+	        for (String nombre: nombresUnicos){
+	        	total += Consola.precioss(nombre);
+	            consolasmv.add("    "+nombre + "                           " +Consola.unidadess(nombre) +" undidades                 "+Consola.precioConsola(nombre)+"$ COP "+"              "+Consola.precioss(nombre));
+	        }totalganancias=new TextField("***** TOTAL DE GANANCIAS POR VENTA DE CONSOLAS: " + "||" + "COP $ " + total + " *****");
+	        gananciastienda.getChildren().addAll(textoganancias,gananciass,totalganancias);
+	        
+	        
+	
+//////////////////////////// Fin ver Ganancias de la tienda //////////////////////////////////////////
+		
+		
 		consultas.setAlignment(Pos.CENTER);
 		consultas.setPadding(new Insets(10,10,10,10));
 		TextField cons = new TextField("Consultas IMPERIAL-GAMING");
@@ -240,6 +282,11 @@ public class VentanaConsultas {
 		consultas.getChildren().addAll(cons,submenu);
 	}
 	
+	class GananciasHandlerClass implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent event) {
+		submenu.getChildren().set(2, gananciastienda);
+		}
+	}
 	
 	class BotonConsultaHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
