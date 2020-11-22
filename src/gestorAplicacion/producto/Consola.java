@@ -229,42 +229,7 @@ public class Consola extends Producto implements Serializable, Hardware {
             System.out.println("    "+nombre + "                           " +unidadess(nombre) +" undidades                 "+precioConsola(nombre)+"$ COP "+"              "+precioss(nombre));
         } System.out.println("***** TOTAL DE GANANCIAS POR VENTA DE CONSOLAS: " + "||" + "COP $ " + total + " *****");
         
-    }
- 	
- 	// Metodo para conocer cual es la consola mas vendida de la tienda-
- 	public static void ConsolaMasVendida(){
- 		
-        ArrayList<String> nombres = Consola.productosVendidos();
-        ArrayList<String> nombresUnicos = new ArrayList<String>();
-        ArrayList<Integer> cantidadesunidad = new ArrayList<Integer>();
-        for (String nombre: nombres){
-            if(!nombresUnicos.contains(nombre))
-                nombresUnicos.add(nombre);
-        }
-        for (String nombre: nombresUnicos){
-            cantidadesunidad.add(unidadess(nombre));
-        }
-        
-        int aux = 0;
-        String s = "";
-        for(int x=0;x<cantidadesunidad.size();x++) {
-        	if(cantidadesunidad.get(x)>aux) {
-        		aux = cantidadesunidad.get(x);
-        		s = nombresUnicos.get(x);
-        	}
-        }System.out.println("\n"+"NOMBRE DE LA CONSOLA MAS VENDIDA: "+s+"  ||  "+"Unidades Vendidas: "+aux);
-        
-        int aux1 = cantidadesunidad.get(0);
-        String s1 = "";
-        for(int x=0;x<cantidadesunidad.size();x++) {
-        	if(cantidadesunidad.get(x)<=aux1) {
-        		aux1 = cantidadesunidad.get(x);
-        		s1 = nombresUnicos.get(x);
-        	}
-        }System.out.println("\n"+"NOMBRE DE LA CONSOLA MENOS VENDIDA: "+s1+"  ||  "+"Unidades Vendidas: "+aux1);
-        
-    }
-    
+    }    
  	
  	// Metodo que moodifica el precio de algunas consolas, dado un array de indices y un array de precios.
     public static void modificarPreciosConsolas(int[] ints, int[] precios){
