@@ -145,25 +145,7 @@ public class Juego extends Producto implements Serializable{
 	 			}
 	 		}return precio;
 	 	}
-	 	
-	 	// Metodo que obtiene el juego mas vendido en la tienda.
-	 	public static void JuegosMasVendidos(){		
-	        ArrayList<String> nombres = Juego.productosVendidos();        
-	        ArrayList<String> nombresUnicos = new ArrayList<String>();
-	        for (String nombre: nombres){
-	            if(!nombresUnicos.contains(nombre))
-	                nombresUnicos.add(nombre);
-	        }
-	        System.out.println("Nombre del Juego "+"       ||      "+"Unidades Vendidas "+ "    ||    "+"Precio por unidad"+"    ||    "+" Subtotal ");
-	        Float total = (float) 0;
-	        for (String nombre: nombresUnicos){
-	        	total += precioss(nombre);
-	            System.out.println("    "+nombre + "                           " +unidadess(nombre) +" undidades                 "+precioJuego(nombre)+"$ COP "+"              "+precioss(nombre));
-	        } System.out.println("***** TOTAL DE GANANCIAS POR VENTA DE JUEGOS: " + "||" + "COP $ " + total + " *****");       
-	        
-	    }
-	 	
-	 	
+	
 	 	public static void JuegoMasVendido(){
 	 		
 	        ArrayList<String> nombres = Juego.productosVendidos();

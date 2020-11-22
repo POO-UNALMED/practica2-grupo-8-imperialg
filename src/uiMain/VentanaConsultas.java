@@ -224,16 +224,69 @@ public class VentanaConsultas {
 	        for (String nombre: nombresUnicos){
 	        	total += Consola.precioss(nombre);
 	            consolasmv.add("    "+nombre + "                           " +Consola.unidadess(nombre) +" undidades                 "+Consola.precioConsola(nombre)+"$ COP "+"              "+Consola.precioss(nombre));
-	        }totalganancias=new TextField("***** TOTAL DE GANANCIAS POR VENTA DE CONSOLAS: " + "||" + "COP $ " + total + " *****");
+	        }totalganancias=new TextField("***** TOTAL DE GANANCIAS POR VENTA DE CONSOLAS: " + "COP $ " + total + " *****");
 	        totalganancias.setAlignment(Pos.CENTER);
 	        ObservableList<String> totalgananciass = FXCollections.observableArrayList(consolasmv);
 	        gananciass.setItems(totalgananciass);
 	        gananciass.setMaxSize(700, 130);
-	        gananciastienda.getChildren().addAll(textoganancias,gananciass,totalganancias);
 	        
+	        
+	        
+			ListView<String>gananciasjuegos = new ListView();
+			ArrayList<String> juegosmv = new ArrayList<String>();
+			TextField totalgananciasj;
+			TextField textogananciasj = new TextField("Total de ganancias por venta de Juegos");
+			textogananciasj.setAlignment(Pos.CENTER);
+			textogananciasj.setMaxWidth(500);
+			textogananciasj.setEditable(false);	
+	        ArrayList<String> nombresj = Juego.productosVendidos();        
+	        ArrayList<String> nombresUnicosj = new ArrayList<String>();
+	        
+	        for (String nombre: nombresj){
+	            if(!nombresUnicosj.contains(nombre))
+	                nombresUnicosj.add(nombre);
+	        }
+	        juegosmv.add("Nombre del Juego "+"       ||      "+"Unidades Vendidas "+ "    ||    "+"Precio por unidad"+"    ||    "+" Subtotal ");
+	        Float totalj = (float) 0;
+	        for (String nombrej: nombresUnicosj){
+	        	totalj += Juego.precioss(nombrej);
+	            juegosmv.add("    "+nombrej + "                           " +Juego.unidadess(nombrej) +" undidades                 "+Juego.precioJuego(nombrej)+"$ COP "+"              "+Juego.precioss(nombrej));
+	        } totalgananciasj = new TextField("***** TOTAL DE GANANCIAS POR VENTA DE JUEGOS: "  + "COP $ " + totalj + " *****");
+	        totalgananciasj.setAlignment(Pos.CENTER);
+	        ObservableList<String> totalgananciassj = FXCollections.observableArrayList(juegosmv);
+	        gananciasjuegos.setItems(totalgananciassj);
+	        gananciasjuegos.setMaxSize(700, 130);
+
+	        
+			ListView<String>gananciasperif = new ListView();
+			ArrayList<String> perifericosmv = new ArrayList<String>();
+			TextField totalgananciasp;
+			TextField textogananciasp = new TextField("Total de ganancias por venta de Perifericos");
+			textogananciasp.setAlignment(Pos.CENTER);
+			textogananciasp.setMaxWidth(500);
+			textogananciasp.setEditable(false);	
+	        ArrayList<String> nombresp = Periferico.productosVendidos();        
+	        ArrayList<String> nombresUnicosp = new ArrayList<String>();
+	        
+	        for (String nombre: nombresp){
+	            if(!nombresUnicosp.contains(nombre))
+	                nombresUnicosp.add(nombre);
+	        }
+	        perifericosmv.add("Nombre del Periferico"+"       ||      "+"Unidades Vendidas"+ "    ||    "+"Precio por unidad"+"    ||    "+" Subtotal ");
+	        Float totalp = (float) 0;
+	        for (String nombrep: nombresUnicosp){
+	        	totalp += Periferico.precioss(nombrep);
+	            perifericosmv.add("    "+nombrep + "                           " +Periferico.unidadess(nombrep) +" undidades                 "+Periferico.precioPeriferico(nombrep)+"$ COP "+"              "+Periferico.precioss(nombrep));
+	        } totalgananciasp = new TextField("***** TOTAL DE GANANCIAS POR VENTA DE PERIFERICOS: "+ "COP $"+ totalp +"  *****"); 
+	        totalgananciasp.setAlignment(Pos.CENTER);
+	        ObservableList<String> totalgananciassp = FXCollections.observableArrayList(perifericosmv);
+	        gananciasperif.setItems(totalgananciassp);
+	        gananciasperif.setMaxSize(700,130);
+	        gananciastienda.getChildren().addAll(textoganancias,gananciass,totalganancias,textogananciasj,gananciasjuegos,totalgananciasj,textogananciasp,gananciasperif,totalgananciasp);
 	        
 	
 //////////////////////////// Fin ver Ganancias de la tienda //////////////////////////////////////////
+	        
 		
 		
 		consultas.setAlignment(Pos.CENTER);
