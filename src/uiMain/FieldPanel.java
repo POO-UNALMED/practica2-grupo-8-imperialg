@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 
 import java.util.HashMap;
 
-public class FieldPanel extends GridPane {
+public class FieldPanel extends Pane {
     GridPane formularioingreso = new GridPane();
     HashMap<String, TextField> hashMap = new HashMap<>();
 
