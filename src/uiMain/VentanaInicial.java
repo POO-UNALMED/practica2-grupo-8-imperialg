@@ -47,6 +47,8 @@ import javafx.scene.control.TextArea;
 
 public class VentanaInicial extends Application {
 	
+	
+	// Creacion de la stage y la escena para la ventana de inicio.
 	public static Stage window = new Stage(); 
 	public static Scene escena;
 	public void start(Stage myStage) throws Exception { 
@@ -73,7 +75,7 @@ public class VentanaInicial extends Application {
         //Agregar a p0:
         p0.add(p1, 0, 1);
         p0.add(p2, 1, 1);
-        //agregar el fondo a p0
+        //agregar el fondo a la ventana de inicio.
         p0.setStyle("-fx-background-image: url(\"file:src/img/fondo.png\"); " + "-fx-background-size: cover;");
 
         window.setTitle("IMPERIAL-GAMING");
@@ -124,7 +126,8 @@ public class VentanaInicial extends Application {
         Image imagensf2= new Image("file:src/img/sf2.jpg");
         Image imagensf3= new Image("file:src/img/sf3.jpg");
         Image imagensf4= new Image("file:src/img/sf4.jpg");
-    
+        
+        // Modificacion de las fotos de los desarrolladores del aplicativo.
         ImageView imageView = new ImageView(image1);
         imageView.setFitWidth(400);
         imageView.setPreserveRatio(true); 
@@ -153,11 +156,13 @@ public class VentanaInicial extends Application {
         p1.add(p3, 0, 0);
         p1.add(p4, 0, 1);
 
-        // Crear el label p5
+        // Crear el label p5 donde iran las hojas de vida de cada desarrollador
        String p5 = new String("HOJA DE VIDA DE SANTIAGO VALENCIA MEJIA:\n\nMi nombre es Santiago Valencia Mejia, soy Tecnico en Diseno Grafico, actualmente estudio de Ingenieria de Sistemas e Informatica en la UNAL, tengo 20 anios, me encuentro cursando el quinto semestre, estoy viendo el curso de Programacion Orientada a Objetos y soy uno de los Autores del presente proyecto. Me gustaria dedicarme a futuro en el campo de Redes y Telecomunicaciones.\n\n\n");
        String p5_1 = new String("HOJA DE VIDA DE ANDERSON GUTIERREZ BUENO:\n\nMi nombre es Anderson Elian Gutierrez Bueno, soy Tecnico en Sistemas, tengo 20 anios y actualmente estudio Ingenieria de Sistemas e Informatica en la UNAL, estoy cursando el quinto semestre y soy uno de los autores del presente proyecto. Quisiera dedicarme en un futuro como desarrollador de Software.\n\n\n");
        String p5_2 = new String("HOJA DE VIDA DE SANTIAGO FRANCO VALENCIA:\n\nMi nombre es Santiago Franco Valencia, soy tecnico en Diseno e Integracion de Multimedia, actualmente estoy culminando el 5to semestre de estadistica, me gustan mucho los juegos de cartas y la literatura, quisiera dedicarme a la consultoria o ser un analista financiero.\n\n\n");
  
+       
+       // Se acomodan las hojas de vida en su respectivo gridpane.
        GridPane p6 = new GridPane();
        p6.add(imagens11,0,0);
        p6.add(imagens22,1,1);
@@ -174,7 +179,7 @@ public class VentanaInicial extends Application {
         p2.add(p6,0,1);
 
 
-        //Interactividad a imagenes:
+        //Interactividad a imagenes para que cuando se pase el mause sobre cada una de ellas, automaticamente se cambie a otra imagen.
         imageView.setOnMouseEntered(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -205,6 +210,7 @@ public class VentanaInicial extends Application {
         	}
         });
         
+        // Evento para devolver el color original del texto de las hojas de vida cuando ya no se le esta pasando el mouse por encima.
         p05.setOnMouseExited(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
         		p05.setTextFill(Color.web("#000000"));       	
@@ -274,6 +280,7 @@ public class VentanaInicial extends Application {
     	}
     }
     
+    // Salir por completo del aplicativo.
     class SalirHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 		System.exit(0);
@@ -281,7 +288,8 @@ public class VentanaInicial extends Application {
 		}
     	
     }
-       
+    
+    // Metodo main del aplicativo.
 	public static void main(String[] args) {
 	    Datos datos = new Datos();
 	    datos.leerDatos1();

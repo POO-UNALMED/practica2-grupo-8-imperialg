@@ -13,6 +13,7 @@
 
 // Este modulo se encarga de la interacciqn que tendra el usuario con el programa, aqui es donde se veran reflejadas todas las funcionalidades
 // la aplicacion.
+
 package uiMain;
 import BaseDatos.Datos;
 import gestorAplicacion.producto.Consola;
@@ -46,17 +47,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 class VentanaImperial{
-	
+
+	// Creacion de la escena principal de esta ventana.
 	private Scene escenaimperial;
 	VBox vusuario = new VBox(15);
 	VBox defecto = new VBox();
 	
+	// Creacion del VBox para el formulario de ingreso de clientes a la base de datos de la tienda.
 	VBox ingresarcliente;
 	TextField nombrec = new TextField();
 	TextField cedulac = new TextField();
 	TextField celularc = new TextField();
 	TextField emailc = new TextField();
 	
+	// Creacion del VBox para el formulario de ingreso de consolas a la base de datos de la tienda.
 	VBox ingresarconsola;
 	TextField nombrecons = new TextField();
 	TextField usocons = new TextField();
@@ -65,6 +69,7 @@ class VentanaImperial{
 	TextField versioncons = new TextField();
 	TextField capacidadcons = new TextField();
 	
+	// Creacion del VBox para el formulario de ingreso de juegos a la base de datos de la tienda.
 	VBox ingresarjuego;
 	TextField nombrejueg = new TextField();
 	TextField usojueg = new TextField();
@@ -73,6 +78,7 @@ class VentanaImperial{
 	TextField plataformajueg = new TextField();
 	TextField generojueg = new TextField();
 	
+	// Creacion del VBox para el formulario de ingreso de perifericos a la base de datos de la tienda.
 	VBox ingresarpreriferico;
 	TextField nombreperif = new TextField();
 	TextField usoperif = new TextField();
@@ -84,6 +90,7 @@ class VentanaImperial{
     public VentanaImperial(){
     	
 /////////////////// Inicio Formulario Ingresar Cliente ////////////////////////////
+    	
     	ingresarcliente = new VBox(50);
     	ingresarcliente.setAlignment(Pos.CENTER);
     	TextField proceso = new TextField("Ingresar un Cliente a la Base De Datos");
@@ -120,7 +127,7 @@ class VentanaImperial{
     	formularioingresoc1.add(nombre, 0, 0);
     	formularioingresoc1.add(nombrec,1 ,0);
     	formularioingresoc1.add(cedula, 0, 1);
-    	formularioingresoc1.add(cedulac,1 ,1); b
+    	formularioingresoc1.add(cedulac,1 ,1); 
     	formularioingresoc1.add(celular, 0, 2);
     	formularioingresoc1.add(celularc,1 ,2);
     	formularioingresoc1.add(email, 0, 3);
@@ -316,22 +323,30 @@ class VentanaImperial{
 		formularioingresop.add(ingresarper, 0, 4);
 		formularioingresop.add(cancelarper, 1, 4);
 		ingresarpreriferico.getChildren().addAll(procesop, detalleprocesop, formularioingresop);
-/////////////////// Fin Formulario Ingresar Periferico //////////////////////////////    	
-        //Creacion de barra de menus:
+		
+/////////////////// Fin Formulario Ingresar Periferico //////////////////////////////   
+		
+		
+		
+        //Creacion de barra de menus de la ventana imperial:
         MenuBar barramenu = new MenuBar();
 
-        //Creacion de menus:
+        
+        //Creacion de menus que posteriormente se agregaran a la barra de menus.
         Menu archivo = new Menu("Archivo");
         Menu procon = new Menu("Procesos y consultas");
         Menu aiuda = new Menu("Ayuda");
 
-        //Items de archivo:
+        
+        //Items del submenu archivo:
         MenuItem usuario = new MenuItem("Usuario");
+        MensajeUsuarioHandlerClass msj = new MensajeUsuarioHandlerClass();
+        usuario.setOnAction(msj);
         MenuItem salir = new MenuItem("Salir");
         SalirHandlerClass handler = new SalirHandlerClass();
         salir.setOnAction(handler);
 
-        //Items de procesos y consultas:
+        //Items del submenu procesos y consultas:
         MenuItem vender = new MenuItem("Vender");
         DevolverDefectoUHandlerClass venderr = new DevolverDefectoUHandlerClass();
         vender.setOnAction(venderr);
@@ -344,7 +359,7 @@ class VentanaImperial{
         ConsultasHandlerClass handlerConsultas = new ConsultasHandlerClass();
         consultas.setOnAction(handlerConsultas);
 
-        //Items de ayuda:
+        // Menu ayuda ayuda:
         MenuItem acerca = new MenuItem("Acerca de");
         AcercaDeHandlerClass handler1= new AcercaDeHandlerClass();
         acerca.setOnAction(handler1);        
@@ -353,6 +368,7 @@ class VentanaImperial{
         archivo.getItems().addAll(usuario, salir);
         procon.getItems().addAll(vender,sertec,usuarios,stock, consultas);
         aiuda.getItems().addAll(acerca);
+        
         //Agregar items a item usuarios:
         MenuItem agregarUsuario = new MenuItem("Ingresar nuevo Usuario"); 
         agregarUsuarioHandlerClass handlerUsuario = new agregarUsuarioHandlerClass();
@@ -395,6 +411,10 @@ class VentanaImperial{
 
 	}
     
+    
+    ///////////////Manejadores de eventos:////////////////// 
+    
+    // Creacion cuadro de dialogo cuando el usuario clickea el boton "Acerca de".
     class AcercaDeHandlerClass implements EventHandler<ActionEvent>{
     	public void handle(ActionEvent event) {
     		Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
@@ -405,6 +425,8 @@ class VentanaImperial{
     	}
     }
     
+    
+    // Evento para devolverse a la ventana por defecto cuando el usuario clickea alguna opcion como por ejemplo "Cancelar". 
     class DevolverDefectoUHandlerClass implements EventHandler<ActionEvent>{
     	public void handle(ActionEvent event) {
     		vusuario.getChildren().setAll(new VentanaImperial().vusuario);
@@ -412,19 +434,24 @@ class VentanaImperial{
     		
     	}
     }
-
+    
+    // Evento para devolverse a la ventana inicial de la aplicacion.
 	class SalirHandlerClass implements EventHandler<ActionEvent> {
 		public void handle(ActionEvent event) {
 			VentanaInicial.window.setScene(VentanaInicial.escena);
 			 VentanaInicial.window.setTitle("IMPERIAL-GAMING");
 		}
 	}
+	
+	// Evento para aregar un usuario a la base de datos cuando se clickea la opcion "Ingresar nuevo usuario".
 	class agregarUsuarioHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			vusuario.getChildren().set(1,ingresarcliente);
 			
 		}
 	}
+	
+	// Boton para aregar un usuario a la base de datos cuando se clickea la opcion "Ingresar nuevo usuario".
 	class BotonIngresarUsuarioHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			String nombre = nombrec.getText();
@@ -432,7 +459,8 @@ class VentanaImperial{
 			Long celular = Long.parseLong(cedulac.getText());
 			String correo = emailc.getText();
 			new Cliente(nombre, cedula, celular, correo);
-			//Dialogo de confirmacion despues de agregado el cliente
+			
+			//Dialogo de confirmacion despues de agregado el Cliente a la base de datos de la tienda.
 			Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
     		dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
     		dialogoDescripcion.setHeaderText("Usted acaba de agregar un nuevo Cliente a la base de datos de la tienda.");
@@ -442,12 +470,14 @@ class VentanaImperial{
 		}
 	}
 	
+	// Evento para aregar una consola a la base de datos cuando se clickea la opcion "Ingresar Consola".
 	class agregarConsolaHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			vusuario.getChildren().set(1,ingresarconsola);
 		}
 	}	
 	
+	// Boton para aregar una consola a la base de datos cuando se clickea la opcion "Ingresar Consola".
 	class BotonIngresarConsolaHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			String nombre = nombrecons.getText();
@@ -463,6 +493,7 @@ class VentanaImperial{
 			int almacenamiento = Integer.parseInt(capacidadcons.getText());
 			new Consola(nombre,uso,precio,color,version,almacenamiento);
 			
+			//Dialogo de confirmacion despues de agregada la Consola a la base de datos de la tienda.
 			Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
     		dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
     		dialogoDescripcion.setHeaderText("Usted acaba de agregar una nueva Consola a la base de datos de la tienda.");
@@ -472,11 +503,14 @@ class VentanaImperial{
 		}
 	}
 	
+	// Evento para aregar un juego a la base de datos cuando se clickea la opcion "Ingresar Juego".
 	class agregarJuegoHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			vusuario.getChildren().set(1,ingresarjuego);
 		}
 	}
+	
+	// Boton para aregar un juego a la base de datos cuando se clickea la opcion "Ingresar Juego".
 	class BotonIngresarJuegoHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			String nombre = nombrejueg.getText();
@@ -491,7 +525,8 @@ class VentanaImperial{
 			String plataforma = plataformajueg.getText();
 			String genero = generojueg.getText();
 			new Juego(nombre, uso, precio, pegi, plataforma, genero);
-			//Dialogo de confirmacion despues de agregado el juego
+			
+			// Dialogo de confirmacion despues de agregado el juego a la base de datos de la tienda.
 			Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
     		dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
     		dialogoDescripcion.setHeaderText("Usted acaba de agregar un nuevo Juego a la base de datos de la tienda.");
@@ -503,6 +538,7 @@ class VentanaImperial{
 		}
 	}
 	
+	// Boton para aregar un Periferico a la base de datos cuando se clickea la opcion "Ingresar Periferico".
 	class BotonIngresarPerifericoHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			String nombre = nombreperif.getText();
@@ -515,7 +551,8 @@ class VentanaImperial{
 			Float precio = Float.parseFloat(precioperif.getText());
 			String plataforma = plataformaperif.getText();
 			new Periferico(nombre, uso, precio, plataforma);
-			//Dialogo de confirmacion despues de agregado el periferico
+			
+			// Dialogo de confirmacion despues de agregado el periferico a la base de datos de la tienda.
 			Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
 			dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
     		dialogoDescripcion.setHeaderText("Usted acaba de agregar un nuevo Periferico a la base de datos de la tienda.");
@@ -526,17 +563,22 @@ class VentanaImperial{
 		}
 	}
 	
+	// Evento para aregar un Periferico a la base de datos cuando se clickea la opcion "Ingresar Periferico".
 	class  agregarPerifericoHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			vusuario.getChildren().set(1, ingresarpreriferico);
 		}
 	}
+	
+	// Evento para dirigirse a la ventana de consultas del aplicativo.
 	class ConsultasHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			vusuario.getChildren().set(1, new VentanaConsultas().consultas);
 			
 		}
 	}
+	
+	// Evento para dirigirse a la ventana de servicios tecnicos del aplicativo.
 	class ServiciosTecnicosHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			vusuario.getChildren().set(1, new VentanaServiciosTecnicos().serviciost);
@@ -544,10 +586,23 @@ class VentanaImperial{
 		}
 	}
 	
+	// Cuadro de dialogo que se muestra en pantalla cuando el usuario clickea la opcion "Usuario" ubicada en el menu "Archivo" de la parte superior  del programa.
+	class MensajeUsuarioHandlerClass implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent event) {
+			Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
+			dialogoInfo.setTitle("***IMPERIAL-GAMING***");
+			dialogoInfo.setHeaderText("El lugar perfecto para los amantes de los Videojuegos");
+			dialogoInfo.setContentText("IMPERIAL-GAMING, Tu mejor tienda virtual. Haciendo felices a miles de Clientes desde el 2010.");
+			dialogoInfo.showAndWait();
+		}
+	}
 	
+	// Metodo get para la escena imperial
 	public  Scene getEscena() {
 		return escenaimperial;
 	}
+	
+	// Metodo get para el VBox de la ventana de usuario. 
 	public VBox getvusuario() {
 		return vusuario;
 	}

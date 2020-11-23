@@ -1,3 +1,20 @@
+/*1). En las fuentes se incluira la siguiente documentacion:
+         Cabecera del archivo: funcionalidad del modulo, autores, componentes del modulo, etc.
+         Cabeceras en las clases, explicando su finalidad y describiendo las estructuras de datos definidas cuando
+         sean relevantes.
+         Cabeceras en los metodos, comentando su proposito y describiendo los parametros de entrada/salida.
+         Comentarios en lineas de codigo de relevante interes o importancia.
+         Otros aspectos de interes a tener en cuenta por el profesor.*/
+
+/* Autores:   - Santiago Franco Valencia 
+*            - Anderson Elian Gutierrez 
+*            - Santiago Valencia Mejia
+*                                        */
+
+// Este modulo se encarga de presentar al usuario la ventana de servicios tecnicos ofrecidos por la tienda, aqui el usuario seleccionara un cliente ya 
+// registrado, o en caso de no estarlo, procedera a su registro y posteriormente continuara con el proceso de reparacion de algun articulo propios del cliente 
+// que requiera ser intervenido. 
+
 package uiMain;
 import BaseDatos.Datos;
 import gestorAplicacion.producto.Consola;
@@ -45,6 +62,8 @@ public class VentanaServiciosTecnicos {
     	BotonSiHandlerClass sii = new BotonSiHandlerClass();
 		si.setOnAction(sii);
 		Button no = new Button("  NO  ");
+		MensajeRHandlerClass warning = new MensajeRHandlerClass();
+		no.setOnAction(warning);
 		HBox sino = new HBox(15);
 		sino.getChildren().addAll(si,no);
 		sino.setAlignment(Pos.CENTER);
@@ -64,9 +83,21 @@ public class VentanaServiciosTecnicos {
 		
 	}
 	
+	
+	
 	class BotonSiHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			serviciost.getChildren().set(3, registrado);
+		}
+	}
+	
+	class MensajeRHandlerClass implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent event) {
+			Alert dialogoWarning = new Alert(Alert.AlertType.WARNING);
+			dialogoWarning.setTitle("IMPERIAL-GAMING");
+			dialogoWarning.setHeaderText("SE REQUIERE REGISTRO DE CLIENTE");
+			dialogoWarning.setContentText("Es necesario que el Cliente al cual se le va a realizar el Servicio Tecnico se encuentre registrado. Para ello dirijase al menu procesos y consultas -> Agregar o eliminar Usuarios  -> Ingresar nuevo Usuario");
+			dialogoWarning.showAndWait();
 		}
 	}
 
