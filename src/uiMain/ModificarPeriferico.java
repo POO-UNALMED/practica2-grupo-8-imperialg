@@ -18,102 +18,41 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class ModificarPeriferico {
-    //Importar datos:
-    ObservableList<Periferico> listaperifericos = FXCollections.observableArrayList(Datos.listaPerifericos);
+public class ModificarPeriferico extends VBox {
 
-    //Nodos a utilizar:
 
     VBox modificarPeriferico;
+    ComboBox listaperif;
+    FieldPanel fp;
 
-    ComboBox listaperif = new ComboBox(listaperifericos);
-    TextField nombreperif = new TextField();
-    TextField usoperif = new TextField();
-    TextField precioperif = new TextField();
-    TextField plataformaperif = new TextField();
-    ComboBox<String> usop = new ComboBox<String>();
 
 
     public ModificarPeriferico(){
 
-        //Creacion de Vbox para modificar periferico:
-
-        modificarPeriferico = new VBox(50);
-        modificarPeriferico.setAlignment(Pos.CENTER);
+        this.setSpacing(50);
+        this.setAlignment(Pos.CENTER);
 
         //Textfield con el titulo del proceso
 
-        TextField procesop = new TextField("Ingresar un Periferico a la Base De Datos");
-        procesop.setMaxWidth(500);
-        procesop.setEditable(false);
-        procesop.setAlignment(Pos.CENTER);
-
+        Proceso procesop = new Proceso("Ingresar un Periferico a la Base De Datos");
         //Textfield con el detalle del proceso
 
-        TextField detalleprocesop = new TextField("Debe llenar todos los campos correspondientes para ingresar un Periferico");
-        detalleprocesop.setAlignment(Pos.CENTER);
-        detalleprocesop.setMaxWidth(800);
-        detalleprocesop.setEditable(false);
+        DetalleProceso detalleprocesop = new DetalleProceso("Debe llenar todos los campos correspondientes para ingresar un Periferico");
 
-        //Gridpane con formulario
+        //Formulario:
 
-        GridPane formularioingresop = new GridPane();
+        String[] criterios = new String[] {"Nombre", "Precio", "Plataforma"};
+        String[] booleanos = new String[] {"Uso"};
+        fp = new FieldPanel("Perifericos", criterios, "Datos periferico", null,booleanos);
 
-        //Campos del formulario:
-
-        //Campo nombre:
-
-        Label nombreper = new Label("Nombre:");
-        nombreper.setScaleX(1.1);
-        nombreper.setScaleY(1.1);
-
-        //Campo uso:
-
-        Label usoper = new Label("Uso del Periferico:");
-        usop.getItems().addAll("Nuevo","Usado");
-        usop.setPromptText("Seleccione una opcion");
-        usop.valueProperty().addListener(new ChangeListener<String>() {
-            public void changed(ObservableValue x, String y, String t) {
-                usoperif.setText(t);
-            }
-        });
-        usoper.setScaleX(1.1);
-        usoper.setScaleY(1.1);
-
-        //Campo precio:
-
-        Label precioper = new Label("Precio:");
-        precioper.setScaleX(1.1);
-        precioper.setScaleY(1.1);
-
-        //Campo plataforma
-        Label plataformaper = new Label("Plataforma asociada:");
-        plataformaper.setScaleX(1.1);
-        plataformaper.setScaleY(1.1);
-
-        //Botones modificar y cancelar
+        //Creacion botones:
 
         Button modificarper = new Button("Modificar");
-        Button cancelarper = new Button("Cancelar");
+        Button eliminarper = new Button("Cancelar");
 
-        //Agregar campos a formulario:
-
-        formularioingresop.setPadding(new Insets(10, 10, 10, 10));
-        formularioingresop.setVgap(20);
-        formularioingresop.setHgap(20);
-        formularioingresop.setAlignment(Pos.CENTER);
-        formularioingresop.add(nombreper, 0, 0);
-        formularioingresop.add(nombreperif, 1, 0);
-        formularioingresop.add(usoper, 0, 1);
-        formularioingresop.add(usop, 1, 1);
-        formularioingresop.add(precioper, 0, 2);
-        formularioingresop.add(precioperif, 1, 2);
-        formularioingresop.add(plataformaper, 0, 3);
-        formularioingresop.add(plataformaperif, 1, 3);
-        formularioingresop.add(modificarper, 0, 4);
-        formularioingresop.add(cancelarper, 1, 4);
 
         //Interactividad:
 
@@ -123,8 +62,15 @@ public class ModificarPeriferico {
         BotonModificarPeriferico botonModificarPeriferico = new BotonModificarPeriferico();
         modificarper.setOnAction(botonModificarPeriferico);
 
+        BotonEliminarPeriferico botonEliminarPeriferico = new BotonEliminarPeriferico();
+        eliminarper.setOnAction(botonEliminarPeriferico);
+
+
+        HBox hbox = new HBox();
+        hbox.getChildren().addAll(modificarper, eliminarper);
+
         //Anadir elementos al vbox
-        modificarPeriferico.getChildren().addAll(procesop, detalleprocesop, listaperif,formularioingresop);
+        modificarPeriferico.getChildren().addAll(procesop, detalleprocesop, listaperif,fp, hbox);
 
 
     }
@@ -140,15 +86,17 @@ public class ModificarPeriferico {
         public void handle(ActionEvent event) {
 
             Periferico periferico = (Periferico) listaperif.getSelectionModel().getSelectedItem();
-            nombreperif.setText(periferico.getNombre());
-            precioperif.setText(Float.toString(periferico.getPrecio()));
-            plataformaperif.setText(periferico.getPlataforma());
+            fp.getCampo("Nombre").setText(periferico.getNombre());
+            fp.getCampo("Precio").setText(Float.toString(periferico.getPrecio()));
+            fp.getCampo("Plataforma").setText(periferico.getPlataforma());
             Boolean uso = periferico.getUso();
             if (uso == true){
-                usop.getSelectionModel().select(2);
-            } else if(!uso){
-                usop.getSelectionModel().select(1);
+                fp.getCheckBox("Uso").setSelected(true);
+            } else if(uso == false){
+                fp.getCheckBox("Uso").setSelected(false);
             }
+            listaperif.getItems().clear();
+            listaperif.setItems(FXCollections.observableArrayList(Datos.listaPerifericos));
         }
     }
 
@@ -158,15 +106,15 @@ public class ModificarPeriferico {
         @Override
         public void handle(ActionEvent event) {
             Periferico periferico = (Periferico) listaperif.getSelectionModel().getSelectedItem();
-            periferico.setNombre(nombreperif.getText());
-            periferico.setPrecio(Float.parseFloat(precioperif.getText()));
-            if(usoperif.getText().equals("Nueva")) {
-                periferico.setUso(false);
-            }else if(usoperif.getText().equals("Usada")) {
+            periferico.setNombre(fp.getValue("Nombre"));
+            periferico.setPrecio(Float.parseFloat(fp.getValue("Precio")));
+            if(fp.getCondicion("Uso") == true) {
                 periferico.setUso(true);
+            }else if(fp.getCondicion("Uso") == false) {
+                periferico.setUso(false);
             }
-            Periferico.perifericosRegistrados();
-
+            listaperif.getItems().clear();
+            listaperif.setItems(FXCollections.observableArrayList(Datos.listaPerifericos));
         }
 
     }
