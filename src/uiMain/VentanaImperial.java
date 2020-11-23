@@ -353,8 +353,10 @@ class VentanaImperial{
         MenuItem sertec = new MenuItem("Servicio tecnico");
         ServiciosTecnicosHandlerClass servtec = new ServiciosTecnicosHandlerClass(); 
         sertec.setOnAction(servtec);
-        Menu usuarios = new Menu("Agregar o eliminar usuarios");
-        Menu stock = new Menu("Agregar o eliminar Stock");
+        MenuItem usuarios = new MenuItem("Agregar, Eliminar o Modificar Usuarios");
+        agregarUsuarioHandlerClass handlerUsuario = new agregarUsuarioHandlerClass();
+        usuarios.setOnAction(handlerUsuario);
+        Menu stock = new Menu("Agregar, Eliminar o Modificar Stock");
         MenuItem consultas = new MenuItem("Consultas");
         ConsultasHandlerClass handlerConsultas = new ConsultasHandlerClass();
         consultas.setOnAction(handlerConsultas);
@@ -368,28 +370,18 @@ class VentanaImperial{
         archivo.getItems().addAll(usuario, salir);
         procon.getItems().addAll(vender,sertec,usuarios,stock, consultas);
         aiuda.getItems().addAll(acerca);
-        
-        //Agregar items a item usuarios:
-        MenuItem agregarUsuario = new MenuItem("Ingresar nuevo Usuario"); 
-        agregarUsuarioHandlerClass handlerUsuario = new agregarUsuarioHandlerClass();
-        agregarUsuario.setOnAction(handlerUsuario);
-        MenuItem eliminarUsuario = new MenuItem("Eliminar un Usuario Registrado");
-        usuarios.getItems().addAll(agregarUsuario,eliminarUsuario);
-        
-        //Agregar items a item stock:
-        Menu agregarStock = new Menu("Ingresar nuevo Stock");
-        MenuItem agregarConsola= new MenuItem("Agregar Consola");
+       
+ 
+        MenuItem agregarConsola= new MenuItem("Agregar, Eliminar o Modificar Consolas");
         agregarConsolaHandlerClass handlerConsola = new agregarConsolaHandlerClass();
         agregarConsola.setOnAction(handlerConsola);
-        MenuItem agregarJuego= new MenuItem("Agregar Juego");
+        MenuItem agregarJuego= new MenuItem("Agregar, Eliminar o Modificar Juegos");
         agregarJuegoHandlerClass handlerJuego = new agregarJuegoHandlerClass();
         agregarJuego.setOnAction(handlerJuego);
-        MenuItem agregarPeriferico= new MenuItem("Agregar Periferico");
+        MenuItem agregarPeriferico= new MenuItem("Agregar, Eliminar o Modificar Perifericos");
         agregarPerifericoHandlerClass handlerper = new agregarPerifericoHandlerClass();
         agregarPeriferico.setOnAction(handlerper);
-        MenuItem eliminarStock = new MenuItem("Eliminar un Stock Registrado");
-        stock.getItems().addAll(agregarStock,eliminarStock);
-        agregarStock.getItems().addAll(agregarConsola,agregarJuego,agregarPeriferico);
+        stock.getItems().addAll(agregarConsola,agregarJuego,agregarPeriferico);
         
         //Agregar menus:
         barramenu.getMenus().addAll(archivo, procon, aiuda);        

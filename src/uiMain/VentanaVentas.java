@@ -14,6 +14,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -168,7 +169,13 @@ public class VentanaVentas{
             public void handle(ActionEvent event) {
                 Cliente cliente = (Cliente) comboClientes.getSelectionModel().getSelectedItem();
                 Factura factura = new Factura(cliente, carrito);
-                System.out.println(factura);
+                
+                Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
+                dialogoInfo.setTitle("TRANSACCION EXITOSA");
+                dialogoInfo.setHeaderText("Confirmacion de transaccion.");
+                dialogoInfo.setContentText("La transaccion se ha realizado exitosamente.");
+                dialogoInfo.showAndWait();
+
 
             }
         });
