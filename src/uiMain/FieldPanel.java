@@ -11,13 +11,11 @@ import javafx.scene.layout.VBox;
 
 import java.util.HashMap;
 
-public class FieldPanel extends Pane {
+public class FieldPanel extends GridPane {
     GridPane formularioingreso = new GridPane();
-
-
     HashMap<String, TextField> hashMap = new HashMap<>();
-    public FieldPanel(String tituloCriterios, String[] criterios, String tituloValores, String[] valores, boolean[] habilitado){
 
+    public FieldPanel(String tituloCriterios, String[] criterios, String tituloValores, String[] valores, boolean[] habilitado){
         //Parametros del formulario:
 
         this.formularioingreso.setPadding(new Insets(10, 10, 10, 10));
@@ -27,8 +25,8 @@ public class FieldPanel extends Pane {
 
         //Componentes del formulario:
 
-        formularioingreso.add(new Label(tituloCriterios), 0,0);
-        formularioingreso.add(new Label(tituloValores),0,0);
+        this.formularioingreso.add(new Label(tituloCriterios), 0,0);
+        this.formularioingreso.add(new Label(tituloValores),0,0);
 
         Label titulo;
         TextField campo;
@@ -40,26 +38,29 @@ public class FieldPanel extends Pane {
             titulo = new Label(criterios[i]);
             campo = new TextField(valores[i]);
 
+            System.out.println(criterios[i]);
             this.hashMap.put(criterios[i], campo);
 
-            formularioingreso.add(titulo, 0, i+1);
-            formularioingreso.add(campo, 1, i+1);
+            this.formularioingreso.add(titulo, 0, i+1);
+            this.formularioingreso.add(campo, 1, i+1);
 
         }
-
+        this.getChildren().add(formularioingreso);
     }
 
     public FieldPanel(String tituloCriterios, String[] criterios, String tituloValores, boolean[] habilitado){
 
+        //Parametros del formulario:
 
-        ///Gridpane con formulario:
-
-        GridPane formularioingresoc1 = new GridPane();
+        this.formularioingreso.setPadding(new Insets(10, 10, 10, 10));
+        this.formularioingreso.setVgap(20);
+        this.formularioingreso.setHgap(20);
+        this.formularioingreso.setAlignment(Pos.CENTER);
 
         //Componentes del formulario:
 
-        formularioingresoc1.add(new Label(tituloCriterios), 0,0);
-        formularioingresoc1.add(new Label(tituloValores),0,0);
+        this.formularioingreso.add(new Label(tituloCriterios), 0,0);
+        this.formularioingreso.add(new Label(tituloValores),1,0);
 
         Label titulo;
         TextField campo;
@@ -73,10 +74,11 @@ public class FieldPanel extends Pane {
 
             this.hashMap.put(criterios[i], campo);
 
-            formularioingresoc1.add(titulo, 0, i+1);
-            formularioingresoc1.add(campo, 1, i+1);
+            this.formularioingreso.add(titulo, 0, i+1);
+            this.formularioingreso.add(campo, 1, i+1);
 
         }
+        this.getChildren().add(formularioingreso);
 
     }
 
