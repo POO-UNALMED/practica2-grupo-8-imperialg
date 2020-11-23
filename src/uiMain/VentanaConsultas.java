@@ -42,6 +42,7 @@ public class VentanaConsultas {
 	ListView<Factura>lsfact;
 	Cliente cl;
 	public VentanaConsultas() {
+		
 //////////////////////////// Historial y reportes //////////////////////////////////////////
 		histreportes = new HBox(20);
 		histreportes.setAlignment(Pos.CENTER);
@@ -97,6 +98,7 @@ public class VentanaConsultas {
 		
 		
 ////////////////////////////Ver cliente con mas puntos //////////////////////////////////////////
+		
 		clpuntos = new VBox(20);
 		clpuntos.setAlignment(Pos.CENTER);				
 		int aux = 0;
@@ -135,8 +137,10 @@ public class VentanaConsultas {
  			faltanptos.setAlignment(Pos.CENTER);
  			clpuntos.getChildren().add(faltanptos);
  		}			
+ 		
 ////////////////////////////Fin Ver cliente con mas puntos //////////////////////////////////////////		
 		
+ 		
 ////////////////////////////Recomendar Juegos por edad //////////////////////////////////////////
 		juegoedad = new VBox(15);
 		juegoedad.setAlignment(Pos.CENTER);
@@ -187,11 +191,11 @@ public class VentanaConsultas {
 		
 		juegoedad.getChildren().addAll(edad12,lsjueg12,edad18,lsjueg18,edadmas18,lsjuegmas18);
 		
-		
 ////////////////////////////Fin recomendar juegos por edad //////////////////////////////////////////
 		
 		
 //////////////////////////// Ver Ganancias de la tienda //////////////////////////////////////////
+		
 		ListView<String>gananciass = new ListView();
 		ArrayList<String> consolasmv = new ArrayList<String>();
 		
@@ -222,8 +226,6 @@ public class VentanaConsultas {
 	        gananciass.setItems(totalgananciass);
 	        gananciass.setMaxSize(700, 130);
 	        
-	        
-	        
 			ListView<String>gananciasjuegos = new ListView();
 			ArrayList<String> juegosmv = new ArrayList<String>();
 			TextField totalgananciasj;
@@ -249,7 +251,7 @@ public class VentanaConsultas {
 	        gananciasjuegos.setItems(totalgananciassj);
 	        gananciasjuegos.setMaxSize(700, 130);
 
-	        
+	
 			ListView<String>gananciasperif = new ListView();
 			ArrayList<String> perifericosmv = new ArrayList<String>();
 			TextField totalgananciasp;
@@ -276,11 +278,9 @@ public class VentanaConsultas {
 	        gananciasperif.setMaxSize(700,130);
 	        gananciastienda.getChildren().addAll(textoganancias,gananciass,totalganancias,textogananciasj,gananciasjuegos,totalgananciasj,textogananciasp,gananciasperif,totalgananciasp);
 	        
-	
 //////////////////////////// Fin ver Ganancias de la tienda //////////////////////////////////////////
 	        
-	        
-	        
+	       
 ////////////////////////////Ver productos mas y menos vendidos ///////////////////////////////////////////
 	       	        
 	        masmenosvendidos = new VBox(15);
@@ -380,17 +380,15 @@ public class VentanaConsultas {
 			perifmensv.setAlignment(Pos.CENTER);
 			perifmensv.setMaxWidth(800);
 			perifmensv.setEditable(false);
-	        
-	        
-	        
-	        
-	        
+
 	        masmenosvendidos.getChildren().addAll(new Label(" "),consmasv,consmenv,new Label(" "),juemasv,juemenosv,new Label(" "),perifmasv,perifmensv);
 	        masmenosvendidos.setAlignment(Pos.CENTER);
 	        
 ////////////////////////////Fin ver productos mas y menos vendidos //////////////////////////////////////////
 		
 		
+//////////////////////////// Inicio desarrollo ventana de Consultas (Aqui se alojan nuestras 5 funcuonalidades especiales/////////////////////////////////////
+	        
 		consultas.setAlignment(Pos.CENTER);
 		consultas.setPadding(new Insets(10,10,10,10));
 		TextField cons = new TextField("Consultas IMPERIAL-GAMING");
@@ -405,8 +403,8 @@ public class VentanaConsultas {
     		public void changed(ObservableValue x,String y,String t) {
     			textconsulta.setText(t);
     		}
-    	});
-		
+		}
+		);
 		
 		Image imagens1= new Image("file:src/img/lupa.png");
 		ImageView imagens11 = new ImageView(imagens1);
