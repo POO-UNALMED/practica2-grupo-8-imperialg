@@ -31,6 +31,7 @@ public class ModificarPeriferico extends VBox {
 
 
     public ModificarPeriferico(){
+        listaperif = new ComboBox(FXCollections.observableArrayList(Datos.listaPerifericos));
 
         this.setSpacing(50);
         this.setAlignment(Pos.CENTER);
@@ -70,14 +71,11 @@ public class ModificarPeriferico extends VBox {
         hbox.getChildren().addAll(modificarper, eliminarper);
 
         //Anadir elementos al vbox
-        modificarPeriferico.getChildren().addAll(procesop, detalleprocesop, listaperif,fp, hbox);
+        this.getChildren().addAll(procesop, detalleprocesop, listaperif,fp, hbox);
 
 
     }
 
-    public VBox getModificarPeriferico() {
-        return modificarPeriferico;
-    }
 
     //Clases anonimas:
     //Seleccionar un perfererico y que se rellenen automaticamente los textfield:

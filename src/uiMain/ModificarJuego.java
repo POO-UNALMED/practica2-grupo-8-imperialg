@@ -19,111 +19,37 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
-public class ModificarJuego {
-    ObservableList<Juego> listajuegos = FXCollections.observableArrayList(Datos.listaJuegos);
-    VBox modificarJuego;
-    ComboBox listamj = new ComboBox(listajuegos);
-    TextField nombrejueg = new TextField();
-    TextField usojueg = new TextField();
-    TextField preciojueg = new TextField();
-    TextField pegijueg = new TextField();
-    TextField plataformajueg = new TextField();
-    TextField generojueg = new TextField();
-    ComboBox<String> usojue = new ComboBox<String>();
+public class ModificarJuego extends VBox{
+
+    ComboBox listamj;
+    FieldPanel fp;
 
     public ModificarJuego(){
-        //Creacion de Vbox
 
-        modificarJuego = new VBox(50);
-        modificarJuego.setAlignment(Pos.CENTER);
+        listamj = new ComboBox(FXCollections.observableArrayList(Datos.listaJuegos));
+
+        this.setSpacing(50);
+        this.setAlignment(Pos.CENTER);
 
         //Textfield con el titulo del proceso
-        TextField procesoj = new TextField("Ingresar un Juego a la Base De Datos");
-        procesoj.setMaxWidth(500);
-        procesoj.setEditable(false);
-        procesoj.setAlignment(Pos.CENTER);
+        Proceso procesoj = new Proceso("Ingresar un Juego a la Base De Datos");
 
         //Textfield con el detalle del proceso
 
-        TextField detalleprocesoj = new TextField("Debe llenar todos los campos correspondientes para ingresar un Juego");
-        detalleprocesoj.setAlignment(Pos.CENTER);
-        detalleprocesoj.setEditable(false);
-        detalleprocesoj.setMaxWidth(800);
+        DetalleProceso detalleprocesoj = new DetalleProceso("Debe llenar todos los campos correspondientes para ingresar un Juego");
 
-        ///Gridpane con formulario:
+        //Formulario:
 
-        GridPane formularioingresojuego = new GridPane();
+        String[] criterios = new String[] {"Nombre", "Precio", "Pegi", "Plataforma", "Genero"};
+        String[] booleanos = new String[] {"Uso"};
 
-        //Componentes del formulario:
+        this.fp = new FieldPanel("Datos Juegos",criterios,"Datos",null,booleanos);
 
-        //Campo nombre:
-
-        Label nombrejuego = new Label("Nombre:");
-        nombrejuego.setScaleX(1.1);
-        nombrejuego.setScaleY(1.1);
-
-        //Campo Uso
-
-        Label usojuego = new Label("Uso del Juego:");
-        usojue.getItems().addAll("Nuevo","Usado");
-        usojue.setPromptText("Seleccione una opcion");
-        usojue.valueProperty().addListener(new ChangeListener<String>() {
-            public void changed(ObservableValue x, String y, String t) {
-                usojueg.setText(t);
-            }
-        });
-        usojuego.setScaleX(1.1);
-        usojuego.setScaleY(1.1);
-
-        //Campo precio
-
-        Label preciojuego = new Label("Precio:");
-        preciojuego.setScaleX(1.1);
-        preciojuego.setScaleY(1.1);
-
-        //Campo pegi
-
-        Label pegijuego = new Label("Pegi:");
-        pegijuego.setScaleX(1.1);
-        pegijuego.setScaleY(1.1);
-
-        //Campo plataforma:
-
-        Label plataformajuego = new Label("Plataforma Asociada:");
-        plataformajuego.setScaleX(1.1);
-        plataformajuego.setScaleY(1.1);
-
-        //Campo genero:
-
-        Label generojuego = new Label("Genero:");
-        generojuego.setScaleX(1.1);
-        generojuego.setScaleY(1.1);
 
         //Boton de modificar y cancelar:
 
         Button modificarjueg = new Button("Modificar");
         Button cancelarjueg = new Button("Cancelar");
-
-        //Ingresar campos al formulario:
-
-        formularioingresojuego.setPadding(new Insets(10, 10, 10, 10));
-        formularioingresojuego.setVgap(20);
-        formularioingresojuego.setHgap(20);
-        formularioingresojuego.setAlignment(Pos.CENTER);
-        formularioingresojuego.add(nombrejuego, 0, 0);
-        formularioingresojuego.add(nombrejueg, 1, 0);
-        formularioingresojuego.add(usojuego, 0, 1);
-        formularioingresojuego.add(usojue, 1, 1);
-        formularioingresojuego.add(preciojuego, 0, 2);
-        formularioingresojuego.add(preciojueg, 1, 2);
-        formularioingresojuego.add(pegijuego, 0, 3);
-        formularioingresojuego.add(pegijueg, 1, 3);
-        formularioingresojuego.add(plataformajuego, 0, 4);
-        formularioingresojuego.add(plataformajueg, 1, 4);
-        formularioingresojuego.add(generojuego, 0, 5);
-        formularioingresojuego.add(generojueg, 1, 5);
-        formularioingresojuego.add(modificarjueg, 0, 6);
-        formularioingresojuego.add(cancelarjueg, 1, 6);
 
         //Interactividad
 
@@ -134,12 +60,8 @@ public class ModificarJuego {
         modificarjueg.setOnAction(botonModificarJuego);
 
         //Anadir elementos al vbox
-        modificarJuego.getChildren().addAll(procesoj, detalleprocesoj,listamj, formularioingresojuego);
+        this.getChildren().addAll(procesoj, detalleprocesoj,listamj, fp);
 
-    }
-
-    public VBox getModificarJuego() {
-        return modificarJuego;
     }
 
 
@@ -150,17 +72,19 @@ public class ModificarJuego {
         @Override
         public void handle(ActionEvent event) {
             Juego juego = (Juego) listamj.getSelectionModel().getSelectedItem();
-            nombrejueg.setText(juego.getNombre());
-            preciojueg.setText(Float.toString(juego.getPrecio()));
-            pegijueg.setText(Integer.toString(juego.getPegi()));
-            plataformajueg.setText(juego.getPlataforma());
-            generojueg.setText(juego.getGenero());
+            fp.getCampo("Nombre").setText(juego.getNombre());
+            fp.getCampo("Precio").setText(Float.toString(juego.getPrecio()));
+            fp.getCampo("Pegi").setText(Integer.toString(juego.getPegi()));
+            fp.getCampo("Plataforma").setText(juego.getPlataforma());
+            fp.getCampo("Genero").setText(juego.getGenero());
             Boolean uso = juego.getUso();
             if (uso == true){
-                usojue.getSelectionModel().select(1);
-            } else if(!uso){
-                usojue.getSelectionModel().select(0);
+                fp.getCheckBox("Uso").setSelected(true);
+            } else if(uso == false){
+                fp.getCheckBox("Uso").setSelected(false);
             }
+            listamj.getItems().clear();
+            listamj.setItems(FXCollections.observableArrayList(Datos.listaJuegos));
         }
     }
 
@@ -170,21 +94,22 @@ public class ModificarJuego {
         @Override
         public void handle(ActionEvent event) {
             Juego juego = (Juego) listamj.getSelectionModel().getSelectedItem();
-            juego.setNombre(nombrejueg.getText());
-            juego.setPrecio(Float.parseFloat(preciojueg.getText()));
-            juego.setPegi(Integer.parseInt(pegijueg.getText()));
-            juego.setPlataforma(plataformajueg.getText());
-            juego.setGenero(generojueg.getText());
-            if(usojue.getSelectionModel().getSelectedItem().equals("Nuevo")) {
-                juego.setUso(false);
-            }else if(usojue.getSelectionModel().getSelectedItem().equals("Usado")) {
+            juego.setNombre(fp.getValue("Nombre"));
+            juego.setPrecio(Float.parseFloat(fp.getValue("Precio")));
+            juego.setPegi(Integer.parseInt(fp.getValue("Pegi")));
+            juego.setPlataforma(fp.getValue("Plataforma"));
+            juego.setGenero(fp.getValue("Genero"));
+            if(fp.getCondicion("Uso") == true) {
                 juego.setUso(true);
+            }else if(fp.getCondicion("Uso") == false) {
+                juego.setUso(false);
             }
-            System.out.println(juego);
-            Juego.juegosRegistrados();
+            listamj.getItems().clear();
+            listamj.setItems(FXCollections.observableArrayList(Datos.listaJuegos));
+        }
         }
 
-    }
+
 
     //Eliminar un juego de la base de datos:
     class BotonEliminarJuego implements EventHandler<ActionEvent>{
