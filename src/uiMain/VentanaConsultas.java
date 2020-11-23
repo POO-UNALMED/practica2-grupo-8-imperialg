@@ -7,7 +7,6 @@ import gestorAplicacion.producto.Periferico;
 import gestorAplicacion.transacciones.Cliente;
 import gestorAplicacion.transacciones.Detalle;
 import gestorAplicacion.transacciones.Factura;
-import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.beans.value.ChangeListener;
@@ -17,22 +16,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import uiMain.VentanaImperial.BotonIngresarConsolaHandlerClass;
 import javafx.geometry.Insets;
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class VentanaConsultas {
 	VBox consultas = new VBox(15);
@@ -553,6 +543,3 @@ public class VentanaConsultas {
 	}
 
 }
-	
-
-

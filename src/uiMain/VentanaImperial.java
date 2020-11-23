@@ -333,7 +333,11 @@ class VentanaImperial{
 
         //Items de procesos y consultas:
         MenuItem vender = new MenuItem("Vender");
+        DevolverDefectoUHandlerClass venderr = new DevolverDefectoUHandlerClass();
+        vender.setOnAction(venderr);
         MenuItem sertec = new MenuItem("Servicio tecnico");
+        ServiciosTecnicosHandlerClass servtec = new ServiciosTecnicosHandlerClass(); 
+        sertec.setOnAction(servtec);
         Menu usuarios = new Menu("Agregar o eliminar usuarios");
         Menu stock = new Menu("Agregar o eliminar Stock");
         MenuItem consultas = new MenuItem("Consultas");
@@ -533,6 +537,13 @@ class VentanaImperial{
 			
 		}
 	}
+	class ServiciosTecnicosHandlerClass implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent event) {
+			vusuario.getChildren().set(1, new VentanaServiciosTecnicos().serviciost);
+			
+		}
+	}
+	
 	
 	public  Scene getEscena() {
 		return escenaimperial;
