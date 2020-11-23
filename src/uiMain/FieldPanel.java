@@ -192,7 +192,7 @@ public class FieldPanel extends Pane {
         return condicionales.get(condicion);
     }
 
-    public Boolean getValor(String condicion){
+    public Boolean getCondicion(String condicion){
         return condicionales.get(condicion).isSelected();
     }
 }
