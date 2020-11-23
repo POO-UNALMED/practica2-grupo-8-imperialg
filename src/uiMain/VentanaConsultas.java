@@ -43,6 +43,7 @@ public class VentanaConsultas {
 	VBox juegoedad;
 	HBox histreportes;
 	VBox gananciastienda;
+	VBox masmenosvendidos;
 	
 	ListView<Cliente> lsclient;
 	ListView<Consola>lscons;
@@ -58,9 +59,10 @@ public class VentanaConsultas {
 		Menu repor1 = new Menu("Reportes de ventas");
 		MenuItem ganancias = new MenuItem("Ganancias");
 		GananciasHandlerClass handler = new GananciasHandlerClass();
-		ganancias.setOnAction(handler);
-		
+		ganancias.setOnAction(handler);		
 		MenuItem prodvendidos = new MenuItem("Productos Mas y Menos Vendidos");
+		MasMenosVendidosHandlerClass handlermnv = new MasMenosVendidosHandlerClass();
+		prodvendidos.setOnAction(handlermnv);	
 		repor1.getItems().addAll(ganancias,prodvendidos);
 		reportes.getMenus().add(repor1);
 		
@@ -287,6 +289,116 @@ public class VentanaConsultas {
 	
 //////////////////////////// Fin ver Ganancias de la tienda //////////////////////////////////////////
 	        
+	        
+	        
+////////////////////////////Ver productos mas y menos vendidos ///////////////////////////////////////////
+	       	        
+	        masmenosvendidos = new VBox(15);
+	        
+	        TextField consmasv;
+	        TextField consmenv;	
+	        ArrayList<Integer> cantidadesunidadc = new ArrayList<Integer>();
+	        for (String nombre: nombresUnicos){
+	            cantidadesunidadc.add(Consola.unidadess(nombre));
+	        }
+	        
+	        int auxcmn = 0;
+	        String scmn = "";
+	        for(int x=0;x<cantidadesunidadc.size();x++) {
+	        	if(cantidadesunidadc.get(x)>auxcmn) {
+	        		auxcmn = cantidadesunidadc.get(x);
+	        		scmn = nombresUnicos.get(x);
+	        	}
+	        }consmasv = new TextField("NOMBRE DE LA CONSOLA MAS VENDIDA: "+scmn+"  ||  "+"Unidades Vendidas: "+auxcmn);
+	        
+	        int auxcmn1 = cantidadesunidadc.get(0);
+	        String scmn1 = "";
+	        for(int x=0;x<cantidadesunidadc.size();x++) {
+	        	if(cantidadesunidadc.get(x)<=auxcmn1) {
+	        		auxcmn1 = cantidadesunidadc.get(x);
+	        		scmn1 = nombresUnicos.get(x);
+	        	}
+	        }consmenv = new TextField("NOMBRE DE LA CONSOLA MENOS VENDIDA: "+scmn1+"  ||  "+"Unidades Vendidas: "+auxcmn1);
+	        consmasv.setAlignment(Pos.CENTER);
+			consmasv.setMaxWidth(800);
+			consmasv.setEditable(false);
+			consmenv.setAlignment(Pos.CENTER);
+			consmenv.setMaxWidth(800);
+			consmenv.setEditable(false);
+	        
+	        TextField juemasv; 
+	        TextField juemenosv;
+	        ArrayList<Integer> cantidadesunidad = new ArrayList<Integer>();
+	        for (String nombre: nombresUnicosj){
+	            cantidadesunidad.add(Juego.unidadess(nombre));
+	        }
+	        
+	        int auxjmnv = 0;
+	        String nombrejmnv = "";
+	        for(int x=0;x<cantidadesunidad.size();x++) {
+	        	if(cantidadesunidad.get(x)>auxjmnv) {
+	        		auxjmnv = cantidadesunidad.get(x);
+	        		nombrejmnv = nombresUnicosj.get(x);
+	        	}
+	        }juemasv = new TextField("NOMBRE DEL JUEGO MAS VENDID0: "+nombrejmnv+"  ||  "+"Unidades Vendidas: "+auxjmnv);
+	        
+	        int auxjmnv1 = cantidadesunidad.get(0);
+	        String nombrejmnv1 = "";
+	        for(int x=0;x<cantidadesunidad.size();x++) {
+	        	if(cantidadesunidad.get(x)<=auxjmnv1) {
+	        		auxjmnv1 = cantidadesunidad.get(x);
+	        		nombrejmnv1 = nombresUnicosj.get(x);
+	        	}
+	        }juemenosv = new TextField("NOMBRE DEL JUEGO MENOS VENDIDO: "+nombrejmnv1+"  ||  "+"Unidades Vendidas: "+auxjmnv1);
+	        juemasv.setAlignment(Pos.CENTER);
+			juemasv.setMaxWidth(800);
+			juemasv.setEditable(false);
+			juemenosv.setAlignment(Pos.CENTER);
+			juemenosv.setMaxWidth(800);
+			juemenosv.setEditable(false);	              
+	        
+	        TextField perifmasv;
+	        TextField perifmensv;
+	    
+	        ArrayList<Integer> cantidadesunidadp = new ArrayList<Integer>();
+	       
+	        for (String nombre: nombresUnicosp){
+	            cantidadesunidadp.add(Periferico.unidadess(nombre));
+	        }
+	        
+	        int auxpmn = 0;
+	        String pmnv = "";
+	        for(int x=0;x<cantidadesunidadp.size();x++) {
+	        	if(cantidadesunidadp.get(x)>auxpmn) {
+	        		auxpmn = cantidadesunidadp.get(x);
+	        		pmnv = nombresUnicosp.get(x);
+	        	}
+	        }perifmasv = new TextField("NOMBRE DEL PERIFERICO MAS VENDIDO: "+pmnv+"  ||  "+"Unidades Vendidas: "+auxpmn);
+	        
+	        int auxpmn1 = cantidadesunidadp.get(0);
+	        String pmnv1 = "";
+	        for(int x=0;x<cantidadesunidadp.size();x++) {
+	        	if(cantidadesunidadp.get(x)<=auxpmn1) {
+	        		auxpmn1 = cantidadesunidadp.get(x);
+	        		pmnv1 = nombresUnicosp.get(x);
+	        	}
+	        }perifmensv = new TextField("NOMBRE DEL PERIFERICO MENOS VENDIDO: "+pmnv1+"  ||  "+"Unidades Vendidas: "+auxpmn1);
+	    
+	        perifmasv.setAlignment(Pos.CENTER);
+			perifmasv.setMaxWidth(800);
+			perifmasv.setEditable(false);
+			perifmensv.setAlignment(Pos.CENTER);
+			perifmensv.setMaxWidth(800);
+			perifmensv.setEditable(false);
+	        
+	        
+	        
+	        
+	        
+	        masmenosvendidos.getChildren().addAll(new Label(" "),consmasv,consmenv,new Label(" "),juemasv,juemenosv,new Label(" "),perifmasv,perifmensv);
+	        masmenosvendidos.setAlignment(Pos.CENTER);
+	        
+////////////////////////////Fin ver productos mas y menos vendidos //////////////////////////////////////////
 		
 		
 		consultas.setAlignment(Pos.CENTER);
@@ -344,6 +456,12 @@ public class VentanaConsultas {
 		}
 	}
 	
+	class MasMenosVendidosHandlerClass implements EventHandler<ActionEvent>{
+		public void handle(ActionEvent event) {
+			submenu.getChildren().set(2, masmenosvendidos);
+		}
+	}
+	
 	class BotonConsultaHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			
@@ -353,12 +471,22 @@ public class VentanaConsultas {
 			}
 			else if(consulta.equals("Ver Historial y Reportes")) {
 				submenu.getChildren().set(1, histreportes);
+				
+				
 			}
 			else if(consulta.equals("Ver Cliente Con Mas Puntos")) {
 				submenu.getChildren().set(1, clpuntos);
+				if(submenu.getChildren().contains(submenu.getChildren().get(2))) {
+					submenu.getChildren().set(2,new Label(""));
+				}
+				
 				
 			}else if(consulta.equals("Recomendar Juegos Por Edad")) {
-				submenu.getChildren().set(1,juegoedad);			
+				submenu.getChildren().set(1,juegoedad);
+				if(submenu.getChildren().contains(submenu.getChildren().get(2))) {
+					submenu.getChildren().set(2,new Label(""));
+				}
+				
 			}
 		}
 	}

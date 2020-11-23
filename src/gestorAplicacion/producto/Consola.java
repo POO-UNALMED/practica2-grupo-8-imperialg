@@ -214,22 +214,6 @@ public class Consola extends Producto implements Serializable, Hardware {
  			}
  		}return precio;
  	}
- 	// Metodo que obtiene el juego mas vendido en la tienda.
- 	public static void ConsolasMasVendidas(){		
-        ArrayList<String> nombres = Consola.productosVendidos();        
-        ArrayList<String> nombresUnicos = new ArrayList<String>();
-        for (String nombre: nombres){
-            if(!nombresUnicos.contains(nombre))
-                nombresUnicos.add(nombre);
-        }
-        System.out.println("Nombre de la Consola"+"       ||      "+"Unidades Vendidas"+ "    ||    "+"Precio por unidad"+"    ||    "+" Subtotal ");
-        Float total = (float) 0;
-        for (String nombre: nombresUnicos){
-        	total += precioss(nombre);
-            System.out.println("    "+nombre + "                           " +unidadess(nombre) +" undidades                 "+precioConsola(nombre)+"$ COP "+"              "+precioss(nombre));
-        } System.out.println("***** TOTAL DE GANANCIAS POR VENTA DE CONSOLAS: " + "||" + "COP $ " + total + " *****");
-        
-    }    
  	
  	// Metodo que moodifica el precio de algunas consolas, dado un array de indices y un array de precios.
     public static void modificarPreciosConsolas(int[] ints, int[] precios){

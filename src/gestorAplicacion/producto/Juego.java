@@ -145,40 +145,7 @@ public class Juego extends Producto implements Serializable{
 	 			}
 	 		}return precio;
 	 	}
-	
-	 	public static void JuegoMasVendido(){
-	 		
-	        ArrayList<String> nombres = Juego.productosVendidos();
-	        ArrayList<String> nombresUnicos = new ArrayList<String>();
-	        ArrayList<Integer> cantidadesunidad = new ArrayList<Integer>();
-	        for (String nombre: nombres){
-	            if(!nombresUnicos.contains(nombre))
-	                nombresUnicos.add(nombre);
-	        }
-	        for (String nombre: nombresUnicos){
-	            cantidadesunidad.add(unidadess(nombre));
-	        }
-	        
-	        int aux = 0;
-	        String s = "";
-	        for(int x=0;x<cantidadesunidad.size();x++) {
-	        	if(cantidadesunidad.get(x)>aux) {
-	        		aux = cantidadesunidad.get(x);
-	        		s = nombresUnicos.get(x);
-	        	}
-	        }System.out.println("\n"+"NOMBRE DEL JUEGO MAS VENDID0: "+s+"  ||  "+"Unidades Vendidas: "+aux);
-	        
-	        int aux1 = cantidadesunidad.get(0);
-	        String s1 = "";
-	        for(int x=0;x<cantidadesunidad.size();x++) {
-	        	if(cantidadesunidad.get(x)<=aux1) {
-	        		aux1 = cantidadesunidad.get(x);
-	        		s1 = nombresUnicos.get(x);
-	        	}
-	        }System.out.println("\n"+"NOMBRE DEL JUEGO MENOS VENDIDO: "+s1+"  ||  "+"Unidades Vendidas: "+aux1);
-	        
-	    }
-	
+		
     
     // Se crea el constructor de la clase Juego, con sus atributos como parametros.
     public Juego(String nombre, boolean uso, float precio, int pegi, String plataforma, String genero) {
