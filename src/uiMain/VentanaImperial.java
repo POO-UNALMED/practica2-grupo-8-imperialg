@@ -120,7 +120,7 @@ class VentanaImperial{
     	formularioingresoc1.add(nombre, 0, 0);
     	formularioingresoc1.add(nombrec,1 ,0);
     	formularioingresoc1.add(cedula, 0, 1);
-    	formularioingresoc1.add(cedulac,1 ,1);
+    	formularioingresoc1.add(cedulac,1 ,1); b
     	formularioingresoc1.add(celular, 0, 2);
     	formularioingresoc1.add(celularc,1 ,2);
     	formularioingresoc1.add(email, 0, 3);
