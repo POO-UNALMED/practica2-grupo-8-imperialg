@@ -63,8 +63,11 @@ public class Periferico extends Producto implements Serializable,Hardware{
         }
         return nuevaLista;
     }
-    
-	// Mostrar en pantalla los perifericos registrados.
+
+    public Periferico() {
+    }
+
+    // Mostrar en pantalla los perifericos registrados.
 	public static void perifericosRegistrados() {
 		int indicePeriferico = 1;
 		for (Periferico periferico : Datos.listaPerifericos) {

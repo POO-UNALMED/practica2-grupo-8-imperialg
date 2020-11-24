@@ -25,7 +25,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import java.util.ArrayList;
 
-public class VentanaVentas{
+public class VentanaVentas extends VBox{
     public ArrayList<Detalle> carrito;
     public VBox defecto;
     public VentanaVentas(ArrayList<Detalle> carrito) {
@@ -68,12 +68,45 @@ public class VentanaVentas{
         HBox pane1 = new HBox();
         HBox pane2 = new HBox();
         HBox pane3 = new HBox();
+        HBox pane4 = new HBox();
 
         //Anadir elementos a los Hbox:
 
         pane1.getChildren().addAll(comboConsolas, cantidad1, sendConsolas);
         pane2.getChildren().addAll(comboJuegos,cantidad2,sendJuegos);
         pane3.getChildren().addAll(comboPerifericos,cantidad3,sendPerifericos);
+
+
+
+        TextField tiposerv = new TextField("Servicio:");
+        tiposerv.setPrefWidth(100);
+        tiposerv.setEditable(false);
+        TextField tiposerv1 = new TextField("");
+        tiposerv1.setPrefWidth(140);
+        TextField tiprod = new TextField("Producto:");
+        tiprod.setEditable(false);
+        tiprod.setPrefWidth(110);
+        TextField tiprod1 = new TextField("");
+        tiprod1.setPrefWidth(150);
+        TextField nombreprod = new TextField("Nombre:");
+        nombreprod.setEditable(false);
+        nombreprod.setPrefWidth(100);
+        TextField nombreprod1 = new TextField("");
+        nombreprod1.setPrefWidth(150);
+        TextField unidades = new TextField("Unidades:");
+        unidades.setEditable(false);
+        unidades.setPrefWidth(110);
+        TextField unidades1 = new TextField("");
+        unidades1.setPrefWidth(100);
+        TextField precio = new TextField("Precio Servicio:");
+        precio.setEditable(false);
+        precio.setPrefWidth(150);
+        TextField precio1 = new TextField("");
+        precio1.setPrefWidth(100);
+        Button añadiralc = new Button("Añadir al carrito");
+        añadiralc.setPrefWidth(150);
+        pane4.getChildren().addAll(tiposerv, tiposerv1, tiprod, tiprod1, nombreprod, nombreprod1, unidades, unidades1,
+                precio, precio1, añadiralc);
 
 
         //Anadir juegos al carrito:
@@ -179,24 +212,20 @@ public class VentanaVentas{
 
             }
         });
-        defecto = new VBox(10);
-        defecto.setSpacing(10);
-        defecto.setAlignment(Pos.CENTER);
-        defecto.setPadding(new Insets(10,10,10,10));
 
-        defecto.getChildren().add(pane1);
-        defecto.getChildren().add(pane2);
-        defecto.getChildren().add(pane3);
-        defecto.getChildren().add(lista);
-        defecto.getChildren().add(info);
-        defecto.getChildren().add(comboClientes);
-        defecto.getChildren().addAll(botonrefresh, generarF);
+        this.setSpacing(10);
+        this.setAlignment(Pos.CENTER);
+        this.setPadding(new Insets(10,10,10,10));
+
+        this.getChildren().add(pane1);
+        this.getChildren().add(pane2);
+        this.getChildren().add(pane3);
+        this.getChildren().add(pane4);
+        this.getChildren().add(lista);
+        this.getChildren().add(info);
+        this.getChildren().add(comboClientes);
+        this.getChildren().addAll(botonrefresh, generarF);
 
 
 }
-
-    public VBox getDefecto() {
-        return defecto;
-    }
-
 }

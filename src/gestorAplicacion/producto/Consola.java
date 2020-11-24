@@ -29,8 +29,8 @@ public class Consola extends Producto implements Serializable, Hardware {
     private int almacenamiento;
     private final int garantia=6;
     private static ArrayList<Consola> listaConsolas = Datos.listaConsolas; // Lista que almacena las consolas registradas en la tienda.
-    
-    
+
+
     // Se crean los metodos Get y Set de los atributos de la Clase Consola.
     public String getColor() {
         return color;
@@ -137,8 +137,11 @@ public class Consola extends Producto implements Serializable, Hardware {
         this.estado = estado;
         this.almacenamiento = almacenamiento;
     }
-    
-	// Mostrar en pantalla las consolas registrads.
+
+    public Consola() {
+    }
+
+    // Mostrar en pantalla las consolas registrads.
 	public static void consolasRegistradas() {
 		int indiceConsola = 1;
 		for (Consola consola : Datos.listaConsolas) {
@@ -214,33 +217,13 @@ public class Consola extends Producto implements Serializable, Hardware {
  			}
  		}return precio;
  	}
- 	
- 	// Metodo que moodifica el precio de algunas consolas, dado un array de indices y un array de precios.
-    public static void modificarPreciosConsolas(int[] ints, int[] precios){
-        int indice = 0;
-        for (int i: ints){
-            Datos.listaConsolas.get(i-1).setPrecio(precios[indice]);
-            indice++;
-        }
-    }
     
     // Implementacion del metodo reparar (Si el estado es false, indica que la consola esta reparada en su defecto buena).
     public void Reparar() {
         this.estado = false;
     }
     
-    // Metodo para cambiar el color de una consola.
-    public void modificarReparar(String color){
-        this.estado= false;
-        this.color = color;
-    }
-    
-    // Metodo para cambiar la capacidad de almacenamiento (en GB) de una consola.
-    public void modificarReparar(int almacenamiento){
-        this.estado = false;
-        this.almacenamiento = almacenamiento;
-    }
-    
+
     // Metodo que obtiene la descripcion de las consolas de listaConsolas.
     public static void descripcionConsolas() {
         int indiceConsola = 1;

@@ -12,10 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -51,6 +48,7 @@ public class ModificarConsola extends VBox{
 
         Button modificar = new Button("Modificar");
         Button eliminar = new Button("Eliminar");
+        Button ingresar = new Button("Ingresar");
 
 
 
@@ -67,8 +65,11 @@ public class ModificarConsola extends VBox{
         BotonEliminarConsola botonEliminarConsola = new BotonEliminarConsola();
         eliminar.setOnAction(botonEliminarConsola);
 
+        BotonAgregarConsola botonAgregarConsola = new BotonAgregarConsola();
+        ingresar.setOnAction(botonAgregarConsola);
+
         HBox hbox = new HBox();
-        hbox.getChildren().addAll(modificar,eliminar);
+        hbox.getChildren().addAll(ingresar, modificar,eliminar);
 
         //Anadir elementos al Vbox
         this.getChildren().addAll(proceso1,detalleproceso1,listamcons,fp,hbox);
@@ -115,6 +116,35 @@ public class ModificarConsola extends VBox{
             Consola.consolasRegistradas();
             listamcons.getItems().clear();
             listamcons.setItems(FXCollections.observableArrayList(Datos.listaConsolas));
+
+        }
+    }
+
+    class BotonAgregarConsola implements  EventHandler<ActionEvent>{
+        @Override
+        public void handle(ActionEvent event) {
+            Consola consola = new Consola();
+            consola.setNombre(fp.getValue("Nombre"));
+            consola.setColor(fp.getValue("Color"));
+            consola.setAlmacenamiento(Integer.parseInt(fp.getValue("Almacenamiento")));
+            consola.setVersion(fp.getValue("Version"));
+            consola.setPrecio(Float.parseFloat(fp.getValue("Precio")));
+            if(fp.getCondicion("Uso") == true) {
+                consola.setUso(true);
+            }else if(fp.getCondicion("Uso") == false) {
+                consola.setUso(false);
+            }
+            Datos.listaConsolas.add(consola);
+            Consola.consolasRegistradas();
+            listamcons.getItems().clear();
+            listamcons.setItems(FXCollections.observableArrayList(Datos.listaConsolas));
+
+            //Dialogo de confirmacion despues de agregada la Consola a la base de datos de la tienda.
+            Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
+            dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
+            dialogoDescripcion.setHeaderText("Usted acaba de agregar una nueva Consola a la base de datos de la tienda.");
+            dialogoDescripcion.setContentText("Proceso Exitoso.");
+            dialogoDescripcion.showAndWait();
 
         }
     }

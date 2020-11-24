@@ -22,6 +22,7 @@ public class ModificarCliente extends VBox {
 
     FieldPanel fp;
     ComboBox listamc;
+    Cliente cliente;
 
     public ModificarCliente() {
         listamc = new ComboBox(FXCollections.observableArrayList(Datos.listaClientes));
@@ -48,7 +49,9 @@ public class ModificarCliente extends VBox {
         //Botones modificar y cancelar :
 
         Button modificar = new Button("Modificar");
-        Button cancelar = new Button("Cancelar");
+        Button cancelar = new Button("Eliminar");
+        Button ingresar = new Button("Agregar");
+        Button refrescar = new Button("Refrescar");
 
 
         //Mostrar en pantalla datos de los clientes:
@@ -61,15 +64,31 @@ public class ModificarCliente extends VBox {
         BotonModificarCliente botonModificarCliente = new BotonModificarCliente();
         modificar.setOnAction(botonModificarCliente);
 
+        //Agregar Clientes a la base de datos:
+
+        BotonAgregarCliente botonAgregarCliente = new BotonAgregarCliente();
+        ingresar.setOnAction(botonAgregarCliente);
+
+        //Eliminar cliente de la base de datos:
+
+        BotonEliminarCliente botonEliminarCliente = new BotonEliminarCliente();
+        cancelar.setOnAction(botonEliminarCliente);
+
+        //Refrescar campos del textField
+
+        refrescar.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                fp.refrescar();
+            }
+        });
 
         //Agregar elementos a un Vbox:
 
         HBox hBox = new HBox();
-        hBox.getChildren().addAll(modificar,cancelar);
-        this.getChildren().addAll(proceso, detalleproceso, listamc, fp, hBox);
+        hBox.getChildren().addAll(ingresar, modificar, cancelar);
+        this.getChildren().addAll(proceso, detalleproceso, listamc, fp, hBox, refrescar);
     }
-
-
 
 
     //Creacion de clases anonimas:
@@ -79,28 +98,29 @@ public class ModificarCliente extends VBox {
     class ComboBoxClienteSeleccionado implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-            Cliente cliente = (Cliente) listamc.getSelectionModel().getSelectedItem();
-            fp.getCampo("Nombre").setText(cliente.getNombre());
-            fp.getCampo("Cedula").setText(Integer.toString(cliente.getCc()));
-            fp.getCampo("Celular").setText(Long.toString(cliente.getCelular()));
-            fp.getCampo("Email").setText(cliente.getEmail());
+            cliente = (Cliente) listamc.getSelectionModel().getSelectedItem();
+            if(cliente != null){
+                fp.getCampo("Nombre").setText(cliente.getNombre());
+                fp.getCampo("Cedula").setText(Integer.toString(cliente.getCc()));
+                fp.getCampo("Celular").setText(Long.toString(cliente.getCelular()));
+                fp.getCampo("Email").setText(cliente.getEmail());
+            }
 
         }
     }
     //Modificar atributos del cliente cuando se presiona el boton modificar:
 
-    //OJO, Aquí hay un error:
 
     class BotonModificarCliente implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-            Cliente cliente = (Cliente) listamc.getSelectionModel().getSelectedItem();
             cliente.setNombre(fp.getValue("Nombre"));
             cliente.setCc(Integer.parseInt(fp.getValue("Cedula")));
             cliente.setCelular(Long.parseLong(fp.getValue("Celular")));
             cliente.setEmail(fp.getValue("Email"));
             listamc.getItems().clear();
             listamc.setItems(FXCollections.observableArrayList(Datos.listaClientes));
+            fp.refrescar();
 
         }
 
@@ -109,11 +129,42 @@ public class ModificarCliente extends VBox {
     class BotonEliminarCliente implements EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event) {
-            Cliente cliente = (Cliente) listamc.getSelectionModel().getSelectedItem();
             Datos.listaClientes.remove(cliente);
             listamc.getItems().clear();
             listamc.setItems(FXCollections.observableArrayList(Datos.listaClientes));
+            fp.refrescar();
         }
+    }
+
+    //Agregar Cliente a la base de datos:
+    class BotonAgregarCliente implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent event) {
+            //Creacion de cliente y registro de datos:
+            cliente = new Cliente();
+            cliente.setNombre(fp.getValue("Nombre"));
+            cliente.setCc(Integer.parseInt(fp.getValue("Cedula")));
+            cliente.setCelular(Long.parseLong(fp.getValue("Celular")));
+            cliente.setEmail(fp.getValue("Email"));
+            Datos.listaClientes.add(cliente);
+            listamc.getItems().clear();
+            listamc.setItems(FXCollections.observableArrayList(Datos.listaClientes));
+
+
+            //Verificar que el cliente no esté en la base de datos:
+
+
+
+            //Dialogo de confirmacion despues de agregado el Cliente a la base de datos de la tienda.
+            Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
+            dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
+            dialogoDescripcion.setHeaderText("Usted acaba de agregar un nuevo Cliente a la base de datos de la tienda.");
+            dialogoDescripcion.setContentText("Proceso Exitoso.");
+            dialogoDescripcion.showAndWait();
+            fp.refrescar();
+
+        }
+
     }
 
 

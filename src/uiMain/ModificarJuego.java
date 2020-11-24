@@ -12,11 +12,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class ModificarJuego extends VBox{
@@ -50,6 +48,7 @@ public class ModificarJuego extends VBox{
 
         Button modificarjueg = new Button("Modificar");
         Button cancelarjueg = new Button("Cancelar");
+        Button ingresarjueg = new Button("Ingresar");
 
         //Interactividad
 
@@ -58,6 +57,15 @@ public class ModificarJuego extends VBox{
 
         BotonModificarJuego botonModificarJuego = new BotonModificarJuego();
         modificarjueg.setOnAction(botonModificarJuego);
+
+        BotonEliminarJuego botonEliminarJuego = new BotonEliminarJuego();
+        cancelarjueg.setOnAction(botonEliminarJuego);
+
+        BotonAnadirJuego botonAnadirJuego = new BotonAnadirJuego();
+        ingresarjueg.setOnAction(botonAnadirJuego);
+
+        HBox hbox = new HBox();
+        hbox.getChildren().addAll(ingresarjueg,modificarjueg, cancelarjueg);
 
         //Anadir elementos al vbox
         this.getChildren().addAll(procesoj, detalleprocesoj,listamj, fp);
@@ -108,7 +116,33 @@ public class ModificarJuego extends VBox{
             listamj.setItems(FXCollections.observableArrayList(Datos.listaJuegos));
         }
         }
+    //Agregar Juegos a la base de datos:
+    class BotonAnadirJuego implements  EventHandler<ActionEvent>{
+        @Override
+        public void handle(ActionEvent event) {
+            Juego juego = new Juego();
+            juego.setNombre(fp.getValue("Nombre"));
+            juego.setPrecio(Float.parseFloat(fp.getValue("Precio")));
+            juego.setPegi(Integer.parseInt(fp.getValue("Pegi")));
+            juego.setPlataforma(fp.getValue("Plataforma"));
+            juego.setGenero(fp.getValue("Genero"));
+            if(fp.getCondicion("Uso") == true) {
+                juego.setUso(true);
+            }else if(fp.getCondicion("Uso") == false) {
+                juego.setUso(false);
+            }
+            Datos.listaJuegos.add(juego);
+            listamj.getItems().clear();
+            listamj.setItems(FXCollections.observableArrayList(Datos.listaJuegos));
 
+            // Dialogo de confirmacion despues de agregado el juego a la base de datos de la tienda.
+            Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
+            dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
+            dialogoDescripcion.setHeaderText("Usted acaba de agregar un nuevo Juego a la base de datos de la tienda.");
+            dialogoDescripcion.setContentText("Proceso Exitoso.");
+            dialogoDescripcion.showAndWait();
+        }
+    }
 
 
     //Eliminar un juego de la base de datos:

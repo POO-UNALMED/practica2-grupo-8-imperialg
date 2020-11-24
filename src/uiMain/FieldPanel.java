@@ -195,4 +195,10 @@ public class FieldPanel extends Pane {
     public Boolean getCondicion(String condicion){
         return condicionales.get(condicion).isSelected();
     }
+
+    public void refrescar(){
+        for (TextField campo: hashMap.values()){
+            campo.setText("");
+        }
+    }
 }

@@ -29,7 +29,10 @@ public class Juego extends Producto implements Serializable{
     private String plataforma;
     private String genero;
     private static ArrayList<Juego> listaJuegos = Datos.listaJuegos; // Lista con los juegos registrados en la tienda.
-    
+
+    public Juego() {
+    }
+
 
     // Se crean los metodos Get y Set de los atributos de la Clase Consola.
     public int getPegi() {
@@ -67,7 +70,10 @@ public class Juego extends Producto implements Serializable{
     }
     
 
-    
+    public Juego(String nombre, float precioReparacion){
+        super(nombre, precioReparacion);
+    }
+
     // Metodo que moodifica el precio de algunos juegos, dado un array de indices y un array de precios.
     public static void modificarPreciosJuegos(int[] ints, int[] precios){
         int indice = 0;
