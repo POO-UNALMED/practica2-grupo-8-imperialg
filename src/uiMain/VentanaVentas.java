@@ -7,6 +7,8 @@ import gestorAplicacion.producto.Periferico;
 import gestorAplicacion.transacciones.Cliente;
 import gestorAplicacion.transacciones.Detalle;
 import gestorAplicacion.transacciones.Factura;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -63,6 +65,7 @@ public class VentanaVentas extends VBox{
         Button sendConsolas = new Button("Agregar al carrito");
         Button sendJuegos = new Button("Agregar al carrito");
         Button sendPerifericos = new Button("Agregar al carrito");
+        Button senServiciosTecnicos = new Button("Añadir al carrito");
 
         //Creacion de Hbox para los respectivos ingresos del usuario al carrito
         HBox pane1 = new HBox();
@@ -84,10 +87,19 @@ public class VentanaVentas extends VBox{
         TextField tiposerv1 = new TextField("");
         tiposerv1.setPrefWidth(140);
         TextField tiprod = new TextField("Producto:");
+        TextField tip = new TextField();
         tiprod.setEditable(false);
         tiprod.setPrefWidth(110);
-        TextField tiprod1 = new TextField("");
-        tiprod1.setPrefWidth(150);
+        String tiprod1[] = {"Consola","Periferico"};
+        ComboBox tipoproduc = new ComboBox(FXCollections.observableArrayList(tiprod1));
+		tipoproduc.valueProperty().addListener(new ChangeListener<String>() {
+    		public void changed(ObservableValue x,String y,String t) {
+    			tip.setText(t);
+    		}
+		}
+		);
+		tipoproduc.setPrefWidth(135);
+        
         TextField nombreprod = new TextField("Nombre:");
         nombreprod.setEditable(false);
         nombreprod.setPrefWidth(100);
@@ -102,11 +114,10 @@ public class VentanaVentas extends VBox{
         precio.setEditable(false);
         precio.setPrefWidth(150);
         TextField precio1 = new TextField("");
-        precio1.setPrefWidth(100);
-        Button añadiralc = new Button("Añadir al carrito");
-        añadiralc.setPrefWidth(150);
-        pane4.getChildren().addAll(tiposerv, tiposerv1, tiprod, tiprod1, nombreprod, nombreprod1, unidades, unidades1,
-                precio, precio1, añadiralc);
+        precio1.setPrefWidth(100);        
+        senServiciosTecnicos.setPrefWidth(150);
+        pane4.getChildren().addAll(tiposerv, tiposerv1, tiprod, tipoproduc, nombreprod, nombreprod1, unidades, unidades1,
+                precio, precio1, senServiciosTecnicos);
 
 
         //Anadir juegos al carrito:
@@ -151,6 +162,21 @@ public class VentanaVentas extends VBox{
                 ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
                 lista.setItems(items);
                 lista.refresh();
+            }
+        });
+        
+        senServiciosTecnicos.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+            	
+                int cantidad = Integer.parseInt(unidades1.getText());
+                
+//                Periferico producto = (Periferico) comboPerifericos.getSelectionModel().getSelectedItem();
+//                Detalle detalle = new Detalle(producto,producto.getPrecio(),"Venta", cantidad);
+//                carrito.add(detalle);
+//                ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
+//                lista.setItems(items);
+//                lista.refresh();
             }
         });
 

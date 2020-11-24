@@ -397,7 +397,7 @@ public class VentanaConsultas {
 		cons.setMaxWidth(500);
     	cons.setEditable(false);
     	cons.setAlignment(Pos.CENTER);
-		String submenuimperial[] = {"Modificar Precios","Ver Historial y Reportes","Ver Cliente Con Mas Puntos","Recomendar Juegos Por Edad"};
+		String submenuimperial[] = {"Ver Historial y Reportes","Ver Cliente Con Mas Puntos","Recomendar Juegos Por Edad"};
 		ComboBox menu = new ComboBox(FXCollections.observableArrayList(submenuimperial));
 		menu.valueProperty().addListener(new ChangeListener<String>() {
     		public void changed(ObservableValue x,String y,String t) {
@@ -454,10 +454,8 @@ public class VentanaConsultas {
 		public void handle(ActionEvent event) {
 			
 			String consulta = textconsulta.getText();
-			if(consulta.equals("Modificar Precios")) {
-				
-			}
-			else if(consulta.equals("Ver Historial y Reportes")) {
+			
+			if(consulta.equals("Ver Historial y Reportes")) {
 				submenu.getChildren().set(1, histreportes);
 				
 				

@@ -82,9 +82,6 @@ class VentanaImperial{
         MenuItem vender = new MenuItem("Vender");
         DevolverDefectoUHandlerClass venderr = new DevolverDefectoUHandlerClass();
         vender.setOnAction(venderr);
-        MenuItem sertec = new MenuItem("Servicio tecnico");
-        ServiciosTecnicosHandlerClass servtec = new ServiciosTecnicosHandlerClass(); 
-        sertec.setOnAction(servtec);
         MenuItem usuarios = new MenuItem("Agregar, Eliminar o Modificar Usuarios");
         agregarUsuarioHandlerClass handlerUsuario = new agregarUsuarioHandlerClass();
         usuarios.setOnAction(handlerUsuario);
@@ -100,7 +97,7 @@ class VentanaImperial{
 
         //Agregar items a menus:
         archivo.getItems().addAll(usuario, salir);
-        procon.getItems().addAll(vender,sertec,usuarios,stock, consultas);
+        procon.getItems().addAll(vender,usuarios,stock, consultas);
         aiuda.getItems().addAll(acerca);
        
  
@@ -209,14 +206,7 @@ class VentanaImperial{
 		}
 	}
 	
-	// Evento para dirigirse a la ventana de servicios tecnicos del aplicativo.
-	class ServiciosTecnicosHandlerClass implements EventHandler<ActionEvent>{
-		public void handle(ActionEvent event) {
-			vusuario.getChildren().set(1, new VentanaServiciosTecnicos().serviciost);
-			
-		}
-	}
-	
+
 	// Cuadro de dialogo que se muestra en pantalla cuando el usuario clickea la opcion "Usuario" ubicada en el menu "Archivo" de la parte superior  del programa.
 	class MensajeUsuarioHandlerClass implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
