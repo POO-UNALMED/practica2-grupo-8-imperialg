@@ -113,6 +113,7 @@ public class VentanaConsultas {
  		
  		if(cl.getPuntos()>=20) {
  			TextField clp = new TextField("El cliente "+cl.getNombre()+" Tiene un bono de COP $ 300.000 en nuestra tienda por alcanzar los 20 puntos ");
+ 			TextField cll = new TextField("Nombre del Cliente: "+cl.getNombre()+"  ||    Cedula: "+cl.getCc()+"   ||  Puntos: "+cl.getPuntos());
  			TextField desea = new TextField("Desea redimir el bono al cliente " + cl.getNombre() + " ?");
  			desea.setEditable(false);
  			desea.setMaxWidth(500);
@@ -120,6 +121,9 @@ public class VentanaConsultas {
  			clp.setEditable(false);
  			clp.setMaxWidth(800);
  			clp.setAlignment(Pos.CENTER);
+ 			cll.setEditable(false);
+ 			cll.setMaxWidth(800);
+ 			cll.setAlignment(Pos.CENTER);
  			Button redimir = new Button("Redimir Bono");
  			BotonRedimir redimirptos = new BotonRedimir();
  	        redimir.setOnAction(redimirptos);
@@ -129,7 +133,7 @@ public class VentanaConsultas {
  	        HBox red = new HBox(15);
  	        red.setAlignment(Pos.CENTER); 	        
  	        red.getChildren().addAll(redimir,noredimir);
- 			clpuntos.getChildren().addAll(clp,desea,red);
+ 			clpuntos.getChildren().addAll(clp,cll,desea,red);
  		}else {
  			TextField faltanptos = new TextField("Al cliente "+cl.getNombre()+" le faltan "+(20-cl.getPuntos())+" puntos para ganar un bono ");
  			faltanptos.setEditable(false);

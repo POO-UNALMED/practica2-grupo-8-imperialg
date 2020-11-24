@@ -138,7 +138,12 @@ public class Consola extends Producto implements Serializable, Hardware {
         this.almacenamiento = almacenamiento;
     }
 
+    public Consola(String nombre,float precio){
+    	super(nombre,precio);
+    	
+    }
     public Consola() {
+    	
     }
 
     // Mostrar en pantalla las consolas registrads.

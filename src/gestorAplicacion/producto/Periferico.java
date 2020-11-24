@@ -66,6 +66,9 @@ public class Periferico extends Producto implements Serializable,Hardware{
 
     public Periferico() {
     }
+    public Periferico(String nombre,float precio) {
+    	super(nombre,precio);
+    }
 
     // Mostrar en pantalla los perifericos registrados.
 	public static void perifericosRegistrados() {

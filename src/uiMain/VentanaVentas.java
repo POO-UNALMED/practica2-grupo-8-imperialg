@@ -170,13 +170,26 @@ public class VentanaVentas extends VBox{
             public void handle(ActionEvent event) {
             	
                 int cantidad = Integer.parseInt(unidades1.getText());
+                float precio =Float.parseFloat(precio1.getText());
+                String servicio = tiposerv1.getText();
                 
-//                Periferico producto = (Periferico) comboPerifericos.getSelectionModel().getSelectedItem();
-//                Detalle detalle = new Detalle(producto,producto.getPrecio(),"Venta", cantidad);
-//                carrito.add(detalle);
-//                ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
-//                lista.setItems(items);
-//                lista.refresh();
+                if(tip.getText().equals("Consola")) {
+                	Consola producto = new Consola(nombreprod1.getText(),precio);
+                	Detalle detalle = new Detalle(producto,precio,servicio, cantidad);
+                	carrito.add(detalle);
+                	ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
+                	 lista.setItems(items);
+                     lista.refresh();
+                }else if(tip.getText().equals("Periferico")) {
+                	Periferico producto = new Periferico(nombreprod1.getText(),precio);
+                	Detalle detalle = new Detalle(producto,precio,servicio, cantidad);
+                	carrito.add(detalle);
+                	ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
+                	 lista.setItems(items);
+                     lista.refresh();
+                }
+
+               
             }
         });
 
@@ -242,11 +255,21 @@ public class VentanaVentas extends VBox{
         this.setSpacing(10);
         this.setAlignment(Pos.CENTER);
         this.setPadding(new Insets(10,10,10,10));
-
+        TextField vent = new TextField("Venta de Productos");
+        vent.setAlignment(Pos.CENTER);
+        vent.setEditable(false);
+        vent.setPrefWidth(350);
+        this.getChildren().add(vent);
         this.getChildren().add(pane1);
         this.getChildren().add(pane2);
         this.getChildren().add(pane3);
+        TextField servtec = new TextField("Servicios Tecnicos");
+        servtec.setAlignment(Pos.CENTER);
+        servtec.setEditable(false);
+        servtec.setPrefWidth(350);
+        this.getChildren().add(servtec);        
         this.getChildren().add(pane4);
+        lista.setMaxHeight(300);
         this.getChildren().add(lista);
         this.getChildren().add(info);
         this.getChildren().add(comboClientes);
