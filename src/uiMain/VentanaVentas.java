@@ -65,7 +65,7 @@ public class VentanaVentas extends VBox{
         Button sendConsolas = new Button("Agregar al carrito");
         Button sendJuegos = new Button("Agregar al carrito");
         Button sendPerifericos = new Button("Agregar al carrito");
-        Button senServiciosTecnicos = new Button("Añadir al carrito");
+        Button senServiciosTecnicos = new Button("Agregar al carrito");
 
         //Creacion de Hbox para los respectivos ingresos del usuario al carrito
         HBox pane1 = new HBox();
@@ -104,12 +104,12 @@ public class VentanaVentas extends VBox{
         nombreprod.setEditable(false);
         nombreprod.setPrefWidth(100);
         TextField nombreprod1 = new TextField("");
-        nombreprod1.setPrefWidth(150);
+        nombreprod1.setPrefWidth(100);
         TextField unidades = new TextField("Unidades:");
         unidades.setEditable(false);
         unidades.setPrefWidth(110);
         TextField unidades1 = new TextField("");
-        unidades1.setPrefWidth(100);
+        unidades1.setPrefWidth(80);
         TextField precio = new TextField("Precio Servicio:");
         precio.setEditable(false);
         precio.setPrefWidth(150);
@@ -258,23 +258,22 @@ public class VentanaVentas extends VBox{
         TextField vent = new TextField("Venta de Productos");
         vent.setAlignment(Pos.CENTER);
         vent.setEditable(false);
-        vent.setPrefWidth(350);
-        this.getChildren().add(vent);
-        this.getChildren().add(pane1);
-        this.getChildren().add(pane2);
-        this.getChildren().add(pane3);
-        TextField servtec = new TextField("Servicios Tecnicos");
-        servtec.setAlignment(Pos.CENTER);
-        servtec.setEditable(false);
-        servtec.setPrefWidth(350);
-        this.getChildren().add(servtec);        
-        this.getChildren().add(pane4);
-        lista.setMaxHeight(300);
-        this.getChildren().add(lista);
-        this.getChildren().add(info);
-        this.getChildren().add(comboClientes);
-        this.getChildren().addAll(botonrefresh, generarF);
+		vent.setPrefWidth(350);
+		this.getChildren().add(vent);
+		this.getChildren().add(pane1);
+		this.getChildren().add(pane2);
+		this.getChildren().add(pane3);
+		TextField servtec = new TextField("Servicios Tecnicos");
+		servtec.setAlignment(Pos.CENTER);
+		servtec.setEditable(false);
+		servtec.setPrefWidth(350);
+		this.getChildren().add(servtec);
+		this.getChildren().add(pane4);
+		lista.setMaxHeight(300);
+		this.getChildren().add(lista);
+		this.getChildren().add(info);
+		this.getChildren().add(comboClientes);
+		this.getChildren().addAll(botonrefresh, generarF);
 
-
-}
+	}
 }

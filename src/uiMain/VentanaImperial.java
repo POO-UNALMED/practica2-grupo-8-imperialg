@@ -59,7 +59,8 @@ class VentanaImperial{
 
 
 	public VentanaImperial(){
-		
+		modificarConsola.setPadding(new Insets(10,10,10,10));
+	
         //Creacion de barra de menus de la ventana imperial:
         MenuBar barramenu = new MenuBar();
 

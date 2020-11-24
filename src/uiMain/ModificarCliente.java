@@ -26,10 +26,13 @@ public class ModificarCliente extends VBox {
 
     public ModificarCliente() {
         listamc = new ComboBox(FXCollections.observableArrayList(Datos.listaClientes));
+        listamc.setPromptText("Seleccione un cliente");
+       
         //Creacion de Vbox para modificar Clientes
 
         this.setSpacing(50);
         this.setAlignment(Pos.CENTER);
+        
 
         //Textfield con el titulo del proceso
 

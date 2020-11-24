@@ -25,8 +25,9 @@ public class ModificarConsola extends VBox{
     Consola consola;
 
     public ModificarConsola(){
-
         listamcons = new ComboBox(FXCollections.observableArrayList(Datos.listaConsolas));
+        listamcons.setPromptText("Seleccione una Consola");
+        listamcons.setPrefWidth(500);
         this.setSpacing(50);
         this.setAlignment(Pos.CENTER);
 
@@ -43,8 +44,7 @@ public class ModificarConsola extends VBox{
         String[] criterios = new String[] {"Nombre", "Color", "Precio", "Version", "Almacenamiento"};
         String[] booleanos = new String[] {"Uso"};
 
-        this.fp = new FieldPanel("Datos Consola",criterios,"Datos",null,booleanos);
-
+        this.fp = new FieldPanel("Datos Consola",criterios,"Datos",null,booleanos);        
         //Botones del formulario:
 
         Button modificar = new Button("Modificar");
@@ -80,7 +80,8 @@ public class ModificarConsola extends VBox{
         //Hbox con botones
         HBox hbox = new HBox();
         hbox.getChildren().addAll(ingresar, modificar,eliminar);
-
+        hbox.setAlignment(Pos.CENTER);
+  
         //Anadir elementos al Vbox
         this.getChildren().addAll(proceso1,detalleproceso1,listamcons,fp,hbox, refrescar);
 
