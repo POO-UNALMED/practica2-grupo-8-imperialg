@@ -26,12 +26,16 @@ public class ModificarJuego extends VBox{
     public ModificarJuego(){
 
         listamj = new ComboBox(FXCollections.observableArrayList(Datos.listaJuegos));
+        listamj.setPromptText("Seleccione un Juego");
+        listamj.setPrefWidth(500);
+        this.setSpacing(50);
+        this.setAlignment(Pos.CENTER);
 
         this.setSpacing(50);
         this.setAlignment(Pos.CENTER);
 
         //Textfield con el titulo del proceso
-        Proceso procesoj = new Proceso("Ingresar un Juego a la Base De Datos");
+        Proceso procesoj = new Proceso("Ingresar, Eliminar o Modificar un Juego de la Base De Datos");
 
         //Textfield con el detalle del proceso
 
@@ -50,7 +54,7 @@ public class ModificarJuego extends VBox{
         Button modificarjueg = new Button("Modificar");
         Button cancelarjueg = new Button("Cancelar");
         Button ingresarjueg = new Button("Ingresar");
-        Button refrescar = new Button("Refrescar");
+        Button refrescar = new Button("Refrescar Campos");
 
         //Interactividad
 
@@ -71,10 +75,13 @@ public class ModificarJuego extends VBox{
         refrescar.setOnAction(botonRefrescar);
 
         HBox hbox = new HBox();
+        hbox.setAlignment(Pos.CENTER);
         hbox.getChildren().addAll(ingresarjueg,modificarjueg, cancelarjueg);
 
         //Anadir elementos al vbox
-        this.getChildren().addAll(procesoj, detalleprocesoj,listamj, fp, hbox, refrescar);
+        HBox field = new HBox(fp);
+        field.setAlignment(Pos.CENTER);
+        this.getChildren().addAll(procesoj, detalleprocesoj,listamj, field, hbox, refrescar);
 
     }
 

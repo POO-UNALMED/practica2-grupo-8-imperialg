@@ -26,13 +26,15 @@ public class ModificarPeriferico extends VBox {
 
     public ModificarPeriferico(){
         listaperif = new ComboBox(FXCollections.observableArrayList(Datos.listaPerifericos));
-
+        listaperif.setPromptText("Seleccione un Periferico");
+        listaperif.setPrefWidth(500);
         this.setSpacing(50);
         this.setAlignment(Pos.CENTER);
 
+   
         //Textfield con el titulo del proceso
 
-        Proceso procesop = new Proceso("Ingresar un Periferico a la Base De Datos");
+        Proceso procesop = new Proceso("Ingresar, Eliminar o Modificar un Periferico de la Base De Datos");
         //Textfield con el detalle del proceso
 
         DetalleProceso detalleprocesop = new DetalleProceso("Debe llenar todos los campos correspondientes para ingresar un Periferico");
@@ -48,7 +50,7 @@ public class ModificarPeriferico extends VBox {
         Button ingresar = new Button("Ingresar");
         Button modificarper = new Button("Modificar");
         Button eliminarper = new Button("Eliminar");
-        Button refrescar = new Button("Refrescar campos");
+        Button refrescar = new Button("Refrescar Campos");
 
 
         //Interactividad:
@@ -69,10 +71,13 @@ public class ModificarPeriferico extends VBox {
         refrescar.setOnAction(botonRefrescar);
 
         HBox hbox = new HBox();
+        hbox.setAlignment(Pos.CENTER);
         hbox.getChildren().addAll(ingresar, modificarper, eliminarper);
 
         //Anadir elementos al vbox
-        this.getChildren().addAll(procesop, detalleprocesop, listaperif,fp, hbox);
+        HBox field = new HBox(fp);
+        field.setAlignment(Pos.CENTER);
+        this.getChildren().addAll(procesop, detalleprocesop, listaperif,field, hbox, refrescar);
 
     }
 

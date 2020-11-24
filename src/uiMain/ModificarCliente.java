@@ -26,7 +26,10 @@ public class ModificarCliente extends VBox {
 
     public ModificarCliente() {
         listamc = new ComboBox(FXCollections.observableArrayList(Datos.listaClientes));
-        listamc.setPromptText("Seleccione un cliente");
+        listamc.setPromptText("Seleccione un Cliente");
+        listamc.setPrefWidth(500);
+        this.setSpacing(50);
+        this.setAlignment(Pos.CENTER);
        
         //Creacion de Vbox para modificar Clientes
 
@@ -36,7 +39,7 @@ public class ModificarCliente extends VBox {
 
         //Textfield con el titulo del proceso
 
-        TextField proceso = new Proceso("Modificar un cliente de la Base De Datos");
+        TextField proceso = new Proceso("Ingresar, Eliminar o Modificar un Cliente de la Base De Datos");
 
         //TextField con el detalle del proceso
 
@@ -54,7 +57,7 @@ public class ModificarCliente extends VBox {
         Button modificar = new Button("Modificar");
         Button cancelar = new Button("Eliminar");
         Button ingresar = new Button("Agregar");
-        Button refrescar = new Button("Refrescar");
+        Button refrescar = new Button("Refrescar Campos");
 
 
         //Mostrar en pantalla datos de los clientes:
@@ -85,8 +88,11 @@ public class ModificarCliente extends VBox {
         //Agregar elementos a un Vbox:
 
         HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER);
         hBox.getChildren().addAll(ingresar, modificar, cancelar);
-        this.getChildren().addAll(proceso, detalleproceso, listamc, fp, hBox, refrescar);
+        HBox field = new HBox(fp);
+        field.setAlignment(Pos.CENTER);
+        this.getChildren().addAll(proceso, detalleproceso, listamc, field, hBox, refrescar);
     }
 
 

@@ -33,7 +33,7 @@ public class ModificarConsola extends VBox{
 
         //Textfield con el titulo del proceso
 
-        Proceso proceso1 = new Proceso("Ingresar una Consola a la Base De Datos");
+        Proceso proceso1 = new Proceso("Ingresar, Eliminar o Modificar una Consola de la Base De Datos");
 
         //TextField con el detalle del proceso
 
@@ -50,7 +50,7 @@ public class ModificarConsola extends VBox{
         Button modificar = new Button("Modificar");
         Button eliminar = new Button("Eliminar");
         Button ingresar = new Button("Ingresar");
-        Button refrescar = new Button("Refrescar");
+        Button refrescar = new Button("Refrescar Campos");
 
 
 
@@ -83,7 +83,9 @@ public class ModificarConsola extends VBox{
         hbox.setAlignment(Pos.CENTER);
   
         //Anadir elementos al Vbox
-        this.getChildren().addAll(proceso1,detalleproceso1,listamcons,fp,hbox, refrescar);
+        HBox field = new HBox(fp);
+        field.setAlignment(Pos.CENTER);
+        this.getChildren().addAll(proceso1,detalleproceso1,listamcons,field,hbox, refrescar);
 
     }
 
