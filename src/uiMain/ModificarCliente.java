@@ -74,14 +74,10 @@ public class ModificarCliente extends VBox {
         BotonEliminarCliente botonEliminarCliente = new BotonEliminarCliente();
         cancelar.setOnAction(botonEliminarCliente);
 
-        //Refrescar campos del textField
+        //Refrescar campos del textField:
 
-        refrescar.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                fp.refrescar();
-            }
-        });
+        BotonRefrescar botonRefrescar= new BotonRefrescar();
+        refrescar.setOnAction(botonRefrescar);
 
         //Agregar elementos a un Vbox:
 
@@ -165,8 +161,17 @@ public class ModificarCliente extends VBox {
 
         }
 
+
+
+
     }
 
 
+    class BotonRefrescar implements EventHandler<ActionEvent>{
+        @Override
+        public void handle(ActionEvent event) {
+            fp.refrescar();
+        }
+    }
 
 }

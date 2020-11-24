@@ -20,12 +20,9 @@ import javafx.scene.layout.VBox;
 
 public class ModificarPeriferico extends VBox {
 
-
-    VBox modificarPeriferico;
     ComboBox listaperif;
     FieldPanel fp;
-
-
+    Periferico periferico;
 
     public ModificarPeriferico(){
         listaperif = new ComboBox(FXCollections.observableArrayList(Datos.listaPerifericos));
@@ -51,6 +48,7 @@ public class ModificarPeriferico extends VBox {
         Button ingresar = new Button("Ingresar");
         Button modificarper = new Button("Modificar");
         Button eliminarper = new Button("Eliminar");
+        Button refrescar = new Button("Refrescar campos");
 
 
         //Interactividad:
@@ -67,6 +65,8 @@ public class ModificarPeriferico extends VBox {
         BotonIngresarPeriferico botonIngresarPeriferico = new BotonIngresarPeriferico();
         ingresar.setOnAction(botonIngresarPeriferico);
 
+        BotonRefrescar botonRefrescar= new BotonRefrescar();
+        refrescar.setOnAction(botonRefrescar);
 
         HBox hbox = new HBox();
         hbox.getChildren().addAll(ingresar, modificarper, eliminarper);
@@ -74,25 +74,25 @@ public class ModificarPeriferico extends VBox {
         //Anadir elementos al vbox
         this.getChildren().addAll(procesop, detalleprocesop, listaperif,fp, hbox);
 
-
     }
 
-
     //Clases anonimas:
+
     //Seleccionar un perfererico y que se rellenen automaticamente los textfield:
     class ComboBoxPerifericoSeleccionado implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-
-            Periferico periferico = (Periferico) listaperif.getSelectionModel().getSelectedItem();
-            fp.getCampo("Nombre").setText(periferico.getNombre());
-            fp.getCampo("Precio").setText(Float.toString(periferico.getPrecio()));
-            fp.getCampo("Plataforma").setText(periferico.getPlataforma());
-            Boolean uso = periferico.getUso();
-            if (uso == true){
-                fp.getCheckBox("Uso").setSelected(true);
-            } else if(uso == false){
-                fp.getCheckBox("Uso").setSelected(false);
+            periferico = (Periferico) listaperif.getSelectionModel().getSelectedItem();
+            if(periferico != null) {
+                fp.getCampo("Nombre").setText(periferico.getNombre());
+                fp.getCampo("Precio").setText(Float.toString(periferico.getPrecio()));
+                fp.getCampo("Plataforma").setText(periferico.getPlataforma());
+                Boolean uso = periferico.getUso();
+                if (uso == true) {
+                    fp.getCheckBox("Uso").setSelected(true);
+                } else if (uso == false) {
+                    fp.getCheckBox("Uso").setSelected(false);
+                }
             }
         }
     }
@@ -102,7 +102,6 @@ public class ModificarPeriferico extends VBox {
     class BotonModificarPeriferico implements  EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event) {
-            Periferico periferico = (Periferico) listaperif.getSelectionModel().getSelectedItem();
             periferico.setNombre(fp.getValue("Nombre"));
             periferico.setPrecio(Float.parseFloat(fp.getValue("Precio")));
             if(fp.getCondicion("Uso") == true) {
@@ -112,6 +111,7 @@ public class ModificarPeriferico extends VBox {
             }
             listaperif.getItems().clear();
             listaperif.setItems(FXCollections.observableArrayList(Datos.listaPerifericos));
+            fp.refrescar();
         }
 
     }
@@ -121,10 +121,10 @@ public class ModificarPeriferico extends VBox {
     class BotonEliminarPeriferico implements EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event) {
-            Periferico periferico = (Periferico) listaperif.getSelectionModel().getSelectedItem();
             Datos.listaPerifericos.remove(periferico);
             listaperif.getItems().clear();
             listaperif.setItems(FXCollections.observableArrayList(Datos.listaPerifericos));
+            fp.refrescar();
         }
     }
 
@@ -143,6 +143,8 @@ public class ModificarPeriferico extends VBox {
             listaperif.getItems().clear();
             listaperif.setItems(FXCollections.observableArrayList(Datos.listaPerifericos));
 
+            //Verificar que el periferico esta en la base de datos:
+
             // Dialogo de confirmacion despues de agregado el periferico a la base de datos de la tienda.
             Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
             dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
@@ -150,6 +152,12 @@ public class ModificarPeriferico extends VBox {
             dialogoDescripcion.setContentText("Proceso Exitoso.");
             dialogoDescripcion.showAndWait();
 
+        }
+    }
+    class BotonRefrescar implements EventHandler<ActionEvent>{
+        @Override
+        public void handle(ActionEvent event) {
+            fp.refrescar();
         }
     }
 }

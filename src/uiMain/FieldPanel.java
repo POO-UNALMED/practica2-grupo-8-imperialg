@@ -196,9 +196,13 @@ public class FieldPanel extends Pane {
         return condicionales.get(condicion).isSelected();
     }
 
+    //Metodo para refrescar los campos de los textFields y checkbox
     public void refrescar(){
         for (TextField campo: hashMap.values()){
             campo.setText("");
+        }
+        for (CheckBox campo: condicionales.values()){
+            campo.setSelected(false);
         }
     }
 }

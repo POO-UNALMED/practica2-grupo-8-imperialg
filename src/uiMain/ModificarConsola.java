@@ -22,6 +22,7 @@ public class ModificarConsola extends VBox{
 
     ComboBox listamcons;
     FieldPanel fp;
+    Consola consola;
 
     public ModificarConsola(){
 
@@ -49,6 +50,7 @@ public class ModificarConsola extends VBox{
         Button modificar = new Button("Modificar");
         Button eliminar = new Button("Eliminar");
         Button ingresar = new Button("Ingresar");
+        Button refrescar = new Button("Refrescar");
 
 
 
@@ -59,20 +61,28 @@ public class ModificarConsola extends VBox{
         ComboBoxConsolaSeleccionada accioncombocons = new ComboBoxConsolaSeleccionada();
         listamcons.setOnAction(accioncombocons);
 
+        //Modificar consola seleccionada:
         BotonModificarConsola botonModificarConsola = new BotonModificarConsola();
         modificar.setOnAction(botonModificarConsola);
 
+        //Eliminar consola:
         BotonEliminarConsola botonEliminarConsola = new BotonEliminarConsola();
         eliminar.setOnAction(botonEliminarConsola);
 
+        //Agregar Consola:
         BotonAgregarConsola botonAgregarConsola = new BotonAgregarConsola();
         ingresar.setOnAction(botonAgregarConsola);
 
+        //Refrescar Campos del textfield
+        BotonRefrescar botonRefrescar = new BotonRefrescar();
+        refrescar.setOnAction(botonRefrescar);
+
+        //Hbox con botones
         HBox hbox = new HBox();
         hbox.getChildren().addAll(ingresar, modificar,eliminar);
 
         //Anadir elementos al Vbox
-        this.getChildren().addAll(proceso1,detalleproceso1,listamcons,fp,hbox);
+        this.getChildren().addAll(proceso1,detalleproceso1,listamcons,fp,hbox, refrescar);
 
     }
 
@@ -81,7 +91,8 @@ public class ModificarConsola extends VBox{
     class ComboBoxConsolaSeleccionada implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-            Consola consola = (Consola) listamcons.getSelectionModel().getSelectedItem();
+            consola = (Consola) listamcons.getSelectionModel().getSelectedItem();
+            if (consola != null){
             fp.getCampo("Nombre").setText(consola.getNombre());
             fp.getCampo("Precio").setText(Float.toString(consola.getPrecio()));
             fp.getCampo("Color").setText(consola.getColor());
@@ -93,6 +104,8 @@ public class ModificarConsola extends VBox{
             } else if(uso == false){
                 fp.getCheckBox("Uso").setSelected(false);
             }
+
+            }
         }
     }
 
@@ -101,7 +114,6 @@ public class ModificarConsola extends VBox{
     class BotonModificarConsola implements  EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event) {
-            Consola consola = (Consola) listamcons.getSelectionModel().getSelectedItem();
             consola.setNombre(fp.getValue("Nombre"));
             consola.setColor(fp.getValue("Color"));
             consola.setAlmacenamiento(Integer.parseInt(fp.getValue("Almacenamiento")));
@@ -112,10 +124,9 @@ public class ModificarConsola extends VBox{
             }else if(fp.getCondicion("Uso") == false) {
                 consola.setUso(false);
             }
-            System.out.println(consola);
-            Consola.consolasRegistradas();
             listamcons.getItems().clear();
             listamcons.setItems(FXCollections.observableArrayList(Datos.listaConsolas));
+            fp.refrescar();
 
         }
     }
@@ -145,6 +156,7 @@ public class ModificarConsola extends VBox{
             dialogoDescripcion.setHeaderText("Usted acaba de agregar una nueva Consola a la base de datos de la tienda.");
             dialogoDescripcion.setContentText("Proceso Exitoso.");
             dialogoDescripcion.showAndWait();
+            fp.refrescar();
 
         }
     }
@@ -154,11 +166,18 @@ public class ModificarConsola extends VBox{
     class BotonEliminarConsola implements EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event) {
-            Consola consola = (Consola) listamcons.getSelectionModel().getSelectedItem();
             Datos.listaConsolas.remove(consola);
             listamcons.getItems().clear();
             listamcons.setItems(FXCollections.observableArrayList(Datos.listaConsolas));
+            fp.refrescar();
 
+        }
+    }
+
+    class BotonRefrescar implements EventHandler<ActionEvent>{
+        @Override
+        public void handle(ActionEvent event) {
+            fp.refrescar();
         }
     }
 }
