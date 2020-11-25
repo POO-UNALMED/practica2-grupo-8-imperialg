@@ -1,6 +1,9 @@
 package uiMain;
 
 import BaseDatos.Datos;
+import errores.tipo1.ErrorCampoNumerico;
+import errores.tipo1.ErrorCampoVacio;
+import errores.tipo2.ErrorVerificarCelular;
 import gestorAplicacion.producto.Consola;
 import gestorAplicacion.producto.Juego;
 import gestorAplicacion.producto.Periferico;
@@ -12,6 +15,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -119,14 +123,31 @@ public class ModificarCliente extends VBox {
     class BotonModificarCliente implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-            cliente.setNombre(fp.getValue("Nombre"));
-            cliente.setCc(Integer.parseInt(fp.getValue("Cedula")));
-            cliente.setCelular(Long.parseLong(fp.getValue("Celular")));
-            cliente.setEmail(fp.getValue("Email"));
-            listamc.getItems().clear();
-            listamc.setItems(FXCollections.observableArrayList(Datos.listaClientes));
-            fp.refrescar();
+            try {
+                cliente.setNombre(fp.getValue("Nombre"));
+                try {
+                    cliente.setCc(Integer.parseInt(fp.getValue("Cedula")));
+                    cliente.setCelular(Long.parseLong(fp.getValue("Celular")));
+                } catch (NumberFormatException e){
+                    throw new ErrorCampoNumerico();
+                }
+                String celular = fp.getValue("Celular");
+                if(celular.length()!=10){
+                    throw new ErrorVerificarCelular();
+                }
 
+                cliente.setEmail(fp.getValue("Email"));
+                listamc.getItems().clear();
+                listamc.setItems(FXCollections.observableArrayList(Datos.listaClientes));
+                fp.refrescar();
+
+            } catch (ErrorCampoVacio e){
+                new DialogError(e);
+            } catch (ErrorCampoNumerico f){
+                new DialogError(f);
+            } catch (ErrorVerificarCelular g){
+                new DialogError(g);
+            }
         }
 
     }
@@ -138,6 +159,9 @@ public class ModificarCliente extends VBox {
             listamc.getItems().clear();
             listamc.setItems(FXCollections.observableArrayList(Datos.listaClientes));
             fp.refrescar();
+            Datos datos = new Datos();
+            datos.guardarDatos();
+            datos.guardarDatos1();
         }
     }
 
@@ -146,34 +170,40 @@ public class ModificarCliente extends VBox {
         @Override
         public void handle(ActionEvent event) {
             //Creacion de cliente y registro de datos:
-            cliente = new Cliente();
-            cliente.setNombre(fp.getValue("Nombre"));
-            cliente.setCc(Integer.parseInt(fp.getValue("Cedula")));
-            cliente.setCelular(Long.parseLong(fp.getValue("Celular")));
-            cliente.setEmail(fp.getValue("Email"));
-            Datos.listaClientes.add(cliente);
-            listamc.getItems().clear();
-            listamc.setItems(FXCollections.observableArrayList(Datos.listaClientes));
+            try {
+                cliente = new Cliente();
+                cliente.setNombre(fp.getValue("Nombre"));
 
-
-            //Verificar que el cliente no esté en la base de datos:
-
-
-
-            //Dialogo de confirmacion despues de agregado el Cliente a la base de datos de la tienda.
-            Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
-            dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
-            dialogoDescripcion.setHeaderText("Usted acaba de agregar un nuevo Cliente a la base de datos de la tienda.");
-            dialogoDescripcion.setContentText("Proceso Exitoso.");
-            dialogoDescripcion.showAndWait();
-            fp.refrescar();
-
+                try {
+                    cliente.setCc(Integer.parseInt(fp.getValue("Cedula")));
+                    cliente.setCelular(Long.parseLong(fp.getValue("Celular")));
+                } catch (NumberFormatException e){
+                    throw new ErrorCampoNumerico();
+                }
+                String celular = fp.getValue("Celular");
+                if(celular.length()!=10){
+                    throw new ErrorVerificarCelular();
+                }
+                cliente.setEmail(fp.getValue("Email"));
+                Datos.listaClientes.add(cliente);
+                listamc.getItems().clear();
+                listamc.setItems(FXCollections.observableArrayList(Datos.listaClientes));
+                Alert dialogoDescripcion = new Alert(AlertType.INFORMATION);
+                dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
+                dialogoDescripcion.setHeaderText("Usted acaba de agregar un nuevo Cliente a la base de datos de la tienda.");
+                dialogoDescripcion.setContentText("Proceso Exitoso.");
+                dialogoDescripcion.showAndWait();
+                fp.refrescar();
+                } catch (ErrorCampoVacio e){
+                  new DialogError(e);
+                } catch (ErrorCampoNumerico f){
+                  new DialogError(f);
+                } catch (ErrorVerificarCelular g){
+                  new DialogError(g);
+                }
+            }
         }
 
-
-
-
-    }
 
 
     class BotonRefrescar implements EventHandler<ActionEvent>{
