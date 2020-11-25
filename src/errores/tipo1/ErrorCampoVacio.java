@@ -5,7 +5,7 @@ import uiMain.DialogError;
 public class ErrorCampoVacio extends ErrorTipo1{
 
     public ErrorCampoVacio(){
-        super("Campo vacío");
+        super("Campo vacio");
         this.setDescripcion("Hay algun campo vacio.");
     }
 }

@@ -47,7 +47,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class VentanaImperial{
-
+	
 	// Creacion de la escena principal de esta ventana.
 	private Scene escenaimperial;
 	VBox vusuario = new VBox(15);

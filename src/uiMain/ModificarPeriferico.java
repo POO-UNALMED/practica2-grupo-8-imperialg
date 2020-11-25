@@ -21,6 +21,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class ModificarPeriferico extends VBox {
+	Datos datos = new Datos();
 
     ComboBox listaperif;
     FieldPanel fp;
@@ -129,6 +130,8 @@ public class ModificarPeriferico extends VBox {
             }catch (ErrorCampoNumerico f){
                 new DialogError(f);
             }
+			datos.guardarDatos();
+	        datos.guardarDatos1();
         }
 
     }
@@ -142,6 +145,8 @@ public class ModificarPeriferico extends VBox {
             listaperif.getItems().clear();
             listaperif.setItems(FXCollections.observableArrayList(Datos.listaPerifericos));
             fp.refrescar();
+			datos.guardarDatos();
+	        datos.guardarDatos1();
         }
     }
 
@@ -178,6 +183,8 @@ public class ModificarPeriferico extends VBox {
             }catch (ErrorCampoNumerico f){
                 new DialogError(f);
             }
+			datos.guardarDatos();
+	        datos.guardarDatos1();
 
         }
     }
@@ -185,6 +192,8 @@ public class ModificarPeriferico extends VBox {
         @Override
         public void handle(ActionEvent event) {
             fp.refrescar();
+			datos.guardarDatos();
+	        datos.guardarDatos1();
         }
     }
 }

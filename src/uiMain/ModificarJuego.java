@@ -20,6 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class ModificarJuego extends VBox{
+	Datos datos = new Datos();
 
     ComboBox listamj;
     FieldPanel fp;
@@ -141,8 +142,11 @@ public class ModificarJuego extends VBox{
             }catch (ErrorCampoNumerico s){
                 new DialogError(s);
             }
+			datos.guardarDatos();
+	        datos.guardarDatos1();
         }
         }
+    
     //Agregar Juegos a la base de datos:
     class BotonAnadirJuego implements  EventHandler<ActionEvent>{
         @Override
@@ -179,6 +183,8 @@ public class ModificarJuego extends VBox{
             } catch (ErrorCampoNumerico f){
                 new DialogError(f);
             }
+			datos.guardarDatos();
+	        datos.guardarDatos1();
         }
     }
 
@@ -191,13 +197,18 @@ public class ModificarJuego extends VBox{
             listamj.getItems().clear();
             listamj.setItems(FXCollections.observableArrayList(Datos.listaJuegos));
             fp.refrescar();
+			datos.guardarDatos();
+	        datos.guardarDatos1();
         }
+        
     }
 
     class BotonRefrescar implements EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event) {
             fp.refrescar();
+			datos.guardarDatos();
+	        datos.guardarDatos1();
         }
     }
 

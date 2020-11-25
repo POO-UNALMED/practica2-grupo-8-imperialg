@@ -23,7 +23,7 @@ import javafx.scene.layout.VBox;
 import java.io.File;
 
 public class ModificarCliente extends VBox {
-
+	Datos datos = new Datos();
     FieldPanel fp;
     ComboBox listamc;
     Cliente cliente;
@@ -148,6 +148,8 @@ public class ModificarCliente extends VBox {
             } catch (ErrorVerificarCelular g){
                 new DialogError(g);
             }
+			datos.guardarDatos();
+	        datos.guardarDatos1();
         }
 
     }
@@ -201,6 +203,8 @@ public class ModificarCliente extends VBox {
                 } catch (ErrorVerificarCelular g){
                   new DialogError(g);
                 }
+            datos.guardarDatos();
+	        datos.guardarDatos1();
             }
         }
 
@@ -210,6 +214,8 @@ public class ModificarCliente extends VBox {
         @Override
         public void handle(ActionEvent event) {
             fp.refrescar();
+			datos.guardarDatos();
+	        datos.guardarDatos1();
         }
     }
 

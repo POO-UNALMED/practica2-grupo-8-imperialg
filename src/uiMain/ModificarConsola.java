@@ -22,7 +22,7 @@ import javafx.scene.layout.VBox;
 import sun.font.TrueTypeFont;
 
 public class ModificarConsola extends VBox{
-
+	Datos datos = new Datos();
     ComboBox listamcons;
     FieldPanel fp;
     Consola consola;
@@ -143,10 +143,11 @@ public class ModificarConsola extends VBox{
             } catch (ErrorCampoNumerico f){
                 new DialogError(f);
             }
-
-
+			datos.guardarDatos();
+	        datos.guardarDatos1();
 
         }
+        
     }
 
     class BotonAgregarConsola implements  EventHandler<ActionEvent>{
@@ -187,6 +188,8 @@ public class ModificarConsola extends VBox{
             }catch (ErrorCampoNumerico g){
                 new DialogError(g);
             }
+			datos.guardarDatos();
+	        datos.guardarDatos1();
         }
     }
 
@@ -199,14 +202,19 @@ public class ModificarConsola extends VBox{
             listamcons.getItems().clear();
             listamcons.setItems(FXCollections.observableArrayList(Datos.listaConsolas));
             fp.refrescar();
-
+            
+			datos.guardarDatos();
+	        datos.guardarDatos1();
         }
+        
     }
 
     class BotonRefrescar implements EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event) {
             fp.refrescar();
+			datos.guardarDatos();
+	        datos.guardarDatos1();
         }
     }
 }
