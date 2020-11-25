@@ -1,7 +1,9 @@
 package uiMain;
 
 import BaseDatos.Datos;
+import errores.tipo1.ErrorCampoNumerico;
 import errores.tipo1.ErrorCampoVacio;
+import errores.tipo2.ErrorVerificarCelular;
 import gestorAplicacion.producto.Consola;
 import gestorAplicacion.producto.Juego;
 import gestorAplicacion.transacciones.Cliente;
@@ -121,9 +123,13 @@ public class ModificarConsola extends VBox{
             try {
                 consola.setNombre(fp.getValue("Nombre"));
                 consola.setColor(fp.getValue("Color"));
-                consola.setAlmacenamiento(Integer.parseInt(fp.getValue("Almacenamiento")));
-                consola.setVersion(fp.getValue("Version"));
-                consola.setPrecio(Float.parseFloat(fp.getValue("Precio")));
+                try {
+                    consola.setAlmacenamiento(Integer.parseInt(fp.getValue("Almacenamiento")));
+                    consola.setVersion(fp.getValue("Version"));
+                    consola.setPrecio(Float.parseFloat(fp.getValue("Precio")));
+                }catch (NumberFormatException e){
+                    throw new ErrorCampoNumerico();
+                }
                 if(fp.getCondicion("Uso") == true) {
                     consola.setUso(true);
                 }else if(fp.getCondicion("Uso") == false) {
@@ -134,6 +140,8 @@ public class ModificarConsola extends VBox{
                 fp.refrescar();
             } catch (ErrorCampoVacio e){
                 new DialogError(e);
+            } catch (ErrorCampoNumerico f){
+                new DialogError(f);
             }
 
 
@@ -148,9 +156,15 @@ public class ModificarConsola extends VBox{
                 Consola consola = new Consola();
                 consola.setNombre(fp.getValue("Nombre"));
                 consola.setColor(fp.getValue("Color"));
-                consola.setAlmacenamiento(Integer.parseInt(fp.getValue("Almacenamiento")));
+                try {
+                    consola.setAlmacenamiento(Integer.parseInt(fp.getValue("Almacenamiento")));
+                    consola.setPrecio(Float.parseFloat(fp.getValue("Precio")));
+                } catch (NumberFormatException e){
+                    throw new ErrorCampoNumerico();
+                }
+
                 consola.setVersion(fp.getValue("Version"));
-                consola.setPrecio(Float.parseFloat(fp.getValue("Precio")));
+
                 if (fp.getCondicion("Uso") == true) {
                     consola.setUso(true);
                 } else if (fp.getCondicion("Uso") == false) {
@@ -168,8 +182,10 @@ public class ModificarConsola extends VBox{
                 dialogoDescripcion.setContentText("Proceso Exitoso.");
                 dialogoDescripcion.showAndWait();
                 fp.refrescar();
-            }catch (ErrorCampoVacio e){
+            }catch (ErrorCampoVacio e) {
                 new DialogError(e);
+            }catch (ErrorCampoNumerico g){
+                new DialogError(g);
             }
         }
     }

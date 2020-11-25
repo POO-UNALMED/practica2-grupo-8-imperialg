@@ -1,6 +1,7 @@
 package uiMain;
 
 import BaseDatos.Datos;
+import errores.tipo1.ErrorCampoNumerico;
 import errores.tipo1.ErrorCampoVacio;
 import gestorAplicacion.producto.Consola;
 import gestorAplicacion.producto.Juego;
@@ -110,7 +111,11 @@ public class ModificarPeriferico extends VBox {
         public void handle(ActionEvent event) {
             try{
                 periferico.setNombre(fp.getValue("Nombre"));
-                periferico.setPrecio(Float.parseFloat(fp.getValue("Precio")));
+                try {
+                    periferico.setPrecio(Float.parseFloat(fp.getValue("Precio")));
+                }catch (NumberFormatException e){
+                    throw new ErrorCampoNumerico();
+                }
                 if (fp.getCondicion("Uso") == true) {
                     periferico.setUso(true);
                 } else if (fp.getCondicion("Uso") == false) {
@@ -121,6 +126,8 @@ public class ModificarPeriferico extends VBox {
                 fp.refrescar();
             }catch (ErrorCampoVacio e){
                 new DialogError(e);
+            }catch (ErrorCampoNumerico f){
+                new DialogError(f);
             }
         }
 
@@ -143,7 +150,11 @@ public class ModificarPeriferico extends VBox {
             try {
                 Periferico periferico = new Periferico();
                 periferico.setNombre(fp.getValue("Nombre"));
-                periferico.setPrecio(Float.parseFloat(fp.getValue("Precio")));
+                try {
+                    periferico.setPrecio(Float.parseFloat(fp.getValue("Precio")));
+                }catch (NumberFormatException e){
+                    throw new ErrorCampoNumerico();
+                }
                 if (fp.getCondicion("Uso") == true) {
                     periferico.setUso(true);
                 } else if (fp.getCondicion("Uso") == false) {
@@ -164,6 +175,8 @@ public class ModificarPeriferico extends VBox {
                 dialogoDescripcion.showAndWait();
             }catch (ErrorCampoVacio e){
                 new DialogError(e);
+            }catch (ErrorCampoNumerico f){
+                new DialogError(f);
             }
 
         }
