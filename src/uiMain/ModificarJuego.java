@@ -1,6 +1,7 @@
 package uiMain;
 
 import BaseDatos.Datos;
+import errores.tipo1.ErrorCampoNumerico;
 import errores.tipo1.ErrorCampoVacio;
 import gestorAplicacion.producto.Consola;
 import gestorAplicacion.producto.Juego;
@@ -117,8 +118,14 @@ public class ModificarJuego extends VBox{
         public void handle(ActionEvent event) {
             try{
                 juego.setNombre(fp.getValue("Nombre"));
-                juego.setPrecio(Float.parseFloat(fp.getValue("Precio")));
-                juego.setPegi(Integer.parseInt(fp.getValue("Pegi")));
+
+                try {
+                    juego.setPrecio(Float.parseFloat(fp.getValue("Precio")));
+                    juego.setPegi(Integer.parseInt(fp.getValue("Pegi")));
+                } catch (NumberFormatException s){
+                    throw new ErrorCampoNumerico();
+                }
+
                 juego.setPlataforma(fp.getValue("Plataforma"));
                 juego.setGenero(fp.getValue("Genero"));
                 if (fp.getCondicion("Uso") == true) {
@@ -131,6 +138,8 @@ public class ModificarJuego extends VBox{
                 fp.refrescar();
             }catch (ErrorCampoVacio e){
                 new DialogError(e);
+            }catch (ErrorCampoNumerico s){
+                new DialogError(s);
             }
         }
         }
@@ -141,8 +150,12 @@ public class ModificarJuego extends VBox{
             try {
                 Juego juego = new Juego();
                 juego.setNombre(fp.getValue("Nombre"));
-                juego.setPrecio(Float.parseFloat(fp.getValue("Precio")));
-                juego.setPegi(Integer.parseInt(fp.getValue("Pegi")));
+                try {
+                    juego.setPrecio(Float.parseFloat(fp.getValue("Precio")));
+                    juego.setPegi(Integer.parseInt(fp.getValue("Pegi")));
+                } catch (NumberFormatException s){
+                    throw new ErrorCampoNumerico();
+                }
                 juego.setPlataforma(fp.getValue("Plataforma"));
                 juego.setGenero(fp.getValue("Genero"));
                 if (fp.getCondicion("Uso") == true) {
@@ -163,6 +176,8 @@ public class ModificarJuego extends VBox{
                 dialogoDescripcion.showAndWait();
             } catch (ErrorCampoVacio e){
                 new DialogError(e);
+            } catch (ErrorCampoNumerico f){
+                new DialogError(f);
             }
         }
     }

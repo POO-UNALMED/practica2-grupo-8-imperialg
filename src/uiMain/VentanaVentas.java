@@ -1,6 +1,11 @@
 package uiMain;
 
 import BaseDatos.Datos;
+import errores.tipo1.ErrorCampoNumerico;
+import errores.tipo1.ErrorCampoVacio;
+import errores.tipo1.ErrorComboVacio;
+import errores.tipo2.ErrorClienteNoseleccionado;
+import errores.tipo2.ErrorFacturaVacia;
 import gestorAplicacion.producto.Consola;
 import gestorAplicacion.producto.Juego;
 import gestorAplicacion.producto.Periferico;
@@ -127,15 +132,31 @@ public class VentanaVentas extends VBox{
         sendJuegos.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                int cantidad = Integer.parseInt(cantidad2.getText());
-                Juego producto = (Juego) comboJuegos.getSelectionModel().getSelectedItem();
-                Detalle detalle = new Detalle(producto,producto.getPrecio(),"Venta", cantidad);
-                carrito.add(detalle);
-                ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
-                lista.setItems(items);
-                lista.refresh();
-                datos.guardarDatos();
-                datos.guardarDatos1();
+                try {
+                    try {
+                        Integer.parseInt(cantidad2.getText());
+                    }catch (NumberFormatException e){
+                        throw new ErrorCampoNumerico();
+                    }
+                    int cantidad = Integer.parseInt(cantidad2.getText());
+
+                    try {
+                        Juego producto = (Juego) comboJuegos.getSelectionModel().getSelectedItem();
+                        Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta", cantidad);
+                        carrito.add(detalle);
+                        ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
+                        lista.setItems(items);
+                        lista.refresh();
+                        datos.guardarDatos();
+                        datos.guardarDatos1();
+                    }catch (NullPointerException e){
+                        throw new ErrorComboVacio();
+                    }
+                } catch (ErrorCampoNumerico e){
+                    new DialogError(e);
+                }catch (ErrorComboVacio f){
+                    new DialogError(f);
+                }
             }
         });
 
@@ -144,15 +165,31 @@ public class VentanaVentas extends VBox{
         sendConsolas.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                int cantidad = Integer.parseInt(cantidad1.getText());
-                Consola producto = (Consola) comboConsolas.getSelectionModel().getSelectedItem();
-                Detalle detalle = new Detalle(producto,producto.getPrecio(),"Venta", cantidad);
-                carrito.add(detalle);
-                ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
-                lista.setItems(items);
-                lista.refresh();
-                datos.guardarDatos();
-                datos.guardarDatos1();
+                try{
+                    try {
+                        Integer.parseInt(cantidad1.getText());
+                    }catch (NumberFormatException e){
+                        throw new ErrorCampoNumerico();
+                    }
+                    int cantidad = Integer.parseInt(cantidad1.getText());
+                    try {
+                        Consola producto = (Consola) comboConsolas.getSelectionModel().getSelectedItem();
+                        Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta", cantidad);
+                        carrito.add(detalle);
+                        ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
+                        lista.setItems(items);
+                        lista.refresh();
+                        datos.guardarDatos();
+                        datos.guardarDatos1();
+                    } catch (NullPointerException e){
+                        throw new ErrorComboVacio();
+                    }
+
+                }catch (ErrorCampoNumerico e){
+                    new DialogError(e);
+                }catch (ErrorComboVacio f){
+                    new DialogError(f);
+                }
             }
         });
 
@@ -161,42 +198,76 @@ public class VentanaVentas extends VBox{
         sendPerifericos.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                int cantidad = Integer.parseInt(cantidad3.getText());
-                Periferico producto = (Periferico) comboPerifericos.getSelectionModel().getSelectedItem();
-                Detalle detalle = new Detalle(producto,producto.getPrecio(),"Venta", cantidad);
-                carrito.add(detalle);
-                ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
-                lista.setItems(items);
-                lista.refresh();
-                datos.guardarDatos();
-                datos.guardarDatos1();
+                try{
+                    try {
+                        Integer.parseInt(cantidad3.getText());
+                    }catch (NumberFormatException e){
+                        throw new ErrorCampoNumerico();
+                    }
+                    try {
+                        int cantidad = Integer.parseInt(cantidad3.getText());
+                        Periferico producto = (Periferico) comboPerifericos.getSelectionModel().getSelectedItem();
+                        Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta", cantidad);
+                        carrito.add(detalle);
+                        ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
+                        lista.setItems(items);
+                        lista.refresh();
+                        datos.guardarDatos();
+                        datos.guardarDatos1();
+                    }catch (NullPointerException e){
+                        throw new ErrorComboVacio();
+                    }
+                }catch (ErrorComboVacio e){
+                    new DialogError(e);
+                }catch (ErrorCampoNumerico f){
+                    new DialogError(f);
+                }
             }
         });
         
         senServiciosTecnicos.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	
-                int cantidad = Integer.parseInt(unidades1.getText());
-                float precio =Float.parseFloat(precio1.getText());
-                String servicio = tiposerv1.getText();
-                
-                if(tip.getText().equals("Consola")) {
-                	Consola producto = new Consola(nombreprod1.getText(),precio);
-                	Detalle detalle = new Detalle(producto,precio,servicio, cantidad);
-                	carrito.add(detalle);
-                	ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
-                	 lista.setItems(items);
-                     lista.refresh();
-                }else if(tip.getText().equals("Periferico")) {
-                	Periferico producto = new Periferico(nombreprod1.getText(),precio);
-                	Detalle detalle = new Detalle(producto,precio,servicio, cantidad);
-                	carrito.add(detalle);
-                	ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
-                	 lista.setItems(items);
-                     lista.refresh();
-                     datos.guardarDatos();
-                     datos.guardarDatos1();
+                try {
+                    if (unidades1.getText().equals("")|| precio1.getText().equals("") || tiposerv1.getText().equals("") || nombreprod1.getText().equals("")) {
+                        throw new ErrorCampoVacio();}
+                    try {
+                        Integer.parseInt(unidades1.getText());
+                        Float.parseFloat(precio1.getText());
+                    }
+                    catch (NumberFormatException e) {
+                        throw new ErrorCampoNumerico();
+                    }
+
+
+                    String servicio = tiposerv1.getText();
+                    int cantidad = Integer.parseInt(unidades1.getText());
+                    float precio = Float.parseFloat(precio1.getText());
+                    if (tip.getText().equals("Consola")) {
+                        Consola producto = new Consola(nombreprod1.getText(), precio);
+                        Detalle detalle = new Detalle(producto, precio, servicio, cantidad);
+                        carrito.add(detalle);
+                        ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
+                        lista.setItems(items);
+                        lista.refresh();
+                    } else if (tip.getText().equals("Periferico")) {
+                        Periferico producto = new Periferico(nombreprod1.getText(), precio);
+                        Detalle detalle = new Detalle(producto, precio, servicio, cantidad);
+                        carrito.add(detalle);
+                        ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
+                        lista.setItems(items);
+                        lista.refresh();
+                        datos.guardarDatos();
+                        datos.guardarDatos1();
+                    } else if (tip.getText().equals("")) {
+                        throw new ErrorComboVacio();
+                    }
+                }catch (ErrorComboVacio s){
+                    new DialogError(s);
+                }catch(ErrorCampoVacio e){
+                    new DialogError(e);
+                }catch (ErrorCampoNumerico f){
+                    new DialogError(f);
                 }
 
                
@@ -253,25 +324,36 @@ public class VentanaVentas extends VBox{
             generarF.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Cliente cliente = (Cliente) comboClientes.getSelectionModel().getSelectedItem();
-                Factura factura = new Factura(cliente, carrito);
-                for(Detalle prod:carrito) {
-                	if(prod.getProducto() instanceof Consola) {
-                		cliente.agregarPunto(5);
-                	}else if(prod.getProducto() instanceof Periferico) {
-                		cliente.agregarPunto();
-                	}else if(prod.getProducto() instanceof Juego) {
-                		cliente.agregarPunto();
-                	}
+                try {
+                    Cliente cliente = (Cliente) comboClientes.getSelectionModel().getSelectedItem();
+                    if (cliente == null){
+                        throw new ErrorClienteNoseleccionado();
+                    }
+                    if (carrito.size()==0){
+                        throw new ErrorFacturaVacia();
+                    }
+                    Factura factura = new Factura(cliente, carrito);
+                    for (Detalle prod : carrito) {
+                        if (prod.getProducto() instanceof Consola) {
+                            cliente.agregarPunto(5);
+                        } else if (prod.getProducto() instanceof Periferico) {
+                            cliente.agregarPunto();
+                        } else if (prod.getProducto() instanceof Juego) {
+                            cliente.agregarPunto();
+                        }
+                    }
+                    Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
+                    dialogoInfo.setTitle("TRANSACCION EXITOSA");
+                    dialogoInfo.setHeaderText("Confirmacion de transaccion.");
+                    dialogoInfo.setContentText("La transaccion se ha realizado exitosamente.");
+                    dialogoInfo.showAndWait();
+                    datos.guardarDatos();
+                    datos.guardarDatos1();
+                } catch (ErrorClienteNoseleccionado e){
+                    new DialogError(e);
+                } catch (ErrorFacturaVacia f){
+                    new DialogError(f);
                 }
-                Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
-                dialogoInfo.setTitle("TRANSACCION EXITOSA");
-                dialogoInfo.setHeaderText("Confirmacion de transaccion.");
-                dialogoInfo.setContentText("La transaccion se ha realizado exitosamente.");
-                dialogoInfo.showAndWait();
-                datos.guardarDatos();
-                datos.guardarDatos1();
-
             }
         });
 
