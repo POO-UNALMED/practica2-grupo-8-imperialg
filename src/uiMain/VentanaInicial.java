@@ -47,11 +47,10 @@ import javafx.scene.control.TextArea;
 
 public class VentanaInicial extends Application {
 	
-	
 	// Creacion de la stage y la escena para la ventana de inicio.
 	public static Stage window = new Stage(); 
 	public static Scene escena;
-	public void start(Stage myStage) throws Exception { 
+	public void start(Stage myStage) throws Exception {		 
 		window = myStage;		
 		MenuBar barramenu = new MenuBar();
 		Menu inicio = new Menu("Inicio");
@@ -295,8 +294,10 @@ public class VentanaInicial extends Application {
 	    datos.leerDatos1();
 	    datos.leerDatos();
 	    datos.leerDatosFacturas();
-	    datos.guardarDatos();
-        datos.guardarDatos1();
         launch(args);
+        datos.guardarDatos();
+        datos.guardarDatos1();
+        
+        Datos.listaFacturas.remove(Datos.listaFacturas.size()-1);
     }
 }

@@ -28,6 +28,7 @@ import javafx.scene.layout.VBox;
 import java.util.ArrayList;
 
 public class VentanaVentas extends VBox{
+	Datos datos = new Datos();
     public ArrayList<Detalle> carrito;
     public VBox defecto;
     public VentanaVentas(ArrayList<Detalle> carrito) {
@@ -132,6 +133,8 @@ public class VentanaVentas extends VBox{
                 ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
                 lista.setItems(items);
                 lista.refresh();
+                datos.guardarDatos();
+                datos.guardarDatos1();
             }
         });
 
@@ -147,6 +150,8 @@ public class VentanaVentas extends VBox{
                 ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
                 lista.setItems(items);
                 lista.refresh();
+                datos.guardarDatos();
+                datos.guardarDatos1();
             }
         });
 
@@ -162,6 +167,8 @@ public class VentanaVentas extends VBox{
                 ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
                 lista.setItems(items);
                 lista.refresh();
+                datos.guardarDatos();
+                datos.guardarDatos1();
             }
         });
         
@@ -187,6 +194,8 @@ public class VentanaVentas extends VBox{
                 	ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
                 	 lista.setItems(items);
                      lista.refresh();
+                     datos.guardarDatos();
+                     datos.guardarDatos1();
                 }
 
                
@@ -205,6 +214,8 @@ public class VentanaVentas extends VBox{
                         ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
                         lista.setItems(items);
                         lista.refresh();
+                        datos.guardarDatos();
+                        datos.guardarDatos1();
                     }
                 }
             }
@@ -219,6 +230,8 @@ public class VentanaVentas extends VBox{
                 ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
                 lista.setItems(items);
                 lista.refresh();
+                datos.guardarDatos();
+                datos.guardarDatos1();
             }
         });
 
@@ -247,7 +260,8 @@ public class VentanaVentas extends VBox{
                 dialogoInfo.setHeaderText("Confirmacion de transaccion.");
                 dialogoInfo.setContentText("La transaccion se ha realizado exitosamente.");
                 dialogoInfo.showAndWait();
-
+                datos.guardarDatos();
+                datos.guardarDatos1();
 
             }
         });

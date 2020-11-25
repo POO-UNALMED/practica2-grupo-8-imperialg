@@ -25,6 +25,7 @@ import java.util.ArrayList;
 
 
 public class VentanaConsultas {
+	Datos datos = new Datos();
 	VBox consultas = new VBox(15);
 	TextField textconsulta = new TextField();
 	GridPane opciones;
@@ -492,7 +493,6 @@ public class VentanaConsultas {
 		public void handle(ActionEvent event) {
 			submenu.getChildren().set(2, lscons);
 			
-			
 		}
 	}
 	
@@ -506,7 +506,7 @@ public class VentanaConsultas {
 	
 	class BotonMostrarFacturasRegistradas implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
-			submenu.getChildren().set(2, lsfact);
+			submenu.getChildren().set(2, lsfact);	
 			
 		}
 	}
@@ -520,6 +520,8 @@ public class VentanaConsultas {
 	class BotonSalir implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
 			VentanaInicial.window.setScene(new VentanaImperial().getEscena());
+			datos.guardarDatos();
+	        datos.guardarDatos1();
 		}
 	}
 	
@@ -531,14 +533,19 @@ public class VentanaConsultas {
     		dialogoDescripcion.setHeaderText("Usted acaba de redimir los puntos del cliente "+cl.getNombre());
     		dialogoDescripcion.setContentText("Proceso Exitoso.");
     		dialogoDescripcion.showAndWait();
+    		
     		VentanaInicial.window.setScene(new VentanaImperial().getEscena());
-			
+    		datos.guardarDatos();
+            datos.guardarDatos1();
 		}
 	}
 	
 	class BotonNoRedimir implements EventHandler<ActionEvent>{
 		public void handle(ActionEvent event) {
+			
 			VentanaInicial.window.setScene(new VentanaImperial().getEscena());
+			datos.guardarDatos();
+	        datos.guardarDatos1();
 		}
 	}
 
