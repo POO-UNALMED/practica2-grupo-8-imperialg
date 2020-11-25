@@ -36,22 +36,40 @@ public class FieldPanel extends Pane {
 
         //Campo nombre:
 
-        for (int i = 0; i < criterios.length; i++) {
+        if (habilitado == null) {
+            for (int i = 0; i < criterios.length; i++) {
 
-            titulo = new Label(criterios[i]);
-            campo = new TextField(valores[i]);
+                titulo = new Label(criterios[i]);
+                campo = new TextField(valores[i]);
 
-            System.out.println(criterios[i]);
-            this.hashMap.put(criterios[i], campo);
 
-            this.formularioingreso.add(titulo, 0, i+1);
-            this.formularioingreso.add(campo, 1, i+1);
+                this.hashMap.put(criterios[i], campo);
 
+                this.formularioingreso.add(titulo, 0, i + 1);
+                this.formularioingreso.add(campo, 1, i + 1);
+
+            }
+
+        } else if(habilitado != null){
+            for (int i = 0; i < criterios.length; i++) {
+
+                titulo = new Label(criterios[i]);
+                campo = new TextField();
+                if (habilitado[i] == true) {
+                    campo.setEditable(false);
+                }
+
+                this.hashMap.put(criterios[i], campo);
+
+                this.formularioingreso.add(titulo, 0, i + 1);
+                this.formularioingreso.add(campo, 1, i + 1);
+            }
         }
+
         this.getChildren().add(formularioingreso);
     }
 
-    public FieldPanel(String tituloCriterios, String[] criterios, String tituloValores, boolean[] habilitado){
+    public FieldPanel(String tituloCriterios, String[] criterios, String tituloValores, boolean[] habilitado) {
 
         //Parametros del formulario:
 
@@ -62,27 +80,45 @@ public class FieldPanel extends Pane {
 
         //Componentes del formulario:
 
-        this.formularioingreso.add(new Label(tituloCriterios), 0,0);
-        this.formularioingreso.add(new Label(tituloValores),1,0);
+
+        this.formularioingreso.add(new Label(tituloCriterios), 0, 0);
+        this.formularioingreso.add(new Label(tituloValores), 1, 0);
 
         Label titulo;
         TextField campo;
 
         //Campo nombre:
 
-        for (int i = 0; i < criterios.length; i++) {
+        if (habilitado == null) {
+            for (int i = 0; i < criterios.length; i++) {
 
-            titulo = new Label(criterios[i]);
-            campo = new TextField();
+                titulo = new Label(criterios[i]);
+                campo = new TextField();
 
-            this.hashMap.put(criterios[i], campo);
 
-            this.formularioingreso.add(titulo, 0, i+1);
-            this.formularioingreso.add(campo, 1, i+1);
+                this.hashMap.put(criterios[i], campo);
+
+                this.formularioingreso.add(titulo, 0, i + 1);
+                this.formularioingreso.add(campo, 1, i + 1);
+
+            }
+        } else if (habilitado != null) {
+            for (int i = 0; i < criterios.length; i++) {
+
+                titulo = new Label(criterios[i]);
+                campo = new TextField();
+                if (habilitado[i] == true) {
+                    campo.setEditable(false);
+                }
+
+                this.hashMap.put(criterios[i], campo);
+
+                this.formularioingreso.add(titulo, 0, i + 1);
+                this.formularioingreso.add(campo, 1, i + 1);
+            }
 
         }
         this.getChildren().add(formularioingreso);
-
     }
 
     public FieldPanel(String tituloCriterios, String[] criterios, String tituloValores, String[] valores, boolean[] habilitado, String[] booleanos){
@@ -104,17 +140,33 @@ public class FieldPanel extends Pane {
 
         //Campo nombre:
 
-        for (int i = 0; i < criterios.length; i++) {
+        if (habilitado == null) {
+            for (int i = 0; i < criterios.length; i++) {
 
-            titulo = new Label(criterios[i]);
-            campo = new TextField(valores[i]);
+                titulo = new Label(criterios[i]);
+                campo = new TextField(valores[i]);
 
-            System.out.println(criterios[i]);
-            this.hashMap.put(criterios[i], campo);
 
-            this.formularioingreso.add(titulo, 0, i+1);
-            this.formularioingreso.add(campo, 1, i+1);
+                this.hashMap.put(criterios[i], campo);
 
+                this.formularioingreso.add(titulo, 0, i + 1);
+                this.formularioingreso.add(campo, 1, i + 1);
+
+            }
+        } else if(habilitado != null){
+            for (int i = 0; i < criterios.length; i++) {
+
+                titulo = new Label(criterios[i]);
+                campo = new TextField();
+                if (habilitado[i] == true) {
+                    campo.setEditable(false);
+                }
+
+                this.hashMap.put(criterios[i], campo);
+
+                this.formularioingreso.add(titulo, 0, i + 1);
+                this.formularioingreso.add(campo, 1, i + 1);
+            }
         }
 
         for (int i = criterios.length; i < (booleanos.length + criterios.length) ; i++) {
@@ -153,16 +205,33 @@ public class FieldPanel extends Pane {
 
         //Campo nombre:
 
-        for (int i = 0; i < criterios.length; i++) {
+        if (habilitado == null) {
+            for (int i = 0; i < criterios.length; i++) {
 
-            titulo = new Label(criterios[i]);
-            campo = new TextField();
+                titulo = new Label(criterios[i]);
+                campo = new TextField();
 
-            this.hashMap.put(criterios[i], campo);
 
-            this.formularioingreso.add(titulo, 0, i+1);
-            this.formularioingreso.add(campo, 1, i+1);
+                this.hashMap.put(criterios[i], campo);
 
+                this.formularioingreso.add(titulo, 0, i + 1);
+                this.formularioingreso.add(campo, 1, i + 1);
+
+            }
+        } else if(habilitado != null){
+            for (int i = 0; i < criterios.length; i++) {
+
+                titulo = new Label(criterios[i]);
+                campo = new TextField();
+                if (habilitado[i] == true) {
+                    campo.setEditable(false);
+                }
+
+                this.hashMap.put(criterios[i], campo);
+
+                this.formularioingreso.add(titulo, 0, i + 1);
+                this.formularioingreso.add(campo, 1, i + 1);
+            }
         }
 
         for (int i = criterios.length; i < (booleanos.length + criterios.length) ; i++) {
@@ -179,8 +248,8 @@ public class FieldPanel extends Pane {
 
         }
         this.getChildren().add(formularioingreso);
-
     }
+
     public String getValue(String criterio) throws ErrorCampoVacio{
         if (hashMap.get(criterio).getText().equals("")){
             throw new ErrorCampoVacio();

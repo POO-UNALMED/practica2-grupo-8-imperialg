@@ -6,6 +6,7 @@ import errores.tipo1.ErrorCampoVacio;
 import errores.tipo1.ErrorComboVacio;
 import errores.tipo2.ErrorClienteNoseleccionado;
 import errores.tipo2.ErrorFacturaVacia;
+import errores.tipo2.UnidadesEnteras;
 import gestorAplicacion.producto.Consola;
 import gestorAplicacion.producto.Juego;
 import gestorAplicacion.producto.Periferico;
@@ -133,29 +134,31 @@ public class VentanaVentas extends VBox{
             @Override
             public void handle(ActionEvent event) {
                 try {
+                    Juego producto = (Juego) comboJuegos.getSelectionModel().getSelectedItem();
+                    if (producto == null){
+                        throw new ErrorComboVacio();
+                    }
                     try {
-                        Integer.parseInt(cantidad2.getText());
+                        if(Float.parseFloat(cantidad2.getText()) % 1 != 0){
+                            throw new UnidadesEnteras();
+                        }
                     }catch (NumberFormatException e){
                         throw new ErrorCampoNumerico();
                     }
                     int cantidad = Integer.parseInt(cantidad2.getText());
-
-                    try {
-                        Juego producto = (Juego) comboJuegos.getSelectionModel().getSelectedItem();
-                        Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta", cantidad);
-                        carrito.add(detalle);
-                        ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
-                        lista.setItems(items);
-                        lista.refresh();
-                        datos.guardarDatos();
-                        datos.guardarDatos1();
-                    }catch (NullPointerException e){
-                        throw new ErrorComboVacio();
-                    }
-                } catch (ErrorCampoNumerico e){
+                    Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta", cantidad);
+                    carrito.add(detalle);
+                    ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
+                    lista.setItems(items);
+                    lista.refresh();
+                    datos.guardarDatos();
+                    datos.guardarDatos1();
+                } catch (ErrorComboVacio e){
                     new DialogError(e);
-                }catch (ErrorComboVacio f){
+                }catch (ErrorCampoNumerico f){
                     new DialogError(f);
+                }catch (UnidadesEnteras g){
+                    new DialogError(g);
                 }
             }
         });
@@ -166,64 +169,65 @@ public class VentanaVentas extends VBox{
             @Override
             public void handle(ActionEvent event) {
                 try{
-                    try {
-                        Integer.parseInt(cantidad1.getText());
+                    Consola producto = (Consola) comboConsolas.getSelectionModel().getSelectedItem();
+                    if (producto == null){
+                        throw new ErrorComboVacio();
+                    }try {
+                    if(Float.parseFloat(cantidad1.getText()) % 1 != 0){
+                        throw new UnidadesEnteras();
+                    }
                     }catch (NumberFormatException e){
                         throw new ErrorCampoNumerico();
                     }
+                    Integer.parseInt(cantidad1.getText());
                     int cantidad = Integer.parseInt(cantidad1.getText());
-                    try {
-                        Consola producto = (Consola) comboConsolas.getSelectionModel().getSelectedItem();
-                        Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta", cantidad);
-                        carrito.add(detalle);
-                        ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
-                        lista.setItems(items);
-                        lista.refresh();
-                        datos.guardarDatos();
-                        datos.guardarDatos1();
-                    } catch (NullPointerException e){
-                        throw new ErrorComboVacio();
-                    }
-
-                }catch (ErrorCampoNumerico e){
+                    Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta", cantidad);
+                    carrito.add(detalle);
+                    ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
+                    lista.setItems(items);
+                    lista.refresh();
+                    datos.guardarDatos();
+                    datos.guardarDatos1();
+                }catch (ErrorComboVacio e){
                     new DialogError(e);
-                }catch (ErrorComboVacio f){
+                }catch (ErrorCampoNumerico f){
                     new DialogError(f);
+                }catch (UnidadesEnteras g){
+                    new DialogError(g);
                 }
-            }
-        });
-
+        }});
         //Anadir perifericos al carrito:
 
         sendPerifericos.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 try{
-                    try {
-                        Integer.parseInt(cantidad3.getText());
+                    Periferico producto = (Periferico) comboPerifericos.getSelectionModel().getSelectedItem();
+                    if (producto == null){
+                        throw new ErrorComboVacio();
+                    }try {
+                        if(Float.parseFloat(cantidad3.getText()) % 1 != 0){
+                            throw new UnidadesEnteras();
+                        }
                     }catch (NumberFormatException e){
                         throw new ErrorCampoNumerico();
                     }
-                    try {
-                        int cantidad = Integer.parseInt(cantidad3.getText());
-                        Periferico producto = (Periferico) comboPerifericos.getSelectionModel().getSelectedItem();
-                        Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta", cantidad);
-                        carrito.add(detalle);
-                        ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
-                        lista.setItems(items);
-                        lista.refresh();
-                        datos.guardarDatos();
-                        datos.guardarDatos1();
-                    }catch (NullPointerException e){
-                        throw new ErrorComboVacio();
-                    }
+                    int cantidad = Integer.parseInt(cantidad3.getText());
+                    Detalle detalle = new Detalle(producto, producto.getPrecio(), "Venta", cantidad);
+                    carrito.add(detalle);
+                    ObservableList<Detalle> items = FXCollections.observableArrayList(carrito);
+                    lista.setItems(items);
+                    lista.refresh();
+                    datos.guardarDatos();
+                    datos.guardarDatos1();
                 }catch (ErrorComboVacio e){
                     new DialogError(e);
                 }catch (ErrorCampoNumerico f){
                     new DialogError(f);
+                }catch (UnidadesEnteras g){
+                    new DialogError(g);
                 }
-            }
-        });
+        }});
         
         senServiciosTecnicos.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -232,14 +236,15 @@ public class VentanaVentas extends VBox{
                     if (unidades1.getText().equals("")|| precio1.getText().equals("") || tiposerv1.getText().equals("") || nombreprod1.getText().equals("")) {
                         throw new ErrorCampoVacio();}
                     try {
+                        if(Float.parseFloat(unidades1.getText()) % 1 != 0){
+                            throw new UnidadesEnteras();
+                        }
                         Integer.parseInt(unidades1.getText());
                         Float.parseFloat(precio1.getText());
                     }
                     catch (NumberFormatException e) {
                         throw new ErrorCampoNumerico();
                     }
-
-
                     String servicio = tiposerv1.getText();
                     int cantidad = Integer.parseInt(unidades1.getText());
                     float precio = Float.parseFloat(precio1.getText());
@@ -268,6 +273,8 @@ public class VentanaVentas extends VBox{
                     new DialogError(e);
                 }catch (ErrorCampoNumerico f){
                     new DialogError(f);
+                }catch (UnidadesEnteras g){
+                    new DialogError(g);
                 }
 
                
