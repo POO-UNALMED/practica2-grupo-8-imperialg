@@ -181,15 +181,9 @@ public class FieldPanel extends Pane {
         this.getChildren().add(formularioingreso);
 
     }
-    public String getValue(String criterio){
-        try{
-            if (hashMap.get(criterio).getText().equals("")){
-                throw new ErrorCampoVacio();
-            }
-        } catch (ErrorCampoVacio e){
-            if (DialogError.verificador == false){
-                new DialogError(e);
-            }
+    public String getValue(String criterio) throws ErrorCampoVacio{
+        if (hashMap.get(criterio).getText().equals("")){
+            throw new ErrorCampoVacio();
         }
         return hashMap.get(criterio).getText();
     }

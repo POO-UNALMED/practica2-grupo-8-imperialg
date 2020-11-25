@@ -1,6 +1,7 @@
 package uiMain;
 
 import BaseDatos.Datos;
+import errores.tipo1.ErrorCampoVacio;
 import gestorAplicacion.producto.Consola;
 import gestorAplicacion.producto.Juego;
 import gestorAplicacion.producto.Periferico;
@@ -107,16 +108,20 @@ public class ModificarPeriferico extends VBox {
     class BotonModificarPeriferico implements  EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event) {
-            periferico.setNombre(fp.getValue("Nombre"));
-            periferico.setPrecio(Float.parseFloat(fp.getValue("Precio")));
-            if(fp.getCondicion("Uso") == true) {
-                periferico.setUso(true);
-            }else if(fp.getCondicion("Uso") == false) {
-                periferico.setUso(false);
+            try{
+                periferico.setNombre(fp.getValue("Nombre"));
+                periferico.setPrecio(Float.parseFloat(fp.getValue("Precio")));
+                if (fp.getCondicion("Uso") == true) {
+                    periferico.setUso(true);
+                } else if (fp.getCondicion("Uso") == false) {
+                    periferico.setUso(false);
+                }
+                listaperif.getItems().clear();
+                listaperif.setItems(FXCollections.observableArrayList(Datos.listaPerifericos));
+                fp.refrescar();
+            }catch (ErrorCampoVacio e){
+                new DialogError(e);
             }
-            listaperif.getItems().clear();
-            listaperif.setItems(FXCollections.observableArrayList(Datos.listaPerifericos));
-            fp.refrescar();
         }
 
     }
@@ -135,27 +140,31 @@ public class ModificarPeriferico extends VBox {
 
     class BotonIngresarPeriferico implements EventHandler<ActionEvent>{
         public void handle(ActionEvent event) {
-            Periferico periferico = new Periferico();
-            periferico.setNombre(fp.getValue("Nombre"));
-            periferico.setPrecio(Float.parseFloat(fp.getValue("Precio")));
-            if(fp.getCondicion("Uso") == true) {
-                periferico.setUso(true);
-            }else if(fp.getCondicion("Uso") == false) {
-                periferico.setUso(false);
+            try {
+                Periferico periferico = new Periferico();
+                periferico.setNombre(fp.getValue("Nombre"));
+                periferico.setPrecio(Float.parseFloat(fp.getValue("Precio")));
+                if (fp.getCondicion("Uso") == true) {
+                    periferico.setUso(true);
+                } else if (fp.getCondicion("Uso") == false) {
+                    periferico.setUso(false);
+                }
+                periferico.setPlataforma(fp.getValue("Plataforma"));
+                Datos.listaPerifericos.add(periferico);
+                listaperif.getItems().clear();
+                listaperif.setItems(FXCollections.observableArrayList(Datos.listaPerifericos));
+
+                //Verificar que el periferico esta en la base de datos:
+
+                // Dialogo de confirmacion despues de agregado el periferico a la base de datos de la tienda.
+                Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
+                dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
+                dialogoDescripcion.setHeaderText("Usted acaba de agregar un nuevo Periferico a la base de datos de la tienda.");
+                dialogoDescripcion.setContentText("Proceso Exitoso.");
+                dialogoDescripcion.showAndWait();
+            }catch (ErrorCampoVacio e){
+                new DialogError(e);
             }
-            periferico.setPlataforma(fp.getValue("Plataforma"));
-            Datos.listaPerifericos.add(periferico);
-            listaperif.getItems().clear();
-            listaperif.setItems(FXCollections.observableArrayList(Datos.listaPerifericos));
-
-            //Verificar que el periferico esta en la base de datos:
-
-            // Dialogo de confirmacion despues de agregado el periferico a la base de datos de la tienda.
-            Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
-            dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
-            dialogoDescripcion.setHeaderText("Usted acaba de agregar un nuevo Periferico a la base de datos de la tienda.");
-            dialogoDescripcion.setContentText("Proceso Exitoso.");
-            dialogoDescripcion.showAndWait();
 
         }
     }

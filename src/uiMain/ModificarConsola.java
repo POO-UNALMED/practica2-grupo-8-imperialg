@@ -1,6 +1,7 @@
 package uiMain;
 
 import BaseDatos.Datos;
+import errores.tipo1.ErrorCampoVacio;
 import gestorAplicacion.producto.Consola;
 import gestorAplicacion.producto.Juego;
 import gestorAplicacion.transacciones.Cliente;
@@ -117,19 +118,25 @@ public class ModificarConsola extends VBox{
     class BotonModificarConsola implements  EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event) {
-            consola.setNombre(fp.getValue("Nombre"));
-            consola.setColor(fp.getValue("Color"));
-            consola.setAlmacenamiento(Integer.parseInt(fp.getValue("Almacenamiento")));
-            consola.setVersion(fp.getValue("Version"));
-            consola.setPrecio(Float.parseFloat(fp.getValue("Precio")));
-            if(fp.getCondicion("Uso") == true) {
-                consola.setUso(true);
-            }else if(fp.getCondicion("Uso") == false) {
-                consola.setUso(false);
+            try {
+                consola.setNombre(fp.getValue("Nombre"));
+                consola.setColor(fp.getValue("Color"));
+                consola.setAlmacenamiento(Integer.parseInt(fp.getValue("Almacenamiento")));
+                consola.setVersion(fp.getValue("Version"));
+                consola.setPrecio(Float.parseFloat(fp.getValue("Precio")));
+                if(fp.getCondicion("Uso") == true) {
+                    consola.setUso(true);
+                }else if(fp.getCondicion("Uso") == false) {
+                    consola.setUso(false);
+                }
+                listamcons.getItems().clear();
+                listamcons.setItems(FXCollections.observableArrayList(Datos.listaConsolas));
+                fp.refrescar();
+            } catch (ErrorCampoVacio e){
+                new DialogError(e);
             }
-            listamcons.getItems().clear();
-            listamcons.setItems(FXCollections.observableArrayList(Datos.listaConsolas));
-            fp.refrescar();
+
+
 
         }
     }
@@ -137,30 +144,33 @@ public class ModificarConsola extends VBox{
     class BotonAgregarConsola implements  EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event) {
-            Consola consola = new Consola();
-            consola.setNombre(fp.getValue("Nombre"));
-            consola.setColor(fp.getValue("Color"));
-            consola.setAlmacenamiento(Integer.parseInt(fp.getValue("Almacenamiento")));
-            consola.setVersion(fp.getValue("Version"));
-            consola.setPrecio(Float.parseFloat(fp.getValue("Precio")));
-            if(fp.getCondicion("Uso") == true) {
-                consola.setUso(true);
-            }else if(fp.getCondicion("Uso") == false) {
-                consola.setUso(false);
+            try {
+                Consola consola = new Consola();
+                consola.setNombre(fp.getValue("Nombre"));
+                consola.setColor(fp.getValue("Color"));
+                consola.setAlmacenamiento(Integer.parseInt(fp.getValue("Almacenamiento")));
+                consola.setVersion(fp.getValue("Version"));
+                consola.setPrecio(Float.parseFloat(fp.getValue("Precio")));
+                if (fp.getCondicion("Uso") == true) {
+                    consola.setUso(true);
+                } else if (fp.getCondicion("Uso") == false) {
+                    consola.setUso(false);
+                }
+                Datos.listaConsolas.add(consola);
+                Consola.consolasRegistradas();
+                listamcons.getItems().clear();
+                listamcons.setItems(FXCollections.observableArrayList(Datos.listaConsolas));
+
+                //Dialogo de confirmacion despues de agregada la Consola a la base de datos de la tienda.
+                Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
+                dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
+                dialogoDescripcion.setHeaderText("Usted acaba de agregar una nueva Consola a la base de datos de la tienda.");
+                dialogoDescripcion.setContentText("Proceso Exitoso.");
+                dialogoDescripcion.showAndWait();
+                fp.refrescar();
+            }catch (ErrorCampoVacio e){
+                new DialogError(e);
             }
-            Datos.listaConsolas.add(consola);
-            Consola.consolasRegistradas();
-            listamcons.getItems().clear();
-            listamcons.setItems(FXCollections.observableArrayList(Datos.listaConsolas));
-
-            //Dialogo de confirmacion despues de agregada la Consola a la base de datos de la tienda.
-            Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
-            dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
-            dialogoDescripcion.setHeaderText("Usted acaba de agregar una nueva Consola a la base de datos de la tienda.");
-            dialogoDescripcion.setContentText("Proceso Exitoso.");
-            dialogoDescripcion.showAndWait();
-            fp.refrescar();
-
         }
     }
 

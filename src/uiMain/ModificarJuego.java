@@ -1,6 +1,7 @@
 package uiMain;
 
 import BaseDatos.Datos;
+import errores.tipo1.ErrorCampoVacio;
 import gestorAplicacion.producto.Consola;
 import gestorAplicacion.producto.Juego;
 import gestorAplicacion.transacciones.Cliente;
@@ -114,47 +115,55 @@ public class ModificarJuego extends VBox{
     class BotonModificarJuego implements  EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event) {
-            juego.setNombre(fp.getValue("Nombre"));
-            juego.setPrecio(Float.parseFloat(fp.getValue("Precio")));
-            juego.setPegi(Integer.parseInt(fp.getValue("Pegi")));
-            juego.setPlataforma(fp.getValue("Plataforma"));
-            juego.setGenero(fp.getValue("Genero"));
-            if(fp.getCondicion("Uso") == true) {
-                juego.setUso(true);
-            }else if(fp.getCondicion("Uso") == false) {
-                juego.setUso(false);
+            try{
+                juego.setNombre(fp.getValue("Nombre"));
+                juego.setPrecio(Float.parseFloat(fp.getValue("Precio")));
+                juego.setPegi(Integer.parseInt(fp.getValue("Pegi")));
+                juego.setPlataforma(fp.getValue("Plataforma"));
+                juego.setGenero(fp.getValue("Genero"));
+                if (fp.getCondicion("Uso") == true) {
+                    juego.setUso(true);
+                } else if (fp.getCondicion("Uso") == false) {
+                    juego.setUso(false);
+                }
+                listamj.getItems().clear();
+                listamj.setItems(FXCollections.observableArrayList(Datos.listaJuegos));
+                fp.refrescar();
+            }catch (ErrorCampoVacio e){
+                new DialogError(e);
             }
-            listamj.getItems().clear();
-            listamj.setItems(FXCollections.observableArrayList(Datos.listaJuegos));
-            fp.refrescar();
         }
         }
     //Agregar Juegos a la base de datos:
     class BotonAnadirJuego implements  EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent event) {
-            Juego juego = new Juego();
-            juego.setNombre(fp.getValue("Nombre"));
-            juego.setPrecio(Float.parseFloat(fp.getValue("Precio")));
-            juego.setPegi(Integer.parseInt(fp.getValue("Pegi")));
-            juego.setPlataforma(fp.getValue("Plataforma"));
-            juego.setGenero(fp.getValue("Genero"));
-            if(fp.getCondicion("Uso") == true) {
-                juego.setUso(true);
-            }else if(fp.getCondicion("Uso") == false) {
-                juego.setUso(false);
-            }
-            Datos.listaJuegos.add(juego);
-            listamj.getItems().clear();
-            listamj.setItems(FXCollections.observableArrayList(Datos.listaJuegos));
-            fp.refrescar();
+            try {
+                Juego juego = new Juego();
+                juego.setNombre(fp.getValue("Nombre"));
+                juego.setPrecio(Float.parseFloat(fp.getValue("Precio")));
+                juego.setPegi(Integer.parseInt(fp.getValue("Pegi")));
+                juego.setPlataforma(fp.getValue("Plataforma"));
+                juego.setGenero(fp.getValue("Genero"));
+                if (fp.getCondicion("Uso") == true) {
+                    juego.setUso(true);
+                } else if (fp.getCondicion("Uso") == false) {
+                    juego.setUso(false);
+                }
+                Datos.listaJuegos.add(juego);
+                listamj.getItems().clear();
+                listamj.setItems(FXCollections.observableArrayList(Datos.listaJuegos));
+                fp.refrescar();
 
-            // Dialogo de confirmacion despues de agregado el juego a la base de datos de la tienda.
-            Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
-            dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
-            dialogoDescripcion.setHeaderText("Usted acaba de agregar un nuevo Juego a la base de datos de la tienda.");
-            dialogoDescripcion.setContentText("Proceso Exitoso.");
-            dialogoDescripcion.showAndWait();
+                // Dialogo de confirmacion despues de agregado el juego a la base de datos de la tienda.
+                Alert dialogoDescripcion = new Alert(Alert.AlertType.INFORMATION);
+                dialogoDescripcion.setTitle(" MENSAJE DE CONFIRMACION");
+                dialogoDescripcion.setHeaderText("Usted acaba de agregar un nuevo Juego a la base de datos de la tienda.");
+                dialogoDescripcion.setContentText("Proceso Exitoso.");
+                dialogoDescripcion.showAndWait();
+            } catch (ErrorCampoVacio e){
+                new DialogError(e);
+            }
         }
     }
 

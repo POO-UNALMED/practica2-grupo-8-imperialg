@@ -1,7 +1,7 @@
 package errores.tipo1;
 
-public class ErrorCampoNumerico {
+public class ErrorCampoNumerico extends ErrorTipo1{
     public ErrorCampoNumerico(){
-        //super("Error tipo numerico");
+        super("Campo numerico");
     }
 }
