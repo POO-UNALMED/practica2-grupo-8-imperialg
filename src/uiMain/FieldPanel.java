@@ -1,6 +1,6 @@
 package uiMain;
 
-import excepciones.c1.ExcepcionCampoVacio;
+import errores.tipo1.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
@@ -184,11 +184,11 @@ public class FieldPanel extends Pane {
     public String getValue(String criterio){
         try{
             if (hashMap.get(criterio).getText().equals("")){
-                throw new ExcepcionCampoVacio();
+                throw new ErrorCampoVacio();
             }
-        }catch (ExcepcionCampoVacio e){
+        } catch (ErrorCampoVacio e){
             if (DialogError.verificador == false){
-                //Que ponga el dialogbox
+                new DialogError(e);
             }
         }
         return hashMap.get(criterio).getText();

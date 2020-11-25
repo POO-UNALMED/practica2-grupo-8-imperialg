@@ -49,7 +49,7 @@ public class ModificarCliente extends VBox {
         ///Formulario:
 
 
-        String[] criterios = new String[] {"Nombre", "Cedula", "Celular", "Email"};
+        String[] criterios = new String[] {"Nombre",  "Email", "Cedula", "Celular"};
         fp = new FieldPanel("Datos Cliente", criterios, "Datos",null);
 
         //Botones modificar y cancelar :
