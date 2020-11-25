@@ -50,7 +50,7 @@ public class VentanaInicial extends Application {
 	// Creacion de la stage y la escena para la ventana de inicio.
 	public static Stage window = new Stage(); 
 	public static Scene escena;
-	public void start(Stage myStage) throws Exception {		 
+	public void start(Stage myStage) throws Exception {		
 		window = myStage;		
 		MenuBar barramenu = new MenuBar();
 		Menu inicio = new Menu("Inicio");
