@@ -95,56 +95,13 @@ public class Cliente implements Serializable {
         return listaClientes;
     }
     
-    // Metodo para seleccionar al cliente con el indice i de listaClientes.
-    public static Cliente seleccionarCliente(int i){
-        Cliente cliente = Datos.listaClientes.get(i);
-        return cliente;
-    }
-    
-    // Metodo para seleccionar el ultimo cliente de la lista, es decir, el ultimo que fue registrado en la tienda.
-    public static Cliente seleccionarUltimoCliente(){
-        Cliente cliente = Datos.listaClientes.get(Datos.listaClientes.size() - 1);
-        return  cliente;
-    }
-    
-    // Selecciona el cliente registrado marcado con el indice i.
-	public static Cliente clienteRegistrado(){ 
-		System.out.println("Ingrese el indice del cliente al cual se le aplicara la transaccion: "+"\n");
-		 Scanner entrada = new Scanner(System.in); 
-		clientesRegistrados();                                           
-		int i = entrada.nextInt();
-		return seleccionarCliente(i-1);
-	}
-	
-	// Este metodo registra un cliente.
-	public static Cliente clienteNoRegistrado(){
-		//ingresarCliente();
-		return seleccionarUltimoCliente();
-	}
-	
-	// Mostrar en pantalla los clientes registrados.
- 	public static void clientesRegistrados() {
- 		int indiceCliente = 1;
- 		for (Cliente cliente : Datos.listaClientes) {
- 			System.out.println("Indice: " + indiceCliente + "  ||  " + cliente.toString());
- 			indiceCliente ++;
- 		}
- 	}
  	
     // Se crea el toString de la clase Cliente, el cual retorna el nombre del cliente, su cedula
     // y la cantidad de puntos que posee en la tienda.
     public String toString(){
         return "Nombre: " + nombre + "  ||  " + "C.C: " + cc + "  ||  " + "Puntos del cliente: " +  puntos;
     }
-	// Metodo para eliminar un cliente de la base de datos. 
-	public static void borrarCliente() {
-		Scanner entrada = new Scanner(System.in);    	
-    	clientesRegistrados();
-    	System.out.println("Ingrese el indice del Cliente que desea borrar: ");
-    	int indice = entrada.nextInt(); 		
-		Datos.listaClientes.remove(Datos.listaClientes.remove(indice-1));
-		clientesRegistrados();
-	}
+
     // Este metodo agregara 1 punto al cliente, cada vez que este realice una compra de un periferico o un juego.
     public void agregarPunto() {
     	puntos++;

@@ -71,46 +71,7 @@ public class Consola extends Producto implements Serializable, Hardware {
     public ArrayList<Consola> getListaConsolas() {
         return Datos.listaConsolas;
     }
-    public static void ventaConsola(Cliente cliente) {
-    	// Si la entrada fue 1, se muestran las consolas disponibles y se pide la cantidad de consolas a vender.
-    	Scanner entrada = new Scanner(System.in);
-		Consola.consolasRegistradas();
-		System.out.println("Ingrese la cantidad de Consolas a vender: ");
-		int tope = entrada.nextInt();			
-		System.out.println("Ingrese el indice de la/s consola/s que desea vender: ");
-		int[] ints = Producto.seleccionProductos(tope);
-		ArrayList<Producto> productos = Consola.consolaPorIndice(ints);
-		for (Producto pro: productos){
-			System.out.println(pro);			
-		}			
-		
-		//se hace el llamado al metodo de la clase Datos para generar una factura de venta
-		cliente.agregarPunto(5);
-		System.out.println("\n"+ "Lista de Clientes con puntos actualizados despues de la compra:" +"\n");
-		Cliente.clientesRegistrados();
-    }
-    
-    // Modificar consolas externas de la tienda.
-    public static void modificarConsola(ArrayList<Detalle> detalles) {
-    	Scanner entrada = new Scanner(System.in);
-		System.out.println("Ingrese el nombre de la consola: ");
-		String nombre = entrada.next();
-		System.out.println("Ingrese el color de la consola: ");
-		String color = entrada.next();
-		System.out.println("Ingrese el estado de la consola (true si la consola esta usada o  false si la consola esta nueva) ");
-		Boolean estado = entrada.nextBoolean();
-		System.out.println("Ingrese la capacidad de almacenamiento en Gb de la consola: ");
-		int almacenamiento = entrada.nextInt();
-		Consola producto = new Consola(nombre, color, estado, almacenamiento);
-		System.out.println("Ingrese el tipo de Servicio tecnico: ");
-		String tiposervicio = entrada.next();
-		System.out.println("Ingrese el precio del servicio tecnico: ");
-		float precio = entrada.nextFloat();
-		System.out.println("Ingrese las unidades a las que se les aplicara el servicio tecnico: ");
-		int unidades = entrada.nextInt();
-		Detalle detalle = new Detalle(producto, precio, tiposervicio,unidades);
-		detalles.add(detalle);
-    }
+
     
     // Metodo que devuelve un Arraylist con las consolas segun los indices ingresados por el usuario.
     public static ArrayList<Producto> consolaPorIndice(int[] ints){
@@ -161,16 +122,7 @@ public class Consola extends Producto implements Serializable, Hardware {
         return "Nombre de la consola: " + getNombre() + "  ||  " + "Capacidad de almacenamiento: " +  almacenamiento + " Gb" + "  ||  " +"Garantia: "+ garantia +" meses "+"  ||  " + "Version de la consola: " +  getVersion() + "  ||  " + "Precio: " + "COP $" + getPrecio()+"  ||  "+this.descripcionProducto();
     }
   
-    
-    // Metodo para eliminar una consola de la base de datos.
-    public static void borrarConsola() {
-    	Scanner entrada = new Scanner(System.in);    	
-    	consolasRegistradas();
-    	System.out.println("Ingrese el indice de la Consola que desea borrar: ");
-    	int indice = entrada.nextInt();    	
-    	Datos.listaConsolas.remove(Datos.listaConsolas.get(indice-1));
-    	consolasRegistradas();
-    }
+
   
     public static Float precioss(String nombre) {
     	Float todoslosprecios = (float) 0;

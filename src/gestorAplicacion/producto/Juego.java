@@ -73,34 +73,6 @@ public class Juego extends Producto implements Serializable{
     public Juego(String nombre, float precioReparacion){
         super(nombre, precioReparacion);
     }
-
-    // Metodo que moodifica el precio de algunos juegos, dado un array de indices y un array de precios.
-    public static void modificarPreciosJuegos(int[] ints, int[] precios){
-        int indice = 0;
-        for (int i: ints){
-            Datos.listaJuegos.get(i-1).setPrecio(precios[indice]);
-            indice++;
-        }
-    }
-    
-    // Metodo que devuelve un Arraylist con los juegos segun los indices ingresados por el usuario.
-    public static ArrayList<Producto> juegoPorIndice(int[] ints){
-        ArrayList<Producto> nuevaLista = new ArrayList<Producto>();
-        for (int i: ints){
-            nuevaLista.add(Datos.listaJuegos.get(i-1));
-        }
-        return nuevaLista;
-    }
-    
-    // Mostrar en pantalla los juegos registrados en la tienda.
-	public static void juegosRegistrados() {
-		int indiceJuego = 1;
-		for (Juego juego : Datos.listaJuegos) {
-			System.out.println("Indice: "+indiceJuego +"  ||  "+ juego.toString());
-			indiceJuego ++;
-		}
-	}
-
 	
 	 public static Float precioss(String nombre) {
 	    Float todoslosprecios = (float) 0;

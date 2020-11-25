@@ -70,14 +70,6 @@ public class Periferico extends Producto implements Serializable,Hardware{
     	super(nombre,precio);
     }
 
-    // Mostrar en pantalla los perifericos registrados.
-	public static void perifericosRegistrados() {
-		int indicePeriferico = 1;
-		for (Periferico periferico : Datos.listaPerifericos) {
-			System.out.println("Indice: "+indicePeriferico + "  ||  " + periferico.toString());
-			indicePeriferico ++;
-		}
-	}
 
     // Se crea el constructor de la clase periferico, con sus atributos como parametros.
     public Periferico(String nombre, boolean uso, float precio, String plataforma) {
@@ -107,17 +99,6 @@ public class Periferico extends Producto implements Serializable,Hardware{
     		System.out.println("Se ha reparado el periferico.");
     	}
     }
-    
-    // Metodo para eliminar un periferico de la base de datos de la tienda.
-	public static void borrarPeriferico() {
-		Scanner entrada = new Scanner(System.in);    	
-    	perifericosRegistrados();
-    	System.out.println("Ingrese el indice del Periferico que desea borrar: ");
-    	int indice = entrada.nextInt(); 		
-		Datos.listaPerifericos.remove(Datos.listaPerifericos.remove(indice-1));
-		perifericosRegistrados();
-	}
-
     // Metodo que modifica el precio de uno o mas perifericos dados un array de indices y uno de precios.
     public static void modificarPreciosPerifericos(int[] ints, int[] precios){
         int indice = 0;
@@ -180,76 +161,7 @@ public class Periferico extends Producto implements Serializable,Hardware{
  			}
  		}return precio;
  	}
- 	// Metodo que obtiene el juego mas vendido en la tienda.
- 	public static void PerifericosMasVendidos(){		
-        ArrayList<String> nombres = Periferico.productosVendidos();        
-        ArrayList<String> nombresUnicos = new ArrayList<String>();
-        for (String nombre: nombres){
-            if(!nombresUnicos.contains(nombre))
-                nombresUnicos.add(nombre);
-        }
-        System.out.println("Nombre del Periferico"+"       ||      "+"Unidades Vendidas"+ "    ||    "+"Precio por unidad"+"    ||    "+" Subtotal ");
-        Float total = (float) 0;
-        for (String nombre: nombresUnicos){
-        	total += precioss(nombre);
-            System.out.println("    "+nombre + "                           " +unidadess(nombre) +" undidades                 "+precioPeriferico(nombre)+"$ COP "+"              "+precioss(nombre));
-        } System.out.println("***TOTAL DE GANANCIAS POR VENTA DE PERIFERICOS: ||"+total+"$ COP|| ***");       
-        
-    }
- 	
- 	// Metodo que permite conocer el periferico que se vende con mas frecuencia en la tienda.
- 	public static void PerifericoMasVendido(){
- 		
-        ArrayList<String> nombres = Periferico.productosVendidos();
-        ArrayList<String> nombresUnicos = new ArrayList<String>();
-        ArrayList<Integer> cantidadesunidad = new ArrayList<Integer>();
-        for (String nombre: nombres){
-            if(!nombresUnicos.contains(nombre))
-                nombresUnicos.add(nombre);
-        }
-        for (String nombre: nombresUnicos){
-            cantidadesunidad.add(unidadess(nombre));
-        }
-        
-        int aux = 0;
-        String s = "";
-        for(int x=0;x<cantidadesunidad.size();x++) {
-        	if(cantidadesunidad.get(x)>aux) {
-        		aux = cantidadesunidad.get(x);
-        		s = nombresUnicos.get(x);
-        	}
-        }System.out.println("\n"+"NOMBRE DEL PERIFERICO MAS VENDIDO: "+s+"  ||  "+"Unidades Vendidas: "+aux);
-        
-        int aux1 = cantidadesunidad.get(0);
-        String s1 = "";
-        for(int x=0;x<cantidadesunidad.size();x++) {
-        	if(cantidadesunidad.get(x)<=aux1) {
-        		aux1 = cantidadesunidad.get(x);
-        		s1 = nombresUnicos.get(x);
-        	}
-        }
-        
-        System.out.println("\n"+"NOMBRE DEL PERIFERICO MENOS VENDIDO: "+s1+"  ||  "+"Unidades Vendidas: "+aux1);
-    }
-    
-    // Metodo que modifica los perifericos externos.
-    public static void modificarPeriferico(ArrayList<Detalle> detalles) {
-    	Scanner entrada = new Scanner(System.in);
-    	System.out.println("Ingrese el nombre del periferico: ");
-		String nombre = entrada.next();
-		System.out.println("Ingrese el estado del periferico (true si el periferico se encuentra malo o false si se encuentra bueno)");
-		Boolean estado = entrada.nextBoolean();
-		Periferico producto = new Periferico(nombre, estado);
-		System.out.println("Ingrese el tipo de Servicio tecnico: ");
-		String tiposervicio = entrada.next();
-		System.out.println("Ingrese el precio del servicio tecnico: ");
-		float precio = entrada.nextFloat();
-		System.out.println("Ingrese las unidades: ");
-		int unidades = entrada.nextInt();
-		Detalle detalle = new Detalle(producto, precio, tiposervicio,unidades);
-		detalles.add(detalle);
-    }
-    
+
     @Override
     // Si el estado se encuentra en false, quiere decir que el periferico esta reparado o bueno en su defecto.
     public void Reparar() {

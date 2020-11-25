@@ -56,9 +56,9 @@ class VentanaImperial{
 	VBox modificarPeriferico = new ModificarPeriferico();
 	VBox modificarConsola = new ModificarConsola();
 	VBox modificarJuego = new ModificarJuego();
+	static boolean iniciar = false;
 
-
-	public VentanaImperial(){
+	public VentanaImperial(){		
 		modificarConsola.setPadding(new Insets(10,10,10,10));
 	
         //Creacion de barra de menus de la ventana imperial:
@@ -128,7 +128,42 @@ class VentanaImperial{
 		//Importacion de vbox de ventana ventas:
 		defecto = new VentanaVentas(carrito);
 
-		vusuario.getChildren().add(defecto);
+		VBox bienvenida = new VBox(10);
+		bienvenida.setPadding(new Insets(10,10,10,10));
+		bienvenida.setAlignment(Pos.CENTER);
+		TextField saludo = new TextField("Usted ha ingresado a la Ventana Imperial");
+		TextArea manual = new TextArea("En la barra de Menu ubicada en la parte superior izquierda, encontraras:\n\nArchivo:\n1) Submenu Usuario: que brindara un cuadro de dialogo al usuario "
+				+ "\n2) Submenu Salir: Aqui el usuario podra devolverse a la ventana inicial.\n\nMenu Procesos y Consultas, el cual tiene los siguientes submenus:"
+				+ "\n1) Vender: Aqui el usuario podra venderle a sus clientes consolas perifericos o juegos, ademas podra realizar servicios tecnicos"
+				+ "\n2) Agregar,Eliminar o Modificar Usuarios: Aqui el administrador podra realizar cualquier tipo de modificaciones a los clientes registrados en la tienda"
+				+ "\n3) Agregar, Eliminar o Modificar Stock: Aqui el administrador podra realizar todo tipo de modificaciones al stock de su tienda"
+				+ "\n4) Consultas: en este apartado se encuentran las funcionalidades especiales que le permiten al usuario acceder a informacion reelevante acerca de su tienda "
+				+ "\n\nAyuda:\n1) Submenu Acerca de: Aqui el usuario podra ver la version de la aplicacion y los desarrolladores de la misma.");
+		manual.setMinSize(900,300);
+		saludo.setMaxSize(300,100);
+		saludo.setEditable(false);
+		Button ok = new Button("Aceptar");	
+		escenaimperial = new Scene(bienvenida,1100, 900);
+		 ok.setOnAction(new EventHandler<ActionEvent>() {
+	            public void handle(ActionEvent event) {
+	            	vusuario.getChildren().set(1, defecto);
+	                	                
+	            }
+	        });
+		 
+		 if(iniciar == false) {
+			 vusuario.getChildren().add(bienvenida);
+			 iniciar = true;
+			 
+		 }else if(iniciar == true){
+			 vusuario.getChildren().add(defecto);	
+		 }
+		 
+		
+		bienvenida.getChildren().addAll(saludo,manual,ok);
+		
+		
+		//vusuario.getChildren().add(bienvenida);		
 		escenaimperial = new Scene(vusuario, 1100, 900);
 
 	}

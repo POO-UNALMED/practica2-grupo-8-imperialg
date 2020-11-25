@@ -69,16 +69,6 @@ public abstract class Producto implements Serializable{
         this.nombre = nombre;
     }
     
-    // Metodo que especifica los indices para seleccionar uno o mas productos.
-	public static int[] seleccionProductos(int tope){
-		 Scanner entrada = new Scanner(System.in);
-		int[] ints = new int[tope];
-		for(int i=0; i<tope; i++) {
-			ints[i] = entrada.nextInt();
-			System.out.println(ints[i]);
-		}
-		return ints;
-	}
 	// Metodo abstracto que lo implementaran las Clases Juego, Consola y Periferico.
     public abstract String toString();
 

@@ -70,16 +70,6 @@ public class Factura implements Serializable {
         return listaFacturas;
     }
 
-
-    // Mostrar en pantalla las facturas registradas.
-    public static void facturasRegistradas() {
-        for (Factura factura : Datos.listaFacturas) {
-            System.out.println(factura.toString()+"\n");
-            
-        }
-    }
-
-
     //  Se crea el toString de la clase Factura, el cual mostrara por pantalla el Id asociado a la factura, la fecha en que se
     // genera la fatura, el nombre del cliente al cual se le generara la factura, los detalles que componen a la factura y el valor
     // total de la factura.
