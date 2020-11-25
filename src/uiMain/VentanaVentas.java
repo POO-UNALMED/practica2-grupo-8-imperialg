@@ -4,6 +4,7 @@ import BaseDatos.Datos;
 import gestorAplicacion.producto.Consola;
 import gestorAplicacion.producto.Juego;
 import gestorAplicacion.producto.Periferico;
+import gestorAplicacion.producto.Producto;
 import gestorAplicacion.transacciones.Cliente;
 import gestorAplicacion.transacciones.Detalle;
 import gestorAplicacion.transacciones.Factura;
@@ -254,7 +255,15 @@ public class VentanaVentas extends VBox{
             public void handle(ActionEvent event) {
                 Cliente cliente = (Cliente) comboClientes.getSelectionModel().getSelectedItem();
                 Factura factura = new Factura(cliente, carrito);
-                
+                for(Detalle prod:carrito) {
+                	if(prod.getProducto() instanceof Consola) {
+                		cliente.agregarPunto(5);
+                	}else if(prod.getProducto() instanceof Periferico) {
+                		cliente.agregarPunto();
+                	}else if(prod.getProducto() instanceof Juego) {
+                		cliente.agregarPunto();
+                	}
+                }
                 Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
                 dialogoInfo.setTitle("TRANSACCION EXITOSA");
                 dialogoInfo.setHeaderText("Confirmacion de transaccion.");
