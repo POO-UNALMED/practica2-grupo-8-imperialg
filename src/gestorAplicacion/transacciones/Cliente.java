@@ -99,7 +99,7 @@ public class Cliente implements Serializable {
     // Se crea el toString de la clase Cliente, el cual retorna el nombre del cliente, su cedula
     // y la cantidad de puntos que posee en la tienda.
     public String toString(){
-        return "Nombre: " + nombre + "  ||  " + "C.C: " + cc + "  ||  " + "Puntos del cliente: " +  puntos;
+        return "Nombre: " + nombre + "  ||  " + "C.C: " + cc +"  ||  "+"Celular: "+celular+"  ||  "+"e-mail: "+email+"  ||  " + "Puntos del cliente: " +  puntos;
     }
 
     // Este metodo agregara 1 punto al cliente, cada vez que este realice una compra de un periferico o un juego.
